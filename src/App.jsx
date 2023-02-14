@@ -28,14 +28,16 @@ function App() {
         </p>
       </nav>
 
-      <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
-        <Page pageNumber={pageNumber} />
-      </Document>
+      <div className="page">
+        <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
+          <Page pageNumber={pageNumber} />
+        </Document>
+        <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
+          <Page pageNumber={pageNumber + 1} />
+        </Document>
+      </div>
     </div>
   );
 }
 
 export default App;
-
-//react using vite
-// react pdf
