@@ -9,9 +9,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      margin: {
-        '6px' : '6px',
-      },
       fontFamily: {
         chivo: ['"Chivo"', ...defaultTheme.fontFamily.sans]
       }
