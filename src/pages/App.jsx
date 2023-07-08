@@ -5,6 +5,7 @@ import About from "./About";
 import Releases from "./Releases";
 import FourOhFour from "./FourOhFour";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ function Layout() {
     <>
       <Header />
       <Outlet />
+      <Footer />
     </>
   );
 }
