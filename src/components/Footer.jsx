@@ -8,8 +8,8 @@ import youtube from "../assets/icons/youtube.svg";
 
 export default function Footer() {
   return (
-    <footer className="w-screen h-[21rem] flex flex-col justify-center items-center text-[#1C4480] font-chivo">
-      <div className="mb-[3rem] flex flex-row gap-x-[6rem]">
+    <footer className="w-screen h-[21rem] lg:flex flex-col justify-center items-center text-[#1C4480] font-chivo hidden gap-y-12 mb-12 shadow-[0_8px_35px_0_rgba(0,0,0,0.10)]">
+      <div className="flex flex-row gap-x-[6rem]">
         <div className="flex flex-col w-[23.5rem] gap-y-8">
           <img src={logo} alt="The GUIDON" />
           <div className="leading-tight">
@@ -34,7 +34,7 @@ export default function Footer() {
           {/* form not functional */}
           <form
             action=""
-            className="border-[1px] border-current rounded-[3px] pl-3"
+            className="border-[1px] border-current rounded-[3px] pl-3 flex flex-row"
           >
             <input
               type="email"
@@ -70,7 +70,7 @@ export default function Footer() {
       </div>
       <div className="font-chivo text-sm text-center border-t-[1px] border-[#1C4480] pt-[1.5rem]">
         © The GUIDON 2023 All rights reserved. Designed and developed by Digital
-        Development 2022-2023
+        Development 2022-2024
       </div>
     </footer>
   );
