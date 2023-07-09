@@ -5,6 +5,7 @@ import twitter from "../assets/icons/twitter.svg";
 import instagram from "../assets/icons/instagram.svg";
 import spotify from "../assets/icons/spotify.svg";
 import youtube from "../assets/icons/youtube.svg";
+import email from "../assets/icons/email.svg";
 
 export default function Footer() {
   return (
@@ -34,36 +35,41 @@ export default function Footer() {
           {/* form not functional */}
           <form
             action=""
+            onSubmit={(e) => {
+              e.preventDefault();
+              e.target.reset();
+            }}
             className="border-[1px] border-current rounded-[3px] pl-3 flex flex-row"
           >
+            <img src={email} alt="email" className="mr-2" />
             <input
               type="email"
               placeholder="Email Address"
               name="mail"
               required
-              className="text-current"
+              className="text-current outline-none"
             />
             <input
               type="submit"
               value="Subscribe"
-              className="bg-[#1C4480] text-white p-3 font-bold"
+              className="bg-[#1C4480] text-white p-3 font-bold cursor-pointer"
             ></input>
           </form>
           <div className="flex flex-row gap-x-3 mt-2">
             <a href="https://www.facebook.com/TheGUIDON">
-              <img src={facebook} alt="" />
+              <img src={facebook} alt="facebook" />
             </a>
             <a href="https://twitter.com/TheGUIDON">
-              <img src={twitter} alt="" />
+              <img src={twitter} alt="twitter" />
             </a>
             <a href="https://www.instagram.com/theguidon">
-              <img src={instagram} alt="" />
+              <img src={instagram} alt="instagram" />
             </a>
             <a href="https://open.spotify.com/show/0t2PxYpSft6HfoPHibwAvT">
-              <img src={spotify} alt="" />
+              <img src={spotify} alt="spotify" />
             </a>
             <a href="https://www.youtube.com/@TheGuidon">
-              <img src={youtube} alt="" />
+              <img src={youtube} alt="youtube" />
             </a>
           </div>
         </div>
