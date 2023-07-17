@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/images/logo.svg";
+import logo from "../assets/images/logo-blue.svg";
 import facebook from "../assets/icons/facebook.svg";
 import twitter from "../assets/icons/twitter.svg";
 import instagram from "../assets/icons/instagram.svg";
@@ -9,7 +9,7 @@ import email from "../assets/icons/email.svg";
 
 export default function Footer() {
   return (
-    <footer className="w-screen h-[21rem] lg:flex flex-col justify-center items-center text-[#1C4480] font-chivo hidden gap-y-12 mb-12 shadow-[0_8px_35px_0_rgba(0,0,0,0.10)]">
+    <footer className="w-screen h-[21rem] lg:flex flex-col justify-center items-center text-guidon font-chivo hidden gap-y-12 mb-12 shadow-[0_8px_35px_0_rgba(0,0,0,0.10)]">
       <div className="flex flex-row gap-x-[6rem]">
         <div className="flex flex-col w-[23.5rem] gap-y-8">
           <img src={logo} alt="The GUIDON" />
@@ -52,8 +52,8 @@ export default function Footer() {
             <input
               type="submit"
               value="Subscribe"
-              className="bg-[#1C4480] text-white p-3 font-bold cursor-pointer"
-            ></input>
+              className="bg-guidon text-white p-3 font-bold cursor-pointer"
+            />
           </form>
           <div className="flex flex-row gap-x-3 mt-2">
             <a href="https://www.facebook.com/TheGUIDON">
@@ -74,7 +74,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="font-chivo text-sm text-center border-t-[1px] border-[#1C4480] pt-[1.5rem]">
+      <div className="font-chivo text-sm text-center border-t-[1px] border-guidon pt-[1.5rem]">
         © The GUIDON 2023 All rights reserved. Designed and developed by Digital
         Development 2022-2024
       </div>

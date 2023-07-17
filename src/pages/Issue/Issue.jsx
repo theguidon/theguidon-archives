@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Document, Page } from "react-pdf/dist/esm/entry.vite";
-import pdf from "../pdf/iscs.pdf";
+import pdf from "./pdf/iscs.pdf";
 
-export default function Releases() {
+export default function Issue() {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
