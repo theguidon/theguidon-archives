@@ -1,8 +1,10 @@
 import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import "./App.css";
 import { Document, Page } from "react-pdf/dist/esm/entry.vite";
 import pdf from "./pdf/iscs.pdf";
 
-export default function Issue() {
+function App() {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -26,14 +28,16 @@ export default function Issue() {
         </p>
       </nav>
 
-      <div className=" flex flex-row ">
+      <div className="page">
         <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
-          <Page pageNumber={pageNumber} renderTextLayer={false} />
+          <Page pageNumber={pageNumber} />
         </Document>
         <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
-          <Page pageNumber={pageNumber + 1} renderTextLayer={false} />
+          <Page pageNumber={pageNumber + 1} />
         </Document>
       </div>
     </div>
   );
 }
+
+export default App;
