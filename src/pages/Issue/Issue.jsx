@@ -27,12 +27,12 @@ export default function Issue() {
       </nav>
 
       <div className=" flex flex-row ">
-        <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
+        {/* <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber} renderTextLayer={false} />
         </Document>
         <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber + 1} renderTextLayer={false} />
-        </Document>
+        </Document> */}
       </div>
     </div>
   );
