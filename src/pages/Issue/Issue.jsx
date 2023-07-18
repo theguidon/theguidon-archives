@@ -4,9 +4,9 @@ import pdf from "./test.pdf";
 
 export default function Issue() {
   return (
-    <main>
+    <main className="flex flex-col justify-center items-center">
       <Document file={pdf}>
-        <Page pageNumber={1} width="100" />
+        <Page pageNumber={1} width={400} renderAnnotationLayer={false} />
       </Document>
     </main>
   );
