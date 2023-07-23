@@ -1,5 +1,4 @@
 import React from "react";
-import heroImage from "../../assets/images/Broadsheet.png";
 import More from "./Buttons/More";
 import { Articles } from "./Files/Sample";
 

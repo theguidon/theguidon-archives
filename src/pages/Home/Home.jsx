@@ -1,19 +1,30 @@
 import React from "react";
-import heroImage from "../../assets/images/Broadsheet.png";
+import heroImage from "../../assets/images/Hero.png";
 import "../../stylesheets/home.css";
+import Broadsheet from "../../assets/images/Broadsheet.png";
+
 import BrowseArchive from "./BrowseArchive";
 import New from "./New";
 import Releases from "./Releases";
 export default function Home() {
   return (
     <>
-      <div className="home header">
+      <div
+        className="home header bg-cover text-[#FFF]"
+        style={{
+          backgroundImage: `linear-gradient(158deg, rgba(15, 38, 92, 0.8) 0%, rgba(114, 164, 215, 0) 100%), url(${heroImage})`,
+          backgroundColor: "#72A4D7",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+      >
         <div className="flex">
+          {" "}
           <div className="flex-1 p-1">
             <div className="xs-txt relative font-chivo font-bold text-left uppercase">
               Latest Release
             </div>
-            <h1 className="relative text-2xl leading-8 text-black">
+            <h1 className="relative text-2xl font-bold leading-8">
               November- December 2022{" "}
             </h1>
             <h5 className="xs-txt relative font-chivo text-left uppercase">
@@ -28,7 +39,7 @@ export default function Home() {
             </button>
           </div>
           <div className="flex-1 p-1 flex items-center justify-center">
-            <img src={heroImage} alt="hero" class="block my-auto" />
+            <img src={Broadsheet} alt="hero" class="block my-auto" />
           </div>
         </div>
       </div>
