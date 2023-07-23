@@ -12,6 +12,7 @@ module.exports = {
       },
       fontFamily: {
         chivo: ["Chivo", ...defaultTheme.fontFamily.sans],
+        tiemposheadline: ["Tiempos Headline", ...defaultTheme.fontFamily.serif],
       },
     },
   },

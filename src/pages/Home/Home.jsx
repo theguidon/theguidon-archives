@@ -10,6 +10,7 @@ import { Articles } from "./Files/Sample";
 import BrowseArchive from "./BrowseArchive";
 import New from "./New";
 import Releases from "./Releases";
+import ReadNow from "./Buttons/ReadNow";
 
 export default function Home() {
   const articlesList = Articles.map((article, index) => (
@@ -29,18 +30,16 @@ export default function Home() {
             <div className="xs-txt relative font-chivo font-bold text-left uppercase">
               Latest Release
             </div>
-            <h1 className="relative text-2xl font-bold leading-8">
+            <h1 className="relative text-3xl font-tiemposheadline font-bold leading-8">
               {article.title}
             </h1>
             <h5 className="xs-txt relative font-chivo text-left uppercase">
               {article.date}
             </h5>
-            <div className="sm-txt relative font-light text-left leading-tight">
+            <div className="sm-txt relative font-tiemposheadline font-light text-left leading-tight">
               {article.description}
             </div>
-            <button className="btn-blue-light text-guidon font-bold mt-4">
-              Read now
-            </button>
+            <ReadNow />
           </div>
           <div className="flex-1 p-1 flex items-center justify-center">
             <img
