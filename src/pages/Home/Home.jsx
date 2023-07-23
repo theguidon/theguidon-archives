@@ -1,6 +1,8 @@
 import React from "react";
-import heroImage from "../../assets/home/hero.png";
+import heroImage from "../../assets/images/Broadsheet.png";
 import "../../stylesheets/home.css";
+import BrowseArchive from "./BrowseArchive";
+import New from "./New";
 export default function Home() {
   return (
     <>
@@ -16,7 +18,7 @@ export default function Home() {
             <h5 className="xs-txt relative font-chivo text-left uppercase">
               December 31,2023
             </h5>
-            <div className="relative font-light text-[12px] text-left leading-tight">
+            <div className="sm-txt relative font-light text-left leading-tight">
               With 2022 nearing its end, The GUIDON takes a look at the events,
               issues, and developments that have come to define the past year.{" "}
             </div>
@@ -29,7 +31,8 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Browse />
+      <BrowseArchive />
+      <New />
     </>
   );
 }

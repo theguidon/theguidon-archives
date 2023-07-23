@@ -1,0 +1,13 @@
+.home {
+  @apply px-6 py-8;
+}
+.xs-txt {
+  @apply text-[7.5px];
+}
+.sm-txt {
+  @apply text-[10px];
+}
+
+.btn-blue-light {
+  @apply rounded-[4.919px] bg-lightblue px-4 py-2 text-guidon font-bold;
+}
