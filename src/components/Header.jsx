@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <>
       <header>
-        <div className="w-screen h-16 bg-guidon flex flex-row justify-between items-center px-6 font-chivo text-white fixed">
+        <div className="w-screen h-16 bg-guidon flex flex-row justify-between items-center px-6 font-chivo text-white fixed z-10">
           <img
             src={menu}
             alt=""
