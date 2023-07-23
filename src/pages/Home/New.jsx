@@ -1,7 +1,18 @@
 import React from "react";
 import heroImage from "../../assets/images/Broadsheet.png";
 import More from "./Buttons/More";
+import { Articles } from "./Files/Sample";
+
 export default function New() {
+  const articlesList = Articles.map((article, index) => (
+    <div className="leading-tight mr-2" key={index}>
+      <img src={article.picture} alt={article.title} />
+      <h1 className="sm-txt font-bold">{article.title}</h1>
+      <p className="xs-txt">{article.description}</p>
+      <p className="xs-txt">{article.date}</p>
+    </div>
+  ));
+
   return (
     <div className="home new">
       <div className="flex">
@@ -17,7 +28,7 @@ export default function New() {
           <More />
         </div>
       </div>
-      <img src={heroImage} alt="heroImage" className="my-4" />
+      <div className="flex">{articlesList}</div>
     </div>
   );
 }
