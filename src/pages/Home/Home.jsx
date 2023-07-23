@@ -1,5 +1,4 @@
-import React, { useRef, useState } from "react";
-import heroImage from "../../assets/images/Hero.png";
+import React from "react";
 import "../../stylesheets/home.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
@@ -8,7 +7,6 @@ import "swiper/css/pagination";
 
 import { Articles } from "./Files/Sample";
 
-import Broadsheet from "../../assets/images/Broadsheet.png";
 import BrowseArchive from "./BrowseArchive";
 import New from "./New";
 import Releases from "./Releases";
