@@ -3,6 +3,7 @@ import heroImage from "../../assets/images/Broadsheet.png";
 import "../../stylesheets/home.css";
 import BrowseArchive from "./BrowseArchive";
 import New from "./New";
+import Releases from "./Releases";
 export default function Home() {
   return (
     <>
@@ -33,6 +34,7 @@ export default function Home() {
       </div>
       <BrowseArchive />
       <New />
+      <Releases />
     </>
   );
 }
