@@ -45,7 +45,7 @@ export default function Home() {
             <img
               src={article.picture}
               alt={article.title}
-              class="block my-auto"
+              className="block my-auto"
             />
           </div>
         </div>
