@@ -29,12 +29,12 @@ export default function Home() {
             <h5 className="text-base font-chivo text-left uppercase mb-6">
               {Articles[0].date}
             </h5>
-            <div className="text-xl text-left font-tiemposheadline font-light mb-10 leading-tight">
+            <div className="text-xl text-left font-chivo font-normal mb-10 leading-tight">
               {Articles[0].description}
             </div>
             <ReadNow />
           </div>
-          <div className="flex-[0.75] bg-white">
+          <div className="flex-[0.75]">
             <img
               src={Articles[0].picture}
               alt={Articles[0].title}

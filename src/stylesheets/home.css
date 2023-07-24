@@ -11,7 +11,7 @@
 }
 
 .btn-blue-light {
-  @apply rounded-[5px] bg-lightgray px-4 py-2 text-guidon font-bold;
+  @apply rounded-[8px] bg-lightgray px-6 py-4 text-darkblue font-bold;
 }
 
 .swiper-pagination-bullet {
