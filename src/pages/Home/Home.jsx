@@ -13,7 +13,7 @@ export default function Home() {
         className="home header bg-cover h-full  text-[#FFF]"
         style={{
           backgroundImage: `linear-gradient(158deg, rgba(15, 38, 92, 0.8) 0%, rgba(114, 164, 215, 0) 100%), url(${Articles[0].hero})`,
-          backgroundColor: "#72A4D7",
+          backgroundColor: "lightblue",
           backgroundSize: "cover",
         }}
       >
@@ -44,8 +44,8 @@ export default function Home() {
         </div>
       </div>
       <BrowseArchive />
-      <New />
       <Releases />
+      <New />
     </>
   );
 }

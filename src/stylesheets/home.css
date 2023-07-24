@@ -9,8 +9,9 @@
 .heading-txt {
   @apply text-[40px] font-tiemposheadline font-bold mb-6;
 }
+
 .btn-blue-light {
-  @apply rounded-[5px] bg-lightblue px-4 py-2 text-guidon font-bold;
+  @apply rounded-[5px] bg-lightgray px-4 py-2 text-guidon font-bold;
 }
 
 .swiper-pagination-bullet {

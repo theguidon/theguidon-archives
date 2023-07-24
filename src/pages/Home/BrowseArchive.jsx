@@ -1,16 +1,16 @@
 import React from "react";
 import { Archives } from "./Files/Browse";
-import { MdOutlineArrowForwardIos } from "react-icons/md";
+import LeftButton from "./Buttons/LeftButton";
 
 export default function BrowseArchive() {
   const archivesList = Archives.map((article, index) => (
     <div className="mr-6" key={index}>
-      <div className="flex border-b-[1px] border-[#72A4D7] mb-3">
+      <div className="flex border-b-[1px] border-lightblue mb-3">
         <div class="text-2xl font-medium font-tiemposheadline leading-[33.60px] mr-1">
           {article.title}
         </div>
         <div className="flex my-auto">
-          <MdOutlineArrowForwardIos />
+          <LeftButton />
         </div>
       </div>
       <div

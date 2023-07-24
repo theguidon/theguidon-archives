@@ -8,8 +8,9 @@ module.exports = {
     extend: {
       colors: {
         guidon: "#1C4480",
-        lightblue: "#DBE9F4",
+        lightgray: "#E9EEF2",
         darkblue: "#0F265C",
+        lightblue: "#72A4D7",
       },
       fontFamily: {
         chivo: ["Chivo", ...defaultTheme.fontFamily.sans],
