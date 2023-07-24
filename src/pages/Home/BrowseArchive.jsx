@@ -27,9 +27,7 @@ export default function BrowseArchive() {
 
   return (
     <div className="home browse">
-      <h1 className="text-2xl font-tiemposheadline font-bold leading-8 mb-2">
-        Browse the Archive{" "}
-      </h1>
+      <h1 className="heading-txt">Browse the Archive </h1>
       <div className="flex overflow-x-scroll"> {archivesList}</div>
     </div>
   );

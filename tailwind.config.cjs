@@ -9,6 +9,7 @@ module.exports = {
       colors: {
         guidon: "#1C4480",
         lightblue: "#DBE9F4",
+        darkblue: "#0F265C",
       },
       fontFamily: {
         chivo: ["Chivo", ...defaultTheme.fontFamily.sans],

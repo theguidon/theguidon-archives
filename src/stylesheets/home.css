@@ -1,15 +1,16 @@
 .home {
-  @apply px-6 pt-8;
-}
-.xs-txt {
-  @apply text-[7.5px];
-}
-.sm-txt {
-  @apply text-[10px];
+  @apply px-[104px] mb-20;
 }
 
+.xxs-txt {
+  @apply text-[8px];
+}
+
+.heading-txt {
+  @apply text-[40px] font-tiemposheadline font-bold mb-6;
+}
 .btn-blue-light {
-  @apply rounded-[4.919px] bg-lightblue px-4 py-2 text-guidon font-bold;
+  @apply rounded-[5px] bg-lightblue px-4 py-2 text-guidon font-bold;
 }
 
 .swiper-pagination-bullet {

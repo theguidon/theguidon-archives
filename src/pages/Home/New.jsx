@@ -9,8 +9,8 @@ export default function New() {
       <h1 className="sm-txt font-tiemposheadline font-bold mt-1">
         {article.title}
       </h1>
-      <p className="xs-txt">{article.description}</p>
-      <p className="xs-txt font-bold text-[#979797] uppercase mt-1">
+      <p className="xxs-txt">{article.description}</p>
+      <p className="xxs-txt font-bold text-[#979797] uppercase mt-1">
         {article.date}
       </p>
     </div>
@@ -20,9 +20,7 @@ export default function New() {
     <div className="home new">
       <div className="flex">
         <div className="flex-2">
-          <h1 className="flex text-2xl font-tiemposheadline font-bold leading-8">
-            What's New on the Archive?{" "}
-          </h1>
+          <h1 className="heading-txt">What's New on the Archive? </h1>
           <div className="sm-txt text-guidon font-bold uppercase">
             Recently Uploaded
           </div>
