@@ -26,7 +26,7 @@ export default function Home() {
             <h1 className="text-[56px] font-tiemposheadline font-bold mb-6 leading-10">
               {Articles[0].title}
             </h1>
-            <h5 className="text-base font-chivo text-left uppercase mb-6">
+            <h5 className="text-[1.25rem] leading-[1.4rem] font-chivo text-left uppercase mb-6 ">
               {Articles[0].date}
             </h5>
             <div className="text-xl text-left font-chivo font-normal mb-10 leading-tight">
