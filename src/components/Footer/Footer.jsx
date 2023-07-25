@@ -1,4 +1,5 @@
 import React from "react";
+import "./styles.css";
 import logo from "../../assets/images/logo-blue.svg";
 import facebook from "../../assets/icons/facebook.svg";
 import twitter from "../../assets/icons/twitter.svg";
