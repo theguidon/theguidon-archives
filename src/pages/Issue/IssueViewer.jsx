@@ -1,8 +1,10 @@
 import { Document, Page } from "react-pdf/dist/esm/entry.vite";
-import { useDrag, useGesture } from "@use-gesture/react";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { Draggable } from "gsap/all";
 import arrowLeft from "../../assets/icons/arrow-left.svg";
+
+gsap.registerPlugin(Draggable);
 
 export default function IssueViewer({ file }) {
   const viewerRef = useRef(null);
@@ -14,19 +16,10 @@ export default function IssueViewer({ file }) {
   const [numPages, setNumPages] = useState(0);
 
   // document gestures
-  useGesture(
-    {
-      onDrag: ({ offset: [x, y] }) => {
-        gsap.to(documentRef.current, { x, y });
-      },
-    },
-    {
-      target: documentRef,
-      drag: {
-        bounds: viewerRef,
-      },
-    }
-  );
+  Draggable.create(documentRef.current, {
+    type: "x,y",
+    bounds: viewerRef.current,
+  });
 
   function handleScrollThumb(x) {
     const scrollWidth = scrollRef.current.getBoundingClientRect().width - 1;
@@ -36,16 +29,28 @@ export default function IssueViewer({ file }) {
   }
 
   // scroller gestures
-  useDrag(({ offset: [x] }) => handleScrollThumb(x), {
-    target: thumbRef,
-    bounds: scrollRef,
+  Draggable.create(thumbRef.current, {
+    type: "x",
+    bounds: scrollRef.current,
+    liveSnap: (value) => {
+      const scrollBounds = scrollRef.current.getBoundingClientRect();
+      const scrollIncrement = scrollBounds.width / (numPages / 2);
+      return Math.round(value / scrollIncrement) * scrollIncrement;
+    },
+    onDrag: () => {
+      gsap.set(trackRef.current, {
+        right:
+          scrollRef.current.getBoundingClientRect().right -
+          thumbRef.current.getBoundingClientRect().right,
+      });
+    },
   });
 
-  useEffect(() => {
-    const scrollWidth = scrollRef.current.getBoundingClientRect().width - 1;
-    const pageScale = scrollWidth / numPages - 1;
-    handleScrollThumb(pageNumber * pageScale);
-  }, [pageNumber]);
+  //   useEffect(() => {
+  //     const scrollWidth = scrollRef.current.getBoundingClientRect().width - 1;
+  //     const pageScale = scrollWidth / numPages - 1;
+  //     handleScrollThumb(pageNumber * pageScale);
+  //   }, [pageNumber]);
 
   return (
     <div>
@@ -101,7 +106,7 @@ export default function IssueViewer({ file }) {
         >
           <div
             ref={trackRef}
-            className="absolute left-0 top-0 bottom-0 w-0 bg-guidon rounded-[inherit]"
+            className="absolute inset-0 right-auto bg-guidon rounded-[inherit]"
           />
           <div
             ref={thumbRef}
