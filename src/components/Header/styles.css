@@ -1,0 +1,14 @@
+.bg-ecf4ff {
+    background-color: #ECF4FF;
+  }
+
+  
+.searchbar-div {
+    display: flex;
+    width: 545px;
+    height: 40px;
+    padding: 16px 24px;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
