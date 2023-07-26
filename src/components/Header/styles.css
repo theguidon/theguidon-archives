@@ -2,24 +2,16 @@
     background-color: #ECF4FF;
   }
 
+.navbar-layout {
+    background: var(--bw-solid-white, #FFF);
+    /* Nav Shadow */
+    box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.07);
+}
   
-.searchbar-div {
-    display: flex;
-    width: 545px;
-    height: 40px;
-    padding: 16px 24px;
-    justify-content: space-between;
-    align-items: center;
-    flex-shrink: 0;
-  }
 
 .py-16 {
     padding-top: 4rem; /* 16 units * 0.25rem = 4rem */
     padding-bottom: 4rem;
-  }
-
-.shadow-nav {
-    box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.05);
   }
 
 .select-flex-container {
