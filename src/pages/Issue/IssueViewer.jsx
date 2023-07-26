@@ -19,38 +19,47 @@ export default function IssueViewer({ file }) {
   Draggable.create(documentRef.current, {
     type: "x,y",
     bounds: viewerRef.current,
-  });
 
-  function handleScrollThumb(x) {
-    const scrollWidth = scrollRef.current.getBoundingClientRect().width - 1;
-    const xPos = gsap.utils.snap(scrollWidth / numPages - 1, x);
-    gsap.set(thumbRef.current, { x: xPos });
-    gsap.set(trackRef.current, { width: xPos + 20 });
-  }
+    zIndexBoost: false,
+  });
 
   // scroller gestures
-  Draggable.create(thumbRef.current, {
-    type: "x",
+  const thumbDrag = Draggable.create(thumbRef.current, {
+    type: "left",
     bounds: scrollRef.current,
-    liveSnap: (value) => {
-      const scrollBounds = scrollRef.current.getBoundingClientRect();
-      const scrollIncrement = scrollBounds.width / (numPages / 2);
-      return Math.round(value / scrollIncrement) * scrollIncrement;
+    onDragEnd: function () {
+      handleThumb();
+      handleTrack();
     },
-    onDrag: () => {
-      gsap.set(trackRef.current, {
-        right:
-          scrollRef.current.getBoundingClientRect().right -
-          thumbRef.current.getBoundingClientRect().right,
-      });
-    },
+    onDrag: handleTrack,
   });
 
-  //   useEffect(() => {
-  //     const scrollWidth = scrollRef.current.getBoundingClientRect().width - 1;
-  //     const pageScale = scrollWidth / numPages - 1;
-  //     handleScrollThumb(pageNumber * pageScale);
-  //   }, [pageNumber]);
+  function handleThumb(page) {
+    const thumbBounds = thumbRef.current.getBoundingClientRect();
+    const scrollBounds = scrollRef.current.getBoundingClientRect();
+    const left =
+      page == null
+        ? gsap.utils.snap(
+            1 / (numPages / 2),
+            (thumbBounds.left - scrollBounds.left) / scrollBounds.width
+          )
+        : page / numPages;
+    page ??= Math.round(numPages * left);
+    setPageNumber(page);
+
+    gsap.set(thumbRef.current, {
+      left: `calc(${left * 100}% - ${thumbBounds.width / 2}px)`,
+    });
+    handleTrack();
+  }
+
+  function handleTrack() {
+    gsap.set(trackRef.current, {
+      right:
+        scrollRef.current.getBoundingClientRect().right -
+        thumbRef.current.getBoundingClientRect().right,
+    });
+  }
 
   return (
     <div>
@@ -60,14 +69,18 @@ export default function IssueViewer({ file }) {
       >
         <div className="w-full flex flex-row justify-between items-center m-10">
           <button
-            onClick={() => setPageNumber(pageNumber - 2)}
+            onClick={function () {
+              handleThumb(pageNumber - 2);
+            }}
             disabled={pageNumber <= 0}
             className="w-8 z-50"
           >
             <img src={arrowLeft} alt="" />
           </button>
           <button
-            onClick={() => setPageNumber(pageNumber + 2)}
+            onClick={function () {
+              handleThumb(pageNumber + 2);
+            }}
             disabled={pageNumber >= numPages}
             className="w-8 z-50 -scale-x-100"
           >
@@ -76,7 +89,6 @@ export default function IssueViewer({ file }) {
         </div>
         <Document
           file={file}
-          renderMode="svg"
           inputRef={documentRef}
           onLoadSuccess={({ numPages }) => setNumPages(numPages)}
           className="absolute touch-none flex flex-row"
