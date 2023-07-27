@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <nav>
       <header>
-        <div className="w-screen h-16 flex justify-between items-center px-6 font-chivo text-guidon fixed navbar-layout">
+        <div className="w-screen h-17 flex justify-between items-center px-6 font-chivo text-guidon fixed navbar-layout">
           <div className="flex items-center gap-32 flex-grow" style={{ paddingLeft: "5rem" }}>
             <img
               src={menu}
@@ -29,9 +29,9 @@ const Header = () => {
                 height="18"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className={`cursor-pointer absolute left-3 top-1/2 transform -translate-y-1/2 md:left-5 ${
-                  search ? "text-guidon" : "text-white"
-                }`}
+                className={`cursor-pointer text-${
+                  search ? "guidon" : "white"
+                } absolute top-1/2 -translate-y-1/2 left-3 md:text-guidon`}
                 onClick={() => toggleSearch(!search)}
               >
                 <g id="ic20-search">
@@ -53,17 +53,17 @@ const Header = () => {
               />
             </div>
           </div>
-          <div className="flex items-center gap-8 mr-8">
+          <div className="flex items-center"> 
             {/* Nav Home */}
             <button
               type="button"
-              className="flex items-center px-16 py-8 rounded-16 bg-blue-the-guidon-blue"
+              className="flex items-center px-4 md:px-9 py-8 rounded-16 bg-blue-the-guidon-blue font-bold mr-2 ml-4"
             >
               Home
             </button>
             {/* Nav Release (DROPDOWN SELECTION) */}
             <div
-              className="relative flex items-center px-16 py-8 rounded-16 bg-blue-the-guidon-blue select-flex-container"
+              className="relative flex items-center px-4 md:px-9 py-8 rounded-16 bg-blue-the-guidon-blue font-bold mr-2"
               onMouseEnter={() => {
                 console.log("Releases Open");
                 // Add code to show/hide the overlay
@@ -79,7 +79,7 @@ const Header = () => {
             </div>
             {/* ABOUT */}
             <div
-              className="relative flex items-center px-16 py-8 rounded-16 bg-blue-the-guidon-blue flex-container"
+              className="relative flex items-center px-4 md:px-9 py-8 rounded-16 bg-blue-the-guidon-blue flex-container font-bold mr-12"
               onMouseEnter={() => {
                 console.log('About Button Hovered');
                 // Add code to show/hide the overlay or any other actions on hover               
