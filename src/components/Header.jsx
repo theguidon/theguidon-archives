@@ -36,7 +36,7 @@ const Header = () => {
                 );
               })}
             </div>
-            <div className="relative text-guidon w-[1.4rem] aspect-square md:w-[14rem]">
+            <div className="relative text-guidon w-[1.4rem] md:w-[14rem] ">
               <input
                 type="text"
                 placeholder="Search"

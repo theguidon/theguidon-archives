@@ -3,15 +3,27 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { Draggable } from "gsap/all";
 import arrowLeft from "../../assets/icons/arrow-left.svg";
+import arrowLeft2 from "../../assets/icons/arrow-left-2.svg";
+import twoPages from "../../assets/icons/two-pages.svg";
+import onePage from "../../assets/icons/one-page.svg";
+import zoomIn from "../../assets/icons/zoom-in.svg";
+import zoomOut from "../../assets/icons/zoom-out.svg";
+import fullscreen from "../../assets/icons/fullscreen.svg";
 
 gsap.registerPlugin(Draggable);
 
 export default function IssueViewer({ file }) {
   const viewerRef = useRef(null);
   const documentRef = useRef(null);
+
   const scrollRef = useRef(null);
-  const thumbRef = useRef(null);
-  const trackRef = useRef(null);
+  const scrollThumbRef = useRef(null);
+  const scrollTrackRef = useRef(null);
+
+  const zoomRef = useRef(null);
+  const zoomThumbRef = useRef(null);
+  const zoomTrackRef = useRef(null);
+
   const [pageNumber, setPageNumber] = useState(0);
   const [numPages, setNumPages] = useState(0);
 
@@ -24,7 +36,7 @@ export default function IssueViewer({ file }) {
   });
 
   // scroller gestures
-  const thumbDrag = Draggable.create(thumbRef.current, {
+  Draggable.create(scrollThumbRef.current, {
     type: "left",
     bounds: scrollRef.current,
     onDragEnd: function () {
@@ -35,7 +47,7 @@ export default function IssueViewer({ file }) {
   });
 
   function handleThumb(page) {
-    const thumbBounds = thumbRef.current.getBoundingClientRect();
+    const thumbBounds = scrollThumbRef.current.getBoundingClientRect();
     const scrollBounds = scrollRef.current.getBoundingClientRect();
     const left =
       page == null
@@ -47,22 +59,51 @@ export default function IssueViewer({ file }) {
     page ??= Math.round(numPages * left);
     setPageNumber(page);
 
-    gsap.set(thumbRef.current, {
+    gsap.set(scrollThumbRef.current, {
       left: `calc(${left * 100}% - ${thumbBounds.width / 2}px)`,
     });
     handleTrack();
   }
 
   function handleTrack() {
-    gsap.set(trackRef.current, {
+    gsap.set(scrollTrackRef.current, {
       right:
         scrollRef.current.getBoundingClientRect().right -
-        thumbRef.current.getBoundingClientRect().right,
+        scrollThumbRef.current.getBoundingClientRect().right,
     });
   }
 
   return (
     <div>
+      <div className="w-full h-14 bg-guidon flex flex-row justify-between items-center">
+        <button className="font-chivo text-white flex flex-row items-center gap-x-1">
+          <img src={arrowLeft2} alt="" className="w-6" />
+          Back
+        </button>
+        <h1 className="text-white text-xl font-tiemposheadline">title</h1>
+        <div className="flex flex-row items-center justify-between gap-x-6">
+          <img src={twoPages} alt="Two Pages" />
+          <img src={onePage} alt="One Page" />
+          <div className="flex flex-row items-center justify-between gap-x-2">
+            <img src={zoomOut} alt="Zoom Out" />
+            <div
+              ref={zoomRef}
+              className="relative w-32 h-3 rounded-[0.625rem] bg-white"
+            >
+              <div
+                ref={zoomTrackRef}
+                className="absolute inset-0 right-auto bg-[#72A4D7] rounded-[inherit]"
+              />
+              <div
+                ref={zoomThumbRef}
+                className="absolute w-5 aspect-square top-1/2 -translate-y-1/2 left-0 bg-[#E9EEF2] rounded-full border-[1px] border-solid border-[#D2DDE5]"
+              />
+            </div>
+            <img src={zoomIn} alt="Zoom In" />
+          </div>
+          <img src={fullscreen} alt="Fullscreen" />
+        </div>
+      </div>
       <div
         ref={viewerRef}
         className="h-[45rem] flex flex-row justify-center items-center"
@@ -91,12 +132,12 @@ export default function IssueViewer({ file }) {
           file={file}
           inputRef={documentRef}
           onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-          className="absolute touch-none flex flex-row"
+          className="absolute touch-none flex flex-row scale-[calc(550/1920)]"
         >
           {pageNumber <= 0 ? null : (
             <Page
               pageNumber={pageNumber}
-              height={700}
+              width={1920}
               renderAnnotationLayer={false}
               renderTextLayer={false}
             />
@@ -104,24 +145,24 @@ export default function IssueViewer({ file }) {
           {pageNumber >= numPages ? null : (
             <Page
               pageNumber={pageNumber + 1}
-              height={700}
+              width={1920}
               renderAnnotationLayer={false}
               renderTextLayer={false}
             />
           )}
         </Document>
       </div>
-      <div className="w-full h-24 bg-[#DBE9F4] flex flex-row font-chivo text-[#666] items-center justify-center gap-x-5">
+      <div className="w-full h-14 bg-[#DBE9F4] flex flex-row font-chivo text-[#666] items-center justify-center gap-x-5">
         <div
           ref={scrollRef}
           className="w-[70rem] h-4 rounded-[0.675rem] border-[#B6C2CD] border-[1px] bg-white relative"
         >
           <div
-            ref={trackRef}
+            ref={scrollTrackRef}
             className="absolute inset-0 right-auto bg-guidon rounded-[inherit]"
           />
           <div
-            ref={thumbRef}
+            ref={scrollThumbRef}
             className="absolute top-1/2 -translate-y-1/2 rounded-full w-5 aspect-square border-[#6A757C] border-[1px] bg-[#E9EEF2] cursor-pointer touch-none"
           />
         </div>
