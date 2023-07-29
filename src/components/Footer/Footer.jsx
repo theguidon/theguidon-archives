@@ -1,16 +1,17 @@
 import React from "react";
 import "./styles.css";
-import logo from "../../assets/images/logo-blue.svg";
+import logo from "../../assets/images/logo-archive-white.svg";
 import facebook from "../../assets/icons/facebook.svg";
 import twitter from "../../assets/icons/twitter.svg";
 import instagram from "../../assets/icons/instagram.svg";
+import threads from "../../assets/icons/threads.svg"
 import spotify from "../../assets/icons/spotify.svg";
 import youtube from "../../assets/icons/youtube.svg";
 import email from "../../assets/icons/email.svg";
 
 export default function Footer() {
   return (
-    <footer className="w-screen h-[21rem] lg:flex flex-col justify-center items-center text-guidon font-chivo hidden gap-y-12 mb-12 shadow-[0_8px_35px_0_rgba(0,0,0,0.10)]">
+    <footer className="w-screen bg-guidon h-[32rem] lg:flex flex-col justify-center items-center text-white font-chivo hidden gap-y-12 mb-12 shadow-[0_8px_35px_0_rgba(0,0,0,0.10)]">
       <div className="flex flex-row gap-x-[6rem]">
         <div className="flex flex-col w-[23.5rem] gap-y-8">
           <img src={logo} alt="The GUIDON" />
@@ -19,16 +20,40 @@ export default function Footer() {
             Manila University.
           </div>
         </div>
-        <div className="flex flex-col gap-y-4">
-          <div>More from The GUIDON</div>
-          <a href="https://theguidon.com/" className="font-bold">
-            The GUIDON
+        <div className="flex flex-col gap-y-2">
+          <div className="font-bold">BROWSE THE ARCHIVES</div>
+          <a href="#"> 
+            Recently Uploaded
           </a>
-          <a href="https://interactive.theguidon.com/" className="font-bold">
-            INTERACTIVES
+          <a href="#">
+            Releases This Term
           </a>
-          <a href="https://vantage.theguidon.com/" className="font-bold">
-            VANTAGE MAGAZINE
+          <a href="#">
+            Press Issues
+          </a>
+          <a href="#">
+            Graduation Magazines
+          </a>
+          <a href="#">
+            Freshmanuals
+          </a>
+          <a href="#">
+            UAAP Primers
+          </a>
+          <a href="#">
+            Other
+          </a>
+        </div>
+        <div className="flex flex-col gap-y-2">
+          <div className="font-bold">MORE FROM THE GUIDON</div>
+          <a href="https://theguidon.com/"> 
+            The GUIDON Main
+          </a>
+          <a href="https://interactive.theguidon.com/">
+            The GUIDON Interactive
+          </a>
+          <a href="https://vantage.theguidon.com/">
+            Vantage Magazine
           </a>
         </div>
         <div className="flex flex-col gap-y-2">
@@ -48,12 +73,12 @@ export default function Footer() {
               placeholder="Email Address"
               name="mail"
               required
-              className="text-current outline-none"
+              className="bg-guidon text-white outline-none"
             />
             <input
               type="submit"
               value="Subscribe"
-              className="bg-guidon text-white p-3 font-bold cursor-pointer"
+              className="bg-white text-guidon p-3 font-bold cursor-pointer"
             />
           </form>
           <div className="flex flex-row gap-x-3 mt-2">
@@ -66,6 +91,9 @@ export default function Footer() {
             <a href="https://www.instagram.com/theguidon">
               <img src={instagram} alt="instagram" />
             </a>
+            <a href="#">
+              <img src={threads} alt="threads" />
+            </a>
             <a href="https://open.spotify.com/show/0t2PxYpSft6HfoPHibwAvT">
               <img src={spotify} alt="spotify" />
             </a>
@@ -73,9 +101,11 @@ export default function Footer() {
               <img src={youtube} alt="youtube" />
             </a>
           </div>
+          
         </div>
       </div>
-      <div className="font-chivo text-sm text-center border-t-[1px] border-guidon pt-[1.5rem]">
+      
+      <div className="border-t-[1px] border-white font-chivo text-sm text-center  pt-[1.5rem] pl-[22rem] pr-[22rem]">
         © The GUIDON 2023 All rights reserved. Designed and developed by Digital
         Development 2022-2024
       </div>
