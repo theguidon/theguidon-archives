@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <>
       <header>
-        <div className="w-screen h-16 bg-guidon flex flex-row justify-between items-center px-6 font-chivo text-white fixed">
+        <div className="w-screen h-16 bg-guidon flex flex-row justify-between items-center px-6 font-chivo text-white fixed z-10">
           <img
             src={menu}
             alt=""
@@ -37,7 +37,7 @@ const Header = () => {
                 );
               })}
             </div>
-            <div className="relative text-guidon w-[1.4rem] aspect-square md:w-[14rem]">
+            <div className="relative text-guidon w-[1.4rem] md:w-[14rem] ">
               <input
                 type="text"
                 placeholder="Search"

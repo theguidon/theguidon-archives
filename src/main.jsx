@@ -1,6 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+  redirect,
+} from "react-router-dom";
 import "./index.css";
 import Root from "./pages/Root";
 import Home from "./pages/Home/Home";
@@ -19,7 +24,9 @@ const router = createBrowserRouter([
       },
       {
         path: "issues",
-        element: <Home />,
+        loader: async () => {
+          return redirect("/");
+        },
       },
       {
         path: "about",

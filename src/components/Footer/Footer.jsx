@@ -10,7 +10,7 @@ import email from "../../assets/icons/email.svg";
 
 export default function Footer() {
   return (
-    <footer className="w-screen h-[21rem] lg:flex flex-col justify-center items-center text-guidon font-chivo hidden gap-y-12 mb-12 shadow-[0_8px_35px_0_rgba(0,0,0,0.10)]">
+    <footer className="w-screen h-[21rem] lg:flex flex-col justify-center items-center text-guidon font-chivo hidden gap-y-12 mb-12 shadow-[0_8px_35px_0_rgba(0,0,0,0.10)] relative bg-white">
       <div className="flex flex-row gap-x-[6rem]">
         <div className="flex flex-col w-[23.5rem] gap-y-8">
           <img src={logo} alt="The GUIDON" />
