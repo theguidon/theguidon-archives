@@ -12,8 +12,8 @@ import email from "../../assets/icons/email.svg";
 export default function Footer() {
   return (
     <footer className="w-screen bg-guidon h-[32rem] lg:flex flex-col justify-center items-center text-white font-chivo hidden gap-y-12 mb-12 shadow-[0_8px_35px_0_rgba(0,0,0,0.10)]">
-      <div className="flex flex-row gap-x-[3rem] ">
-        <div className="flex flex-col w-[23.5rem] gap-y-8">
+      <div className="flex flex-row gap-x-[3rem] border-b-[1px] border-white pb-[5rem] ">
+        <div className="flex flex-col w-[23.5rem] gap-y-8 ">
           <img src={logo} alt="The GUIDON" />
           <div className="leading-tight">
             The GUIDON is the official student publication of the Ateneo de
@@ -105,9 +105,10 @@ export default function Footer() {
         </div>
       </div>
       
-      <div className="border-t-[1px] border-white font-chivo text-sm text-center  pt-[1.5rem] pl-[18rem] pr-[18rem]">
+      <div className="font-chivo text-sm text-center mt-[-1rem]">
         © The GUIDON 2023 All rights reserved. Designed and developed by Digital Development 2022-2023 and 2023-2024.
       </div>
     </footer>
   );
 }
+//flex py-2 mb-6 border-b-[1px] border-lightblue
