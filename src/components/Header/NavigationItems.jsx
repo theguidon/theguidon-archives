@@ -6,12 +6,13 @@ const NavigationItems = () => {
   return (
     <div className="flex items-center ml-8">
       {/* Nav Home */}
-      <button
+      <Link
+        to="/"
         type="button"
         className="flex items-center px-2 py-8 rounded-16 bg-blue-the-guidon-blue font-bold mr-2 nav-button"
       >
         Home
-      </button>
+      </Link>
       {/* Nav Release (DROPDOWN SELECTION) */}
       <button
         className="relative flex items-center px-2 py-8 rounded-16 bg-blue-the-guidon-blue font-bold mr-2 nav-button"
@@ -28,16 +29,17 @@ const NavigationItems = () => {
         />
       </button>
       {/* ABOUT */}
-      <button
+      <Link
+        to="/about"
         className="relative flex items-center px-2 py-8 rounded-16 bg-blue-the-guidon-blue flex-container font-bold nav-button"
         onMouseEnter={() => {
-          console.log('About Button Hovered');
+          console.log("About Button Hovered");
           // Add code to show/hide the overlay or any other actions on hover
         }}
       >
         {/* About Text */}
         About
-      </button>
+      </Link>
     </div>
   );
 };

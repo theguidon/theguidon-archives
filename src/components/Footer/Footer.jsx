@@ -4,15 +4,15 @@ import logo from "../../assets/images/logo-archive-white.svg";
 import facebook from "../../assets/icons/facebook.svg";
 import twitter from "../../assets/icons/twitter.svg";
 import instagram from "../../assets/icons/instagram.svg";
-import threads from "../../assets/icons/threads.svg"
+import threads from "../../assets/icons/threads.svg";
 import spotify from "../../assets/icons/spotify.svg";
 import youtube from "../../assets/icons/youtube.svg";
 import email from "../../assets/icons/email.svg";
 
 export default function Footer() {
   return (
-    <footer className="w-screen bg-guidon h-[32rem] lg:flex flex-col justify-center items-center text-white font-chivo hidden gap-y-12 mb-12 shadow-[0_8px_35px_0_rgba(0,0,0,0.10)]">
-      <div className="flex flex-row gap-x-[3rem] border-b-[1px] border-white pb-[5rem] ">
+    <footer className="w-screen bg-guidon lg:flex flex-col justify-center items-center text-white font-chivo hidden gap-y-12 px-[6.5rem] py-14">
+      <div className="flex flex-row justify-between w-full border-b-[1px] border-white pb-[5rem] ">
         <div className="flex flex-col w-[23.5rem] gap-y-8 ">
           <img src={logo} alt="The GUIDON" />
           <div className="leading-tight">
@@ -22,39 +22,21 @@ export default function Footer() {
         </div>
         <div className="flex flex-col gap-y-2">
           <div className="font-bold">BROWSE THE ARCHIVES</div>
-          <a href="#"> 
-            Recently Uploaded
-          </a>
-          <a href="#">
-            Releases This Term
-          </a>
-          <a href="#">
-            Press Issues
-          </a>
-          <a href="#">
-            Graduation Magazines
-          </a>
-          <a href="#">
-            Freshmanuals
-          </a>
-          <a href="#">
-            UAAP Primers
-          </a>
-          <a href="#">
-            Other
-          </a>
+          <a href="#">Recently Uploaded</a>
+          <a href="#">Releases This Term</a>
+          <a href="#">Press Issues</a>
+          <a href="#">Graduation Magazines</a>
+          <a href="#">Freshmanuals</a>
+          <a href="#">UAAP Primers</a>
+          <a href="#">Other</a>
         </div>
         <div className="flex flex-col gap-y-2">
           <div className="font-bold">MORE FROM THE GUIDON</div>
-          <a href="https://theguidon.com/"> 
-            The GUIDON Main
-          </a>
+          <a href="https://theguidon.com/">The GUIDON Main</a>
           <a href="https://interactive.theguidon.com/">
             The GUIDON Interactive
           </a>
-          <a href="https://vantage.theguidon.com/">
-            Vantage Magazine
-          </a>
+          <a href="https://vantage.theguidon.com/">Vantage Magazine</a>
         </div>
         <div className="flex flex-col gap-y-2">
           <div>Subscribe to our newsletter</div>
@@ -101,12 +83,12 @@ export default function Footer() {
               <img src={youtube} alt="youtube" />
             </a>
           </div>
-          
         </div>
       </div>
-      
+
       <div className="font-chivo text-sm text-center mt-[-1rem]">
-        © The GUIDON 2023 All rights reserved. Designed and developed by Digital Development 2022-2023 and 2023-2024.
+        © The GUIDON 2023 All rights reserved. Designed and developed by Digital
+        Development 2022-2023 and 2023-2024.
       </div>
     </footer>
   );
