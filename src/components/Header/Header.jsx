@@ -16,11 +16,11 @@ const Header = () => {
             <Link to="/">
               <img src={logo} alt="The GUIDON" className="w-56 h-auto" />
             </Link>
-            <div className="flex-grow flex justify-end"> {/* This container will move the SearchBar to the right */}
+            <div className="flex-grow flex justify-end">
               <SearchBar />
+              <NavigationItems />
             </div>
-          </div >
-          <NavigationItems />
+          </div>
         </div>
       </header>
     </nav>

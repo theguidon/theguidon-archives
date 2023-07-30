@@ -4,7 +4,7 @@ import select from "../../assets/icons/selection.svg";
 
 const NavigationItems = () => {
   return (
-    <div className="flex items-center pl-10">
+    <div className="flex items-center ml-8">
       {/* Nav Home */}
       <button
         type="button"

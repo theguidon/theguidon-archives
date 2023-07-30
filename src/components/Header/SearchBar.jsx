@@ -28,7 +28,7 @@ const SearchBar = () => {
       <input
         type="text"
         placeholder="Find a press issue, magazine, primer, etc."
-        className={`w-full pl-10 pr-4 py-2 rounded-full bg-ecf4ff focus:outline-none ${search ? "text-guidon" : "text-white"}`}
+        className={`w-full pl-10 pr-4 py-2 rounded-full bg-ecf4ff focus:outline-none ${search ? "text-guidon" : "text-guidon"}`}
       />
     </div>
   );
