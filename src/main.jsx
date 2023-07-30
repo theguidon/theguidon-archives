@@ -37,6 +37,9 @@ const router = createBrowserRouter([
         element: <Browse />,
       },
       {
+        path: "issues/freshmanual-2023",
+        element: <Issue />,
+      },
         path: "/recently-uploaded",
         element: (
           <Browse
@@ -54,8 +57,10 @@ const router = createBrowserRouter([
         element: <Browse />,
       },
       {
-        path: "issues/:issueId",
-        element: <Issue />,
+        path: "issues/:query",
+        loader: async () => {
+          return redirect("/");
+        },
       },
     ],
   },
