@@ -73,7 +73,7 @@ export default function Footer() {
               placeholder="Email Address"
               name="mail"
               required
-              className="bg-guidon text-white outline-none"
+              className="bg-guidon text-white outline-none placeholder-white"
             />
             <input
               type="submit"
@@ -106,8 +106,7 @@ export default function Footer() {
       </div>
       
       <div className="border-t-[1px] border-white font-chivo text-sm text-center  pt-[1.5rem] pl-[18rem] pr-[18rem]">
-        © The GUIDON 2023 All rights reserved. Designed and developed by Digital
-        Development 2022-2024
+        © The GUIDON 2023 All rights reserved. Designed and developed by Digital Development 2022-2023 and 2023-2024.
       </div>
     </footer>
   );
