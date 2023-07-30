@@ -9,6 +9,8 @@ import onePage from "../../assets/icons/one-page.svg";
 import zoomIn from "../../assets/icons/zoom-in.svg";
 import zoomOut from "../../assets/icons/zoom-out.svg";
 import fullscreen from "../../assets/icons/fullscreen.svg";
+import ImageCard from "../../components/ImageCard/ImageCard";
+import image from "./test-01.png";
 
 gsap.registerPlugin(Draggable);
 
@@ -173,6 +175,19 @@ export default function IssueViewer({ file }) {
         }${pageNumber > 0 && pageNumber < numPages ? "-" : ""}${
           pageNumber + 1 < numPages ? pageNumber + 1 : ""
         } of ${numPages}`}</p>
+      </div>
+      <div className="h-[29rem] w-[77rem] flex flex-row justify-center items-center gap-x-10">
+        <ImageCard image={image} />
+        <div>
+          <h1 className="text-[2.5rem] font-tiemposheadline text-guidon font-bold leading-[1.4]">
+            FreshManual 2023
+          </h1>
+          <p className="text-[#979797] font-chivo uppercase tracking-[0.04rem]">
+            7 August 2023
+          </p>
+          <p className="font-chivo text-guidon">description</p>
+        </div>
+        {/* TODO: sharing to socmed */}
       </div>
     </div>
   );
