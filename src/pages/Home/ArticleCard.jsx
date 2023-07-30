@@ -4,8 +4,12 @@ export default function ArticleCard({ article }) {
   return (
     <>
       <div className="mr-4 w-[290px]">
-        <div className="h-[295px] px-16 py-10 bg-[#F6F9FD]">
-          <img className="h-full" src={article.picture} alt={article.title} />
+        <div className="w-[18rem] aspect-square relative bg-[#F6F9FD]">
+          <img
+            className="w-[10rem] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            src={article.picture}
+            alt={article.title}
+          />
         </div>
         <h1 className="text-guidon font-tiemposheadline font-bold mt-2">
           {article.title}
