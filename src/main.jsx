@@ -11,6 +11,7 @@ import Root from "./pages/Root";
 import Home from "./pages/Home/Home";
 import Issue from "./pages/Issue/Issue";
 import Browse from "./pages/Browse/Browse";
+import About from "./pages/About/About";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         loader: async () => {
           return redirect("/");
         },
+      },
+      {
+        path: "about",
+        element: <About />,
       },
       {
         path: "/:query",

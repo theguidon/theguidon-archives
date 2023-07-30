@@ -1,11 +1,12 @@
 import React from "react";
-import logo from "../assets/images/logo-blue.svg";
-import facebook from "../assets/icons/facebook.svg";
-import twitter from "../assets/icons/twitter.svg";
-import instagram from "../assets/icons/instagram.svg";
-import spotify from "../assets/icons/spotify.svg";
-import youtube from "../assets/icons/youtube.svg";
-import email from "../assets/icons/email.svg";
+import "./styles.css";
+import logo from "../../assets/images/logo-blue.svg";
+import facebook from "../../assets/icons/facebook.svg";
+import twitter from "../../assets/icons/twitter.svg";
+import instagram from "../../assets/icons/instagram.svg";
+import spotify from "../../assets/icons/spotify.svg";
+import youtube from "../../assets/icons/youtube.svg";
+import email from "../../assets/icons/email.svg";
 
 export default function Footer() {
   return (

@@ -1,0 +1,21 @@
+.home {
+  @apply px-[104px] mb-20;
+}
+
+.xxs-txt {
+  @apply text-[8px];
+}
+
+.heading-txt {
+  @apply text-[40px] font-tiemposheadline font-bold mb-6;
+}
+
+.btn-blue-light {
+  @apply rounded-[8px] bg-lightgray px-6 py-4 text-darkblue font-bold;
+}
+
+.swiper-pagination-bullet {
+  background-color: white !important;
+  width: 6px !important;
+  height: 6px !important;
+}
