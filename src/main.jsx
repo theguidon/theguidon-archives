@@ -37,7 +37,20 @@ const router = createBrowserRouter([
         element: <Browse />,
       },
       {
-        path: "/:query/:page",
+        path: "/recently-uploaded",
+        element: (
+          <Browse
+            title="What’s New on the Archive"
+            subtitle="recently uploaded"
+          />
+        ),
+      },
+      {
+        path: "/releases",
+        element: <Browse title="Releases This Term" subtitle="2023-2024" />,
+      },
+      {
+        path: "/:query",
         element: <Browse />,
       },
       {
