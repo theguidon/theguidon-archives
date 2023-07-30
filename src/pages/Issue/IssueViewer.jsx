@@ -77,7 +77,12 @@ export default function IssueViewer({ file }) {
   return (
     <div>
       <div className="w-full h-14 bg-guidon flex flex-row justify-between items-center px-24 relative">
-        <button className="font-chivo text-white flex flex-row items-center gap-x-1">
+        <button
+          onClick={function () {
+            history.back();
+          }}
+          className="font-chivo text-white flex flex-row items-center gap-x-1"
+        >
           <img src={arrowLeft2} alt="" className="w-6" />
           Back
         </button>
