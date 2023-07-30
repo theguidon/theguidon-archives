@@ -75,14 +75,16 @@ export default function IssueViewer({ file }) {
 
   return (
     <div>
-      <div className="w-full h-14 bg-guidon flex flex-row justify-between items-center">
+      <div className="w-full h-14 bg-guidon flex flex-row justify-between items-center px-24 relative">
         <button className="font-chivo text-white flex flex-row items-center gap-x-1">
           <img src={arrowLeft2} alt="" className="w-6" />
           Back
         </button>
-        <h1 className="text-white text-xl font-tiemposheadline">title</h1>
+        <h1 className="text-white text-xl font-tiemposheadline absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          FreshManual 2023
+        </h1>
         <div className="flex flex-row items-center justify-between gap-x-6">
-          <img src={twoPages} alt="Two Pages" />
+          {/* <img src={twoPages} alt="Two Pages" />
           <img src={onePage} alt="One Page" />
           <div className="flex flex-row items-center justify-between gap-x-2">
             <img src={zoomOut} alt="Zoom Out" />
@@ -101,7 +103,7 @@ export default function IssueViewer({ file }) {
             </div>
             <img src={zoomIn} alt="Zoom In" />
           </div>
-          <img src={fullscreen} alt="Fullscreen" />
+          <img src={fullscreen} alt="Fullscreen" /> */}
         </div>
       </div>
       <div
