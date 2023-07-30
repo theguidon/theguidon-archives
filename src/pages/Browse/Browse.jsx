@@ -23,8 +23,9 @@ export default function Browse({ title = "The Archive", subtitle = "Browse" }) {
           <Tab text="UAAP Primer" tab={tab} setTab={setTab} />
           <Tab text="Others" tab={tab} setTab={setTab} />
         </div>
-        <div></div>
+        <div>{/* options */}</div>
       </nav>
+      <Item />
     </div>
   );
 }
@@ -42,4 +43,8 @@ function Tab({ text, tab, setTab }) {
       {text}
     </button>
   );
+}
+
+function Item({ src, title, date, desc }) {
+  return <div></div>;
 }
