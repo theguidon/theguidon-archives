@@ -5,7 +5,7 @@ const SearchBar = () => {
   const [search, toggleSearch] = useState(false);
 
   return (
-    <div className="relative md:w-96">
+    <div className="relative w-full">
       <svg
         viewBox="0 0 17 18"
         width="17"

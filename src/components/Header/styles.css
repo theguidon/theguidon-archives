@@ -32,3 +32,17 @@
     font-weight: 400;
     line-height: 140%;
   }
+
+.nav-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 16px;
+    font-weight: bold;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease; /* Add a smooth transition effect */
+  }
+  
+.nav-button:hover {
+    background-color: #DBE9F4; /* Change the background color on hover */
+  }
