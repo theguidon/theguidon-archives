@@ -9,6 +9,7 @@ import onePage from "../../assets/icons/one-page.svg";
 import zoomIn from "../../assets/icons/zoom-in.svg";
 import zoomOut from "../../assets/icons/zoom-out.svg";
 import fullscreen from "../../assets/icons/fullscreen.svg";
+import image from "./test-01.png";
 
 gsap.registerPlugin(Draggable);
 
@@ -76,7 +77,12 @@ export default function IssueViewer({ file }) {
   return (
     <div>
       <div className="w-full h-14 bg-guidon flex flex-row justify-between items-center px-24 relative">
-        <button className="font-chivo text-white flex flex-row items-center gap-x-1">
+        <button
+          onClick={function () {
+            history.back();
+          }}
+          className="font-chivo text-white flex flex-row items-center gap-x-1"
+        >
           <img src={arrowLeft2} alt="" className="w-6" />
           Back
         </button>
@@ -173,6 +179,24 @@ export default function IssueViewer({ file }) {
         }${pageNumber > 0 && pageNumber < numPages ? "-" : ""}${
           pageNumber + 1 < numPages ? pageNumber + 1 : ""
         } of ${numPages}`}</p>
+      </div>
+      <div className="h-[29rem] w-[77rem] flex flex-row justify-center items-center gap-x-10">
+        <div className="relative w-[18rem] aspect-square bg-[#EFF5FA]">
+          <img
+            src={image}
+            className="w-[10rem] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          />
+        </div>
+        <div>
+          <h1 className="text-[2.5rem] font-tiemposheadline text-guidon font-bold leading-[1.4]">
+            FreshManual 2023
+          </h1>
+          <p className="text-[#979797] font-chivo uppercase tracking-[0.04rem]">
+            7 August 2023
+          </p>
+          <p className="font-chivo text-guidon">description</p>
+        </div>
+        {/* TODO: sharing to socmed */}
       </div>
     </div>
   );
