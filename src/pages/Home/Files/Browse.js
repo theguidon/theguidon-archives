@@ -4,15 +4,8 @@ import Freshmanual from "../../../assets/images/Freshmanual.png";
 
 export const Archives = [
   {
-    title: "Press Issues",
-    picture: Broadsheet,
-  },
-  {
-    title: "Fresh Manual",
+    title: "FreshManual",
     picture: Freshmanual,
-  },
-  {
-    title: "Gradmag",
-    picture: GradMag,
+    link: "issues/freshmanual-2023",
   },
 ];

@@ -1,6 +1,7 @@
 import React from "react";
 import { Archives } from "./Files/Browse";
 import LeftButton from "./Buttons/LeftButton";
+import { Link } from "react-router-dom";
 
 export default function BrowseArchive() {
   const archivesList = Archives.map((article, index) => (

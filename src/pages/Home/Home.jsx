@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <div
-        className="home header bg-cover h-full  text-[#FFF]"
+        className="home header bg-cover h-full text-[#FFF] bg-center"
         style={{
           backgroundImage: `linear-gradient(158deg, rgba(15, 38, 92, 0.8) 0%, rgba(114, 164, 215, 0) 100%), url(${Articles[0].hero})`,
           backgroundColor: "lightblue",
@@ -18,7 +18,6 @@ export default function Home() {
         }}
       >
         <div className="flex h-full gap-x-24 pt-[72px] pb-[136px]">
-          {" "}
           <div className="flex-[2.5] m-auto">
             <div className="inline-block text-lg font-chivo font-bold text-left uppercase width-auto bg-darkblue px-4 mb-8 rounded-[23px]">
               Latest Release
@@ -32,7 +31,7 @@ export default function Home() {
             <div className="text-xl text-left font-chivo font-normal mb-10 leading-tight">
               {Articles[0].description}
             </div>
-            <ReadNow />
+            <ReadNow link={Articles[0].link} />
           </div>
           <div className="flex-[0.75]">
             <img

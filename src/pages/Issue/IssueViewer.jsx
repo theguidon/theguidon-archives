@@ -9,7 +9,7 @@ import onePage from "../../assets/icons/one-page.svg";
 import zoomIn from "../../assets/icons/zoom-in.svg";
 import zoomOut from "../../assets/icons/zoom-out.svg";
 import fullscreen from "../../assets/icons/fullscreen.svg";
-import image from "./test-01.png";
+import image from "../../assets/images/freshmanual.png";
 
 gsap.registerPlugin(Draggable);
 
@@ -194,7 +194,7 @@ export default function IssueViewer({ file }) {
           <p className="text-[#979797] font-chivo uppercase tracking-[0.04rem]">
             7 August 2023
           </p>
-          <p className="font-chivo text-guidon">description</p>
+          <p className="font-chivo text-guidon"></p>
         </div>
         {/* TODO: sharing to socmed */}
       </div>
