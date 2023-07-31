@@ -25,7 +25,7 @@ const NavigationItems = () => {
         <img
           src={select}
           alt="Selection Icon"
-          className="w-5 h-5 ml-2" // Adjust width and height as needed
+          className="w-5 h-5 ml-1" // Adjust width and height as needed
         />
       </button>
       {/* ABOUT */}
