@@ -43,16 +43,23 @@
     transition: background-color 0.2s ease; /* Add a smooth transition effect */
   }
 
-.nav-dropdown{
-  padding: 8px 18px;
+.nav-dropdown {
+  display: flex;
+  width: 127px;
+  padding: 8px 16px;
+  align-items: center;
   border: none;
-  border-radius: 18px;
-  font-weight: bold;
+  border-radius: 16px;
   margin-right: 8px;
+  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.2s ease; /* Add a smooth transition effect */
-}
+  }
   
 .nav-button:hover {
     background-color: #DBE9F4; /* Change the background color on hover */
+  }
+
+.nav-dropdown:hover {
+  background-color: #DBE9F4; /* Change the background color on hover */
   }
