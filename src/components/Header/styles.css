@@ -1,0 +1,65 @@
+.bg-ecf4ff {
+    background-color: #ECF4FF;
+  }
+
+.navbar-layout {
+    background: var(--bw-solid-white, #FFF);
+    /* Nav Shadow */
+    box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.07);
+}
+  
+
+.py-16 {
+    padding-top: 4rem; /* 16 units * 0.25rem = 4rem */
+    padding-bottom: 4rem;
+  }
+
+.select-flex-container {
+    display: flex;
+    padding: 8px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    align-self: stretch;
+    border-radius: 16px;
+
+    /* Additional text styles */
+    color: var(--blue-the-guidon-blue, #1C4480);
+    text-align: center;
+    font-family: Chivo;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+  }
+
+.nav-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 16px;
+    font-weight: bold;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease; /* Add a smooth transition effect */
+  }
+
+.nav-dropdown {
+  display: flex;
+  width: 127px;
+  padding: 8px 16px;
+  align-items: center;
+  border: none;
+  border-radius: 16px;
+  margin-right: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease; /* Add a smooth transition effect */
+  }
+  
+.nav-button:hover {
+    background-color: #DBE9F4; /* Change the background color on hover */
+  }
+
+.nav-dropdown:hover {
+  background-color: #DBE9F4; /* Change the background color on hover */
+  }
