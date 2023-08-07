@@ -40,6 +40,7 @@ const router = createBrowserRouter([
         path: "issues/freshmanual-2023",
         element: <Issue />,
       },
+      {
         path: "/recently-uploaded",
         element: (
           <Browse
