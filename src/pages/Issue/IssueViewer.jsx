@@ -25,8 +25,37 @@ export default function IssueViewer({ file }) {
   const zoomThumbRef = useRef(null);
   const zoomTrackRef = useRef(null);
 
-  const [pageNumber, setPageNumber] = useState(0);
+  const [pageNumber, setPageNumber] = useState(1);
   const [numPages, setNumPages] = useState(12);
+
+  const [loadedPages, setLoadedPages] = useState(0);
+
+  function leftPage() {
+    let tempPageNum = pageNumber;
+
+    if (pageNumber >= 1) tempPageNum--;
+
+    if (window.innerWidth > 1024 && tempPageNum > 1 && tempPageNum % 2 == 1) {
+      tempPageNum--;
+    }
+
+    setPageNumber(tempPageNum);
+  }
+  function rightPage() {
+    let tempPageNum = pageNumber;
+
+    if (pageNumber < numPages) tempPageNum++;
+
+    if (
+      window.innerWidth > 1024 &&
+      tempPageNum < numPages &&
+      tempPageNum % 2 == 1
+    ) {
+      tempPageNum++;
+    }
+
+    setPageNumber(tempPageNum);
+  }
 
   // document gestures
   //   Draggable.create(documentRef.current, {
@@ -37,49 +66,49 @@ export default function IssueViewer({ file }) {
   //   });
 
   // scroller gestures
-  Draggable.create(scrollThumbRef.current, {
-    type: "left",
-    bounds: scrollRef.current,
-    onDragEnd: function () {
-      handleThumb();
-    },
-    onDrag: handleTrack,
-  });
+  //   Draggable.create(scrollThumbRef.current, {
+  //     type: "left",
+  //     bounds: scrollRef.current,
+  //     onDragEnd: function () {
+  //       handleThumb();
+  //     },
+  //     onDrag: handleTrack,
+  //   });
 
-  useEffect(() => {
-    if (window.innerWidth < 768) {
-      setPageNumber(1);
-    }
-  }, []);
+  //   useEffect(() => {
+  //     if (window.innerWidth < 1024) {
+  //       setPageNumber(1);
+  //     }
+  //   }, []);
 
-  function handleThumb(page) {
-    const thumbBounds = scrollThumbRef.current.getBoundingClientRect();
-    const scrollBounds = scrollRef.current.getBoundingClientRect();
-    const left =
-      page == null
-        ? gsap.utils.snap(
-            1 / (numPages / (window.innerWidth < 768 ? 1 : 2)),
-            (thumbBounds.left - scrollBounds.left) / scrollBounds.width
-          )
-        : page / numPages;
-    page ??= Math.round(numPages * left);
-    setPageNumber(page);
+  //   function handleThumb(page) {
+  //     const thumbBounds = scrollThumbRef.current.getBoundingClientRect();
+  //     const scrollBounds = scrollRef.current.getBoundingClientRect();
+  //     const left =
+  //       page == null
+  //         ? gsap.utils.snap(
+  //             1 / (numPages / (window.innerWidth < 1024 ? 1 : 2)),
+  //             (thumbBounds.left - scrollBounds.left) / scrollBounds.width
+  //           )
+  //         : page / numPages;
+  //     page ??= Math.round(numPages * left) + 1;
+  //     setPageNumber(page);
 
-    gsap.set(scrollThumbRef.current, {
-      left: `calc(${left * 100}% - ${thumbBounds.width / 2}px)`,
-      onComplete() {
-        handleTrack();
-      },
-    });
-  }
+  //     gsap.set(scrollThumbRef.current, {
+  //       left: `calc(${left * 100}% - ${thumbBounds.width / 2}px)`,
+  //       onComplete() {
+  //         handleTrack();
+  //       },
+  //     });
+  //   }
 
-  function handleTrack() {
-    gsap.set(scrollTrackRef.current, {
-      right:
-        scrollRef.current.getBoundingClientRect().right -
-        scrollThumbRef.current.getBoundingClientRect().right,
-    });
-  }
+  //   function handleTrack() {
+  //     gsap.set(scrollTrackRef.current, {
+  //       right:
+  //         scrollRef.current.getBoundingClientRect().right -
+  //         scrollThumbRef.current.getBoundingClientRect().right,
+  //     });
+  //   }
 
   return (
     <div>
@@ -121,21 +150,37 @@ export default function IssueViewer({ file }) {
       </div>
       <div
         ref={viewerRef}
-        className="h-[40.5rem] lg:h-[45rem] flex flex-row justify-center items-center"
+        className="h-min lg:h-[45rem] flex flex-row justify-center items-center"
       >
         <div className="w-full flex flex-row justify-between items-center m-3 lg:m-5">
           <button
             onClick={function () {
-              handleThumb(pageNumber - (window.innerWidth < 768 ? 1 : 2));
+              leftPage();
+              //   setPageNumber(
+              //     pageNumber -
+              //       (window.innerWidth < 1024 ||
+              //       pageNumber > numPages ||
+              //       pageNumber === 2
+              //         ? 1
+              //         : 2)
+              //   );
             }}
-            disabled={pageNumber <= (window.innerWidth < 768 ? 1 : 0)}
+            disabled={pageNumber <= 1}
             className="w-8 z-10"
           >
             <img src={arrowLeft} alt="" />
           </button>
           <button
             onClick={function () {
-              handleThumb(pageNumber + (window.innerWidth < 768 ? 1 : 2));
+              rightPage();
+              //   setPageNumber(
+              //     pageNumber +
+              //       (window.innerWidth < 1024 ||
+              //       pageNumber <= 1 ||
+              //       numPages - pageNumber < 2
+              //         ? 1
+              //         : 2)
+              //   );
             }}
             disabled={pageNumber >= numPages}
             className="w-8 z-10 -scale-x-100"
@@ -143,29 +188,95 @@ export default function IssueViewer({ file }) {
             <img src={arrowLeft} alt="" />
           </button>
         </div>
+        <div className="h-[400px]" />
         <Document
           file={file}
+          loading={null}
           inputRef={documentRef}
-          className="absolute touch-none flex flex-row scale-50"
+          className="absolute touch-none flex flex-row"
+          onLoadProgress={({ loaded, total }) => {
+            console.log(loadedPages);
+          }}
         >
-          {pageNumber <= 0 ? null : (
-            <Page
-              pageNumber={pageNumber}
-              height={720}
-              renderAnnotationLayer={false}
-              renderTextLayer={false}
-              scale={2}
-            />
-          )}
-          {pageNumber >= numPages || window.innerWidth < 768 ? null : (
+          <p>{loadedPages}</p>
+          <Page
+            pageNumber={1}
+            onRenderSuccess={() => {
+              setLoadedPages((l) => l + 1);
+            }}
+            height={300}
+            renderAnnotationLayer={false}
+            renderTextLayer={false}
+            className={pageNumber === 1 ? "block" : "hidden"}
+          />
+
+          {[...Array(Math.floor(numPages / 2) - 1)].map((num, index) => {
+            return (
+              <>
+                <Page
+                  pageNumber={(index + 1) * 2}
+                  onRenderSuccess={() => {
+                    setLoadedPages((l) => l + 1);
+                  }}
+                  height={300}
+                  renderAnnotationLayer={false}
+                  renderTextLayer={false}
+                  className={
+                    loadedPages === numPages
+                      ? (index + 1) * 2 === pageNumber ||
+                        (index + 1) * 2 + (window.innerWidth > 1024 ? 1 : 0) ===
+                          pageNumber
+                        ? "block"
+                        : "hidden"
+                      : "hidden"
+                  }
+                />
+                <Page
+                  pageNumber={(index + 1) * 2 + 1}
+                  onRenderSuccess={() => {
+                    setLoadedPages((l) => l + 1);
+                  }}
+                  height={300}
+                  renderAnnotationLayer={false}
+                  renderTextLayer={false}
+                  className={
+                    loadedPages === numPages
+                      ? (index + 1) * 2 + (window.innerWidth > 1024 ? 0 : 1) ===
+                        pageNumber
+                        ? "block"
+                        : "hidden"
+                      : "hidden"
+                  }
+                />
+              </>
+            );
+          })}
+          <Page
+            pageNumber={numPages}
+            onRenderSuccess={() => {
+              setLoadedPages((l) => l + 1);
+            }}
+            height={300}
+            renderAnnotationLayer={false}
+            renderTextLayer={false}
+            className={pageNumber === numPages ? "block" : "hidden"}
+          />
+          {/* <Page
+            pageNumber={pageNumber}
+            height={window.innerWidth < 1024 ? 400 : 720}
+            renderAnnotationLayer={false}
+            renderTextLayer={false}
+          />
+          {pageNumber >= numPages ||
+          window.innerWidth < 1024 ||
+          pageNumber <= 1 ? null : (
             <Page
               pageNumber={pageNumber + 1}
-              height={720}
+              height={window.innerWidth < 1024 ? 400 : 720}
               renderAnnotationLayer={false}
               renderTextLayer={false}
-              scale={2}
             />
-          )}
+          )} */}
         </Document>
       </div>
       <div className="w-full bg-[#DBE9F4] flex flex-col sm:flex-row font-chivo text-[#666] items-center justify-center gap-x-5 py-4 gap-y-3">
@@ -183,31 +294,22 @@ export default function IssueViewer({ file }) {
           />
         </div>
         <p className="flex flex-row items-center flex-shrink-0 gap-x-2">
-          <button
-            onClick={function () {
-              handleThumb(pageNumber - 2);
-            }}
-            disabled={pageNumber <= (window.innerWidth < 768 ? 1 : 0)}
-          >
+          <button onClick={leftPage} disabled={pageNumber <= 1}>
             <img src={arrowGray} alt="" />
           </button>
-          {`Page${pageNumber > 0 && pageNumber < numPages ? "s" : ""} ${
-            pageNumber > 0 ? pageNumber : ""
+          {`Page${pageNumber > 1 && pageNumber < numPages ? "s" : ""} ${
+            pageNumber < numPages ? pageNumber : ""
           }${
-            pageNumber > 0 && pageNumber < numPages && window.innerWidth >= 768
+            pageNumber > 1 && pageNumber < numPages && window.innerWidth >= 1024
               ? "-"
               : ""
           }${
-            pageNumber + 1 < numPages && window.innerWidth >= 768
-              ? pageNumber + 1
-              : ""
+            pageNumber > 1 && window.innerWidth >= 1024 ? pageNumber + 1 : ""
           } of ${numPages}`}
           <button
             disabled={pageNumber >= numPages}
             className="-scale-x-100"
-            onClick={function () {
-              handleThumb(pageNumber + 2);
-            }}
+            onClick={rightPage}
           >
             <img src={arrowGray} alt="" />
           </button>

@@ -14,7 +14,7 @@ export default function Issue() {
             className=" max-w-[80%] max-h-[80%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
           />
         </div>
-        <div className="max-w-[47.75rem]">
+        <div className="max-w-[50%]">
           <h1 className="lg:text-[2.5rem] text-lg font-tiemposheadline text-guidon font-bold leading-[1.4]">
             FreshManual 2023
           </h1>

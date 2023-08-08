@@ -13,7 +13,7 @@ export default function Footer() {
   return (
     <footer className="w-screen bg-guidon flex flex-col justify-center items-center text-white font-chivo gap-y-12 p-8 lg:px-[5rem] lg:pt-14 lg:pb-7">
       <div className="flex lg:flex-row flex-col justify-center w-full border-b-[1px] border-white lg:pb-20 pb-6 gap-x-16  min-w-[12.75rem]">
-        <div className="flex flex-col gap-y-8 w-[50rem]">
+        <div className="flex flex-col gap-y-8 w-full">
           <img
             src={logo}
             alt="The GUIDON"
