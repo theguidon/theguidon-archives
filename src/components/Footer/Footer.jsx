@@ -50,7 +50,7 @@ export default function Footer() {
             }}
             className="border-[1px] border-current rounded-[3px] flex flex-row w-max pl-3"
           >
-            <img src={email} alt="email" />
+            <img src={email} alt="email" className="mr-2" />
             <input
               type="email"
               placeholder="Email Address"
