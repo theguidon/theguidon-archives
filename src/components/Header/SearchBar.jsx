@@ -6,7 +6,13 @@ const SearchBar = () => {
   const [search, toggleSearch] = useState(false);
 
   return (
-    <div className="relative max-w-[34rem] min-w-[23rem] w-full hidden lg:flex">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        console.log(e.target.value);
+      }}
+      className="relative max-w-[34rem] min-w-[23rem] w-full hidden lg:flex"
+    >
       <svg
         viewBox="0 0 17 18"
         width="17"
@@ -31,16 +37,11 @@ const SearchBar = () => {
       <input
         type="text"
         placeholder="Find a press issue, magazine, primer, etc."
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            redirect("/hi");
-          }
-        }}
         className={`w-full pl-10 pr-4 py-2 rounded-full bg-ecf4ff focus:outline-none ${
           search ? "text-guidon" : "text-guidon"
         }`}
       />
-    </div>
+    </form>
   );
 };
 
