@@ -14,6 +14,7 @@ import Browse from "./pages/Browse/Browse";
 import About from "./pages/About/About";
 
 const router = createBrowserRouter([
+  // todo fix path to /
   {
     path: "/testing",
     element: <Root />,

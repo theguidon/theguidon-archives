@@ -15,7 +15,7 @@ const NavigationItems = () => {
       </Link>
       {/* Nav Release (DROPDOWN SELECTION) */}
       <button
-        className="relative flex items-center rounded-16 bg-blue-the-guidon-blue font-bold "
+        className="relative flex flex-row items-center rounded-16 bg-blue-the-guidon-blue font-bold w-max"
         onMouseEnter={() => {
           console.log("Releases Open");
           // Add code to show/hide the overlay and handle the animation if needed
@@ -25,7 +25,7 @@ const NavigationItems = () => {
         <img
           src={select}
           alt="Selection Icon"
-          className="w-5 h-5 ml-1" // Adjust width and height as needed
+          className="w-5" // Adjust width and height as needed
         />
       </button>
       {/* ABOUT */}
