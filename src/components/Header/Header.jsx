@@ -10,9 +10,9 @@ const Header = () => {
   return (
     <nav>
       <header>
-        <div className="w-screen h-16 flex justify-between items-center px-[6.5rem] font-chivo text-guidon fixed z-50 bg-white">
-          <Link to="/">
-            <img src={logo} alt="The GUIDON" className="w-56 h-auto" />
+        <div className="w-screen h-16 flex flex-row flex-shrink-0 justify-between items-center px-[6.5rem] font-chivo text-guidon fixed z-50 bg-white gap-x-8">
+          <Link to="/" className="flex-shrink-0 ">
+            <img src={logo} alt="The GUIDON" className="w-56" />
           </Link>
           <SearchBar />
           <NavigationItems />
