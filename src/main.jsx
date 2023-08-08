@@ -15,33 +15,33 @@ import About from "./pages/About/About";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/testing",
     element: <Root />,
     children: [
       {
-        path: "/",
+        path: "/testing",
         element: <Home />,
       },
       {
-        path: "issues",
+        path: "/testing/issues",
         loader: async () => {
           return redirect("/");
         },
       },
       {
-        path: "about",
+        path: "/testing/about",
         element: <About />,
       },
       {
-        path: "/:query",
+        path: "/testing/:query",
         element: <Browse />,
       },
       {
-        path: "issues/freshmanual-2023",
+        path: "/testingissues/freshmanual-2023",
         element: <Issue />,
       },
       {
-        path: "/recently-uploaded",
+        path: "/testing/recently-uploaded",
         element: (
           <Browse
             title="What’s New on the Archive"
@@ -50,17 +50,17 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/releases",
+        path: "/testing/releases",
         element: <Browse title="Releases This Term" subtitle="2023-2024" />,
       },
       {
-        path: "/:query",
+        path: "/testing/:query",
         element: <Browse />,
       },
       {
-        path: "issues/:query",
+        path: "/testing/issues/:query",
         loader: async () => {
-          return redirect("/");
+          return redirect("/testing/");
         },
       },
     ],
