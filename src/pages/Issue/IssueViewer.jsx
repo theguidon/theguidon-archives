@@ -128,7 +128,7 @@ export default function IssueViewer({ file }) {
             onClick={function () {
               handleThumb(pageNumber - (window.innerWidth < 768 ? 1 : 2));
             }}
-            disabled={pageNumber <= window.innerWidth < 768 ? 1 : 0}
+            disabled={pageNumber <= (window.innerWidth < 768 ? 1 : 0)}
             className="w-8 z-10"
           >
             <img src={arrowLeft} alt="" />
@@ -146,23 +146,24 @@ export default function IssueViewer({ file }) {
         <Document
           file={file}
           inputRef={documentRef}
-          onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-          className="absolute touch-none flex flex-row lg:scale-[calc(561/720)] scale-[calc(375/720)]"
+          className="absolute touch-none flex flex-row scale-50"
         >
           {pageNumber <= 0 ? null : (
             <Page
               pageNumber={pageNumber}
-              width={720}
+              height={720}
               renderAnnotationLayer={false}
               renderTextLayer={false}
+              scale={2}
             />
           )}
           {pageNumber >= numPages || window.innerWidth < 768 ? null : (
             <Page
               pageNumber={pageNumber + 1}
-              width={720}
+              height={720}
               renderAnnotationLayer={false}
               renderTextLayer={false}
+              scale={2}
             />
           )}
         </Document>
@@ -186,7 +187,7 @@ export default function IssueViewer({ file }) {
             onClick={function () {
               handleThumb(pageNumber - 2);
             }}
-            disabled={pageNumber <= window.innerWidth < 768 ? 1 : 0}
+            disabled={pageNumber <= (window.innerWidth < 768 ? 1 : 0)}
           >
             <img src={arrowGray} alt="" />
           </button>

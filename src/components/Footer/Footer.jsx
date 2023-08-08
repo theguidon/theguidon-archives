@@ -11,9 +11,9 @@ import email from "../../assets/icons/email.svg";
 
 export default function Footer() {
   return (
-    <footer className="w-screen bg-guidon flex flex-col justify-center items-center text-white font-chivo gap-y-12 p-8 lg:px-[6.5rem] lg:py-14">
-      <div className="flex lg:flex-row flex-col justify-center lg:w-full border-b-[1px] border-white lg:pb-20 pb-6 gap-x-20">
-        <div className="flex flex-col max-w-[23.5rem] gap-y-8 min-w-[12.75rem]">
+    <footer className="w-screen bg-guidon flex flex-col justify-center items-center text-white font-chivo gap-y-12 p-8 lg:px-[5rem] lg:pt-14 lg:pb-7">
+      <div className="flex lg:flex-row flex-col justify-center w-full border-b-[1px] border-white lg:pb-20 pb-6 gap-x-16  min-w-[12.75rem]">
+        <div className="flex flex-col gap-y-8 w-[50rem]">
           <img
             src={logo}
             alt="The GUIDON"
@@ -54,9 +54,8 @@ export default function Footer() {
             onSubmit={(e) => {
               e.preventDefault();
               e.target.reset();
-              /* form not functional */
             }}
-            className="border-[1px] border-current rounded-[3px] flex flex-row w-max pl-3"
+            className="border-[1px] border-current rounded-[3px] flex flex-row  pl-3 relative py-3 min-w-[19rem]"
           >
             <img src={email} alt="email" className="mr-2" />
             <input
@@ -64,12 +63,12 @@ export default function Footer() {
               placeholder="Email Address"
               name="mail"
               required
-              className="bg-guidon text-white outline-none placeholder-white min-w-[19rem]"
+              className="bg-guidon text-white outline-none placeholder-white w-min border-r-white"
             />
             <input
               type="submit"
               value="Subscribe"
-              className="bg-white text-guidon font-bold cursor-pointer -ml-20 px-4 py-3"
+              className="bg-white text-guidon font-bold cursor-pointer -ml-20 px-4 py-3 absolute right-0 top-0"
             />
           </form>
           <div className="flex flex-row gap-x-3 mt-2 items-center">
