@@ -150,7 +150,7 @@ export default function IssueViewer({ file }) {
       </div>
       <div
         ref={viewerRef}
-        className="h-min lg:h-[45rem] flex flex-row justify-center items-center"
+        className="h-min flex flex-row justify-center items-center relative"
       >
         <div className="w-full flex flex-row justify-between items-center m-3 lg:m-5">
           <button
@@ -188,23 +188,27 @@ export default function IssueViewer({ file }) {
             <img src={arrowLeft} alt="" />
           </button>
         </div>
-        <div className="h-[400px]" />
+        <div className="max-h-[700px] h-[60vh]" />
+        {loadedPages < numPages ? (
+          <p className="text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 font-chivo">
+            {loadedPages} out of {numPages} pages loaded
+          </p>
+        ) : null}
         <Document
           file={file}
           loading={null}
           inputRef={documentRef}
           className="absolute touch-none flex flex-row"
-          onLoadProgress={({ loaded, total }) => {
-            console.log(loadedPages);
-          }}
         >
-          <p>{loadedPages}</p>
           <Page
+            canvasBackground="rgba(255, 255, 255, 0)"
             pageNumber={1}
             onRenderSuccess={() => {
               setLoadedPages((l) => l + 1);
             }}
-            height={300}
+            height={
+              window.innerHeight * 0.6 < 700 ? window.innerHeight * 0.6 : 700
+            }
             renderAnnotationLayer={false}
             renderTextLayer={false}
             className={pageNumber === 1 ? "block" : "hidden"}
@@ -214,11 +218,16 @@ export default function IssueViewer({ file }) {
             return (
               <>
                 <Page
+                  canvasBackground="rgba(255, 255, 255, 0)"
                   pageNumber={(index + 1) * 2}
                   onRenderSuccess={() => {
                     setLoadedPages((l) => l + 1);
                   }}
-                  height={300}
+                  height={
+                    window.innerHeight * 0.6 < 700
+                      ? window.innerHeight * 0.6
+                      : 700
+                  }
                   renderAnnotationLayer={false}
                   renderTextLayer={false}
                   className={
@@ -232,11 +241,16 @@ export default function IssueViewer({ file }) {
                   }
                 />
                 <Page
+                  canvasBackground="rgba(255, 255, 255, 0)"
                   pageNumber={(index + 1) * 2 + 1}
                   onRenderSuccess={() => {
                     setLoadedPages((l) => l + 1);
                   }}
-                  height={300}
+                  height={
+                    window.innerHeight * 0.6 < 700
+                      ? window.innerHeight * 0.6
+                      : 700
+                  }
                   renderAnnotationLayer={false}
                   renderTextLayer={false}
                   className={
@@ -252,31 +266,18 @@ export default function IssueViewer({ file }) {
             );
           })}
           <Page
+            canvasBackground="rgba(255, 255, 255, 0)"
             pageNumber={numPages}
             onRenderSuccess={() => {
               setLoadedPages((l) => l + 1);
             }}
-            height={300}
+            height={
+              window.innerHeight * 0.6 < 700 ? window.innerHeight * 0.6 : 700
+            }
             renderAnnotationLayer={false}
             renderTextLayer={false}
             className={pageNumber === numPages ? "block" : "hidden"}
           />
-          {/* <Page
-            pageNumber={pageNumber}
-            height={window.innerWidth < 1024 ? 400 : 720}
-            renderAnnotationLayer={false}
-            renderTextLayer={false}
-          />
-          {pageNumber >= numPages ||
-          window.innerWidth < 1024 ||
-          pageNumber <= 1 ? null : (
-            <Page
-              pageNumber={pageNumber + 1}
-              height={window.innerWidth < 1024 ? 400 : 720}
-              renderAnnotationLayer={false}
-              renderTextLayer={false}
-            />
-          )} */}
         </Document>
       </div>
       <div className="w-full bg-[#DBE9F4] flex flex-col sm:flex-row font-chivo text-[#666] items-center justify-center gap-x-5 py-4 gap-y-3">
