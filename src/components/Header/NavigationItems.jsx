@@ -4,7 +4,7 @@ import select from "../../assets/icons/selection.svg";
 
 const NavigationItems = () => {
   return (
-    <div className="flex flex-row first-letter:items-center nav-container gap-x-4">
+    <div className="flex-row first-letter:items-center nav-container gap-x-4 hidden lg:flex">
       {/* Nav Home */}
       <Link
         to="/"

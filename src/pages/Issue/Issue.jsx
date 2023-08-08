@@ -7,21 +7,21 @@ export default function Issue() {
   return (
     <main>
       <IssueViewer file={pdf} />
-      <div className="h-[29rem] w-screen flex flex-row flex-shrink-0 justify-start items-center px-[6.5rem] gap-x-10">
-        <div className="relative w-[18rem] flex-shrink-0  aspect-square bg-[#EFF5FA]">
+      <div className=" w-screen flex flex-row flex-shrink-0 justify-start items-center p-6 lg:p-24 gap-x-10">
+        <div className="relative w-40 lg:w-[18rem] flex-shrink-0  aspect-square bg-[#EFF5FA]">
           <img
             src={image}
-            className="w-[10rem] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            className=" max-w-[80%] max-h-[80%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
           />
         </div>
-        <div>
-          <h1 className="text-[2.5rem] font-tiemposheadline text-guidon font-bold leading-[1.4]">
+        <div className="min-w-[12.25rem]">
+          <h1 className="lg:text-[2.5rem] text-lg font-tiemposheadline text-guidon font-bold leading-[1.4]">
             FreshManual 2023
           </h1>
-          <p className="text-[#979797] font-chivo uppercase tracking-[0.04rem]">
+          <p className="text-[#979797] text-xs lg:text-base font-chivo uppercase tracking-[0.04rem]">
             7 August 2023
           </p>
-          <p className="font-chivo text-guidon">
+          <p className="font-chivo text-guidon text-xs lg:text-base">
             Getting ready for college just got way better. Prep for the year
             ahead with Vantage Magazine's Freshmanual 2023! This year's edition
             is full of tips and tricks from upperclassmen—from
