@@ -6,4 +6,7 @@ export default defineConfig({
   plugins: [react()],
   //   todo fix path to /
   base: "/",
+  server: {
+    host: true,
+  },
 });

@@ -29,12 +29,12 @@ export default function IssueViewer({ file }) {
   const [numPages, setNumPages] = useState(0);
 
   // document gestures
-  Draggable.create(documentRef.current, {
-    type: "x,y",
-    bounds: viewerRef.current,
+  //   Draggable.create(documentRef.current, {
+  //     type: "x,y",
+  //     bounds: viewerRef.current,
 
-    zIndexBoost: false,
-  });
+  //     zIndexBoost: false,
+  //   });
 
   // scroller gestures
   Draggable.create(scrollThumbRef.current, {
@@ -128,7 +128,7 @@ export default function IssueViewer({ file }) {
             onClick={function () {
               handleThumb(pageNumber - (window.innerWidth < 768 ? 1 : 2));
             }}
-            disabled={pageNumber <= 0}
+            disabled={pageNumber <= window.innerWidth < 768 ? 1 : 0}
             className="w-8 z-10"
           >
             <img src={arrowLeft} alt="" />
@@ -147,12 +147,12 @@ export default function IssueViewer({ file }) {
           file={file}
           inputRef={documentRef}
           onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-          className="absolute touch-none flex flex-row lg:scale-[calc(560/1920)] scale-[calc(375/1920)]"
+          className="absolute touch-none flex flex-row lg:scale-[calc(560/720)] scale-[calc(375/720)]"
         >
           {pageNumber <= 0 ? null : (
             <Page
               pageNumber={pageNumber}
-              width={1920}
+              width={720}
               renderAnnotationLayer={false}
               renderTextLayer={false}
             />
@@ -160,7 +160,7 @@ export default function IssueViewer({ file }) {
           {pageNumber >= numPages || window.innerWidth < 768 ? null : (
             <Page
               pageNumber={pageNumber + 1}
-              width={1920}
+              width={720}
               renderAnnotationLayer={false}
               renderTextLayer={false}
             />
@@ -186,7 +186,7 @@ export default function IssueViewer({ file }) {
             onClick={function () {
               handleThumb(pageNumber - 2);
             }}
-            disabled={pageNumber <= 0}
+            disabled={pageNumber <= window.innerWidth < 768 ? 1 : 0}
           >
             <img src={arrowGray} alt="" />
           </button>
