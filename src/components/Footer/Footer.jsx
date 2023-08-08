@@ -11,7 +11,7 @@ import email from "../../assets/icons/email.svg";
 
 export default function Footer() {
   return (
-    <footer className="w-screen bg-guidon flex flex-col justify-center items-center text-white font-chivo gap-y-12 p-6 lg:px-[6.5rem] lg:py-14">
+    <footer className="w-screen bg-guidon flex flex-col justify-center items-center text-white font-chivo gap-y-12 p-8 lg:px-[6.5rem] lg:py-14">
       <div className="flex lg:flex-row flex-col justify-center lg:w-full border-b-[1px] border-white lg:pb-20 pb-6 gap-x-20">
         <div className="flex flex-col max-w-[23.5rem] gap-y-8 min-w-[12.75rem]">
           <img

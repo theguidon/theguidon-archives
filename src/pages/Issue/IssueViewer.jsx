@@ -123,7 +123,7 @@ export default function IssueViewer({ file }) {
         ref={viewerRef}
         className="h-[40.5rem] lg:h-[45rem] flex flex-row justify-center items-center"
       >
-        <div className="w-full flex flex-row justify-between items-center m-10">
+        <div className="w-full flex flex-row justify-between items-center m-3 lg:m-5">
           <button
             onClick={function () {
               handleThumb(pageNumber - (window.innerWidth < 768 ? 1 : 2));
@@ -170,7 +170,7 @@ export default function IssueViewer({ file }) {
       <div className="w-full bg-[#DBE9F4] flex flex-col sm:flex-row font-chivo text-[#666] items-center justify-center gap-x-5 py-4 gap-y-3">
         <div
           ref={scrollRef}
-          className="w-[22rem] lg:w-[50rem] h-4 rounded-[0.675rem] border-[#B6C2CD] border-[1px] bg-white relative"
+          className="w-[22rem] max-w-[90%] lg:w-[50rem] h-4 rounded-[0.675rem] border-[#B6C2CD] border-[1px] bg-white relative"
         >
           <div
             ref={scrollTrackRef}
@@ -182,14 +182,14 @@ export default function IssueViewer({ file }) {
           />
         </div>
         <p className="flex flex-row items-center flex-shrink-0 gap-x-2">
-          <img
-            src={arrowGray}
-            alt=""
+          <button
             onClick={function () {
               handleThumb(pageNumber - 2);
             }}
-            className="cursor-pointer"
-          />
+            disabled={pageNumber <= 0}
+          >
+            <img src={arrowGray} alt="" />
+          </button>
           {`Page${pageNumber > 0 && pageNumber < numPages ? "s" : ""} ${
             pageNumber > 0 ? pageNumber : ""
           }${
@@ -201,14 +201,15 @@ export default function IssueViewer({ file }) {
               ? pageNumber + 1
               : ""
           } of ${numPages}`}
-          <img
-            src={arrowGray}
-            alt=""
-            className="-scale-x-100 cursor-pointer"
+          <button
+            disabled={pageNumber >= numPages}
+            className="-scale-x-100"
             onClick={function () {
               handleThumb(pageNumber + 2);
             }}
-          />
+          >
+            <img src={arrowGray} alt="" />
+          </button>
         </p>
       </div>
     </div>

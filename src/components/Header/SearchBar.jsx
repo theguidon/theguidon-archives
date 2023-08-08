@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import select from "../../assets/icons/selection.svg";
 import { redirect } from "react-router-dom";
 
 const SearchBar = () => {
