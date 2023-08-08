@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import { Draggable } from "gsap/all";
 import arrowLeft from "../../assets/icons/arrow-left.svg";
 import arrowLeft2 from "../../assets/icons/arrow-left-2.svg";
+import arrowGray from "../../assets/icons/arrow-gray.svg";
 import twoPages from "../../assets/icons/two-pages.svg";
 import onePage from "../../assets/icons/one-page.svg";
 import zoomIn from "../../assets/icons/zoom-in.svg";
@@ -121,7 +122,7 @@ export default function IssueViewer({ file }) {
               handleThumb(pageNumber - 2);
             }}
             disabled={pageNumber <= 0}
-            className="w-8 z-50"
+            className="w-8 z-10"
           >
             <img src={arrowLeft} alt="" />
           </button>
@@ -130,7 +131,7 @@ export default function IssueViewer({ file }) {
               handleThumb(pageNumber + 2);
             }}
             disabled={pageNumber >= numPages}
-            className="w-8 z-50 -scale-x-100"
+            className="w-8 z-10 -scale-x-100"
           >
             <img src={arrowLeft} alt="" />
           </button>
@@ -173,11 +174,29 @@ export default function IssueViewer({ file }) {
             className="absolute top-1/2 -translate-y-1/2 rounded-full w-5 aspect-square border-[#6A757C] border-[1px] bg-[#E9EEF2] cursor-pointer touch-none"
           />
         </div>
-        <p>{`Page${pageNumber > 0 && pageNumber < numPages ? "s" : ""} ${
-          pageNumber > 0 ? pageNumber : ""
-        }${pageNumber > 0 && pageNumber < numPages ? "-" : ""}${
-          pageNumber + 1 < numPages ? pageNumber + 1 : ""
-        } of ${numPages}`}</p>
+        <p className="flex flex-row items-center flex-shrink-0 gap-x-2">
+          <img
+            src={arrowGray}
+            alt=""
+            onClick={function () {
+              handleThumb(pageNumber - 2);
+            }}
+            className="cursor-pointer"
+          />
+          {`Page${pageNumber > 0 && pageNumber < numPages ? "s" : ""} ${
+            pageNumber > 0 ? pageNumber : ""
+          }${pageNumber > 0 && pageNumber < numPages ? "-" : ""}${
+            pageNumber + 1 < numPages ? pageNumber + 1 : ""
+          } of ${numPages}`}
+          <img
+            src={arrowGray}
+            alt=""
+            className="-scale-x-100 cursor-pointer"
+            onClick={function () {
+              handleThumb(pageNumber + 2);
+            }}
+          />
+        </p>
       </div>
     </div>
   );

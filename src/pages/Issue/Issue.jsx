@@ -7,7 +7,7 @@ export default function Issue() {
   return (
     <main>
       <IssueViewer file={pdf} />
-      <div className="h-[29rem] w-[77rem] flex flex-row justify-center items-center gap-x-10">
+      <div className="h-[29rem] w-screen flex flex-row justify-start items-center px-[6.5rem] gap-x-10">
         <div className="relative w-[18rem] aspect-square bg-[#EFF5FA]">
           <img
             src={image}

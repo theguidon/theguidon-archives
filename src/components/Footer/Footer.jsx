@@ -16,8 +16,9 @@ export default function Footer() {
         <div className="flex flex-col w-[23.5rem] gap-y-8 ">
           <img src={logo} alt="The GUIDON" />
           <div className="leading-tight">
-            The GUIDON is the official student publication of the Ateneo de
-            Manila University.
+            The Archives is a collection of The GUIDON's published content since
+            1929, chronicling its history as the official student publication of
+            the Ateneo de Manila University.
           </div>
         </div>
         <div className="flex flex-col gap-y-2">
@@ -63,7 +64,7 @@ export default function Footer() {
               className="bg-white text-guidon p-3 font-bold cursor-pointer"
             />
           </form>
-          <div className="flex flex-row gap-x-3 mt-2">
+          <div className="flex flex-row gap-x-3 mt-2 items-center">
             <a href="https://www.facebook.com/TheGUIDON">
               <img src={facebook} alt="facebook" />
             </a>

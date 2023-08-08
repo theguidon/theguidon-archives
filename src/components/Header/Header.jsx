@@ -10,23 +10,12 @@ const Header = () => {
   return (
     <nav>
       <header>
-        <div
-          className="w-screen h-16 flex justify-between items-center px-6 font-chivo text-guidon fixed navbar-layout z-50"
-          style={{ paddingRight: "6rem" }}
-        >
-          <div
-            className="flex items-center gap-32 flex-grow"
-            style={{ paddingLeft: "5rem" }}
-          >
-            <img src={menu} alt="" className="w-221 h-46.968 md:hidden" />
-            <Link to="/">
-              <img src={logo} alt="The GUIDON" className="w-56 h-auto" />
-            </Link>
-            <div className="flex-grow flex justify-end">
-              <SearchBar />
-              <NavigationItems />
-            </div>
-          </div>
+        <div className="w-screen h-16 flex justify-between items-center px-[6.5rem] font-chivo text-guidon fixed z-50 bg-white">
+          <Link to="/">
+            <img src={logo} alt="The GUIDON" className="w-56 h-auto" />
+          </Link>
+          <SearchBar />
+          <NavigationItems />
         </div>
       </header>
       <div className="h-16 w-screen" />
