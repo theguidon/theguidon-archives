@@ -48,7 +48,7 @@ export default function Footer() {
               e.target.reset();
               /* form not functional */
             }}
-            className="border-[1px] border-current rounded-[3px] flex flex-row w-fit pl-3"
+            className="border-[1px] border-current rounded-[3px] flex flex-row w-max pl-3"
           >
             <img src={email} alt="email" />
             <input
@@ -56,12 +56,12 @@ export default function Footer() {
               placeholder="Email Address"
               name="mail"
               required
-              className="bg-guidon text-white outline-none placeholder-white "
+              className="bg-guidon text-white outline-none placeholder-white min-w-[19rem]"
             />
             <input
               type="submit"
               value="Subscribe"
-              className="bg-white text-guidon font-bold cursor-pointer -ml-16 px-4 py-3"
+              className="bg-white text-guidon font-bold cursor-pointer -ml-20 px-4 py-3"
             />
           </form>
           <div className="flex flex-row gap-x-3 mt-2 items-center">
