@@ -46,3 +46,87 @@
   font-weight: 900;
   font-style: italic;
 }
+
+@font-face {
+  font-family: "Tiempos Headline";
+  src: url(./assets/fonts/TiemposHeadline/TIEMPOSHEADLINE-LIGHT.OTF);
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Tiempos Headline";
+  src: url(./assets/fonts/TiemposHeadline/TIEMPOSHEADLINE-LIGHTITALIC.OTF);
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Tiempos Headline";
+  src: url(./assets/fonts/TiemposHeadline/TIEMPOSHEADLINE-REGULAR.OTF);
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Tiempos Headline";
+  src: url(./assets/fonts/TiemposHeadline/TIEMPOSHEADLINE-REGULARITALIC.OTF);
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Tiempos Headline";
+  src: url(./assets/fonts/TiemposHeadline/TIEMPOSHEADLINE-MEDIUM.OTF);
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Tiempos Headline";
+  src: url(./assets/fonts/TiemposHeadline/TIEMPOSHEADLINE-MEDIUMITALIC.OTF);
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Tiempos Headline";
+  src: url(./assets/fonts/TiemposHeadline/TIEMPOSHEADLINE-SEMIBOLD.OTF);
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Tiempos Headline";
+  src: url(./assets/fonts/TiemposHeadline/TIEMPOSHEADLINE-SEMIBOLDITALIC.OTF);
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Tiempos Headline";
+  src: url(./assets/fonts/TiemposHeadline/TIEMPOSHEADLINE-BOLD.OTF);
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Tiempos Headline";
+  src: url(./assets/fonts/TiemposHeadline/TIEMPOSHEADLINE-BOLDITALIC.OTF);
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Tiempos Headline";
+  src: url(./assets/fonts/TiemposHeadline/TIEMPOSHEADLINE-BLACK.OTF);
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Tiempos Headline";
+  src: url(./assets/fonts/TiemposHeadline/TIEMPOSHEADLINE-BLACKITALIC.OTF);
+  font-weight: 800;
+  font-style: italic;
+}

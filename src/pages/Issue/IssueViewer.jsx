@@ -140,7 +140,7 @@ export default function IssueViewer({ file }) {
           file={file}
           inputRef={documentRef}
           onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-          className="absolute touch-none flex flex-row scale-[calc(560/1920)]"
+          className="absolute touch-none flex flex-row scale-[calc(5/1920)]"
         >
           {pageNumber <= 0 ? null : (
             <Page
