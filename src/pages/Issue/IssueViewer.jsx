@@ -42,7 +42,6 @@ export default function IssueViewer({ file }) {
     bounds: scrollRef.current,
     onDragEnd: function () {
       handleThumb();
-      handleTrack();
     },
     onDrag: handleTrack,
   });
@@ -62,8 +61,10 @@ export default function IssueViewer({ file }) {
 
     gsap.set(scrollThumbRef.current, {
       left: `calc(${left * 100}% - ${thumbBounds.width / 2}px)`,
+      onComplete() {
+        handleTrack();
+      },
     });
-    handleTrack();
   }
 
   function handleTrack() {
@@ -76,7 +77,7 @@ export default function IssueViewer({ file }) {
 
   return (
     <div>
-      <div className="w-full h-14 bg-guidon flex flex-row justify-between items-center px-24 relative">
+      <div className="w-full h-14 bg-guidon flex flex-row justify-between items-center px-4 sm:px-24 relative">
         <button
           onClick={function () {
             history.back();
@@ -84,7 +85,7 @@ export default function IssueViewer({ file }) {
           className="font-chivo text-white flex flex-row items-center gap-x-1"
         >
           <img src={arrowLeft2} alt="" className="w-6" />
-          Back
+          <p className="hidden sm:block">Back</p>
         </button>
         <h1 className="text-white text-xl font-tiemposheadline absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           FreshManual 2023
@@ -114,7 +115,7 @@ export default function IssueViewer({ file }) {
       </div>
       <div
         ref={viewerRef}
-        className="h-[45rem] flex flex-row justify-center items-center"
+        className="h-[40.5rem] lg:h-[45rem] flex flex-row justify-center items-center"
       >
         <div className="w-full flex flex-row justify-between items-center m-10">
           <button
@@ -140,7 +141,7 @@ export default function IssueViewer({ file }) {
           file={file}
           inputRef={documentRef}
           onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-          className="absolute touch-none flex flex-row scale-[calc(560/1920)]"
+          className="absolute touch-none flex flex-row lg:scale-[calc(560/1920)] scale-[calc(375/1920)]"
         >
           {pageNumber <= 0 ? null : (
             <Page

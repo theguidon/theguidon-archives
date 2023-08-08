@@ -5,5 +5,5 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   //   todo fix path to /
-  base: "/testing",
+  base: "/",
 });

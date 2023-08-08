@@ -1,11 +1,9 @@
 <!-- prettier-ignore -->
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  <!-- TODO fix path to / -->
-  RewriteBase /testing/
+  RewriteBase /
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-l
-  <!-- TODO fix path to /index.html -->
-  RewriteRule . /testing/index.html [L]
+  RewriteRule . /index.html [L]
 </IfModule>

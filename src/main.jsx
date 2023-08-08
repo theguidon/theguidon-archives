@@ -12,58 +12,66 @@ import Home from "./pages/Home/Home";
 import Issue from "./pages/Issue/Issue";
 import Browse from "./pages/Browse/Browse";
 import About from "./pages/About/About";
+import Wip from "./pages/wip/Wip";
 
 const router = createBrowserRouter([
-  // todo fix path to /
+  // todo fix path to
   {
-    path: "/testing",
+    path: "/",
     element: <Root />,
+    errorElement: <Wip />,
     children: [
       {
-        path: "/testing",
-        element: <Home />,
-      },
-      {
-        path: "/testing/issues",
+        path: "",
         loader: async () => {
-          return redirect("/");
+          return redirect("/under-construction");
         },
       },
       {
-        path: "/testing/about",
-        element: <About />,
-      },
-      {
-        path: "/testing/:query",
-        element: <Browse />,
-      },
-      {
-        path: "/testingissues/freshmanual-2023",
+        path: "issues/freshmanual-2023",
         element: <Issue />,
       },
-      {
-        path: "/testing/recently-uploaded",
-        element: (
-          <Browse
-            title="What’s New on the Archive"
-            subtitle="recently uploaded"
-          />
-        ),
-      },
-      {
-        path: "/testing/releases",
-        element: <Browse title="Releases This Term" subtitle="2023-2024" />,
-      },
-      {
-        path: "/testing/:query",
-        element: <Browse />,
-      },
-      {
-        path: "/testing/issues/:query",
-        loader: async () => {
-          return redirect("/testing/");
-        },
-      },
+      //   {
+      //     path: "",
+      //     element: <Home />,
+      //   },
+      //   {
+      //     path: "/issues",
+      //     loader: async () => {
+      //       return redirect("/");
+      //     },
+      //   },
+      //   {
+      //     path: "/about",
+      //     element: <About />,
+      //   },
+      //   {
+      //     path: "/:query",
+      //     element: <Browse />,
+      //   },
+      //   {
+      //     path: "/recently-uploaded",
+      //     element: (
+      //       <Browse
+      //         title="What’s New on the Archive"
+      //         subtitle="recently uploaded"
+      //       />
+      //     ),
+      //   },
+      //   {
+      //     path: "/releases",
+      //     element: <Browse title="Releases This Term" subtitle="2023-2024" />,
+      //   },
+      //   {
+      //     path: "/:query",
+      //     element: <Browse />,
+      //   },
+      //   {
+      //     path: "/issues/:query",
+      //     loader: async () => {
+      //       return redirect("/");
+      //     },
+      //   },
     ],
   },
 ]);

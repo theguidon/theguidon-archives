@@ -7,14 +7,14 @@ export default function Issue() {
   return (
     <main>
       <IssueViewer file={pdf} />
-      <div className=" w-screen flex flex-row flex-shrink-0 justify-start items-center p-6 lg:p-24 gap-x-10">
+      <div className=" w-screen flex flex-row flex-shrink-0 justify-start items-center p-6 lg:p-24 gap-x-6 lg:gap-x-20">
         <div className="relative w-40 lg:w-[18rem] flex-shrink-0  aspect-square bg-[#EFF5FA]">
           <img
             src={image}
             className=" max-w-[80%] max-h-[80%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
           />
         </div>
-        <div className="min-w-[12.25rem]">
+        <div className="">
           <h1 className="lg:text-[2.5rem] text-lg font-tiemposheadline text-guidon font-bold leading-[1.4]">
             FreshManual 2023
           </h1>
