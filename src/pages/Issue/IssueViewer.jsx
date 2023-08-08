@@ -46,13 +46,19 @@ export default function IssueViewer({ file }) {
     onDrag: handleTrack,
   });
 
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setPageNumber(1);
+    }
+  }, []);
+
   function handleThumb(page) {
     const thumbBounds = scrollThumbRef.current.getBoundingClientRect();
     const scrollBounds = scrollRef.current.getBoundingClientRect();
     const left =
       page == null
         ? gsap.utils.snap(
-            1 / (numPages / 2),
+            1 / (numPages / (window.innerWidth < 768 ? 1 : 2)),
             (thumbBounds.left - scrollBounds.left) / scrollBounds.width
           )
         : page / numPages;
@@ -120,7 +126,7 @@ export default function IssueViewer({ file }) {
         <div className="w-full flex flex-row justify-between items-center m-10">
           <button
             onClick={function () {
-              handleThumb(pageNumber - 2);
+              handleThumb(pageNumber - (window.innerWidth < 768 ? 1 : 2));
             }}
             disabled={pageNumber <= 0}
             className="w-8 z-10"
@@ -129,7 +135,7 @@ export default function IssueViewer({ file }) {
           </button>
           <button
             onClick={function () {
-              handleThumb(pageNumber + 2);
+              handleThumb(pageNumber + (window.innerWidth < 768 ? 1 : 2));
             }}
             disabled={pageNumber >= numPages}
             className="w-8 z-10 -scale-x-100"
@@ -151,7 +157,7 @@ export default function IssueViewer({ file }) {
               renderTextLayer={false}
             />
           )}
-          {pageNumber >= numPages ? null : (
+          {pageNumber >= numPages || window.innerWidth < 768 ? null : (
             <Page
               pageNumber={pageNumber + 1}
               width={1920}
@@ -161,10 +167,10 @@ export default function IssueViewer({ file }) {
           )}
         </Document>
       </div>
-      <div className="w-full h-14 bg-[#DBE9F4] flex flex-row font-chivo text-[#666] items-center justify-center gap-x-5">
+      <div className="w-full bg-[#DBE9F4] flex flex-col sm:flex-row font-chivo text-[#666] items-center justify-center gap-x-5 py-4 gap-y-3">
         <div
           ref={scrollRef}
-          className="w-[70rem] h-4 rounded-[0.675rem] border-[#B6C2CD] border-[1px] bg-white relative"
+          className="w-[22rem] lg:w-[50rem] h-4 rounded-[0.675rem] border-[#B6C2CD] border-[1px] bg-white relative"
         >
           <div
             ref={scrollTrackRef}
@@ -186,8 +192,14 @@ export default function IssueViewer({ file }) {
           />
           {`Page${pageNumber > 0 && pageNumber < numPages ? "s" : ""} ${
             pageNumber > 0 ? pageNumber : ""
-          }${pageNumber > 0 && pageNumber < numPages ? "-" : ""}${
-            pageNumber + 1 < numPages ? pageNumber + 1 : ""
+          }${
+            pageNumber > 0 && pageNumber < numPages && window.innerWidth >= 768
+              ? "-"
+              : ""
+          }${
+            pageNumber + 1 < numPages && window.innerWidth >= 768
+              ? pageNumber + 1
+              : ""
           } of ${numPages}`}
           <img
             src={arrowGray}

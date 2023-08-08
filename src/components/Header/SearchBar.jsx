@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import select from "../../assets/icons/selection.svg";
+import { redirect } from "react-router-dom";
 
 const SearchBar = () => {
   const [search, toggleSearch] = useState(false);
@@ -30,6 +31,11 @@ const SearchBar = () => {
       <input
         type="text"
         placeholder="Find a press issue, magazine, primer, etc."
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            redirect("/hi");
+          }
+        }}
         className={`w-full pl-10 pr-4 py-2 rounded-full bg-ecf4ff focus:outline-none ${
           search ? "text-guidon" : "text-guidon"
         }`}
