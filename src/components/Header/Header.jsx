@@ -11,7 +11,7 @@ const Header = () => {
     <nav>
       <header>
         <div
-          className="w-screen h-16 flex justify-between items-center px-6 font-chivo text-guidon fixed navbar-layout "
+          className="w-screen h-16 flex justify-between items-center px-6 font-chivo text-guidon fixed navbar-layout z-50"
           style={{ paddingRight: "6rem" }}
         >
           <div
@@ -29,6 +29,7 @@ const Header = () => {
           </div>
         </div>
       </header>
+      <div className="h-16 w-screen" />
     </nav>
   );
 };
