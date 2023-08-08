@@ -41,27 +41,27 @@ export default function Footer() {
         </div>
         <div className="flex flex-col gap-y-2">
           <div>Subscribe to our newsletter</div>
-          {/* form not functional */}
           <form
             action=""
             onSubmit={(e) => {
               e.preventDefault();
               e.target.reset();
+              /* form not functional */
             }}
-            className="border-[1px] border-current rounded-[3px] pl-3 flex flex-row"
+            className="border-[1px] border-current rounded-[3px] flex flex-row w-fit pl-3"
           >
-            <img src={email} alt="email" className="mr-2" />
+            <img src={email} alt="email" />
             <input
               type="email"
               placeholder="Email Address"
               name="mail"
               required
-              className="bg-guidon text-white outline-none placeholder-white"
+              className="bg-guidon text-white outline-none placeholder-white "
             />
             <input
               type="submit"
               value="Subscribe"
-              className="bg-white text-guidon p-3 font-bold cursor-pointer"
+              className="bg-white text-guidon font-bold cursor-pointer -ml-16 px-4 py-3"
             />
           </form>
           <div className="flex flex-row gap-x-3 mt-2 items-center">
