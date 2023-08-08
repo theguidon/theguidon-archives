@@ -26,7 +26,7 @@ export default function IssueViewer({ file }) {
   const zoomTrackRef = useRef(null);
 
   const [pageNumber, setPageNumber] = useState(0);
-  const [numPages, setNumPages] = useState(0);
+  const [numPages, setNumPages] = useState(12);
 
   // document gestures
   //   Draggable.create(documentRef.current, {
@@ -84,7 +84,7 @@ export default function IssueViewer({ file }) {
   return (
     <div>
       <div className="w-full h-14 bg-guidon flex flex-row justify-between items-center px-4 sm:px-24 relative">
-        <button
+        {/* <button
           onClick={function () {
             history.back();
           }}
@@ -92,7 +92,7 @@ export default function IssueViewer({ file }) {
         >
           <img src={arrowLeft2} alt="" className="w-6" />
           <p className="hidden sm:block">Back</p>
-        </button>
+        </button> */}
         <h1 className="text-white text-xl font-tiemposheadline absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           FreshManual 2023
         </h1>
@@ -147,7 +147,7 @@ export default function IssueViewer({ file }) {
           file={file}
           inputRef={documentRef}
           onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-          className="absolute touch-none flex flex-row lg:scale-[calc(560/720)] scale-[calc(375/720)]"
+          className="absolute touch-none flex flex-row lg:scale-[calc(561/720)] scale-[calc(375/720)]"
         >
           {pageNumber <= 0 ? null : (
             <Page

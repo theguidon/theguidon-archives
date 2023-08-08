@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <nav>
       <header>
-        <div className="w-screen h-16 flex flex-row flex-shrink-0 justify-around items-center px-[5vw] font-chivo text-guidon fixed z-50 bg-white gap-x-8">
+        <div className="w-screen h-16 flex flex-row flex-shrink-0 justify-around items-center px-[5vw] font-chivo text-guidon fixed z-50 bg-white gap-x-8 shadow-xl">
           <Link to="/" className="flex-shrink-0 ">
             <img src={logo} alt="The GUIDON" className="w-56" />
           </Link>

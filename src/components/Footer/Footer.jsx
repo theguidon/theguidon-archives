@@ -27,21 +27,25 @@ export default function Footer() {
         </div>
         <div className="lg:flex flex-col gap-y-2 hidden">
           <div className="font-bold">BROWSE THE ARCHIVES</div>
-          <a href="#">Recently Uploaded</a>
-          <a href="#">Releases This Term</a>
-          <a href="#">Press Issues</a>
-          <a href="#">Graduation Magazines</a>
-          <a href="#">Freshmanuals</a>
-          <a href="#">UAAP Primers</a>
-          <a href="#">Other</a>
+          <a href="/">Recently Uploaded</a>
+          <a href="/">Releases This Term</a>
+          <a href="/">Press Issues</a>
+          <a href="/">Graduation Magazines</a>
+          <a href="/">Freshmanuals</a>
+          <a href="/">UAAP Primers</a>
+          <a href="/">Other</a>
         </div>
         <div className="hidden lg:flex flex-col gap-y-2">
           <div className="font-bold">MORE FROM THE GUIDON</div>
-          <a href="https://theguidon.com/">The GUIDON Main</a>
-          <a href="https://interactive.theguidon.com/">
+          <a href="https://theguidon.com/" target="_blank">
+            The GUIDON Main
+          </a>
+          <a href="https://interactive.theguidon.com/" target="_blank">
             The GUIDON Interactive
           </a>
-          <a href="https://vantage.theguidon.com/">Vantage Magazine</a>
+          <a href="https://vantage.theguidon.com/" target="_blank">
+            Vantage Magazine
+          </a>
         </div>
         <div className="hidden lg:flex flex-col gap-y-2">
           <div>Subscribe to our newsletter</div>
@@ -78,7 +82,7 @@ export default function Footer() {
             <a href="https://www.instagram.com/theguidon" target="_blank">
               <img src={instagram} alt="instagram" />
             </a>
-            <a href="#https://www.threads.net/@theguidon" target="_blank">
+            <a href="https://www.threads.net/@theguidon" target="_blank">
               <img src={threads} alt="threads" />
             </a>
             <a
@@ -102,7 +106,7 @@ export default function Footer() {
           <a href="https://www.instagram.com/theguidon" target="_blank">
             <img src={instagram} alt="instagram" />
           </a>
-          <a href="#https://www.threads.net/@theguidon" target="_blank">
+          <a href="https://www.threads.net/@theguidon" target="_blank">
             <img src={threads} alt="threads" />
           </a>
           <a
