@@ -35,11 +35,12 @@ export default function IssueViewer({ file }) {
 
     if (pageNumber >= 1) tempPageNum--;
 
-    if (window.innerWidth > 1024 && tempPageNum > 1 && tempPageNum % 2 == 1) {
+    if (window.innerWidth > 1024 && tempPageNum > 1 && tempPageNum % 2 === 1) {
       tempPageNum--;
     }
 
     setPageNumber(tempPageNum);
+    handleThumb(tempPageNum);
   }
   function rightPage() {
     let tempPageNum = pageNumber;
@@ -49,12 +50,30 @@ export default function IssueViewer({ file }) {
     if (
       window.innerWidth > 1024 &&
       tempPageNum < numPages &&
-      tempPageNum % 2 == 1
+      tempPageNum % 2 === 1
     ) {
       tempPageNum++;
     }
 
     setPageNumber(tempPageNum);
+    handleThumb(tempPageNum);
+  }
+
+  function handleThumb(page) {
+    const hundredPercent = scrollRef.current.getBoundingClientRect().width - 20;
+    const percent = (page - 1) / (numPages - 1);
+    gsap.set(scrollThumbRef.current, {
+      left: hundredPercent * percent,
+    });
+    handleTrack();
+  }
+
+  function handleTrack() {
+    gsap.set(scrollTrackRef.current, {
+      right:
+        scrollRef.current.getBoundingClientRect().right -
+        scrollThumbRef.current.getBoundingClientRect().right,
+    });
   }
 
   // document gestures
@@ -64,22 +83,6 @@ export default function IssueViewer({ file }) {
 
   //     zIndexBoost: false,
   //   });
-
-  // scroller gestures
-  //   Draggable.create(scrollThumbRef.current, {
-  //     type: "left",
-  //     bounds: scrollRef.current,
-  //     onDragEnd: function () {
-  //       handleThumb();
-  //     },
-  //     onDrag: handleTrack,
-  //   });
-
-  //   useEffect(() => {
-  //     if (window.innerWidth < 1024) {
-  //       setPageNumber(1);
-  //     }
-  //   }, []);
 
   //   function handleThumb(page) {
   //     const thumbBounds = scrollThumbRef.current.getBoundingClientRect();
@@ -102,13 +105,37 @@ export default function IssueViewer({ file }) {
   //     });
   //   }
 
-  //   function handleTrack() {
-  //     gsap.set(scrollTrackRef.current, {
-  //       right:
-  //         scrollRef.current.getBoundingClientRect().right -
-  //         scrollThumbRef.current.getBoundingClientRect().right,
-  //     });
-  //   }
+  // scroller gestures
+  Draggable.create(scrollThumbRef.current, {
+    type: "left",
+    bounds: scrollRef.current,
+    onDragEnd: function () {
+      handleScrub();
+    },
+    onDrag: handleTrack,
+  });
+
+  function handleScrub() {
+    const hundredPercent = scrollRef.current.getBoundingClientRect().width - 20;
+    const percent =
+      (scrollThumbRef.current.getBoundingClientRect().left -
+        scrollRef.current.getBoundingClientRect().left) /
+      hundredPercent;
+    let page = 0;
+    if (window.innerWidth >= 1024) {
+      const pagePercent = gsap.utils.snap(1 / numPages, percent);
+      const odd = gsap.utils.snap(1, pagePercent * (numPages - 1) + 1);
+      page =
+        odd === 1 ? odd : gsap.utils.snap(2, pagePercent * (numPages - 1) + 1);
+      console.log(page);
+    } else {
+      const pagePercent = gsap.utils.snap(1 / (numPages - 1), percent);
+      page = gsap.utils.snap(1, pagePercent * (numPages - 1) + 1);
+    }
+    setPageNumber(page);
+    handleThumb(page);
+    handleTrack();
+  }
 
   return (
     <div>
@@ -293,20 +320,13 @@ export default function IssueViewer({ file }) {
             ref={scrollThumbRef}
             className="absolute top-1/2 -translate-y-1/2 rounded-full w-5 aspect-square border-[#6A757C] border-[1px] bg-[#E9EEF2] cursor-pointer touch-none"
           />
+          <div />
         </div>
         <p className="flex flex-row items-center flex-shrink-0 gap-x-2">
           <button onClick={leftPage} disabled={pageNumber <= 1}>
             <img src={arrowGray} alt="" />
           </button>
-          {`Page${pageNumber > 1 && pageNumber < numPages ? "s" : ""} ${
-            pageNumber < numPages ? pageNumber : ""
-          }${
-            pageNumber > 1 && pageNumber < numPages && window.innerWidth >= 1024
-              ? "-"
-              : ""
-          }${
-            pageNumber > 1 && window.innerWidth >= 1024 ? pageNumber + 1 : ""
-          } of ${numPages}`}
+          {pageNumber}
           <button
             disabled={pageNumber >= numPages}
             className="-scale-x-100"
