@@ -124,9 +124,11 @@ export default function IssueViewer({ file }) {
     let page = 0;
     if (window.innerWidth >= 1024) {
       const pagePercent = gsap.utils.snap(1 / numPages, percent);
-      const odd = gsap.utils.snap(1, pagePercent * (numPages - 1) + 1);
+      const edge = gsap.utils.snap(1, pagePercent * (numPages - 1) + 1);
       page =
-        odd === 1 ? odd : gsap.utils.snap(2, pagePercent * (numPages - 1) + 1);
+        edge === 1 || edge === numPages
+          ? edge
+          : gsap.utils.snap(2, pagePercent * (numPages - 1) + 1);
       console.log(page);
     } else {
       const pagePercent = gsap.utils.snap(1 / (numPages - 1), percent);
