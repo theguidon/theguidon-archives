@@ -11,13 +11,13 @@ import email from "../../assets/icons/email.svg";
 
 export default function Footer() {
   return (
-    <footer className="w-screen bg-guidon flex flex-col justify-center items-center text-white font-chivo gap-y-12 p-8 lg:px-[5rem] lg:pt-14 lg:pb-7">
-      <div className="flex lg:flex-row flex-col justify-center w-full border-b-[1px] border-white lg:pb-20 pb-6 gap-x-16  min-w-[12.75rem]">
-        <div className="flex flex-col gap-y-8 w-full">
+    <footer className=" bg-guidon flex flex-col justify-center items-center text-white font-chivo gap-y-12 p-8 lg:px-[5rem] lg:pt-14 lg:pb-7">
+      <div className="flex lg:flex-row flex-col justify-between w-full max-w-[30rem] lg:max-w-[76.5rem] border-b-[1px] border-white lg:pb-20 pb-6 gap-x-8  min-w-[12.75rem]">
+        <div className="flex flex-col gap-y-8 w=full lg:max-w-[20rem] flex-shrink-0">
           <img
             src={logo}
             alt="The GUIDON"
-            className="w-[12.75rem] lg:w-[17rem] flex-shrink-0"
+            className="w-[12.75rem] lg:w-[17rem]"
           />
           <div className="leading-tight">
             The Archives is a collection of The GUIDON's published content since
@@ -120,7 +120,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="font-chivo text-sm text-center mt-[-1rem]">
+      <div className="font-chivo text-sm text-center mt-[-1rem] max-w-[35rem] lg:max-w-none">
         © The GUIDON 2023 All rights reserved. Designed and developed by Digital
         Development 2022-2023 and 2023-2024.
       </div>
