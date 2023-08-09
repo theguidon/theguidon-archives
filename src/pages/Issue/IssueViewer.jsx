@@ -76,45 +76,6 @@ export default function IssueViewer({ file }) {
     });
   }
 
-  // document gestures
-  //   Draggable.create(documentRef.current, {
-  //     type: "x,y",
-  //     bounds: viewerRef.current,
-
-  //     zIndexBoost: false,
-  //   });
-
-  //   function handleThumb(page) {
-  //     const thumbBounds = scrollThumbRef.current.getBoundingClientRect();
-  //     const scrollBounds = scrollRef.current.getBoundingClientRect();
-  //     const left =
-  //       page == null
-  //         ? gsap.utils.snap(
-  //             1 / (numPages / (window.innerWidth < 1024 ? 1 : 2)),
-  //             (thumbBounds.left - scrollBounds.left) / scrollBounds.width
-  //           )
-  //         : page / numPages;
-  //     page ??= Math.round(numPages * left) + 1;
-  //     setPageNumber(page);
-
-  //     gsap.set(scrollThumbRef.current, {
-  //       left: `calc(${left * 100}% - ${thumbBounds.width / 2}px)`,
-  //       onComplete() {
-  //         handleTrack();
-  //       },
-  //     });
-  //   }
-
-  // scroller gestures
-  //   Draggable.create(scrollThumbRef.current, {
-  //     type: "left",
-  //     bounds: scrollRef.current,
-  //     onDragEnd: function () {
-  //       handleScrub();
-  //     },
-  //     onDrag: handleTrack,
-  //   });
-
   function handleScrub() {
     const hundredPercent = scrollRef.current.getBoundingClientRect().width - 20;
     const percent =
@@ -181,40 +142,28 @@ export default function IssueViewer({ file }) {
         ref={viewerRef}
         className="h-min flex flex-row justify-center items-center relative"
       >
-        <div className="w-full flex flex-row justify-between items-center m-3 lg:m-5">
+        <div className="w-full flex flex-row justify-between items-center h-full absolute">
           <button
-            onClick={function () {
-              leftPage();
-              //   setPageNumber(
-              //     pageNumber -
-              //       (window.innerWidth < 1024 ||
-              //       pageNumber > numPages ||
-              //       pageNumber === 2
-              //         ? 1
-              //         : 2)
-              //   );
-            }}
+            onClick={leftPage}
             disabled={pageNumber <= 1}
-            className="w-8 z-10"
+            className="h-full w-10 lg:w-20 z-10 pl-3 lg:pl-10 hover:bg-[linear-gradient(90deg,_rgba(0,_0,_0,_0.60)_0%,_rgba(0,_0,_0,_0.00)_100%)] relative"
           >
-            <img src={arrowLeft} alt="" />
+            <img
+              src={arrowLeft}
+              alt=""
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            />
           </button>
           <button
-            onClick={function () {
-              rightPage();
-              //   setPageNumber(
-              //     pageNumber +
-              //       (window.innerWidth < 1024 ||
-              //       pageNumber <= 1 ||
-              //       numPages - pageNumber < 2
-              //         ? 1
-              //         : 2)
-              //   );
-            }}
+            onClick={rightPage}
             disabled={pageNumber >= numPages}
-            className="w-8 z-10 -scale-x-100"
+            className="h-full w-10 lg:w-20 z-10 hover:bg-[linear-gradient(-90deg,_rgba(0,_0,_0,_0.60)_0%,_rgba(0,_0,_0,_0.00)_100%)] relative"
           >
-            <img src={arrowLeft} alt="" />
+            <img
+              src={arrowLeft}
+              alt=""
+              className="-scale-x-100 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            />
           </button>
         </div>
         <div className="max-h-[700px] h-[60vh]" />
