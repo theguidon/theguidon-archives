@@ -106,14 +106,14 @@ export default function IssueViewer({ file }) {
   //   }
 
   // scroller gestures
-  Draggable.create(scrollThumbRef.current, {
-    type: "left",
-    bounds: scrollRef.current,
-    onDragEnd: function () {
-      handleScrub();
-    },
-    onDrag: handleTrack,
-  });
+  //   Draggable.create(scrollThumbRef.current, {
+  //     type: "left",
+  //     bounds: scrollRef.current,
+  //     onDragEnd: function () {
+  //       handleScrub();
+  //     },
+  //     onDrag: handleTrack,
+  //   });
 
   function handleScrub() {
     const hundredPercent = scrollRef.current.getBoundingClientRect().width - 20;
@@ -328,7 +328,11 @@ export default function IssueViewer({ file }) {
           <button onClick={leftPage} disabled={pageNumber <= 1}>
             <img src={arrowGray} alt="" />
           </button>
-          {pageNumber}
+          Page {pageNumber}
+          {window.innerWidth >= 1024 && pageNumber > 1 && pageNumber < numPages
+            ? "-" + (pageNumber + 1)
+            : ""}{" "}
+          of {numPages}
           <button
             disabled={pageNumber >= numPages}
             className="-scale-x-100"
