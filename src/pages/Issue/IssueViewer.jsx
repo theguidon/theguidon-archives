@@ -177,7 +177,8 @@ export default function IssueViewer({ file }) {
         </div>
         <div className="max-h-[700px] h-[60vh]" />
         {loadedPages < numPages ? (
-          <p className="text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 font-chivo">
+          <p className="text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 font-chivo flex flex-col items-center">
+            <div className="w-12 aspect-square rounded-full border-4 border-t-guidon border-transparent animate-spin mb-4" />
             {loadedPages} out of {numPages} pages loaded
           </p>
         ) : null}
