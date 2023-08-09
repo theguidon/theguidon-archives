@@ -1,23 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const NavigationItems = () => {
+  const [releaseActive, setReleaseActive] = useState(false);
   return (
     <div className="flex-row first-letter:items-center nav-container gap-x-4 hidden lg:flex">
       {/* Nav Home */}
       <Link
         to="/"
         type="button"
-        className="flex items-center rounded-16 bg-blue-the-guidon-blue font-bold hover:bg-guidon rounded-2xl hover:text-white px-4 py-2"
+        className="flex items-center rounded-16 bg-blue-the-guidon-blue font-bold hover:bg-[#DBE9F4] rounded-2xl  px-4 py-2"
       >
         Home
       </Link>
       {/* Nav Release (DROPDOWN SELECTION) */}
       <button
-        className="relative flex flex-row items-center rounded-16 bg-blue-the-guidon-blue font-bold w-max hover:bg-guidon rounded-2xl hover:text-white px-4 py-2"
-        onMouseEnter={() => {
-          console.log("Releases Open");
-          // Add code to show/hide the overlay and handle the animation if needed
+        className={`relative flex flex-row items-center rounded-16 font-bold w-max hover:bg-[#DBE9F4] rounded-2xl ${
+          releaseActive ? "text-white !bg-guidon" : "text-guidon"
+        } px-4 py-2`}
+        onMouseDown={() => {
+          console.log("Asdf");
+          setReleaseActive(!releaseActive);
         }}
       >
         Releases
@@ -27,6 +30,7 @@ const NavigationItems = () => {
           viewBox="0 0 20 21"
           fill="currentColor"
           xmlns="http://www.w3.org/2000/svg"
+          className={releaseActive ? "-scale-y-100" : ""}
         >
           <g id="Chevron down">
             <path
@@ -36,11 +40,20 @@ const NavigationItems = () => {
             />
           </g>
         </svg>
+        {releaseActive ? (
+          <div className="font-chivo text-sm leading-6 font-normal absolute text-[#6A757C] flex flex-col top-[calc(100%+0.5rem)] text-left bg-white rounded-2xl px-4 py-2 gap-y-2 w-max left-1/2 -translate-x-1/2 shadow-[3px_2px_20px_6px_rgba(0,_0,_0,_0.08)]">
+            <a href="/">Press Issues</a>
+            <a href="/">FreshManuals</a>
+            <a href="/">Graduation Magazines</a>
+            <a href="/">UAAP Primers</a>
+            <a href="/">Other</a>
+          </div>
+        ) : null}
       </button>
       {/* ABOUT */}
       <Link
         to="/about"
-        className="relative flex items-center rounded-16 bg-blue-the-guidon-blue flex-container font-bold hover:bg-guidon rounded-2xl hover:text-white px-4 py-2"
+        className="relative flex items-center rounded-16 bg-blue-the-guidon-blue flex-container font-bold hover:bg-[#DBE9F4] rounded-2xl  px-4 py-2"
         onMouseEnter={() => {
           console.log("About Button Hovered");
           // Add code to show/hide the overlay or any other actions on hover
