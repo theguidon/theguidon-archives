@@ -53,7 +53,25 @@ export default function Footer() {
             action=""
             onSubmit={(e) => {
               e.preventDefault();
-              e.target.reset();
+              const formData = new FormData(e.target);
+              fetch(
+                "https://script.google.com/macros/s/AKfycbwdn8fWAQePWM5krVdYzwC_ksQ6pRQ561_Y1pIX6xq9fueADpNqIy-j9mJW_5zc99nr/exec",
+                {
+                  method: "POST",
+                  body: formData,
+                }
+              )
+                .then(() => {
+                  alert(
+                    "Successfully subscribed to The GUIDON's newsletter. Thank you!"
+                  );
+                  e.target.reset();
+                })
+                .catch(() => {
+                  alert(
+                    "An unexpected error has occurred. Please refresh the page and try again later."
+                  );
+                });
             }}
             className="border-[1px] border-current rounded-[3px] flex flex-row  pl-3 relative py-3 min-w-[19rem]"
           >
@@ -61,7 +79,7 @@ export default function Footer() {
             <input
               type="email"
               placeholder="Email Address"
-              name="mail"
+              name="email"
               required
               className="bg-guidon text-white outline-none placeholder-white w-min border-r-white"
             />
@@ -127,4 +145,3 @@ export default function Footer() {
     </footer>
   );
 }
-//flex py-2 mb-6 border-b-[1px] border-lightblue

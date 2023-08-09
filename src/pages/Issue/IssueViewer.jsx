@@ -146,7 +146,7 @@ export default function IssueViewer({ file }) {
           <button
             onClick={leftPage}
             disabled={pageNumber <= 1}
-            className="h-full w-10 lg:w-20 z-10 pl-3 lg:pl-10 hover:bg-[linear-gradient(90deg,_rgba(0,_0,_0,_0.60)_0%,_rgba(0,_0,_0,_0.00)_100%)] relative"
+            className="h-full w-10 lg:w-20 z-10 pl-3 lg:pl-10 hover:bg-[linear-gradient(90deg,_rgba(0,_0,_0,_0.20)_0%,_rgba(0,_0,_0,_0.00)_100%)] relative"
           >
             <img
               src={arrowLeft}
@@ -157,7 +157,7 @@ export default function IssueViewer({ file }) {
           <button
             onClick={rightPage}
             disabled={pageNumber >= numPages}
-            className="h-full w-10 lg:w-20 z-10 hover:bg-[linear-gradient(-90deg,_rgba(0,_0,_0,_0.60)_0%,_rgba(0,_0,_0,_0.00)_100%)] relative"
+            className="h-full w-10 lg:w-20 z-10 hover:bg-[linear-gradient(-90deg,_rgba(0,_0,_0,_0.20)_0%,_rgba(0,_0,_0,_0.00)_100%)] relative"
           >
             <img
               src={arrowLeft}

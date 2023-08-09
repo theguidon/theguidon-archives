@@ -1,4 +1,4 @@
-import logo from "../../assets/images/logo-archive.svg";
+import logo from "../../assets/images/logo-archive-black.svg";
 
 export default function Wip() {
   return (

@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
   const [search, toggleSearch] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        console.log(e.target.value);
+        const formData = new FormData(e.target);
+        navigate(`/?=${formData.get("search")}`);
       }}
       className="relative max-w-[34rem] min-w-[23rem] w-full hidden lg:flex"
     >
@@ -35,6 +37,7 @@ const SearchBar = () => {
       </svg>
       <input
         type="text"
+        name="search"
         placeholder="Find a press issue, magazine, primer, etc."
         className={`w-full pl-10 pr-4 py-2 rounded-full bg-ecf4ff focus:outline-none ${
           search ? "text-guidon" : "text-guidon"
