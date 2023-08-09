@@ -68,6 +68,15 @@ export default function IssueViewer({ file }) {
     handleTrack();
   }
 
+  Draggable.create(scrollThumbRef.current, {
+    type: "left",
+    bounds: scrollRef.current,
+    onDragEnd: function () {
+      handleScrub();
+    },
+    onDrag: handleTrack,
+  });
+
   function handleTrack() {
     gsap.set(scrollTrackRef.current, {
       right:
