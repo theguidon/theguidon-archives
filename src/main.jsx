@@ -21,57 +21,57 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <Wip />,
     children: [
-      {
-        path: "",
-        loader: async () => {
-          return redirect("/under-construction");
-        },
-      },
+      //   {
+      //     path: "",
+      //     loader: async () => {
+      //       return redirect("/under-construction");
+      //     },
+      //   },
       {
         path: "issues/freshmanual-2023",
         element: <Issue />,
       },
-      //   {
-      //     path: "",
-      //     element: <Home />,
-      //   },
-      //   {
-      //     path: "/issues",
-      //     loader: async () => {
-      //       return redirect("/");
-      //     },
-      //   },
-      //   {
-      //     path: "/about",
-      //     element: <About />,
-      //   },
-      //   {
-      //     path: "/:query",
-      //     element: <Browse />,
-      //   },
-      //   {
-      //     path: "/recently-uploaded",
-      //     element: (
-      //       <Browse
-      //         title="What’s New on the Archive"
-      //         subtitle="recently uploaded"
-      //       />
-      //     ),
-      //   },
-      //   {
-      //     path: "/releases",
-      //     element: <Browse title="Releases This Term" subtitle="2023-2024" />,
-      //   },
-      //   {
-      //     path: "/:query",
-      //     element: <Browse />,
-      //   },
-      //   {
-      //     path: "/issues/:query",
-      //     loader: async () => {
-      //       return redirect("/");
-      //     },
-      //   },
+      {
+        path: "",
+        element: <Home />,
+      },
+      {
+        path: "/issues",
+        loader: async () => {
+          return redirect("/");
+        },
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/:query",
+        element: <Browse />,
+      },
+      {
+        path: "/recently-uploaded",
+        element: (
+          <Browse
+            title="What’s New on the Archive"
+            subtitle="recently uploaded"
+          />
+        ),
+      },
+      {
+        path: "/releases",
+        element: <Browse title="Releases This Term" subtitle="2023-2024" />,
+      },
+      {
+        path: "/:query",
+        element: <Browse />,
+      },
+      {
+        path: "/issues/:query",
+        loader: async () => {
+          return redirect("/");
+        },
+      },
     ],
   },
 ]);
