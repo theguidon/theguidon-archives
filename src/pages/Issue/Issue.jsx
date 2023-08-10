@@ -25,7 +25,7 @@ export default function Issue() {
             <p className="text-[#979797] text-xs lg:text-base font-chivo uppercase tracking-[0.04rem]">
               7 August 2023
             </p>
-            <p className="font-chivo text-sm sm:text-base lg:text-xl mt-2 mb-8">
+            <p className="font-chivo text-sm sm:text-base lg:text-lg mt-2 mb-8">
               Getting ready for college just got way better. Prep for the year
               ahead with Vantage Magazine's Freshmanual 2023! This year's
               edition is full of tips and tricks from upperclassmen—from

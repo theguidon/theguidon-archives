@@ -155,7 +155,7 @@ export default function IssueViewer({ file }) {
           <button
             onClick={leftPage}
             disabled={pageNumber <= 1}
-            className="h-full w-10 lg:w-20 z-10 pl-3 lg:pl-10 hover:bg-[linear-gradient(90deg,_rgba(0,_0,_0,_0.20)_0%,_rgba(0,_0,_0,_0.00)_100%)] relative"
+            className="h-full w-12 lg:w-20 z-10 hover:bg-[linear-gradient(90deg,_rgba(0,_0,_0,_0.20)_0%,_rgba(0,_0,_0,_0.00)_100%)] relative"
           >
             <img
               src={arrowLeft}
@@ -166,7 +166,7 @@ export default function IssueViewer({ file }) {
           <button
             onClick={rightPage}
             disabled={pageNumber >= numPages}
-            className="h-full w-10 lg:w-20 z-10 hover:bg-[linear-gradient(-90deg,_rgba(0,_0,_0,_0.20)_0%,_rgba(0,_0,_0,_0.00)_100%)] relative"
+            className="h-full w-12 lg:w-20 z-10 hover:bg-[linear-gradient(-90deg,_rgba(0,_0,_0,_0.20)_0%,_rgba(0,_0,_0,_0.00)_100%)] relative"
           >
             <img
               src={arrowLeft}
@@ -175,27 +175,28 @@ export default function IssueViewer({ file }) {
             />
           </button>
         </div>
-        <div className="max-h-[700px] h-[60vh]" />
+        <div className="max-h-[500px] h-[60vh]" />
         {loadedPages < numPages ? (
-          <p className="text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 font-chivo flex flex-col items-center">
+          <div className="text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 font-chivo flex flex-col items-center text-center">
             <div className="w-12 aspect-square rounded-full border-4 border-t-guidon border-transparent animate-spin mb-4" />
             {loadedPages} out of {numPages} pages loaded
-          </p>
+          </div>
         ) : null}
         <Document
           file={file}
           loading={null}
           inputRef={documentRef}
-          className="absolute touch-none flex flex-row"
+          className="absolute touch-none flex flex-row scale-[calc(1/1.5)]"
         >
           <Page
+            scale={1.5}
             canvasBackground="rgba(255, 255, 255, 0)"
             pageNumber={1}
             onRenderSuccess={() => {
               setLoadedPages((l) => l + 1);
             }}
             height={
-              window.innerHeight * 0.6 < 700 ? window.innerHeight * 0.6 : 700
+              window.innerHeight * 0.6 < 500 ? window.innerHeight * 0.6 : 500
             }
             renderAnnotationLayer={false}
             renderTextLayer={false}
@@ -206,15 +207,16 @@ export default function IssueViewer({ file }) {
             return (
               <>
                 <Page
+                  scale={1.5}
                   canvasBackground="rgba(255, 255, 255, 0)"
                   pageNumber={(index + 1) * 2}
                   onRenderSuccess={() => {
                     setLoadedPages((l) => l + 1);
                   }}
                   height={
-                    window.innerHeight * 0.6 < 700
+                    window.innerHeight * 0.6 < 500
                       ? window.innerHeight * 0.6
-                      : 700
+                      : 500
                   }
                   renderAnnotationLayer={false}
                   renderTextLayer={false}
@@ -229,15 +231,16 @@ export default function IssueViewer({ file }) {
                   }
                 />
                 <Page
+                  scale={1.5}
                   canvasBackground="rgba(255, 255, 255, 0)"
                   pageNumber={(index + 1) * 2 + 1}
                   onRenderSuccess={() => {
                     setLoadedPages((l) => l + 1);
                   }}
                   height={
-                    window.innerHeight * 0.6 < 700
+                    window.innerHeight * 0.6 < 500
                       ? window.innerHeight * 0.6
-                      : 700
+                      : 500
                   }
                   renderAnnotationLayer={false}
                   renderTextLayer={false}
@@ -254,13 +257,14 @@ export default function IssueViewer({ file }) {
             );
           })}
           <Page
+            scale={1.5}
             canvasBackground="rgba(255, 255, 255, 0)"
             pageNumber={numPages}
             onRenderSuccess={() => {
               setLoadedPages((l) => l + 1);
             }}
             height={
-              window.innerHeight * 0.6 < 700 ? window.innerHeight * 0.6 : 700
+              window.innerHeight * 0.6 < 500 ? window.innerHeight * 0.6 : 500
             }
             renderAnnotationLayer={false}
             renderTextLayer={false}
