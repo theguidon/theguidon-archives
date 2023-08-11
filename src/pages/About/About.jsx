@@ -25,10 +25,7 @@ export default function About() {
           Email <span className="text-guidon"> desk@theguidon.com </span> for any comments, suggestions, or inquiries.
          </p>
         </div>
-
-
-      </div>
     </div>
-    
+  </div>
   );
 }
