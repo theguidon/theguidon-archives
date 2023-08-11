@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./About.module.css";
 import cover from "../../assets/images/cover.svg";
 
 export default function About() {
