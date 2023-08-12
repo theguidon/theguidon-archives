@@ -29,7 +29,9 @@ export default function BrowseArchive() {
 
   return (
     <div className="home browse">
-      <h1 className="heading-txt">Browse the Archive </h1>
+      <h1 className="heading-txt max-sm:border-b-2 max-sm:border-lightblue max-sm:pb-2 mb-6">
+        Browse the Archive{" "}
+      </h1>
       <div className="lg:flex"> {archivesList}</div>
     </div>
   );
