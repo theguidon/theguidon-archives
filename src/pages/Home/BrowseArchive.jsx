@@ -5,9 +5,12 @@ import { Link } from "react-router-dom";
 
 export default function BrowseArchive() {
   const archivesList = Archives.map((article, index) => (
-    <div className="mr-6" key={index}>
+    <div
+      className="lg:mr-6  max-sm:px-6 max-sm:py-[10px] max-sm:rounded-lg max-sm:bg-white max-sm:shadow-md"
+      key={index}
+    >
       <div className="flex border-b-[1px] border-lightblue mb-3">
-        <div className="text-2xl font-medium font-tiemposheadline leading-[33.60px] mr-1">
+        <div className="text-2xl max-sm:text-xl font-medium font-tiemposheadline leading-[33.60px] mr-1">
           {article.title}
         </div>
         <div className="flex my-auto">
@@ -15,7 +18,7 @@ export default function BrowseArchive() {
         </div>
       </div>
       <div
-        className="w-[292px] h-[292px]"
+        className="w-[292px] h-[292px] max-sm:w-full max-sm:h-[156px] bg-center"
         style={{
           backgroundSize: "cover",
           backgroundImage: `url(${article.picture})`,
@@ -27,7 +30,7 @@ export default function BrowseArchive() {
   return (
     <div className="home browse">
       <h1 className="heading-txt">Browse the Archive </h1>
-      <div className="flex"> {archivesList}</div>
+      <div className="lg:flex"> {archivesList}</div>
     </div>
   );
 }

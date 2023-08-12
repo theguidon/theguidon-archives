@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function ArticleCard({ article }) {
   return (
     <>
-      <Link to={article.link} className="mr-4 w-[290px]">
+      <Link to={article.link} className="lg:mr-4 lg:w-[290px]">
         <div className="w-[18rem] aspect-square relative bg-[#F6F9FD]">
           <img
             className="w-[10rem] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"

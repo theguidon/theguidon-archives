@@ -17,7 +17,7 @@ export default function Home() {
           backgroundSize: "cover",
         }}
       >
-        <div className="flex h-full lg:gap-x-24 lg:pt-[72px] lg:pb-[136px] max-sm:px-6">
+        <div className="flex h-full lg:gap-x-24 lg:pt-[72px] lg:pb-[136px]">
           <div className="lg:flex-[2.5] lg:m-auto max-sm:mt-auto max-sm:mb-8">
             <div className="inline-block text-lg font-chivo font-bold text-left uppercase width-auto bg-darkblue px-4 lg:mb-8 max-sm: mb-1 rounded-[23px]">
               Latest Release
