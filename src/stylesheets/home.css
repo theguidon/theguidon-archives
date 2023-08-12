@@ -1,5 +1,5 @@
 .home {
-  @apply px-[104px] mb-20;
+  @apply lg:px-[104px] mb-20;
 }
 
 .xxs-txt {
