@@ -6,7 +6,7 @@ export default function About() {
     <div className="flex flex-row">
       <img src={cover} alt="cover" />
       <div className="flex flex-col mt-[8.44rem] ml-[4rem] mr-[6.5rem] mb-[8.37rem] gap-6">
-        <div>
+        <div className="border-b-2 border-b-lightblue">
           <p className="text-guidon font-chivo font-bold text-lg">ABOUT</p>
           <h1 className="font-tiemposheadline text-5xl font-semibold pt-1">The GUIDON Archives</h1>
         </div>
