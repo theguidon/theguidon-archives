@@ -1,16 +1,18 @@
 import React from "react";
 import cover from "../../assets/images/cover.svg";
+import mobilecover from "../../assets/images/mobilecover.svg";
+
 
 export default function About() {
   return (
-    <div className="flex flex-row">
-      <img src={cover} alt="cover" />
-      <div className="flex flex-col mt-[8.44rem] ml-[4rem] mr-[6.5rem] mb-[8.37rem] gap-6">
+    <div className="flex flex-col lg:flex-row">
+      <img src={cover} alt="cover" className="hidden lg:block"/>
+      <div className=" py-16 px-4 lg:mt-[8.44rem] lg:ml-[4rem] lg:mr-[6.5rem] lg:mb-[8.37rem] lg:gap-6">
         <div className="border-b-2 border-b-lightblue">
-          <p className="text-guidon font-chivo font-bold text-lg">ABOUT</p>
-          <h1 className="font-tiemposheadline text-5xl font-semibold pt-1">The GUIDON Archives</h1>
+          <p className="text-guidon font-chivo font-bold text-base lg:text-lg">ABOUT</p>
+          <h1 className="font-tiemposheadline text-2xl lg:text-5xl font-semibold pt-1">The GUIDON Archives</h1>
         </div>
-        <div className="flex flex-col gap-8 self-stretch py-px text-chivo text-xl font-medium text-black">
+        <div className="flex flex-col py-4 gap-6 lg:gap-8 self-stretch text-chivo text-sm lg:text-xl font-medium text-black">
           <p>
             The Archives is a collection of The GUIDON's published content since 1929, chronicling its history as the
             official student publication of the Ateneo de Manila University. 
@@ -25,6 +27,7 @@ export default function About() {
          </p>
         </div>
     </div>
+    <img src={mobilecover} alt="mobile cover"  className="lg:hidden"/>
   </div>
   );
 }
