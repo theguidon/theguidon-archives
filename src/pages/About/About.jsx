@@ -5,8 +5,12 @@ import mobilecover from "../../assets/images/mobilecover.svg";
 export default function About() {
   return (
     <div className="flex flex-col lg:flex-row">
-      <img src={cover} alt="cover" className="hidden lg:block" />
-      <div className=" py-16 px-4 lg:mt-[8.44rem] lg:ml-[4rem] lg:mr-[6.5rem] lg:mb-[8.37rem] lg:gap-6">
+      <img
+        src={cover}
+        alt="cover"
+        className="hidden lg:block object-cover max-w-[45%]"
+      />
+      <div className="py-16 px-4 lg:py-[8.44rem] lg:px-16">
         <div className="border-b-2 border-b-lightblue">
           <p className="text-guidon font-chivo font-bold text-base lg:text-lg">
             ABOUT

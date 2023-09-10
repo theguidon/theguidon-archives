@@ -46,7 +46,7 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: "/:query",
+        path: "/browse/:type",
         element: <Browse />,
       },
       {
@@ -61,10 +61,6 @@ const router = createBrowserRouter([
       {
         path: "/releases",
         element: <Browse title="Releases This Term" subtitle="2023-2024" />,
-      },
-      {
-        path: "/:query",
-        element: <Browse />,
       },
       {
         path: "/issues/:query",

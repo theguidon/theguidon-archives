@@ -18,7 +18,7 @@ const NavigationItems = () => {
         className={`relative flex flex-row items-center rounded-16 font-bold w-max hover:bg-[#DBE9F4] rounded-2xl ${
           releaseActive ? "text-white !bg-guidon" : "text-guidon"
         } px-4 py-2`}
-        onMouseDown={() => {
+        onClick={() => {
           console.log("Asdf");
           setReleaseActive(!releaseActive);
         }}
@@ -42,11 +42,36 @@ const NavigationItems = () => {
         </svg>
         {releaseActive ? (
           <div className="font-chivo text-sm leading-6 font-normal absolute text-[#6A757C] flex flex-col top-[calc(100%+0.5rem)] text-left bg-white rounded-2xl px-4 py-2 gap-y-2 w-max left-1/2 -translate-x-1/2 shadow-[3px_2px_20px_6px_rgba(0,_0,_0,_0.08)]">
-            <a href="/">Press Issues</a>
-            <a href="/">FreshManuals</a>
-            <a href="/">Graduation Magazines</a>
-            <a href="/">UAAP Primers</a>
-            <a href="/">Other</a>
+            <Link
+              className="hover:bg-[#DBE9F4] px-2 py-1 rounded-2xl"
+              to="/browse/press-issues"
+            >
+              Press Issues
+            </Link>
+            <Link
+              className="hover:bg-[#DBE9F4] px-2 py-1 rounded-2xl"
+              to="/browse/freshmanuals"
+            >
+              FreshManuals
+            </Link>
+            <Link
+              className="hover:bg-[#DBE9F4] px-2 py-1 rounded-2xl"
+              to="/browse/graduation-magazines"
+            >
+              Graduation Magazines
+            </Link>
+            <Link
+              className="hover:bg-[#DBE9F4] px-2 py-1 rounded-2xl"
+              to="/browse/uaap-primers"
+            >
+              UAAP Primers
+            </Link>
+            <Link
+              className="hover:bg-[#DBE9F4] px-2 py-1 rounded-2xl"
+              to="/browse/other"
+            >
+              Other
+            </Link>
           </div>
         ) : null}
       </button>

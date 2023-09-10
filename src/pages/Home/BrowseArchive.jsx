@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 
 export default function BrowseArchive() {
   const archivesList = Archives.map((article, index) => (
-    <div
+    <Link
+      to={article.link}
       className="lg:mr-6  max-sm:px-6 max-sm:py-[10px] max-sm:rounded-lg max-sm:bg-white max-sm:shadow-md"
       key={index}
     >
@@ -24,7 +25,7 @@ export default function BrowseArchive() {
           backgroundImage: `url(${article.picture})`,
         }}
       ></div>
-    </div>
+    </Link>
   ));
 
   return (

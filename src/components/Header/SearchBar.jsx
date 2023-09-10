@@ -10,7 +10,7 @@ const SearchBar = () => {
       onSubmit={(e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
-        navigate(`/?=${formData.get("search")}`);
+        navigate(`/search?=${formData.get("search")}`);
       }}
       className="relative max-w-[34rem] min-w-[23rem] w-full hidden lg:flex"
     >
