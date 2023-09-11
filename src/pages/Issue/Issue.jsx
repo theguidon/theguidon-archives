@@ -39,7 +39,7 @@ export default function Issue() {
             </p>
             <div className="text-white flex flex-row items-center gap-x-4 mt-2">
               <a
-                href={`http://www.facebook.com/sharer.php?u=https://archives.theguidon.issues${pathname}`}
+                href={`http://www.facebook.com/sharer.php?u=https://archives.theguidon${pathname}`}
                 target="_blank"
               >
                 <svg
@@ -59,7 +59,7 @@ export default function Issue() {
                 </svg>
               </a>
               <a
-                href={`http://www.twitter.com/share?url=https://archives.theguidon.issues${pathname}`}
+                href={`http://www.twitter.com/share?url=https://archives.theguidon${pathname}`}
                 target="_blank"
               >
                 <svg

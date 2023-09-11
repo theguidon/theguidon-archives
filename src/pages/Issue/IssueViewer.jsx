@@ -155,7 +155,9 @@ export default function IssueViewer({ file }) {
           <button
             onClick={leftPage}
             disabled={pageNumber <= 1}
-            className="h-full w-12 lg:w-20 z-10 hover:bg-[linear-gradient(90deg,_rgba(0,_0,_0,_0.20)_0%,_rgba(0,_0,_0,_0.00)_100%)] relative"
+            className={`h-full w-12 lg:w-20 z-10 hover:bg-[linear-gradient(90deg,_rgba(0,_0,_0,_0.20)_0%,_rgba(0,_0,_0,_0.00)_100%)] relative ${
+              pageNumber <= 1 ? "opacity-0" : null
+            }`}
           >
             <img
               src={arrowLeft}
@@ -166,7 +168,9 @@ export default function IssueViewer({ file }) {
           <button
             onClick={rightPage}
             disabled={pageNumber >= numPages}
-            className="h-full w-12 lg:w-20 z-10 hover:bg-[linear-gradient(-90deg,_rgba(0,_0,_0,_0.20)_0%,_rgba(0,_0,_0,_0.00)_100%)] relative"
+            className={`h-full w-12 lg:w-20 z-10 hover:bg-[linear-gradient(-90deg,_rgba(0,_0,_0,_0.20)_0%,_rgba(0,_0,_0,_0.00)_100%)] relative ${
+              pageNumber >= numPages ? "opacity-0" : null
+            }`}
           >
             <img
               src={arrowLeft}
@@ -288,17 +292,24 @@ export default function IssueViewer({ file }) {
           <div />
         </div>
         <p className="flex flex-row items-center flex-shrink-0 gap-x-2">
-          <button onClick={leftPage} disabled={pageNumber <= 1}>
+          <button
+            onClick={leftPage}
+            disabled={pageNumber <= 1}
+            className={pageNumber <= 1 ? "opacity-0" : null}
+          >
             <img src={arrowGray} alt="" />
           </button>
-          Page {pageNumber}
+          Page{pageNumber > 1 && pageNumber < numPages ? "s" : null}{" "}
+          {pageNumber}
           {window.innerWidth >= 1024 && pageNumber > 1 && pageNumber < numPages
             ? "-" + (pageNumber + 1)
             : ""}{" "}
           of {numPages}
           <button
             disabled={pageNumber >= numPages}
-            className="-scale-x-100"
+            className={`-scale-x-100 ${
+              pageNumber >= numPages ? "opacity-0" : null
+            }`}
             onClick={rightPage}
           >
             <img src={arrowGray} alt="" />
