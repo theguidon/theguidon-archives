@@ -13,7 +13,7 @@ import fullscreen from "../../assets/icons/fullscreen.svg";
 
 gsap.registerPlugin(Draggable);
 
-export default function IssueViewer({ file }) {
+export default function IssueViewer({ path }) {
   const viewerRef = useRef(null);
   const documentRef = useRef(null);
 
@@ -29,6 +29,8 @@ export default function IssueViewer({ file }) {
   const [numPages, setNumPages] = useState(12);
 
   const [loadedPages, setLoadedPages] = useState(0);
+
+  const [isDefaultViewer, setIsDefaultViewer] = useState(true);
 
   function leftPage() {
     let tempPageNum = pageNumber;
@@ -186,136 +188,134 @@ export default function IssueViewer({ file }) {
             {loadedPages} out of {numPages} pages loaded
           </div>
         ) : null}
-        <Document
-          file={file}
-          loading={null}
-          inputRef={documentRef}
-          className="absolute touch-none flex flex-row scale-[calc(1/1.5)]"
-        >
-          <Page
-            scale={1.5}
-            canvasBackground="rgba(255, 255, 255, 0)"
-            pageNumber={1}
-            onRenderSuccess={() => {
-              setLoadedPages((l) => l + 1);
-            }}
-            height={
-              window.innerHeight * 0.6 < 500 ? window.innerHeight * 0.6 : 500
-            }
-            renderAnnotationLayer={false}
-            renderTextLayer={false}
-            className={pageNumber === 1 ? "block" : "hidden"}
-          />
+        {isDefaultViewer ? (
+          <iframe src={path} frameborder="0" className="w-full h-[70vh] z-20" />
+        ) : (
+          <Document
+            file={path}
+            loading={null}
+            inputRef={documentRef}
+            className="absolute touch-none flex flex-row scale-[calc(1/1.5)]"
+          >
+            <Page
+              scale={1.5}
+              canvasBackground="rgba(255, 255, 255, 0)"
+              pageNumber={1}
+              onRenderSuccess={() => {
+                setLoadedPages((l) => l + 1);
+              }}
+              height={window.innerHeight * 0.6}
+              renderAnnotationLayer={false}
+              renderTextLayer={false}
+              className={pageNumber === 1 ? "block" : "hidden"}
+            />
 
-          {[...Array(Math.floor(numPages / 2) - 1)].map((num, index) => {
-            return (
-              <>
-                <Page
-                  scale={1.5}
-                  canvasBackground="rgba(255, 255, 255, 0)"
-                  pageNumber={(index + 1) * 2}
-                  onRenderSuccess={() => {
-                    setLoadedPages((l) => l + 1);
-                  }}
-                  height={
-                    window.innerHeight * 0.6 < 500
-                      ? window.innerHeight * 0.6
-                      : 500
-                  }
-                  renderAnnotationLayer={false}
-                  renderTextLayer={false}
-                  className={
-                    loadedPages === numPages
-                      ? (index + 1) * 2 === pageNumber ||
-                        (index + 1) * 2 + (window.innerWidth > 1024 ? 1 : 0) ===
+            {[...Array(Math.floor(numPages / 2) - 1)].map((num, index) => {
+              return (
+                <>
+                  <Page
+                    scale={1.5}
+                    canvasBackground="rgba(255, 255, 255, 0)"
+                    pageNumber={(index + 1) * 2}
+                    onRenderSuccess={() => {
+                      setLoadedPages((l) => l + 1);
+                    }}
+                    height={window.innerHeight * 0.6}
+                    renderAnnotationLayer={false}
+                    renderTextLayer={false}
+                    className={
+                      loadedPages === numPages
+                        ? (index + 1) * 2 === pageNumber ||
+                          (index + 1) * 2 +
+                            (window.innerWidth > 1024 ? 1 : 0) ===
+                            pageNumber
+                          ? "block"
+                          : "hidden"
+                        : "hidden"
+                    }
+                  />
+                  <Page
+                    scale={1.5}
+                    canvasBackground="rgba(255, 255, 255, 0)"
+                    pageNumber={(index + 1) * 2 + 1}
+                    onRenderSuccess={() => {
+                      setLoadedPages((l) => l + 1);
+                    }}
+                    height={window.innerHeight * 0.6}
+                    renderAnnotationLayer={false}
+                    renderTextLayer={false}
+                    className={
+                      loadedPages === numPages
+                        ? (index + 1) * 2 +
+                            (window.innerWidth > 1024 ? 0 : 1) ===
                           pageNumber
-                        ? "block"
+                          ? "block"
+                          : "hidden"
                         : "hidden"
-                      : "hidden"
-                  }
-                />
-                <Page
-                  scale={1.5}
-                  canvasBackground="rgba(255, 255, 255, 0)"
-                  pageNumber={(index + 1) * 2 + 1}
-                  onRenderSuccess={() => {
-                    setLoadedPages((l) => l + 1);
-                  }}
-                  height={
-                    window.innerHeight * 0.6 < 500
-                      ? window.innerHeight * 0.6
-                      : 500
-                  }
-                  renderAnnotationLayer={false}
-                  renderTextLayer={false}
-                  className={
-                    loadedPages === numPages
-                      ? (index + 1) * 2 + (window.innerWidth > 1024 ? 0 : 1) ===
-                        pageNumber
-                        ? "block"
-                        : "hidden"
-                      : "hidden"
-                  }
-                />
-              </>
-            );
-          })}
-          <Page
-            scale={1.5}
-            canvasBackground="rgba(255, 255, 255, 0)"
-            pageNumber={numPages}
-            onRenderSuccess={() => {
-              setLoadedPages((l) => l + 1);
-            }}
-            height={
-              window.innerHeight * 0.6 < 500 ? window.innerHeight * 0.6 : 500
-            }
-            renderAnnotationLayer={false}
-            renderTextLayer={false}
-            className={pageNumber === numPages ? "block" : "hidden"}
-          />
-        </Document>
+                    }
+                  />
+                </>
+              );
+            })}
+            <Page
+              scale={1.5}
+              canvasBackground="rgba(255, 255, 255, 0)"
+              pageNumber={numPages}
+              onRenderSuccess={() => {
+                setLoadedPages((l) => l + 1);
+              }}
+              height={window.innerHeight * 0.6}
+              renderAnnotationLayer={false}
+              renderTextLayer={false}
+              className={pageNumber === numPages ? "block" : "hidden"}
+            />
+          </Document>
+        )}
       </div>
-      <div className="w-full bg-[#DBE9F4] flex flex-col sm:flex-row font-chivo text-[#666] items-center justify-center gap-x-5 py-4 gap-y-3">
-        <div
-          ref={scrollRef}
-          className="w-[22rem] max-w-[90%] lg:w-[50rem] h-4 rounded-[0.675rem] border-[#B6C2CD] border-[1px] bg-white relative"
-        >
+      {!isDefaultViewer ? (
+        <div className="w-full bg-[#DBE9F4] flex flex-col sm:flex-row font-chivo text-[#666] items-center justify-center gap-x-5 py-4 gap-y-3">
           <div
-            ref={scrollTrackRef}
-            className="absolute inset-0 right-auto bg-guidon rounded-[inherit]"
-          />
-          <div
-            ref={scrollThumbRef}
-            className="absolute top-1/2 -translate-y-1/2 rounded-full w-5 aspect-square border-[#6A757C] border-[1px] bg-[#E9EEF2] cursor-pointer touch-none"
-          />
-          <div />
+            ref={scrollRef}
+            className="w-[22rem] max-w-[90%] lg:w-[50rem] h-4 rounded-[0.675rem] border-[#B6C2CD] border-[1px] bg-white relative"
+          >
+            <div
+              ref={scrollTrackRef}
+              className="absolute inset-0 right-auto bg-guidon rounded-[inherit]"
+            />
+            <div
+              ref={scrollThumbRef}
+              className="absolute top-1/2 -translate-y-1/2 rounded-full w-5 aspect-square border-[#6A757C] border-[1px] bg-[#E9EEF2] cursor-pointer touch-none"
+            />
+            <div />
+          </div>
+          <p className="flex flex-row items-center flex-shrink-0 gap-x-2">
+            <button
+              onClick={leftPage}
+              disabled={pageNumber <= 1}
+              className={pageNumber <= 1 ? "opacity-0" : null}
+            >
+              <img src={arrowGray} alt="" />
+            </button>
+            Page{pageNumber > 1 && pageNumber < numPages ? "s" : null}{" "}
+            {pageNumber}
+            {window.innerWidth >= 1024 &&
+            pageNumber > 1 &&
+            pageNumber < numPages
+              ? "-" + (pageNumber + 1)
+              : ""}{" "}
+            of {numPages}
+            <button
+              disabled={pageNumber >= numPages}
+              className={`-scale-x-100 ${
+                pageNumber >= numPages ? "opacity-0" : null
+              }`}
+              onClick={rightPage}
+            >
+              <img src={arrowGray} alt="" />
+            </button>
+          </p>
         </div>
-        <p className="flex flex-row items-center flex-shrink-0 gap-x-2">
-          <button
-            onClick={leftPage}
-            disabled={pageNumber <= 1}
-            className={pageNumber <= 1 ? "opacity-0" : null}
-          >
-            <img src={arrowGray} alt="" />
-          </button>
-          Page{pageNumber > 1 && pageNumber < numPages ? "s" : null}{" "}
-          {pageNumber}
-          {window.innerWidth >= 1024 && pageNumber > 1 && pageNumber < numPages
-            ? "-" + (pageNumber + 1)
-            : ""}{" "}
-          of {numPages}
-          <button
-            disabled={pageNumber >= numPages}
-            className={`-scale-x-100 ${
-              pageNumber >= numPages ? "opacity-0" : null
-            }`}
-            onClick={rightPage}
-          >
-            <img src={arrowGray} alt="" />
-          </button>
-        </p>
-      </div>
+      ) : null}
     </div>
   );
 }

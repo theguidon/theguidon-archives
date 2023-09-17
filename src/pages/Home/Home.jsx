@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <div
-        className="home header bg-contain w-screen h-full max-sm:h-[525px] text-[#FFF] bg-no-repeat bg-center"
+        className="home header bg-contain w-screen h-full max-md:h-[525px] text-[#FFF] bg-no-repeat bg-center"
         style={{
           backgroundImage: `linear-gradient(158deg, rgba(15, 38, 92, 0.8) 0%, rgba(114, 164, 215, 0) 100%), url(${Articles[0].hero})`,
           backgroundColor: "lightblue",

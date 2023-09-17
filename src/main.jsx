@@ -50,7 +50,7 @@ const router = createBrowserRouter([
         element: <Browse />,
       },
       {
-        path: "/recently-uploaded",
+        path: "browse/recently-uploaded",
         element: (
           <Browse
             title="What’s New on the Archive"
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/releases",
+        path: "browse/releases",
         element: <Browse title="Releases This Term" subtitle="2023-2024" />,
       },
       {

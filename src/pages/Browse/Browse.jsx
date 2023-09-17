@@ -5,7 +5,8 @@ import img from "../../assets/images/freshmanual.png";
 
 export default function Browse({ title = "The Archive", subtitle = "Browse" }) {
   console.log(useParams().type);
-  const [tab, setTab] = useState(useParams().type);
+  let type = useParams().type;
+  const [tab, setTab] = useState(type === undefined ? "" : type);
 
   return (
     <div className="px-[6.5rem] py-14">
@@ -78,7 +79,7 @@ function Tab({ text, tab, setTab, param }) {
 function Item({ img, title, date, desc, link }) {
   return (
     <Link to={link}>
-      <div className="relative w-80 aspect-square bg-[#EFF5FA] mb-3">
+      <div className="relative w-80 aspect-square bg-[#ddebff] mb-3">
         <img
           src={img}
           alt=""

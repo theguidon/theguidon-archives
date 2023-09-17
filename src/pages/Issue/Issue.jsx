@@ -1,5 +1,4 @@
 import IssueViewer from "./IssueViewer";
-import pdf from "../../assets/freshmanual.pdf";
 import image from "../../assets/images/freshmanual.png";
 import facebook from "../../assets/icons/facebook.svg";
 import { useLocation } from "react-router-dom";
@@ -9,9 +8,9 @@ export default function Issue() {
   const { pathname } = useLocation();
   return (
     <main>
-      <IssueViewer file={pdf} />
+      <IssueViewer file="freshmanual.pdf" />
       <div className="w-screen flex flex-col-reverse lg:flex-row flex-shrink-0 justify-center items-center p-6 sm:p-16 lg:p-24 gap-x-6 lg:gap-x-20 gap-y-4">
-        <div className="relative w-full max-w-[30rem] lg:max-w-none lg:w-[18rem] flex-shrink-0 h-[15rem] sm:h-[20rem] lg:h-auto lg:aspect-square bg-[#EFF5FA]">
+        <div className="relative w-full max-w-[30rem] lg:max-w-none lg:w-[18rem] flex-shrink-0 h-[15rem] sm:h-[20rem] lg:h-auto lg:aspect-square bg-[#ddebff]">
           <img
             src={image}
             className=" max-w-[80%] max-h-[80%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"

@@ -8,7 +8,7 @@ export default function About() {
       <img
         src={cover}
         alt="cover"
-        className="hidden lg:block object-cover max-w-[45%]"
+        className="hidden lg:block object-cover w-[45%]"
       />
       <div className="py-16 px-4 lg:py-[8.44rem] lg:px-16">
         <div className="border-b-2 border-b-lightblue">
@@ -19,7 +19,7 @@ export default function About() {
             The GUIDON Archives
           </h1>
         </div>
-        <div className="flex flex-col py-4 gap-6 lg:gap-8 self-stretch font-chivo text-sm lg:text-xl font-medium text-black">
+        <div className="flex flex-col py-4 gap-6 lg:gap-8 font-chivo text-sm lg:text-xl font-medium text-black">
           <p>
             The Archives is a collection of The GUIDON's published content since
             1929, chronicling its history as the official student publication of
@@ -33,8 +33,16 @@ export default function About() {
             can explore the journalism of The GUIDON with just a few clicks.
           </p>
           <p>
-            Email <span className="text-guidon"> desk@theguidon.com </span> for
-            any comments, suggestions, or inquiries.
+            Email{" "}
+            <a
+              href="mailto:desk@theguidon.com"
+              target="_blank"
+              className="text-guidon"
+            >
+              {" "}
+              desk@theguidon.com{" "}
+            </a>{" "}
+            for any comments, suggestions, or inquiries.
           </p>
         </div>
       </div>
