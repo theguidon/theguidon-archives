@@ -37,9 +37,11 @@ export default function Home() {
             </div>
             <ReadNow link={Articles[0].link} />
           </div>
-          <div className="flex-[0.75] hidden lg:block">
-            <img src={Articles[0].picture} alt={Articles[0].title} />
-          </div>
+          <img
+            src={Articles[0].picture}
+            alt={Articles[0].title}
+            className="hidden lg:block"
+          />
         </div>
       </div>
       <BrowseArchive />
