@@ -1,5 +1,5 @@
 .home {
-  @apply lg:px-[104px] lg:mb-20 max-sm:px-6 max-sm:mb-8;
+  @apply lg:px-[104px] lg:mb-20 px-6 mb-8;
 }
 
 .xxs-txt {
@@ -7,7 +7,7 @@
 }
 
 .heading-txt {
-  @apply lg:text-[40px] max-sm:text-[24px] font-tiemposheadline font-bold;
+  @apply lg:text-[40px] text-[24px] font-tiemposheadline font-bold;
 }
 
 .btn-blue-light {

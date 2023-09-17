@@ -7,11 +7,11 @@ export default function BrowseArchive() {
   const archivesList = Archives.map((article, index) => (
     <Link
       to={article.link}
-      className="lg:mr-6  max-sm:px-6 max-sm:py-[10px] max-sm:rounded-lg max-sm:bg-white max-sm:shadow-md"
+      className="lg:mr-6  px-6 py-[10px] rounded-lg bg-white shadow-md"
       key={index}
     >
       <div className="flex border-b-[1px] border-lightblue mb-3">
-        <div className="text-2xl max-sm:text-xl font-medium font-tiemposheadline leading-[33.60px] mr-1">
+        <div className="lg:text-2xl text-xl font-medium font-tiemposheadline leading-[33.60px] mr-1">
           {article.title}
         </div>
         <div className="flex my-auto">
@@ -19,7 +19,7 @@ export default function BrowseArchive() {
         </div>
       </div>
       <div
-        className="w-[292px] h-[292px] max-sm:w-full max-sm:h-[156px] bg-center"
+        className="lg:w-[292px] lg:h-[292px] w-full h-[156px] bg-center"
         style={{
           backgroundSize: "cover",
           backgroundImage: `url(${article.picture})`,
@@ -30,10 +30,10 @@ export default function BrowseArchive() {
 
   return (
     <div className="home browse">
-      <h1 className="heading-txt max-sm:border-b-2 max-sm:border-lightblue max-sm:pb-2 mb-6">
+      <h1 className="heading-txt border-b-2 border-lightblue pb-2 mb-6">
         Browse the Archive{" "}
       </h1>
-      <div className="lg:flex"> {archivesList}</div>
+      <div className="lg:flex flex-wrap"> {archivesList}</div>
     </div>
   );
 }
