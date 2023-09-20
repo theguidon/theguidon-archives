@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./styles.css";
-import img from "../../assets/images/freshmanual.png";
 
 export default function Browse({ title = "The Archive", subtitle = "Browse" }) {
   console.log(useParams().type);
@@ -51,7 +50,7 @@ export default function Browse({ title = "The Archive", subtitle = "Browse" }) {
       </nav>
       {tab === "" || tab === "freshmanuals" ? (
         <Item
-          img={img}
+          img="/freshmanual-2023.png"
           title="FreshManual 2023"
           date="7 August 2023"
           link="/issues/freshmanual-2023"

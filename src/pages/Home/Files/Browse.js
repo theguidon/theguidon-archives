@@ -1,5 +1,4 @@
 import Broadsheet from "../../../assets/images/broadsheet.png";
-import Freshmanual from "../../../assets/images/Freshmanual.png";
 import GradMag from "../../../assets/images/graduation-magazine.png";
 import UAAP from "../../../assets/images/uaap.png";
 
@@ -16,7 +15,7 @@ export const Archives = [
   },
   {
     title: "Freshmanuals",
-    picture: Freshmanual,
+    picture: "/freshmanual-2023.png",
     link: "browse/freshmanuals",
   },
   {
