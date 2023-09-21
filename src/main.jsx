@@ -50,10 +50,23 @@ const router = createBrowserRouter([
           <Issue
             pdfPath="/augsept-2023.pdf"
             pages={24}
-            title="AugSept 2023"
+            title="August-September 2023"
             date="20 September 2023"
             imagePath="/augsept-2023.png"
-            desc=""
+            desc={
+              <>
+                51 years since the declaration of Martial Law, the nation still
+                grapples with a divided memory of the Marcos dictatorship. As we
+                continue to navigate landscapes that threaten journalistic
+                integrity, The GUIDON stands firm in its commitment to preserve
+                and forward the Filipino narrative that depicts the people's
+                enduring struggle for democracy, truth, and justice.
+                <br />
+                <br />
+                With the mission to shed light on the unvarnished truth, The
+                GUIDON presents its August-September Martial Law Special here:
+              </>
+            }
           />
         ),
       },
