@@ -71,14 +71,14 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "issues/uaap-86-primer-volume-1",
+        path: "issues/uaap-86-first-semester-primer",
         element: (
           <Issue
-            pdfPath="/uaap-86-primer-volume-1.pdf"
+            pdfPath="/uaap-86-first-semester-primer.pdf"
             pages={60}
             title="UAAP 86 Primer Semester 1"
             date="27 September 2023"
-            imagePath="/uaap-86-primer-volume-1.png"
+            imagePath="/uaap-86-first-semester-primer.png"
             desc=""
           />
         ),
