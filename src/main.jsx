@@ -87,11 +87,11 @@ const router = createBrowserRouter([
 			path: "issues/novdec-2023",
 			element: (
 				<Issue
-				pdfPath="/novdec.pdf" // TODO: upload the pdf
+				pdfPath="/novdec-2023.pdf" // TODO: upload the pdf
 				pages={60} // TODO: change the page number
 				title="November-December 2023"
 				date="change this" // TODO: add the date
-				imagePath="/novdec.png" // TODO: upload compressed first page
+				imagePath="/novdec-2023.png" // TODO: upload compressed first page
 				desc="" // TODO: add the description
 				/>
 			),
