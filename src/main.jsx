@@ -82,7 +82,20 @@ const router = createBrowserRouter([
             desc=""
           />
         ),
-      },
+	  },
+		{
+			path: "issues/novdec-2023",
+			element: (
+				<Issue
+				pdfPath="/novdec.pdf" // TODO: upload the pdf
+				pages={60} // TODO: change the page number
+				title="November-December 2023"
+				date="change this" // TODO: add the date
+				imagePath="/novdec.png" // TODO: upload compressed first page
+				desc="" // TODO: add the description
+				/>
+			),
+		}
       //   {
       //     path: "",
       //     element: <Home />,
