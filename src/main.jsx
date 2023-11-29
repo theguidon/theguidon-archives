@@ -88,14 +88,14 @@ const router = createBrowserRouter([
 			element: (
 				<Issue
 				pdfPath="/novdec-2023.pdf" // TODO: upload the pdf
-				pages={60} // TODO: change the page number
+				pages={27} // TODO: change the page number
 				title="November-December 2023"
-				date="change this" // TODO: add the date
+				date="28 November 2023" // TODO: add the date
 				imagePath="/novdec-2023.png" // TODO: upload compressed first page
 				desc="" // TODO: add the description
 				/>
 			),
-		}
+		},
       //   {
       //     path: "",
       //     element: <Home />,

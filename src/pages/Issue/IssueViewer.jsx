@@ -120,7 +120,7 @@ export default function IssueViewer({ path, pages, title }) {
           <img src={arrowLeft2} alt="" className="w-6" />
           <p className="hidden sm:block">Back</p>
         </button> */}
-        <h1 className="text-white text-xl font-tiemposheadline absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <h1 className="text-center text-white text-xl font-tiemposheadline absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           {title}
         </h1>
         <div className="flex flex-row items-center justify-between gap-x-6">
@@ -178,7 +178,7 @@ export default function IssueViewer({ path, pages, title }) {
             />
           </button>
         </div>
-        {loadedPages < numPages ? (
+        {loadedPages < numPages - 1 ? ( // HACK: god i should fix this
           <div className="text-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 font-chivo flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-md drop-shadow-md">
             <div className="w-12 aspect-square rounded-full border-4 border-t-guidon border-transparent animate-spin mb-4" />
             {loadedPages} out of {numPages} pages loaded
@@ -215,7 +215,7 @@ export default function IssueViewer({ path, pages, title }) {
                   renderTextLayer={false}
                   className={`
                     ${
-                      loadedPages === numPages
+                      loadedPages >= numPages - 1
                         ? (index + 1) * 2 === pageNumber ||
                           (index + 1) * 2 +
                             (window.innerWidth > 1024 ? 1 : 0) ===
@@ -236,7 +236,7 @@ export default function IssueViewer({ path, pages, title }) {
                   renderTextLayer={false}
                   className={`
                   ${
-                    loadedPages === numPages
+                    loadedPages >= numPages - 1
                       ? (index + 1) * 2 + (window.innerWidth > 1024 ? 0 : 1) ===
                         pageNumber
                         ? "block"
