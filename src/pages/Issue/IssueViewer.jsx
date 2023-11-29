@@ -1,3 +1,6 @@
+/**
+	* this is code is so ugly im so sorry
+**/
 import { Document, Page } from "react-pdf/dist/esm/entry.vite";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
@@ -61,7 +64,7 @@ export default function IssueViewer({ path, pages, title }) {
 
   function handleThumb(page) {
     const hundredPercent = scrollRef.current.getBoundingClientRect().width - 20;
-    const percent = (page - 1) / (numPages - 1);
+    const percent = (page - 1) / (numPages - (numPages % 2 === 0 ? 1 : 2));
     gsap.set(scrollThumbRef.current, {
       left: hundredPercent * percent,
     });
@@ -166,9 +169,9 @@ export default function IssueViewer({ path, pages, title }) {
           </button>
           <button
             onClick={rightPage}
-            disabled={pageNumber >= numPages}
+            disabled={Math.floor(pageNumber / 2) >= Math.floor(numPages / 2) }
             className={`h-full w-12 lg:w-20 z-10 hover:bg-[linear-gradient(-90deg,_rgba(0,_0,_0,_0.20)_0%,_rgba(0,_0,_0,_0.00)_100%)] relative ${
-              pageNumber >= numPages ? "opacity-0" : null
+              Math.floor(pageNumber / 2) >= Math.floor(numPages / 2)  ? "opacity-0" : null
             }`}
           >
             <img
@@ -202,7 +205,7 @@ export default function IssueViewer({ path, pages, title }) {
             renderTextLayer={false}
             className={`${pageNumber === 1 ? "block" : "hidden"} scale-50`}
           />
-          {[...Array(Math.floor(numPages / 2) - 1)].map((num, index) => {
+          {[...Array(Math.ceil(numPages / 2) - 1)].map((num, index) => {
             return (
               <>
                 <Page
@@ -291,9 +294,9 @@ export default function IssueViewer({ path, pages, title }) {
             : ""}{" "}
           of {numPages}
           <button
-            disabled={pageNumber >= numPages}
+            disabled={Math.floor(pageNumber / 2) >= Math.floor(numPages / 2)}
             className={`-scale-x-100 ${
-              pageNumber >= numPages ? "opacity-0" : null
+               Math.floor(pageNumber / 2) >= Math.floor(numPages / 2) ? "opacity-0" : null
             }`}
             onClick={rightPage}
           >
