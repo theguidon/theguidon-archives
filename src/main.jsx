@@ -96,6 +96,19 @@ const router = createBrowserRouter([
 				/>
 			),
 		},
+      {
+        path: "issues/uaap-86-second-semester-primer",
+        element: (
+          <Issue
+            pdfPath="/uaap-86-second-semester-primer.pdf"
+            pages={60}
+            title="UAAP 86 Primer Semester 2"
+            date="22 February 2024"
+            imagePath="/uaap-86-second-semester-primer.png"
+            desc=""
+          />
+        ),
+	  },
       //   {
       //     path: "",
       //     element: <Home />,
