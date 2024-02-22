@@ -76,7 +76,7 @@ const router = createBrowserRouter([
           <Issue
             pdfPath="/uaap-86-first-semester-primer.pdf"
             pages={60}
-            title="UAAP 86 Primer Semester 1"
+            title="UAAP 86 First Primer Semester"
             date="27 September 2023"
             imagePath="/uaap-86-first-semester-primer.png"
             desc=""
@@ -102,7 +102,7 @@ const router = createBrowserRouter([
           <Issue
             pdfPath="/uaap-86-second-semester-primer.pdf"
             pages={60}
-            title="UAAP 86 Primer Semester 2"
+            title="UAAP 86 Second Primer Semester"
             date="22 February 2024"
             imagePath="/uaap-86-second-semester-primer.png"
             desc=""
