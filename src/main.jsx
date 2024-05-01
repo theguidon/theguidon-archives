@@ -82,20 +82,20 @@ const router = createBrowserRouter([
             desc=""
           />
         ),
-	  },
-		{
-			path: "issues/novdec-2023",
-			element: (
-				<Issue
-				pdfPath="/novdec-2023.pdf" // TODO: upload the pdf
-				pages={27} // TODO: change the page number
-				title="November-December 2023"
-				date="28 November 2023" // TODO: add the date
-				imagePath="/novdec-2023.png" // TODO: upload compressed first page
-				desc="" // TODO: add the description
-				/>
-			),
-		},
+      },
+      {
+        path: "issues/novdec-2023",
+        element: (
+          <Issue
+            pdfPath="/novdec-2023.pdf"
+            pages={27}
+            title="November-December 2023"
+            date="28 November 2023"
+            imagePath="/novdec-2023.png"
+            desc=""
+          />
+        ),
+      },
       {
         path: "issues/uaap-86-second-semester-primer",
         element: (
@@ -108,7 +108,33 @@ const router = createBrowserRouter([
             desc=""
           />
         ),
-	  },
+      },
+      {
+        path: "issues/febmar-2024",
+        element: (
+          <Issue
+            pdfPath="/febmar-2024.pdf"
+            pages={27}
+            title="February-March 2024"
+            date=""
+            imagePath="/febmar-2024.png"
+            desc=""
+          />
+        ),
+      },
+      {
+        path: "issues/aprmay-2024",
+        element: (
+          <Issue
+            pdfPath="/aprmay-2024.pdf"
+            pages={27}
+            title="April-May 2024"
+            date=""
+            imagePath="/aprmay-2024.png"
+            desc=""
+          />
+        ),
+      },
       //   {
       //     path: "",
       //     element: <Home />,
@@ -153,5 +179,5 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
