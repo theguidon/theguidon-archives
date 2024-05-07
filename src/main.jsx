@@ -114,7 +114,7 @@ const router = createBrowserRouter([
         element: (
           <Issue
             pdfPath="/febmar-2024.pdf"
-            pages={27}
+            pages={28}
             title="February-March 2024"
             date=""
             imagePath="/febmar-2024.png"
@@ -127,7 +127,7 @@ const router = createBrowserRouter([
         element: (
           <Issue
             pdfPath="/aprmay-2024.pdf"
-            pages={27}
+            pages={28}
             title="April-May 2024"
             date=""
             imagePath="/aprmay-2024.png"
