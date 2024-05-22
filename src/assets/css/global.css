@@ -47,6 +47,23 @@ body {
   --header-height: 64px;
 }
 
+h1 {
+  font-size: var(--h1-font-size);
+}
+
+h2 {
+  font-size: var(--h2-font-size);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Tiempos Headline";
+}
+
 #root {
   display: flex;
   flex-flow: column nowrap;
@@ -87,4 +104,8 @@ body {
   border-radius: 16px;
 
   box-shadow: 3px 2px 20px 6px rgba(0, 0, 0, 0.08);
+}
+
+hr {
+  border: 1px solid var(--blue-alt-1);
 }
