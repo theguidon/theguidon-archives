@@ -1,5 +1,7 @@
 header {
-  padding: 16px 0;
+  /* padding: 16px 0; */
+  padding: 10px 0;
+  height: 64px;
   background-color: var(--gdn-blue);
 }
 
