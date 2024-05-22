@@ -1,8 +1,13 @@
 header {
+  height: var(--header-height);
   /* padding: 16px 0; */
   padding: 10px 0;
-  height: 64px;
   background-color: var(--gdn-blue);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 header .general-container {

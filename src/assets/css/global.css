@@ -42,12 +42,16 @@ body {
 
   --blue-gray-dark: #56729c;
   --blue-gray-light: #eff5fa;
+
+  --header-height: 64px;
 }
 
 #root {
   display: flex;
   flex-flow: column nowrap;
   min-height: 100vh;
+
+  padding-top: var(--header-height);
 }
 
 .general-container {
