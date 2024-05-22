@@ -109,3 +109,27 @@ h6 {
 hr {
   border: 1px solid var(--blue-alt-1);
 }
+
+@media screen and (max-width: 1200px) {
+  .general-container {
+    padding: 0 80px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .general-container {
+    padding: 0 60px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .general-container {
+    padding: 0 40px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .general-container {
+    padding: 0 24px;
+  }
+}
