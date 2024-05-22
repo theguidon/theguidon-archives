@@ -1,0 +1,43 @@
+*,
+html,
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --h1-font-size: 56px;
+  --h2-font-size: 48px;
+  --h3-font-size: 40px;
+  --h4-font-size: 32px;
+  --h5-font-size: 24px;
+  --h6-font-size: 20px;
+
+  --subheader-l-font-size: 24px;
+  --subheader-m-font-size: 18px;
+  --subheader-font-size: 16px;
+  --subheader-s-font-size: 12px;
+
+  --body-l-font-size: 24px;
+  --body-m-font-size: 20px;
+  --body-font-size: 16px;
+  --body-s-font-size: 14px;
+  --body-xs-font-size: 12px;
+
+  --gdn-blue: #1c4480;
+
+  --blue-dark: #0f265c;
+  --blue-alt: #72a4d7;
+  --blue-alt2: #3680cc;
+  --blue-light: #dbe9f4;
+
+  --gray-1: #333333;
+  --gray-2: #6a757c;
+  --gray-3: #b6c2cd;
+  --gray-4: #d2dde5;
+  --gray-5: #e9eef2;
+
+  --blue-gray-dark: #56729c;
+  --blue-gray-light: #eff5fa;
+}
