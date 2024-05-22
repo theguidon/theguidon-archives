@@ -103,3 +103,40 @@ footer .credits {
 
   text-align: center;
 }
+
+@media screen and (max-width: 1200px) {
+  footer .content {
+    padding: 48px 0 28px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  footer .content {
+    padding: 40px 0 24px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  footer .content {
+    padding: 36px 0 20px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  footer .content {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    row-gap: 32px;
+
+    padding: 24px 0 16px;
+  }
+
+  footer .content .browse {
+    display: none;
+  }
+
+  footer .credits {
+    text-align: left;
+    padding: 24px 0;
+  }
+}

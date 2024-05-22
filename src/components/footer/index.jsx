@@ -20,7 +20,7 @@ function Footer() {
           <div className="logo-desc-group">
             <img className="logo" src={logo} />
 
-            <p className="logo">
+            <p className="desc">
               The Archives is a collection of The GUIDON's published content
               since 1929, chronicling its history as the official student
               publication of the Ateneo de Manila University.
@@ -95,7 +95,9 @@ function Footer() {
 
         <p className="credits">
           &copy; The GUIDON 2024 All rights reserved. Designed and developed by
-          Digital Development 2022–2023 and 2023–2024.
+          Digital Development{" "}
+          <span style={{ whiteSpace: "nowrap" }}>2022–2023</span> and{" "}
+          <span style={{ whiteSpace: "nowrap" }}>2023–2024</span>.
         </p>
       </div>
     </footer>
