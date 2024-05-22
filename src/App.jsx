@@ -1,4 +1,7 @@
-import { Route, Routes } from "react-router-dom";
+import React from "react";
+import { Outlet, Route, Routes } from "react-router-dom";
+import Header from "./components/header";
+import Footer from "./components/footer";
 
 function App() {
   return (
@@ -15,7 +18,9 @@ function App() {
 function GeneralLayout() {
   return (
     <React.Fragment>
+      <Header />
       <Outlet />
+      <Footer />
     </React.Fragment>
   );
 }
