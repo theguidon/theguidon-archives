@@ -1,0 +1,34 @@
+.search-field {
+  /* background-color: #ECF4FF; */
+  background-color: white;
+
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  column-gap: 12px;
+
+  padding: 8px 24px;
+  border-radius: 32px;
+}
+
+.search-field img {
+  width: 24px;
+  height: 24px;
+}
+
+.search-field input {
+  flex-grow: 1;
+
+  border: none;
+  background-color: transparent;
+
+  font-size: var(--body-font-size);
+}
+
+.search-field input::placeholder {
+  color: var(--gray-2);
+}
+
+.search-field input:focus {
+  outline: none;
+}
