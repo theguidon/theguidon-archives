@@ -1,0 +1,89 @@
+header {
+  padding: 16px 0;
+  background-color: var(--gdn-blue);
+}
+
+header .general-container {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 32px;
+}
+
+header .logo {
+  height: 40px;
+  width: auto;
+}
+
+header .main-nav {
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 10px;
+}
+
+header .main-nav > a {
+  padding: 8px 24px;
+  border-radius: 16px;
+
+  color: var(--blue-light);
+  text-decoration: none;
+  font-weight: bold;
+
+  transition: 0.3s;
+
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  column-gap: 4px;
+
+  position: relative;
+}
+
+header .main-nav > a:hover {
+  background-color: var(--blue-light);
+  color: var(--gdn-blue);
+}
+
+header .main-nav > a .chevron-down {
+  background-color: var(--blue-light);
+  transition: 0.3s;
+}
+
+header .main-nav > a:hover .chevron-down {
+  background-color: var(--gdn-blue);
+  transform: rotate(180deg);
+}
+
+header .main-nav > a .popup-container {
+  transition: 0.3s;
+}
+
+header .main-nav > a:hover .popup-container {
+  opacity: 1;
+  pointer-events: all;
+}
+
+header .main-nav > a .popup {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 8px;
+  justify-content: stretch;
+  align-items: stretch;
+}
+
+header .main-nav > a .popup a {
+  color: black;
+  text-decoration: none;
+
+  min-width: max-content;
+  padding: 4px 12px;
+  border-radius: 16px;
+
+  transition: 0.3s;
+}
+
+header .main-nav > a .popup a:hover {
+  background-color: var(--blue-alt-2);
+  color: white;
+}

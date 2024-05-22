@@ -1,7 +1,7 @@
 import "./index.css";
 
 function Footer() {
-  return <>FOOTER</>;
+  return <footer>FOOTER</footer>;
 }
 
 export default Footer;

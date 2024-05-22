@@ -4,6 +4,8 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+
+  font-family: "Chivo";
 }
 
 :root {
@@ -28,8 +30,8 @@ body {
   --gdn-blue: #1c4480;
 
   --blue-dark: #0f265c;
-  --blue-alt: #72a4d7;
-  --blue-alt2: #3680cc;
+  --blue-alt-1: #72a4d7;
+  --blue-alt-2: #3680cc;
   --blue-light: #dbe9f4;
 
   --gray-1: #333333;
@@ -40,4 +42,44 @@ body {
 
   --blue-gray-dark: #56729c;
   --blue-gray-light: #eff5fa;
+}
+
+#root {
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: 100vh;
+}
+
+.general-container {
+  width: 100%;
+  max-width: 1440px;
+  padding: 0 100px;
+  margin: 0 auto;
+}
+
+.chevron-down {
+  -webkit-mask: url("./../icons/chevron-down.svg");
+  mask: url("./../icons/chevron-down.svg");
+  width: 20px;
+  height: 20px;
+}
+
+.popup-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  padding-top: 8px;
+
+  pointer-events: none;
+  opacity: 0;
+}
+
+.popup {
+  width: fit-content;
+  padding: 16px;
+  background-color: white;
+  border-radius: 16px;
+
+  box-shadow: 3px 2px 20px 6px rgba(0, 0, 0, 0.08);
 }
