@@ -33,7 +33,8 @@ header .main-nav {
   column-gap: 10px;
 }
 
-header .main-nav > a {
+header .main-nav > a,
+header .main-nav .releases-link-container > a {
   padding: 8px 24px;
   border-radius: 16px;
 
@@ -47,35 +48,41 @@ header .main-nav > a {
   flex-flow: row nowrap;
   align-items: center;
   column-gap: 4px;
-
-  position: relative;
 }
 
-header .main-nav > a:hover {
+header .main-nav > a:hover,
+header .main-nav .releases-link-container > a:hover,
+header .main-nav > a.active:not(:first-of-type),
+header .main-nav .releases-link-container > a.active {
   background-color: var(--blue-light);
   color: var(--gdn-blue);
 }
 
-header .main-nav > a .chevron-down {
+header .main-nav .releases-link-container {
+  position: relative;
+}
+
+header .main-nav .releases-link-container .chevron-down {
   background-color: var(--blue-light);
   transition: 0.3s;
 }
 
-header .main-nav > a:hover .chevron-down {
+header .main-nav .releases-link-container a:hover .chevron-down,
+header .main-nav .releases-link-container a.active .chevron-down {
   background-color: var(--gdn-blue);
   transform: rotate(180deg);
 }
 
-header .main-nav > a .popup-container {
+header .main-nav .releases-link-container .popup-container {
   transition: 0.3s;
 }
 
-header .main-nav > a:hover .popup-container {
+header .main-nav .releases-link-container:hover .popup-container {
   opacity: 1;
   pointer-events: all;
 }
 
-header .main-nav > a .popup {
+header .main-nav .releases-link-container .popup {
   display: flex;
   flex-flow: column nowrap;
   row-gap: 8px;
@@ -83,7 +90,7 @@ header .main-nav > a .popup {
   align-items: stretch;
 }
 
-header .main-nav > a .popup a {
+header .main-nav .releases-link-container .popup a {
   color: black;
   text-decoration: none;
 
@@ -94,7 +101,12 @@ header .main-nav > a .popup a {
   transition: 0.3s;
 }
 
-header .main-nav > a .popup a:hover {
+header .main-nav .releases-link-container .popup a:hover {
   background-color: var(--blue-alt-2);
+  color: white;
+}
+
+header .main-nav .releases-link-container .popup a.active {
+  background-color: var(--gdn-blue);
   color: white;
 }

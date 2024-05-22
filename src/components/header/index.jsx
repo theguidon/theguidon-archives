@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./index.css";
 
 import SearchField from "../search-field";
 import logo from "./../../assets/logos/base-white.svg";
-import chevronDown from "./../../assets/icons/chevron-down.svg";
 
 function Header() {
   return (
@@ -16,23 +15,26 @@ function Header() {
         <SearchField />
 
         <nav className="main-nav">
-          <Link to="/">Home</Link>
-          <Link to="/releases/all">
-            Releases
-            <div className="chevron-down" />
+          <NavLink to="/">Home</NavLink>
+          <div className="releases-link-container">
+            <NavLink to="/releases">
+              Releases
+              <div className="chevron-down" />
+            </NavLink>
+
             <div className="popup-container">
               <nav className="popup">
-                <Link to="/releases/recent">Recently Uploaded</Link>
-                <Link to="/releases/this-term">This Term</Link>
-                <Link to="/releases/press">Press Issues</Link>
-                <Link to="/releases/gradmag">Graduation Magazines</Link>
-                <Link to="/releases/freshmanual">Freshmanuals</Link>
-                <Link to="/releases/uaap-primers">UAAP Primers</Link>
-                <Link to="/releases/others">Others</Link>
+                <NavLink to="/releases/recent">Recently Uploaded</NavLink>
+                <NavLink to="/releases/this-term">This Term</NavLink>
+                <NavLink to="/releases/press">Press Issues</NavLink>
+                <NavLink to="/releases/gradmag">Graduation Magazines</NavLink>
+                <NavLink to="/releases/freshmanual">Freshmanuals</NavLink>
+                <NavLink to="/releases/uaap-primers">UAAP Primers</NavLink>
+                <NavLink to="/releases/others">Others</NavLink>
               </nav>
             </div>
-          </Link>
-          <Link to="/about">About</Link>
+          </div>
+          <NavLink to="/about">About</NavLink>
         </nav>
       </div>
     </header>
