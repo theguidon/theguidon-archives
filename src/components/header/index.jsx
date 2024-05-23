@@ -59,11 +59,6 @@ function Header() {
         <nav className="main-nav">
           <NavLink to="/">Home</NavLink>
           <div className="releases-link-container">
-            <NavLink to="/releases">
-              Releases
-              <div className="chevron-down" />
-            </NavLink>
-
             <div className="popup-container">
               <nav className="popup">
                 <NavLink to="/releases/recent">Recently Uploaded</NavLink>
@@ -75,6 +70,11 @@ function Header() {
                 <NavLink to="/releases/others">Others</NavLink>
               </nav>
             </div>
+
+            <NavLink to="/releases">
+              Releases
+              <div className="chevron-down" />
+            </NavLink>
           </div>
           <NavLink to="/about">About</NavLink>
         </nav>

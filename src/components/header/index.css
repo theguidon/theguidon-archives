@@ -52,7 +52,8 @@ header .main-nav .releases-link-container > a {
 }
 
 header .main-nav > a:hover,
-header .main-nav .releases-link-container > a:hover {
+header .main-nav .releases-link-container > a:hover,
+header .main-nav .releases-link-container .popup-container:hover ~ a {
   background-color: #c7dcf1;
   color: var(--gdn-blue);
 }
@@ -73,7 +74,13 @@ header .main-nav .releases-link-container .chevron-down {
 }
 
 header .main-nav .releases-link-container a:hover .chevron-down,
-header .main-nav .releases-link-container a.active .chevron-down {
+header .main-nav .releases-link-container a.active .chevron-down,
+header
+  .main-nav
+  .releases-link-container
+  .popup-container:hover
+  ~ a
+  .chevron-down {
   background-color: var(--gdn-blue);
   transform: rotate(180deg);
 }
@@ -96,6 +103,7 @@ header .main-nav .releases-link-container .popup {
 }
 
 header .main-nav .releases-link-container .popup a {
+  /* color: var(--gray-2); */
   color: black;
   text-decoration: none;
 
