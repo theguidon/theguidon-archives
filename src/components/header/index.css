@@ -133,6 +133,27 @@ header .mobile-icon {
   cursor: pointer;
 }
 
+#bg-tint {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+
+  background-color: rgba(0, 0, 0, 0.4);
+
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+#bg-tint.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
 @media screen and (max-width: 1200px) {
   header .general-container {
     column-gap: 52px;
@@ -158,6 +179,10 @@ header .mobile-icon {
 
   header .main-nav {
     display: none;
+  }
+
+  #bg-tint {
+    display: block;
   }
 }
 
