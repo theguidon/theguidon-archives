@@ -12,7 +12,8 @@
 }
 
 .issue-card .cover-container {
-  height: 220px;
+  /* height: 220px; */
+  height: 200px;
   background-color: var(--blue-gray-light);
 }
 

@@ -133,9 +133,10 @@ hr {
 
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  /* grid-template-columns: repeat(5, 1fr); */
+  grid-template-columns: repeat(6, 1fr);
   column-gap: 16px;
-  row-gap: 56px;
+  row-gap: 32px;
 }
 
 @media screen and (max-width: 1200px) {
