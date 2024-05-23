@@ -19,10 +19,13 @@
   align-items: center;
 
   margin: 0 0 8px;
+
+  text-decoration: none;
 }
 
 #home main h3 {
   font-family: Chivo;
+  color: black;
 }
 
 #home main .row img {
@@ -36,4 +39,47 @@
 
 #home main .card-grid {
   margin: 0 0 80px;
+}
+
+#home #recently-uploaded {
+  align-items: flex-end;
+}
+
+#home #recently-uploaded .categ-card {
+  text-decoration: none;
+
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#home #recently-uploaded .categ-card .row {
+  row-gap: 4px;
+}
+
+#home #recently-uploaded .categ-card .row h5 {
+  color: black;
+}
+
+#home #recently-uploaded .categ-card .row img {
+  width: 20px;
+  height: 20px;
+}
+
+#home #recently-uploaded .categ-card .cover-container {
+  height: 220px;
+  overflow: clip;
+}
+
+#home #recently-uploaded .categ-card .cover-container img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  transition: 0.3s;
+}
+
+#home #recently-uploaded .categ-card:hover .cover-container img {
+  transform: scale(1.1);
 }

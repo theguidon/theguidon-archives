@@ -3,6 +3,7 @@ import "./index.css";
 
 import img from "./../../assets/images/broadsheet-sample.png";
 import chevronRight from "./../../assets/icons/chevron-right.svg";
+import { Link } from "react-router-dom";
 
 function HomePage() {
   const year = 2023;
@@ -10,27 +11,27 @@ function HomePage() {
   const categories = [
     {
       link: "/releases/press",
-      name: "Press Issues",
+      title: "Press Issues",
       img: img,
     },
     {
       link: "/releases/gradmag",
-      name: "Graduation Magazines",
+      title: "Graduation Magazines",
       img: img,
     },
     {
       link: "/releases/freshmanual",
-      name: "Freshmanuals",
+      title: "Freshmanuals",
       img: img,
     },
     {
       link: "/releases/uaap-primer",
-      name: "UAAP Primers",
+      title: "UAAP Primers",
       img: img,
     },
     {
       link: "/releases/others",
-      name: "Others",
+      title: "Others",
       img: img,
     },
   ];
@@ -40,10 +41,10 @@ function HomePage() {
       <div id="hero"></div>
       <main className="general-container">
         <p className="subheader">{`${year}–${year + 1}`}</p>
-        <div className="row">
+        <Link to="releases/this-term" className="row">
           <h3>Releases this term</h3>
           <img src={chevronRight} />
-        </div>
+        </Link>
         <hr />
         <div id="this-term" className="card-grid">
           <IssueCard />
@@ -65,24 +66,31 @@ function HomePage() {
         </div>
 
         <p className="subheader">Recently Uploaded</p>
-        <div className="row">
+        <Link to="/releases/recent" className="row">
           <h3>New on the Archive</h3>
           <img src={chevronRight} />
-        </div>
+        </Link>
         <hr />
         <div id="recently-uploaded" className="card-grid">
-          <IssueCard />
-          <IssueCard />
-          <IssueCard />
-          <IssueCard />
-          <IssueCard />
+          {categories.map((categ, idx) => (
+            <Link to={categ.link} key={`categ-${idx}`} className="categ-card">
+              <div className="row">
+                <h5>{categ.title}</h5>
+                <img src={chevronRight} />
+              </div>
+              <hr />
+              <div className="cover-container">
+                <img src={categ.img} alt={categ.title} />
+              </div>
+            </Link>
+          ))}
         </div>
 
         <p className="subheader">Explore</p>
-        <div className="row">
+        <Link to="/releases" className="row">
           <h3>History</h3>
           <img src={chevronRight} />
-        </div>
+        </Link>
         <hr />
         <div id="history" className="card-grid">
           <IssueCard />
