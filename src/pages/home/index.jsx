@@ -47,7 +47,28 @@ function HomePage() {
 
   return (
     <div id="home">
-      <div id="hero"></div>
+      <div
+        id="hero"
+        style={{
+          background: `linear-gradient(180deg, #1C4480 0%, rgba(0, 0, 0, 0) 175%), url(${latest.cover})`,
+        }}
+      >
+        <div className="general-container">
+          <div className="info">
+            <p className="badge">Latest Release</p>
+            <h1 className="title">{latest.title}</h1>
+            <p className="date">{latest.date}</p>
+            <p className="blurb">{latest.blurb}</p>
+
+            <Link to={`/issue/${latest.slug}`} className="read-now">
+              Read now
+            </Link>
+          </div>
+
+          <img className="cover" src={latest.cover} alt={latest.title} />
+        </div>
+      </div>
+
       <main className="general-container">
         <p className="subheader">{`${year}–${year + 1}`}</p>
         <Link to="releases/this-term" className="row">
