@@ -33,8 +33,8 @@ function Footer() {
             <Link to="/releases/this-term">Releases This Term</Link>
             <Link to="/releases/press">Press Issues</Link>
             <Link to="/releases/gradmag">Graduation Magazines</Link>
-            <Link to="/releases/freshmanual">Freshmanual</Link>
-            <Link to="/releases/uaap-primers">UAAP Primers</Link>
+            <Link to="/releases/freshmanual">Freshmanuals</Link>
+            <Link to="/releases/uaap-primer">UAAP Primers</Link>
             <Link to="/releases/others">Others</Link>
           </div>
 

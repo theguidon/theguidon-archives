@@ -66,7 +66,7 @@ function Header() {
                 <NavLink to="/releases/press">Press Issues</NavLink>
                 <NavLink to="/releases/gradmag">Graduation Magazines</NavLink>
                 <NavLink to="/releases/freshmanual">Freshmanuals</NavLink>
-                <NavLink to="/releases/uaap-primers">UAAP Primers</NavLink>
+                <NavLink to="/releases/uaap-primer">UAAP Primers</NavLink>
                 <NavLink to="/releases/others">Others</NavLink>
               </nav>
             </div>

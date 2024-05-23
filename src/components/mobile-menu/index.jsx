@@ -66,7 +66,7 @@ function MobileMenu(props) {
       text: "Freshmanuals",
     },
     {
-      link: "/releases/uaap-primers",
+      link: "/releases/uaap-primer",
       text: "UAAP Primers",
     },
     {

@@ -2,3 +2,38 @@
   padding-top: 56px;
   padding-bottom: 80px;
 }
+
+#home main .subheader {
+  font-weight: bold;
+  font-size: var(--subheader-font-size);
+  color: var(--gdn-blue);
+  text-transform: uppercase;
+
+  margin: 0 0 4px;
+}
+
+#home main .row {
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 8px;
+  align-items: center;
+
+  margin: 0 0 8px;
+}
+
+#home main h3 {
+  font-family: Chivo;
+}
+
+#home main .row img {
+  width: 24px;
+  height: 24px;
+}
+
+#home main hr {
+  margin: 0 0 24px;
+}
+
+#home main .card-grid {
+  margin: 0 0 80px;
+}
