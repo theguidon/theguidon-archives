@@ -2,6 +2,15 @@ import IssueCard from "../../components/issue-card";
 import "./index.css";
 
 function Page404() {
+  const data = {
+    cover: img,
+    slug: "aprmay-2024",
+    title: "April–May 2024",
+    date: "23 May 2024",
+    blurb:
+      "With 2022 nearing its end, The GUIDON takes a look at the events, issues, and developments that have come to define the past year.",
+  };
+
   return (
     <div id="page-404" className="general-container">
       <p className="subheader">Error 404</p>
@@ -17,11 +26,11 @@ function Page404() {
       <h4>You might be interested in these instead.</h4>
 
       <div className="card-grid">
-        <IssueCard />
-        <IssueCard />
-        <IssueCard />
-        <IssueCard />
-        <IssueCard />
+        <IssueCard data={data} />
+        <IssueCard data={data} />
+        <IssueCard data={data} />
+        <IssueCard data={data} />
+        <IssueCard data={data} />
       </div>
     </div>
   );

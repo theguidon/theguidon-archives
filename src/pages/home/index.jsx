@@ -77,22 +77,22 @@ function HomePage() {
         </Link>
         <hr />
         <div id="this-term" className="card-grid">
-          <IssueCard />
-          <IssueCard />
-          <IssueCard />
-          <IssueCard />
-          <IssueCard />
+          <IssueCard data={latest} />
+          <IssueCard data={latest} />
+          <IssueCard data={latest} />
+          <IssueCard data={latest} />
+          <IssueCard data={latest} />
         </div>
 
         <p className="subheader">Browse</p>
         <h3>The Archive</h3>
         <hr />
         <div id="browse" className="card-grid">
-          <IssueCard />
-          <IssueCard />
-          <IssueCard />
-          <IssueCard />
-          <IssueCard />
+          <IssueCard data={latest} />
+          <IssueCard data={latest} />
+          <IssueCard data={latest} />
+          <IssueCard data={latest} />
+          <IssueCard data={latest} />
         </div>
 
         <p className="subheader">Recently Uploaded</p>
@@ -123,11 +123,11 @@ function HomePage() {
         </Link>
         <hr />
         <div id="history" className="card-grid">
-          <IssueCard />
-          <IssueCard />
-          <IssueCard />
-          <IssueCard />
-          <IssueCard />
+          <IssueCard data={latest} />
+          <IssueCard data={latest} />
+          <IssueCard data={latest} />
+          <IssueCard data={latest} />
+          <IssueCard data={latest} />
         </div>
       </main>
     </div>
