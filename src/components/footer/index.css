@@ -33,6 +33,7 @@ footer .subheader {
   text-transform: uppercase;
   font-size: var(--subheading-font-size);
   font-weight: bold;
+  letter-spacing: var(--subheading-letter-spacing);
 }
 
 footer .browse a,

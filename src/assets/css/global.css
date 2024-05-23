@@ -22,6 +22,11 @@ body {
   --subheader-font-size: 16px;
   --subheader-s-font-size: 12px;
 
+  --subheader-l-letter-spacing: 1.2px;
+  --subheader-m-letter-spacing: 0.9px;
+  --subheader-letter-spacing: 0.8px;
+  --subheader-s-letter-spacing: 0.6px;
+
   --body-l-font-size: 24px;
   --body-m-font-size: 20px;
   --body-font-size: 16px;

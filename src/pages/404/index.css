@@ -8,6 +8,7 @@
   color: var(--gdn-blue);
   text-transform: uppercase;
   font-weight: bold;
+  letter-spacing: var(--subheader-m-letter-spacing);
 }
 
 #page-404 h2 {

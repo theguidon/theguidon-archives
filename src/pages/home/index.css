@@ -87,6 +87,7 @@
   font-size: var(--subheader-font-size);
   color: var(--gdn-blue);
   text-transform: uppercase;
+  letter-spacing: var(--subheader-letter-spacing);
 
   margin: 0 0 4px;
 }
