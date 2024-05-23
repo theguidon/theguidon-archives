@@ -123,8 +123,8 @@ function MobileMenu(props) {
         </div>
 
         <nav>
-          {nav.map((row) => (
-            <Link to={row.link}>
+          {nav.map((row, idx) => (
+            <Link to={row.link} key={`row-${idx}`}>
               {row.icon ? row.icon : <div />}
               <p>{row.text}</p>
             </Link>
