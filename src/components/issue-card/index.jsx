@@ -6,6 +6,7 @@ import img from "./../../assets/images/broadsheet-sample.png";
 function IssueCard(props) {
   const data = {
     cover: img,
+    slug: "aprmay-2024",
     title: "April–May 2024",
     date: "23 May 2024",
     blurb:

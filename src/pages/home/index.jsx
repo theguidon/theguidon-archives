@@ -8,6 +8,15 @@ import { Link } from "react-router-dom";
 function HomePage() {
   const year = 2023;
 
+  const latest = {
+    cover: img,
+    slug: "aprmay-2024",
+    title: "April–May 2024",
+    date: "23 May 2024",
+    blurb:
+      "With 2022 nearing its end, The GUIDON takes a look at the events, issues, and developments that have come to define the past year.",
+  };
+
   const categories = [
     {
       link: "/releases/press",
