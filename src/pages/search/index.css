@@ -1,0 +1,24 @@
+#search-results {
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+
+#search-results .subheader {
+  font-size: var(--subheader-m-font-size);
+  color: var(--gdn-blue);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#search-results h2 {
+  margin: 0 0 4px;
+}
+
+#search-results hr {
+  margin: 0 0 24px;
+}
+
+#search-results ul {
+  font-size: var(--body-m-font-size);
+  padding-left: 20px;
+}
