@@ -1,16 +1,58 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import "./index.css";
 
-import SearchField from "../search-field";
+import SearchField from "./../search-field";
+import MobileMenu from "./../mobile-menu";
+
 import logo from "./../../assets/logos/base-white.svg";
+import hamburger from "./../../assets/icons/hamburger-white.svg";
+import search from "./../../assets/icons/search-white.svg";
+import { useEffect, useState } from "react";
 
 function Header() {
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
+
+  const location = useLocation();
+
+  const toggleMobileMenu = () => {
+    setShowMobileMenu((prev) => !prev);
+  };
+
+  const toggleMobileSearch = () => {
+    setShowMobileSearch((prev) => !prev);
+  };
+
+  useEffect(() => {
+    if (showMobileMenu) setShowMobileMenu(false);
+    if (showMobileSearch) setShowMobileSearch(false);
+  }, [location.pathname]);
+
   return (
     <header>
       <div className="general-container">
+        <img
+          id="menu-icon"
+          className="mobile-icon"
+          src={hamburger}
+          onClick={toggleMobileMenu}
+        />
+
+        <MobileMenu
+          isActive={showMobileMenu}
+          toggleMobileMenu={toggleMobileMenu}
+        />
+
         <Link to="/">
           <img className="logo" src={logo} />
         </Link>
+
+        <img
+          id="search-icon"
+          className="mobile-icon"
+          src={search}
+          onClick={toggleMobileSearch}
+        />
 
         <SearchField />
 

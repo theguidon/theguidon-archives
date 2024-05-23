@@ -110,3 +110,34 @@ header .main-nav .releases-link-container .popup a.active {
   background-color: var(--gdn-blue);
   color: white;
 }
+
+header .mobile-icon {
+  display: none;
+  width: 24px;
+  height: 24px;
+
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 992px) {
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 576px) {
+  header .mobile-icon {
+    display: block;
+  }
+
+  header .search-field {
+    display: none;
+  }
+
+  header .main-nav {
+    display: none;
+  }
+}
