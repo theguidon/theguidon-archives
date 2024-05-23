@@ -1,0 +1,28 @@
+#page-404 {
+  padding-top: 56px;
+  padding-bottom: 160px;
+}
+
+#page-404 .subheader {
+  font-size: var(--subheader-m-font-size);
+  color: var(--gdn-blue);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#page-404 h2 {
+  margin: 0 0 4px;
+}
+
+#page-404 hr {
+  margin: 0 0 24px;
+}
+
+#page-404 .text {
+  font-size: var(--body-m-font-size);
+  margin: 0 0 80px;
+}
+
+#page-404 h4 {
+  margin: 0 0 24px;
+}
