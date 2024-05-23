@@ -147,11 +147,22 @@ hr {
   .general-container {
     padding: 0 80px;
   }
+
+  .card-grid {
+    column-gap: 18px;
+    row-gap: 34px;
+  }
 }
 
 @media screen and (max-width: 992px) {
   .general-container {
     padding: 0 60px;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 18px;
+    row-gap: 36px;
   }
 }
 
@@ -159,10 +170,22 @@ hr {
   .general-container {
     padding: 0 40px;
   }
+
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+    row-gap: 38px;
+  }
 }
 
 @media screen and (max-width: 576px) {
   .general-container {
     padding: 0 24px;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 24px;
+    row-gap: 40px;
   }
 }

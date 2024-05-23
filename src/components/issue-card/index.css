@@ -77,3 +77,39 @@
   font-size: var(--body-s-font-size);
   color: black;
 }
+
+@media screen and (max-width: 1200px) {
+  .issue-card .cover-container {
+    height: 214px;
+    padding: 22px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .issue-card .cover-container {
+    height: 208px;
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .issue-card .cover-container {
+    height: 204px;
+    padding: 18px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .issue-card {
+    row-gap: 24px;
+  }
+
+  .issue-card .cover-container {
+    height: 200px;
+    padding: 16px;
+  }
+
+  .issue-card .blurb {
+    display: none;
+  }
+}
