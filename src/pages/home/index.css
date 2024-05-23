@@ -163,3 +163,34 @@
 #home #recently-uploaded .categ-card:hover .cover-container img {
   transform: scale(1.1);
 }
+
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 992px) {
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 576px) {
+  #home .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #home .card-grid .issue-card {
+    flex-flow: row nowrap;
+    align-items: center;
+    column-gap: 24px;
+  }
+
+  #home .card-grid .issue-card .cover-container {
+    width: 160px;
+  }
+
+  #home .card-grid .issue-card .blurb {
+    display: -webkit-box;
+    line-clamp: 4;
+    -webkit-line-clamp: 4;
+  }
+}
