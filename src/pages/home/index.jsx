@@ -15,6 +15,13 @@ function HomePage() {
           <IssueCard />
           <IssueCard />
           <IssueCard />
+          <IssueCard />
+          <IssueCard />
+          <IssueCard />
+          <IssueCard />
+          <IssueCard />
+          <IssueCard />
+          <IssueCard />
         </div>
 
         <div className="card-grid.list">
