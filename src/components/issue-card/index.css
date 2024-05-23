@@ -3,6 +3,8 @@
   flex-flow: column nowrap;
   row-gap: 12px;
   align-items: stretch;
+
+  text-decoration: none;
 }
 
 .issue-card.list {
@@ -12,9 +14,11 @@
 }
 
 .issue-card .cover-container {
-  /* height: 220px; */
-  height: 200px;
+  height: 220px;
+  padding: 24px;
   background-color: var(--blue-gray-light);
+
+  transition: 0.3s;
 }
 
 .issue-card.list .cover-container {
@@ -22,10 +26,34 @@
   height: 160px;
 }
 
+.issue-card:hover .cover-container {
+  background-color: var(--blue-light);
+}
+
+.issue-card .cover-container img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  transition: 0.3s;
+}
+
+.issue-card:hover .cover-container img {
+  transform: scale(1.1);
+}
+
 .issue-card .title {
   color: var(--gdn-blue);
 
   margin: 0 0 4px;
+
+  transition: 0.3s;
+}
+
+.issue-card:hover .title {
+  color: #3680cc;
 }
 
 .issue-card .date {
@@ -47,4 +75,5 @@
   -webkit-box-orient: vertical;
 
   font-size: var(--body-s-font-size);
+  color: black;
 }
