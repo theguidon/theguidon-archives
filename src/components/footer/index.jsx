@@ -39,10 +39,14 @@ function Footer() {
           </div>
 
           <div className="more">
-            <p className="subheader">More from The GUIDON</p>
-            <Link to="https://theguidon.com">The GUIDON Main</Link>
+            <p className="subheader">
+              More from <span className="nowrap">The GUIDON</span>
+            </p>
+            <Link to="https://theguidon.com">
+              <span className="nowrap">The GUIDON</span> Main
+            </Link>
             <Link to="https://interactive.theguidon.com">
-              The GUIDON Interactive
+              <span className="nowrap">The GUIDON</span> Interactive
             </Link>
             <Link to="https://vantage.theguidon.com">Vantage Magazine</Link>
           </div>
@@ -94,8 +98,8 @@ function Footer() {
         </div>
 
         <p className="credits">
-          &copy; The GUIDON 2024 All rights reserved. Designed and developed by
-          Digital Development{" "}
+          &copy; <span className="nowrap">The GUIDON</span> 2024 All rights
+          reserved. Designed and developed by Digital Development{" "}
           <span style={{ whiteSpace: "nowrap" }}>2022–2023</span> and{" "}
           <span style={{ whiteSpace: "nowrap" }}>2023–2024</span>.
         </p>

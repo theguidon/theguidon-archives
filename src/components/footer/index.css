@@ -26,6 +26,8 @@ footer .more {
   display: flex;
   flex-flow: column nowrap;
   row-gap: 12px;
+  width: fit-content;
+  justify-self: center;
 }
 
 footer .subheader {
@@ -144,10 +146,15 @@ footer .credits {
 
   footer .content .more {
     grid-area: more;
+    justify-self: flex-start;
   }
 
   footer .content .newsletter-group {
     grid-area: sub;
+  }
+
+  footer .content .newsletter-group .subscribe {
+    font-weight: bold;
   }
 }
 
