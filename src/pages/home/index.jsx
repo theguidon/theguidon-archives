@@ -100,19 +100,8 @@ function HomePage() {
         </div>
 
         <p className="subheader">Browse</p>
-        <h3>The Archive</h3>
-        <hr />
-        <div id="browse" className="card-grid">
-          <IssueCard data={sample} />
-          <IssueCard data={sample} />
-          <IssueCard data={sample} />
-          <IssueCard data={sample} />
-          <IssueCard data={sample} />
-        </div>
-
-        <p className="subheader">Recently Uploaded</p>
         <Link to="/releases/recent" className="row">
-          <h3>New on the Archive</h3>
+          <h3>The Archive</h3>
           <img src={chevronRight} />
         </Link>
         <hr />
@@ -129,6 +118,17 @@ function HomePage() {
               </div>
             </Link>
           ))}
+        </div>
+
+        <p className="subheader">Recently Uploaded</p>
+        <h3>New on the Archive</h3>
+        <hr />
+        <div id="browse" className="card-grid">
+          <IssueCard data={sample} />
+          <IssueCard data={sample} />
+          <IssueCard data={sample} />
+          <IssueCard data={sample} />
+          <IssueCard data={sample} />
         </div>
 
         <p className="subheader">Explore</p>
