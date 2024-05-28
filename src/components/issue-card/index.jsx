@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { DateFormatter } from "../../utils/date-formatter";
 import "./index.css";
 
 function IssueCard(props) {
@@ -13,8 +14,8 @@ function IssueCard(props) {
 
       <div className="info">
         <h6 className="title">{props.data.title}</h6>
-        <p className="date">{props.data.date}</p>
-        <p className="blurb">{props.data.blurb}</p>
+        <p className="date">{DateFormatter(props.data.date_published)}</p>
+        <p className="blurb">{props.data.description}</p>
       </div>
     </Link>
   );

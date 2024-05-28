@@ -13,11 +13,11 @@ function HomePage() {
 
   const issues = useSelector((state) => state.issues);
 
-  const latest = {
+  const sample = {
     cover: img,
-    slug: "aprmay-2024",
-    title: "April–May 2024",
-    date: "23 May 2024",
+    slug: "novdec-2022",
+    title: "November–December 2022",
+    date_published: "31 December 2022",
     blurb:
       "With 2022 nearing its end, The GUIDON takes a look at the events, issues, and developments that have come to define the past year.",
   };
@@ -93,22 +93,21 @@ function HomePage() {
         </Link>
         <hr />
         <div id="this-term" className="card-grid">
-          <IssueCard data={latest} />
-          <IssueCard data={latest} />
-          <IssueCard data={latest} />
-          <IssueCard data={latest} />
-          <IssueCard data={latest} />
+          {issues.isReady &&
+            [...Array(5)].map((_, idx) => (
+              <IssueCard data={issues.data[idx]} key={`this-term-${idx}`} />
+            ))}
         </div>
 
         <p className="subheader">Browse</p>
         <h3>The Archive</h3>
         <hr />
         <div id="browse" className="card-grid">
-          <IssueCard data={latest} />
-          <IssueCard data={latest} />
-          <IssueCard data={latest} />
-          <IssueCard data={latest} />
-          <IssueCard data={latest} />
+          <IssueCard data={sample} />
+          <IssueCard data={sample} />
+          <IssueCard data={sample} />
+          <IssueCard data={sample} />
+          <IssueCard data={sample} />
         </div>
 
         <p className="subheader">Recently Uploaded</p>
@@ -139,11 +138,11 @@ function HomePage() {
         </Link>
         <hr />
         <div id="history" className="card-grid">
-          <IssueCard data={latest} />
-          <IssueCard data={latest} />
-          <IssueCard data={latest} />
-          <IssueCard data={latest} />
-          <IssueCard data={latest} />
+          <IssueCard data={sample} />
+          <IssueCard data={sample} />
+          <IssueCard data={sample} />
+          <IssueCard data={sample} />
+          <IssueCard data={sample} />
         </div>
       </main>
     </div>
