@@ -4,9 +4,14 @@ import "./index.css";
 import img from "./../../assets/images/broadsheet-sample.png";
 import chevronRight from "./../../assets/icons/chevron-right.svg";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+import { DateFormatter } from "../../utils/date-formatter";
 
 function HomePage() {
   const year = 2023;
+
+  const issues = useSelector((state) => state.issues);
 
   const latest = {
     cover: img,
@@ -47,27 +52,38 @@ function HomePage() {
 
   return (
     <div id="home">
-      <div
-        id="hero"
-        style={{
-          background: `linear-gradient(180deg, #1C4480 0%, rgba(0, 0, 0, 0) 175%), url(${latest.cover})`,
-        }}
-      >
-        <div className="general-container">
-          <div className="info">
-            <p className="badge">Latest Release</p>
-            <h1 className="title">{latest.title}</h1>
-            <p className="date">{latest.date}</p>
-            <p className="blurb">{latest.blurb}</p>
+      {issues.isReady && (
+        <div
+          id="hero"
+          style={{
+            background: `linear-gradient(180deg, #1C4480 0%, rgba(0, 0, 0, 0) 175%), url(${issues.data[0].cover})`,
+          }}
+        >
+          <div className="general-container">
+            <div className="info">
+              <p className="badge">Latest Release</p>
+              <h1 className="title">{issues.data[0].title}</h1>
+              <p className="date">
+                {DateFormatter(issues.data[0].date_published)}
+              </p>
+              <p className="blurb">{issues.data[0].description}</p>
 
-            <Link to={`/issue/${latest.slug}`} className="read-now">
-              Read now
-            </Link>
+              <Link
+                to={`/issue/${issues.data[0].fixed_slug}`}
+                className="read-now"
+              >
+                Read now
+              </Link>
+            </div>
+
+            <img
+              className="cover"
+              src={issues.data[0].cover}
+              alt={issues.data[0].title}
+            />
           </div>
-
-          <img className="cover" src={latest.cover} alt={latest.title} />
         </div>
-      </div>
+      )}
 
       <main className="general-container">
         <p className="subheader">{`${year}–${year + 1}`}</p>
