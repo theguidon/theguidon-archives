@@ -56,9 +56,11 @@ function HomePage() {
         <div
           id="hero"
           style={{
-            background: `linear-gradient(180deg, #1C4480 0%, rgba(0, 0, 0, 0) 175%), url(${issues.data[0].cover})`,
+            backgroundImage: `url(${issues.data[0].cover})`,
           }}
         >
+          <div className="bg-tint" />
+
           <div className="general-container">
             <div className="info">
               <p className="badge">Latest Release</p>
@@ -66,7 +68,7 @@ function HomePage() {
               <p className="date">
                 {DateFormatter(issues.data[0].date_published)}
               </p>
-              <p className="blurb">{issues.data[0].description}</p>
+              <p className="desc">{issues.data[0].description}</p>
 
               <Link
                 to={`/issue/${issues.data[0].fixed_slug}`}

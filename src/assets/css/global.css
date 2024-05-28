@@ -183,6 +183,31 @@ hr {
 }
 
 @media screen and (max-width: 576px) {
+  :root {
+    --h1-font-size: 32px;
+    --h2-font-size: 28px;
+    --h3-font-size: 24px;
+    --h4-font-size: 20px;
+    --h5-font-size: 18px;
+    --h6-font-size: 16px;
+
+    --subheader-l-font-size: 18px;
+    --subheader-m-font-size: 16px;
+    --subheader-font-size: 14px;
+    --subheader-s-font-size: 12px;
+
+    --subheader-l-letter-spacing: 0.9px;
+    --subheader-m-letter-spacing: 0.8px;
+    --subheader-letter-spacing: 0.7px;
+    --subheader-s-letter-spacing: 0.6px;
+
+    --body-l-font-size: 24px;
+    --body-m-font-size: 20px;
+    --body-font-size: 16px;
+    --body-s-font-size: 14px;
+    --body-xs-font-size: 12px;
+  }
+
   .general-container {
     padding: 0 24px;
   }
