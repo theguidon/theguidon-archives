@@ -256,7 +256,7 @@
     width: 160px;
   }
 
-  #home .card-grid .issue-card .blurb {
+  #home .card-grid .issue-card .desc {
     display: -webkit-box;
     line-clamp: 4;
     -webkit-line-clamp: 4;

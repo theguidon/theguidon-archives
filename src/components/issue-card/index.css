@@ -67,7 +67,7 @@
   margin: 0 0 4px;
 }
 
-.issue-card .blurb {
+.issue-card .desc {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -114,7 +114,7 @@
     width: 160px;
   }
 
-  .issue-card .blurb {
+  .issue-card .desc {
     display: none;
   }
 }

@@ -1,0 +1,77 @@
+#issue .slider-section {
+  background-color: var(--blue-light);
+  padding: 12px 0;
+  height: 48px;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+#issue .slider-section .general-container {
+  padding: 0 64px;
+
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 24px;
+  align-items: center;
+}
+
+#issue .slider-section .slider {
+  flex-grow: 1;
+  background-color: white;
+  height: 12px;
+  border-radius: 12px;
+
+  position: relative;
+}
+
+#issue .slider-section .slider .slider-fill {
+  background-color: var(--gdn-blue);
+  height: 100%;
+  border-radius: 12px;
+}
+
+#issue .slider-section .slider .slider-circle {
+  width: 20px;
+  height: 20px;
+  background-color: #e9eef2;
+  border: 1px solid var(--gray-3);
+  border-radius: 20px;
+
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  cursor: pointer;
+}
+
+#issue .slider-section .text-controls {
+  min-width: 160px;
+  width: fit-content;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  column-gap: 8px;
+}
+
+#issue .slider-section .text-controls .chevron {
+  background-color: #666666;
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+
+  display: block;
+  /* width: 20px;
+  height: 20px; */
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+#issue .slider-section .text-controls .page {
+  color: #666666;
+  font-size: var(--body-s-font-size);
+  text-align: center;
+}
