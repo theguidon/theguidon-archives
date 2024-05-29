@@ -29,6 +29,7 @@
   align-items: center;
   /* column-gap: 24px; */
   column-gap: 32px;
+  width: fit-content;
 }
 
 #issue .title-bar .controls-left .back-group {
@@ -81,6 +82,8 @@
   align-items: center;
   column-gap: 24px;
   justify-content: flex-end;
+  width: fit-content;
+  margin-left: auto;
 }
 
 #issue .title-bar .controls-right .reader-group {
