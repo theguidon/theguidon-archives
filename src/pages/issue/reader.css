@@ -3,6 +3,7 @@
   height: calc(100vh - var(--header-height) - 56px - 48px - 16px);
 
   position: relative;
+  overflow: clip;
 }
 
 #issue #reader .edge {
@@ -15,6 +16,7 @@
 
   position: absolute;
   top: 0;
+  z-index: 5;
 
   cursor: pointer;
 }
@@ -50,4 +52,38 @@
   mask-size: contain;
   mask-position: center;
   mask-repeat: no-repeat;
+}
+
+/* hack */
+#issue #reader {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+#issue #reader .document-container {
+  transition: 0.2s;
+}
+
+#issue #reader .document {
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: center;
+}
+
+#issue #reader .document .page {
+  height: 100%;
+  width: fit-content;
+  display: none;
+}
+
+#issue #reader .document .page.active {
+  display: block;
+}
+
+#issue #reader .document .page canvas {
+  height: 100% !important;
+  width: auto !important;
 }

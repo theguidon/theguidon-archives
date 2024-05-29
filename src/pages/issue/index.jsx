@@ -20,6 +20,8 @@ import chevron_reader_right from "./../../assets/icons/chevron-reader-right.svg"
 import icon_facebook from "./../../assets/icons/facebook.svg";
 import icon_twitter from "./../../assets/icons/twitter.svg";
 
+import sample from "./../../assets/sample.pdf";
+
 import "./index.css";
 import "./title-bar.css";
 import "./reader.css";
@@ -34,7 +36,10 @@ function IssuePage() {
   const [isDoubleReader, setIsDoubleReader] = useState(true);
   const [page, setPage] = useState(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [viewerHeight, setViewerHeight] = useState(500);
+  const [scale, setScale] = useState(1.0);
 
+  const mainRef = useRef(null);
   const documentRef = useRef(null);
   const [loadedPages, setLoadedPages] = useState(0);
 
@@ -48,6 +53,27 @@ function IssuePage() {
   useEffect(() => {
     dispatch(fetchIssue({ slug: slug }));
   }, []);
+
+  const minZoom = 0.75;
+  const maxZoom = 2.0;
+
+  const onZoomIn = () => {
+    let ns = scale;
+
+    ns -= 0.05;
+    if (ns <= minZoom) ns = minZoom;
+
+    setScale(ns);
+  };
+
+  const onZoomOut = () => {
+    let ns = scale;
+
+    ns += 0.05;
+    if (ns >= maxZoom) ns = maxZoom;
+
+    setScale(ns);
+  };
 
   const onLeftClick = () => {
     let np = page;
@@ -97,8 +123,24 @@ function IssuePage() {
 
   useEffect(() => {
     if (isDoubleReader && page > 1 && page % 2 == 1) setPage(page - 1);
-    if (issue) console.log(issue.full_issue);
   }, [isDoubleReader]);
+
+  const determineShowPage = (p) => {
+    if (isDoubleReader) {
+      if (page == 1) {
+        return p == 1;
+      } else {
+        return p == page || p == page + 1;
+      }
+    } else {
+      return p == page;
+    }
+  };
+
+  // useEffect(() => {
+  //   if (mainRef.current)
+  //     console.log(mainRef.current.getBoundingClientRect().height);
+  // }, [window.innerWidth]);
 
   return (
     issue != null && (
@@ -140,24 +182,28 @@ function IssuePage() {
               </div>
 
               <div className="zoom-group">
-                <img className="zoom icon" src={zoom_in} />
+                <img className="zoom icon" src={zoom_in} onClick={onZoomIn} />
 
                 <div className="zoom-container">
                   <div
                     className="zoom-fill"
                     style={{
-                      width: "50%",
+                      width: `${
+                        ((scale - minZoom) / (maxZoom - minZoom)) * 100
+                      }%`,
                     }}
                   />
                   <div
                     className="zoom-circle"
                     style={{
-                      left: "50%",
+                      left: `${
+                        ((scale - minZoom) / (maxZoom - minZoom)) * 100
+                      }%`,
                     }}
                   />
                 </div>
 
-                <img className="zoom icon" src={zoom_out} />
+                <img className="zoom icon" src={zoom_out} onClick={onZoomOut} />
               </div>
 
               <img className="fullscreen icon" src={fullscreen_enter} />
@@ -165,7 +211,7 @@ function IssuePage() {
           </div>
         </section>
 
-        <main id="reader">
+        <main id="reader" ref={mainRef}>
           <div className="edge left" onClick={onLeftClick}>
             <div
               className="chevron"
@@ -176,22 +222,37 @@ function IssuePage() {
             />
           </div>
 
-          <Document
-            // file={issue.full_issue}
-            file={`/issues/${issue.fixed_slug}.pdf`}
-            loading={null}
-            inputRef={documentRef}
-            onLoadError={console.error}
+          <div
+            className="document-container"
+            style={{ transform: `scale(${scale})` }}
           >
-            <Page
-              pageNumber={1}
-              onRenderSuccess={() => {
-                setLoadedPages((loaded) => loaded + 1);
-              }}
-              renderAnnotationLayer={false}
-              renderTextLayer={false}
-            />
-          </Document>
+            <Document
+              // file={issue.full_issue}
+              // file={`/issues/${issue.fixed_slug}.pdf`}
+              file={sample}
+              loading={null}
+              inputRef={documentRef}
+              onLoadError={console.error}
+              className="document"
+            >
+              {[...Array(issue.num_pages)].map((_, idx) => (
+                <Page
+                  key={`page-${idx}`}
+                  canvasBackground="white"
+                  pageNumber={idx + 1}
+                  onRenderSuccess={() => {
+                    setLoadedPages((loaded) => loaded + 1);
+                  }}
+                  renderAnnotationLayer={false}
+                  renderTextLayer={false}
+                  height={1080}
+                  className={`page ${
+                    determineShowPage(idx + 1) ? "active" : ""
+                  }`}
+                />
+              ))}
+            </Document>
+          </div>
 
           <div className="edge right" onClick={onRightClick}>
             <div
