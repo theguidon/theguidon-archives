@@ -54,7 +54,7 @@
 }
 
 .issue-card:hover .title {
-  color: #3680cc;
+  color: var(--blue-alt-2);
 }
 
 .issue-card .date {

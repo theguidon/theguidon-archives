@@ -68,26 +68,24 @@ header .main-nav .releases-link-container {
   position: relative;
 }
 
-header .main-nav .releases-link-container .chevron-down {
-  background-color: var(--blue-light);
+header .main-nav .releases-link-container .chevron {
+  color: var(--blue-light);
   transition: 0.3s;
+
+  width: 20px;
+  height: 20px;
 }
 
-header .main-nav .releases-link-container a:hover .chevron-down,
-header .main-nav .releases-link-container a.active .chevron-down,
-header
-  .main-nav
-  .releases-link-container
-  .popup-container:hover
-  ~ a
-  .chevron-down {
-  background-color: var(--gdn-blue);
+header .main-nav .releases-link-container a:hover .chevron,
+header .main-nav .releases-link-container a.active .chevron,
+header .main-nav .releases-link-container .popup-container:hover ~ a .chevron {
+  color: var(--gdn-blue);
   transform: rotate(180deg);
 }
 
-header .main-nav .releases-link-container .popup-container {
+/* header .main-nav .releases-link-container .popup-container {
   transition: 0.3s;
-}
+} */
 
 header .main-nav .releases-link-container:hover .popup-container {
   opacity: 1;

@@ -4,11 +4,12 @@
 }
 
 #page-404 .subheader {
-  font-size: var(--subheader-m-font-size);
+  font-size: var(--subheader-font-size);
+  letter-spacing: var(--subheader-letter-spacing);
   color: var(--gdn-blue);
   text-transform: uppercase;
   font-weight: bold;
-  letter-spacing: var(--subheader-m-letter-spacing);
+  margin: 0 0 4px;
 }
 
 #page-404 h2 {

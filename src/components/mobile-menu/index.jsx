@@ -54,6 +54,10 @@ function MobileMenu(props) {
       text: "UAAP Primers",
     },
     {
+      link: "/releases/legacy",
+      text: "Over the Years",
+    },
+    {
       link: "/releases/others",
       text: "Others",
     },

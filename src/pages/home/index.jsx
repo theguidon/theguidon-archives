@@ -163,7 +163,7 @@ function HomePage() {
         </div>
 
         <p className="subheader">Explore</p>
-        <Link to="/releases" className="row">
+        <Link to="/releases/legacy" className="row">
           <h3>History</h3>
           {chevronRight}
         </Link>

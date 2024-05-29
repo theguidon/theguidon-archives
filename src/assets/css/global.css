@@ -105,13 +105,6 @@ h6 {
   margin: 0 auto;
 }
 
-.chevron-down {
-  -webkit-mask: url("./../icons/chevron-down.svg");
-  mask: url("./../icons/chevron-down.svg");
-  width: 20px;
-  height: 20px;
-}
-
 .popup-container {
   position: absolute;
   top: 100%;
@@ -120,6 +113,7 @@ h6 {
   padding-top: 8px;
 
   pointer-events: none;
+  transition: 0.3s;
   opacity: 0;
 }
 
