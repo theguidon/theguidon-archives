@@ -256,8 +256,8 @@ function IssuePage() {
           >
             <Document
               // file={issue.full_issue}
-              file={`/issues/${issue.fixed_slug}.pdf`}
-              // file={sample}
+              // file={`/issues/${issue.fixed_slug}.pdf`}
+              file={sample}
               loading={null}
               inputRef={documentRef}
               onLoadError={console.error}

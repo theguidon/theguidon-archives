@@ -143,6 +143,11 @@ hr {
   row-gap: 32px;
 }
 
+.card-grid.list {
+  grid-template-columns: 1fr;
+  row-gap: 24px;
+}
+
 .nowrap {
   white-space: nowrap;
 }

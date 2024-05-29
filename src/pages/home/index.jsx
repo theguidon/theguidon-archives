@@ -106,7 +106,7 @@ function HomePage() {
           <img src={chevronRight} />
         </Link>
         <hr />
-        <div id="this-term" className="card-grid">
+        <div id="this-term" className="card-grid mobile-list">
           {issues.data.all != null &&
             issues.data.all[0] != null &&
             [...Array(5)].map((_, idx) => (
@@ -151,7 +151,7 @@ function HomePage() {
           <img src={chevronRight} />
         </Link>
         <hr />
-        <div id="history" className="card-grid">
+        <div id="history" className="card-grid mobile-list">
           <IssueCard data={sample} />
           <IssueCard data={sample} />
           <IssueCard data={sample} />

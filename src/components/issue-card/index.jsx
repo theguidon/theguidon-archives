@@ -4,10 +4,7 @@ import "./index.css";
 
 function IssueCard(props) {
   return (
-    <Link
-      to={`/issue/${props.data.fixed_slug}`}
-      className={`issue-card ${props.isList ? "list" : ""}`}
-    >
+    <Link to={`/issue/${props.data.fixed_slug}`} className="issue-card">
       <div className="cover-container">
         <img src={props.data.cover} alt={props.data.title} />
       </div>

@@ -27,7 +27,7 @@ function Page404() {
       <p className="subheader">Our latest releases</p>
       <h4>You might be interested in these instead.</h4>
 
-      <div className="card-grid">
+      <div className="card-grid mobile-list">
         <IssueCard data={data} />
         <IssueCard data={data} />
         <IssueCard data={data} />

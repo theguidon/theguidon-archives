@@ -27,3 +27,64 @@
 #page-404 h4 {
   margin: 0 0 24px;
 }
+
+@media screen and (max-width: 1200px) {
+  #page-404 {
+    padding-top: 48px;
+    padding-bottom: 128px;
+  }
+
+  #page-404 .text {
+    font-size: var(--body-font-size);
+    margin: 0 0 76px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  #page-404 {
+    padding-top: 40px;
+    padding-bottom: 96px;
+  }
+
+  #page-404 .text {
+    font-size: var(--body-font-size);
+    margin: 0 0 72px;
+  }
+
+  #page-404 .card-grid .issue-card:nth-child(5) {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #page-404 {
+    padding-top: 36px;
+    padding-bottom: 64px;
+  }
+
+  #page-404 .text {
+    font-size: var(--body-font-size);
+    margin: 0 0 68px;
+  }
+
+  #page-404 .card-grid .issue-card:nth-child(4) {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #page-404 {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  #page-404 .text {
+    font-size: var(--body-font-size);
+    margin: 0 0 64px;
+  }
+
+  #page-404 .card-grid .issue-card:nth-child(4),
+  #page-404 .card-grid .issue-card:nth-child(5) {
+    display: flex;
+  }
+}
