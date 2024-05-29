@@ -184,6 +184,9 @@
 }
 
 @media screen and (max-width: 992px) {
+  #recent .issue-card:nth-child(5) {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -194,6 +197,10 @@
     max-width: 250px;
     /* height: 60vh;
     max-height: 500px; */
+  }
+
+  #recent .issue-card:nth-child(4) {
+    display: none;
   }
 }
 
@@ -240,5 +247,10 @@
     font-size: var(--body-font-size);
     padding: 8px 24px;
     border-radius: 8px;
+  }
+
+  #recent .issue-card:nth-child(4),
+  #recent .issue-card:nth-child(5) {
+    display: flex;
   }
 }

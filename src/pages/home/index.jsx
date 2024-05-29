@@ -106,7 +106,7 @@ function HomePage() {
           <img src={chevronRight} />
         </Link>
         <hr />
-        <div id="this-term" className="card-grid mobile-list">
+        <div id="recent" className="card-grid mobile-list">
           {issues.data.all != null &&
             issues.data.all[0] != null &&
             [...Array(5)].map((_, idx) => (
