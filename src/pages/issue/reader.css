@@ -47,11 +47,7 @@
 
 #issue #reader .chevron {
   height: 44px;
-  width: 44px;
-  background-color: var(--gray-3);
-  mask-size: contain;
-  mask-position: center;
-  mask-repeat: no-repeat;
+  width: auto;
 }
 
 /* hack */

@@ -37,6 +37,15 @@
   flex-flow: row nowrap;
   align-items: center;
   column-gap: 8px;
+
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+}
+
+#issue .title-bar .controls-left .back-group svg {
+  height: 24px;
+  width: auto;
 }
 
 #issue .title-bar .controls-left .back-group .chevron {
@@ -47,12 +56,6 @@
 
   width: 20px;
   height: 20px;
-}
-
-#issue .title-bar .controls-left .back-group .back {
-  font-weight: bold;
-  text-decoration: none;
-  color: white;
 }
 
 #issue .title-bar .controls-left .controls-group {

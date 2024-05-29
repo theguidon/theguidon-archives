@@ -23,11 +23,6 @@ function HomePage() {
   }, []);
 
   const issues = useSelector((state) => state.issues);
-
-  useEffect(() => {
-    console.log(issues);
-  }, [issues]);
-
   const year = 2023;
 
   const sample = {

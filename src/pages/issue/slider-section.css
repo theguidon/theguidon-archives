@@ -54,19 +54,13 @@
   flex-flow: row nowrap;
   justify-content: space-between;
   column-gap: 8px;
+  align-items: center;
 }
 
 #issue .slider-section .text-controls .chevron {
-  background-color: #666666;
-  mask-size: contain;
-  mask-position: center;
-  mask-repeat: no-repeat;
-
   display: block;
-  /* width: 20px;
-  height: 20px; */
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   cursor: pointer;
 }
 

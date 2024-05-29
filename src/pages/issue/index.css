@@ -69,11 +69,11 @@
 
 #issue #issue-info .socials a {
   display: block;
+}
+
+#issue #issue-info .socials svg {
+  display: block;
+  color: var(--gdn-blue);
   width: 24px;
   height: 24px;
-
-  background-color: var(--gdn-blue);
-  mask-size: contain;
-  mask-position: center;
-  mask-repeat: no-repeat;
 }
