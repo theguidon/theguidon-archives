@@ -4,14 +4,31 @@ import "./index.css";
 import img from "./../../assets/images/broadsheet-sample.png";
 import chevronRight from "./../../assets/icons/chevron-right.svg";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { DateFormatter } from "../../utils/date-formatter";
+import { useEffect } from "react";
+import { fetchIssues } from "../../redux/modules/issues";
 
 function HomePage() {
-  const year = 2023;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchIssues({}));
+    dispatch(fetchIssues({ categ: "press-issue" }));
+    dispatch(fetchIssues({ categ: "graduation-magazine" }));
+    dispatch(fetchIssues({ categ: "freshmanual" }));
+    dispatch(fetchIssues({ categ: "uaap-primer" }));
+    dispatch(fetchIssues({ categ: "other" }));
+  }, []);
 
   const issues = useSelector((state) => state.issues);
+
+  useEffect(() => {
+    console.log(issues);
+  }, [issues]);
+
+  const year = 2023;
 
   const sample = {
     cover: img,
@@ -24,39 +41,39 @@ function HomePage() {
 
   const categories = [
     {
+      key: "press-issue",
       link: "/releases/press",
       title: "Press Issues",
-      img: img,
     },
     {
+      key: "graduation-magazine",
       link: "/releases/gradmag",
       title: "Graduation Magazines",
-      img: img,
     },
     {
+      key: "freshmanual",
       link: "/releases/freshmanual",
       title: "Freshmanuals",
-      img: img,
     },
     {
+      key: "uaap-primer",
       link: "/releases/uaap-primer",
       title: "UAAP Primers",
-      img: img,
     },
     {
+      key: "other",
       link: "/releases/others",
       title: "Others",
-      img: img,
     },
   ];
 
   return (
     <div id="home">
-      {issues.isReady && (
+      {issues.data.all != null && issues.data.all[0] != null && (
         <div
           id="hero"
           style={{
-            backgroundImage: `url(${issues.data[0].cover})`,
+            backgroundImage: `url(${issues.data.all[0].issues[0].cover})`,
           }}
         >
           <div className="bg-tint" />
@@ -64,14 +81,14 @@ function HomePage() {
           <div className="general-container">
             <div className="info">
               <p className="badge">Latest Release</p>
-              <h1 className="title">{issues.data[0].title}</h1>
+              <h1 className="title">{issues.data.all[0].issues[0].title}</h1>
               <p className="date">
-                {DateFormatter(issues.data[0].date_published)}
+                {DateFormatter(issues.data.all[0].issues[0].date_published)}
               </p>
-              <p className="desc">{issues.data[0].description}</p>
+              <p className="desc">{issues.data.all[0].issues[0].description}</p>
 
               <Link
-                to={`/issue/${issues.data[0].fixed_slug}`}
+                to={`/issue/${issues.data.all[0].issues[0].fixed_slug}`}
                 className="read-now"
               >
                 Read now
@@ -80,8 +97,8 @@ function HomePage() {
 
             <img
               className="cover"
-              src={issues.data[0].cover}
-              alt={issues.data[0].title}
+              src={issues.data.all[0].issues[0].cover}
+              alt={issues.data.all[0].issues[0].title}
             />
           </div>
         </div>
@@ -95,9 +112,13 @@ function HomePage() {
         </Link>
         <hr />
         <div id="this-term" className="card-grid">
-          {issues.isReady &&
+          {issues.data.all != null &&
+            issues.data.all[0] != null &&
             [...Array(5)].map((_, idx) => (
-              <IssueCard data={issues.data[idx]} key={`this-term-${idx}`} />
+              <IssueCard
+                data={issues.data.all[0].issues[idx]}
+                key={`this-term-${idx}`}
+              />
             ))}
         </div>
 
@@ -116,7 +137,14 @@ function HomePage() {
               </div>
               <hr />
               <div className="cover-container">
-                <img src={categ.img} alt={categ.title} />
+                {issues.data[categ.key] != null &&
+                  issues.data[categ.key][0] != null &&
+                  issues.data[categ.key][0].issues[0] != null && (
+                    <img
+                      src={issues.data[categ.key][0].issues[0].cover}
+                      alt={categ.title}
+                    />
+                  )}
               </div>
             </Link>
           ))}

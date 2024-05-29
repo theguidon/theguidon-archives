@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Outlet, Route, Routes } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { fetchIssues } from "./redux/modules/issues";
 import Header from "./components/header";
 import Footer from "./components/footer";
 
@@ -15,12 +13,6 @@ import Page404 from "./pages/404";
 import ScrollToTop from "./utils/scroll-to-top";
 
 function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchIssues());
-  }, []);
-
   return (
     <React.Fragment>
       <Routes>
