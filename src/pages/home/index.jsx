@@ -123,7 +123,7 @@ function HomePage() {
           <img src={chevronRight} />
         </Link>
         <hr />
-        <div id="recently-uploaded" className="card-grid">
+        <div id="recently-uploaded" className="card-grid mobile-list">
           {categories.map((categ, idx) => (
             <Link to={categ.link} key={`categ-${idx}`} className="categ-card">
               <div className="row">

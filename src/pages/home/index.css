@@ -133,7 +133,7 @@
   margin: 0 0 24px;
 }
 
-#home main .card-grid {
+#home main .card-grid:not(:last-child) {
   margin: 0 0 80px;
 }
 
@@ -181,9 +181,26 @@
 }
 
 @media screen and (max-width: 1200px) {
+  #home main {
+    padding-top: 48px;
+    padding-bottom: 68px;
+  }
+
+  #home main .card-grid:not(:last-child) {
+    margin: 0 0 72px;
+  }
 }
 
 @media screen and (max-width: 992px) {
+  #home main {
+    padding-top: 40px;
+    padding-bottom: 56px;
+  }
+
+  #home main .card-grid:not(:last-child) {
+    margin: 0 0 64px;
+  }
+
   #recent .issue-card:nth-child(5) {
     display: none;
   }
@@ -197,6 +214,15 @@
     max-width: 250px;
     /* height: 60vh;
     max-height: 500px; */
+  }
+
+  #home main {
+    padding-top: 36px;
+    padding-bottom: 44px;
+  }
+
+  #home main .card-grid:not(:last-child) {
+    margin: 0 0 56px;
   }
 
   #recent .issue-card:nth-child(4) {
@@ -247,6 +273,15 @@
     font-size: var(--body-font-size);
     padding: 8px 24px;
     border-radius: 8px;
+  }
+
+  #home main {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  #home main .card-grid:not(:last-child) {
+    margin: 0 0 48px;
   }
 
   #recent .issue-card:nth-child(4),
