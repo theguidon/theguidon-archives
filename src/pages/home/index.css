@@ -201,7 +201,7 @@
     margin: 0 0 64px;
   }
 
-  #recent .issue-card:nth-child(5) {
+  #home #latest .issue-card:nth-child(5) {
     display: none;
   }
 }
@@ -225,7 +225,7 @@
     margin: 0 0 56px;
   }
 
-  #recent .issue-card:nth-child(4) {
+  #home #recent .issue-card:nth-child(4) {
     display: none;
   }
 }
@@ -284,8 +284,8 @@
     margin: 0 0 48px;
   }
 
-  #recent .issue-card:nth-child(4),
-  #recent .issue-card:nth-child(5) {
+  #home #latest .issue-card:nth-child(4),
+  #home #latest .issue-card:nth-child(5) {
     display: flex;
   }
 }
