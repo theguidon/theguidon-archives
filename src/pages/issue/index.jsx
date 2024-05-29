@@ -38,10 +38,12 @@ function IssuePage() {
   const documentRef = useRef(null);
   const [loadedPages, setLoadedPages] = useState(0);
 
-  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    "pdfjs-dist/build/pdf.worker.min.mjs",
-    import.meta.url
-  ).toString();
+  // pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  //   "pdfjs-dist/build/pdf.worker.min.mjs",
+  //   import.meta.url
+  // ).toString();
+
+  pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
   useEffect(() => {
     dispatch(fetchIssue({ slug: slug }));
@@ -175,7 +177,8 @@ function IssuePage() {
           </div>
 
           <Document
-            file={issue.full_issue}
+            // file={issue.full_issue}
+            file={`/issues/${issue.fixed_slug}.pdf`}
             loading={null}
             inputRef={documentRef}
             onLoadError={console.error}

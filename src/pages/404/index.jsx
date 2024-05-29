@@ -1,6 +1,8 @@
 import IssueCard from "../../components/issue-card";
 import "./index.css";
 
+import img from "./../../assets/images/broadsheet-sample.png";
+
 function Page404() {
   const data = {
     cover: img,
