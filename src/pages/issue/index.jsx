@@ -154,25 +154,23 @@ function IssuePage() {
         </section>
 
         <main id="reader">
-          <div className="edge left">
+          <div className="edge left" onClick={onLeftClick}>
             <div
               className="chevron"
               style={{
                 maskImage: `url(${chevron_reader_left})`,
                 WebkitMaskImage: `url(${chevron_reader_left})`,
               }}
-              onClick={onLeftClick}
             />
           </div>
 
-          <div className="edge right">
+          <div className="edge right" onClick={onRightClick}>
             <div
               className="chevron"
               style={{
                 maskImage: `url(${chevron_reader_right})`,
                 WebkitMaskImage: `url(${chevron_reader_right})`,
               }}
-              onClick={onRightClick}
             />
           </div>
         </main>
