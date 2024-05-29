@@ -61,7 +61,7 @@
   justify-content: center;
 }
 
-#issue #reader .document-container {
+#issue #reader .document-container:not(.dragging) {
   transition: 0.2s;
 }
 
@@ -77,6 +77,7 @@
   height: 100%;
   width: fit-content;
   display: none;
+  cursor: default;
 }
 
 #issue #reader .document .page.active {
@@ -86,4 +87,8 @@
 #issue #reader .document .page canvas {
   height: 100% !important;
   width: auto !important;
+}
+
+#issue #reader .document .page > div {
+  height: 100%;
 }

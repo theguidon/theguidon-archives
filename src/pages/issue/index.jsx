@@ -20,13 +20,13 @@ import chevron_reader_right from "./../../assets/icons/chevron-reader-right.svg"
 import icon_facebook from "./../../assets/icons/facebook.svg";
 import icon_twitter from "./../../assets/icons/twitter.svg";
 
-import sample from "./../../assets/sample.pdf";
+import sample from "./../../assets/sample-2.pdf";
 
 import "./index.css";
 import "./title-bar.css";
 import "./reader.css";
 import "./slider-section.css";
-import { Document, Page, pdfjs } from "react-pdf";
+import { Document, Page, Thumbnail, pdfjs } from "react-pdf";
 
 function IssuePage() {
   const dispatch = useDispatch();
@@ -37,7 +37,13 @@ function IssuePage() {
   const [page, setPage] = useState(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [viewerHeight, setViewerHeight] = useState(500);
+
   const [scale, setScale] = useState(1.0);
+  const [tx, setTx] = useState(0.0);
+  const [ty, setTy] = useState(0.0);
+  const [docIsDragging, setDocIsDragging] = useState(false);
+  const [ox, setOx] = useState(0.0);
+  const [oy, setOy] = useState(0.0);
 
   const mainRef = useRef(null);
   const documentRef = useRef(null);
@@ -54,13 +60,14 @@ function IssuePage() {
     dispatch(fetchIssue({ slug: slug }));
   }, []);
 
-  const minZoom = 0.75;
-  const maxZoom = 2.0;
+  const minZoom = 0.5;
+  const maxZoom = 6.0;
+  const zoomStep = 0.5;
 
   const onZoomIn = () => {
     let ns = scale;
 
-    ns -= 0.05;
+    ns -= zoomStep;
     if (ns <= minZoom) ns = minZoom;
 
     setScale(ns);
@@ -69,10 +76,28 @@ function IssuePage() {
   const onZoomOut = () => {
     let ns = scale;
 
-    ns += 0.05;
+    ns += zoomStep;
     if (ns >= maxZoom) ns = maxZoom;
 
     setScale(ns);
+  };
+
+  const onStartDragging = (e) => {
+    e.preventDefault();
+    setDocIsDragging(true);
+    // setOx(e.screenX);
+    // setOy(e.screenY);
+  };
+
+  const onDrag = (e) => {
+    // if (docIsDragging) {
+    //   setTx(e.screenX - ox);
+    //   setTy(e.screenY - oy);
+    // }
+  };
+
+  const onEndDragging = (e) => {
+    setDocIsDragging(false);
   };
 
   const onLeftClick = () => {
@@ -223,8 +248,11 @@ function IssuePage() {
           </div>
 
           <div
-            className="document-container"
-            style={{ transform: `scale(${scale})` }}
+            className={`document-container ${docIsDragging ? "dragging" : ""}`}
+            style={{ transform: `translate(${tx}px, ${ty}px) scale(${scale})` }}
+            onMouseDown={onStartDragging}
+            onMouseMove={onDrag}
+            onMouseUp={onEndDragging}
           >
             <Document
               // file={issue.full_issue}
@@ -236,7 +264,7 @@ function IssuePage() {
               className="document"
             >
               {[...Array(issue.num_pages)].map((_, idx) => (
-                <Page
+                <Thumbnail
                   key={`page-${idx}`}
                   canvasBackground="white"
                   pageNumber={idx + 1}
@@ -245,7 +273,7 @@ function IssuePage() {
                   }}
                   renderAnnotationLayer={false}
                   renderTextLayer={false}
-                  height={1080}
+                  height={2400}
                   className={`page ${
                     determineShowPage(idx + 1) ? "active" : ""
                   }`}
