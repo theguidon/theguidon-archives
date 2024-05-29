@@ -47,7 +47,7 @@
 }
 
 #issue .slider-section .text-controls {
-  min-width: 160px;
+  min-width: 180px;
   width: fit-content;
 
   display: flex;
