@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { DateFormatter } from "../../utils/date-formatter";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchIssue } from "../../redux/modules/issue";
 
@@ -24,6 +24,7 @@ import "./index.css";
 import "./title-bar.css";
 import "./reader.css";
 import "./slider-section.css";
+import { Document, Page, pdfjs } from "react-pdf";
 
 function IssuePage() {
   const dispatch = useDispatch();
@@ -33,6 +34,14 @@ function IssuePage() {
   const [isDoubleReader, setIsDoubleReader] = useState(true);
   const [page, setPage] = useState(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
+
+  const documentRef = useRef(null);
+  const [loadedPages, setLoadedPages] = useState(0);
+
+  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+    "pdfjs-dist/build/pdf.worker.min.mjs",
+    import.meta.url
+  ).toString();
 
   useEffect(() => {
     dispatch(fetchIssue({ slug: slug }));
@@ -86,6 +95,7 @@ function IssuePage() {
 
   useEffect(() => {
     if (isDoubleReader && page > 1 && page % 2 == 1) setPage(page - 1);
+    if (issue) console.log(issue.full_issue);
   }, [isDoubleReader]);
 
   return (
@@ -163,6 +173,22 @@ function IssuePage() {
               }}
             />
           </div>
+
+          <Document
+            file={issue.full_issue}
+            loading={null}
+            inputRef={documentRef}
+            onLoadError={console.error}
+          >
+            <Page
+              pageNumber={1}
+              onRenderSuccess={() => {
+                setLoadedPages((loaded) => loaded + 1);
+              }}
+              renderAnnotationLayer={false}
+              renderTextLayer={false}
+            />
+          </Document>
 
           <div className="edge right" onClick={onRightClick}>
             <div
