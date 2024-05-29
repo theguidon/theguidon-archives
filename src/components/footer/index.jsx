@@ -30,7 +30,6 @@ function Footer() {
           <div className="browse">
             <p className="subheader">Browse the Archives</p>
             <Link to="/releases/recent">Recently Uploaded</Link>
-            <Link to="/releases/this-term">Releases This Term</Link>
             <Link to="/releases/press">Press Issues</Link>
             <Link to="/releases/gradmag">Graduation Magazines</Link>
             <Link to="/releases/freshmanual">Freshmanuals</Link>

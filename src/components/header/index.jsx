@@ -62,7 +62,6 @@ function Header() {
             <div className="popup-container">
               <nav className="popup">
                 <NavLink to="/releases/recent">Recently Uploaded</NavLink>
-                <NavLink to="/releases/this-term">This Term</NavLink>
                 <NavLink to="/releases/press">Press Issues</NavLink>
                 <NavLink to="/releases/gradmag">Graduation Magazines</NavLink>
                 <NavLink to="/releases/freshmanual">Freshmanuals</NavLink>

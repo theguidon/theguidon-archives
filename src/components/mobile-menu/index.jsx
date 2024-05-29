@@ -9,13 +9,7 @@ function MobileMenu(props) {
       link: "/",
       text: "Home",
       icon: (
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -29,13 +23,7 @@ function MobileMenu(props) {
       link: "/releases",
       text: "Releases",
       icon: (
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -48,10 +36,6 @@ function MobileMenu(props) {
     {
       link: "/releases/recent",
       text: "Recently Uploaded",
-    },
-    {
-      link: "/releases/this-term",
-      text: "Releases This Term",
     },
     {
       link: "/releases/press",
@@ -77,13 +61,7 @@ function MobileMenu(props) {
       link: "/about",
       text: "About",
       icon: (
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -104,7 +82,9 @@ function MobileMenu(props) {
       />
       <div id="mobile-menu" className={props.isActive ? "active" : ""}>
         <div className="head">
-          <img className="logo" src={logo} />
+          <Link to="/">
+            <img className="logo" src={logo} />
+          </Link>
 
           <svg
             className="close"

@@ -109,7 +109,7 @@ function HomePage() {
 
       <main className="general-container">
         <p className="subheader">Recently Uploaded</p>
-        <Link to="releases/this-term" className="row">
+        <Link to="releases/recent" className="row">
           <h3>New on the Archive</h3>
           {chevronRight}
         </Link>
@@ -120,7 +120,7 @@ function HomePage() {
             [...Array(5)].map((_, idx) => (
               <IssueCard
                 data={issues.data.all[0].issues[idx]}
-                key={`this-term-${idx}`}
+                key={`recent-${idx}`}
               />
             ))}
         </div>
