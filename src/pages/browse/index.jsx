@@ -28,6 +28,48 @@ function BrowsePage() {
   const issues = useSelector((state) => state.issues);
   const [page, setPage] = useState(1);
 
+  const getSortedIssuesPage = () => {
+    let key = `${sortOldestFilter === true ? "asc-" : ""}${page}`;
+
+    if (
+      issues.data[actual[slug]] != null &&
+      issues.data[actual[slug]][key] != null
+    )
+      return issues.data[actual[slug]][key];
+    return [];
+
+    // console.log(issues.data[actual[slug]]);
+
+    if (sortOldestFilter == null || !sortOldestFilter) {
+      if (
+        issues.data[actual[slug]] != null &&
+        issues.data[actual[slug]][page] != null
+      )
+        return issues.data[actual[slug]][page];
+      else return [];
+    } else {
+      let rev_page = issues.data[actual[slug]].max_pages + 1 - page;
+
+      // if (issues.data[actual[slug]][rev_page] == null)
+      //   dispatch(fetchIssues({ categ: actual[slug], page: rev_page }));
+
+      if (
+        issues.data[actual[slug]] != null &&
+        issues.data[actual[slug]][rev_page] != null
+      )
+        return issues.data[actual[slug]][rev_page];
+      else return [];
+
+      // console.log(rev_page);
+      // return [];
+      // return issues.data[actual[slug]][
+      //   issues.data[actual[slug]].max_pages + 1 - page
+      // ];
+    }
+  };
+
+  const getSortedIssues = () => {};
+
   // console.log(issues);
 
   const categ_filters = [
@@ -76,9 +118,19 @@ function BrowsePage() {
   }, [slug]);
 
   useEffect(() => {
-    if (slug == "recent") dispatch(fetchIssues({ page: page }));
-    else dispatch(fetchIssues({ categ: actual[slug], page: page }));
-  }, [page, slug]);
+    if (slug == "recent")
+      dispatch(
+        fetchIssues({ page: page, order: sortOldestFilter ? "asc" : "desc" })
+      );
+    else
+      dispatch(
+        fetchIssues({
+          categ: actual[slug],
+          page: page,
+          order: sortOldestFilter ? "asc" : "desc",
+        })
+      );
+  }, [page, slug, sortOldestFilter]);
 
   const calculatePageNums = () => {
     if (issues.data[actual[slug]] != null) {
@@ -273,11 +325,9 @@ function BrowsePage() {
       </div>
 
       <div className={`card-grid ${isGridView ? "" : "list"}`}>
-        {issues.data[actual[slug]] != null &&
-          issues.data[actual[slug]][page] != null &&
-          issues.data[actual[slug]][page].map((issue, idx) => (
-            <IssueCard key={`issue-${slug}-${idx}`} data={issue} />
-          ))}
+        {getSortedIssuesPage().map((issue, idx) => (
+          <IssueCard key={`issue-${slug}-${idx}`} data={issue} />
+        ))}
       </div>
 
       {calculatePageNums().length > 1 && (
