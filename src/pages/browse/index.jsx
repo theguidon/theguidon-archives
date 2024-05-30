@@ -1,14 +1,34 @@
-import { Link, NavLink, useParams, Navigate } from "react-router-dom";
+import { NavLink, useParams, Navigate } from "react-router-dom";
 import "./index.css";
-import { useState } from "react";
+import "./filters.css";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchIssues } from "../../redux/modules/issues";
+import IssueCard from "../../components/issue-card";
 
 function BrowsePage() {
   const { slug } = useParams();
+  const dispatch = useDispatch();
   const [isGridView, setIsGridView] = useState(true);
 
-  const [yearFilter, setYearFilter] = useState(2022);
+  const [yearFilter, setYearFilter] = useState(null);
   const [sortOldestFilter, setSortOldestFilter] = useState(null);
   const [activeFilterPopup, setActiveFilterPopup] = useState(null);
+
+  useEffect(() => {
+    dispatch(fetchIssues({}));
+    dispatch(fetchIssues({ categ: "press-issue" }));
+    dispatch(fetchIssues({ categ: "graduation-magazine" }));
+    dispatch(fetchIssues({ categ: "freshmanual" }));
+    dispatch(fetchIssues({ categ: "uaap-primer" }));
+    dispatch(fetchIssues({ categ: "legacy" }));
+    dispatch(fetchIssues({ categ: "other" }));
+  }, []);
+
+  const issues = useSelector((state) => state.issues);
+  const [page, setPage] = useState(1);
+
+  // console.log(issues);
 
   const categ_filters = [
     {
@@ -20,7 +40,7 @@ function BrowsePage() {
       text: "Press Issues",
     },
     {
-      slug: "graduation-magazine",
+      slug: "gradmag",
       text: "GradMag",
     },
     {
@@ -40,6 +60,56 @@ function BrowsePage() {
       text: "Others",
     },
   ];
+
+  const actual = {
+    recent: "all",
+    press: "press-issue",
+    gradmag: "graduation-magazine",
+    freshmanual: "freshmanual",
+    "uaap-primer": "uaap-primer",
+    legacy: "legacy",
+    others: "other",
+  };
+
+  useEffect(() => {
+    setPage(1);
+  }, [slug]);
+
+  useEffect(() => {
+    if (slug == "recent") dispatch(fetchIssues({ page: page }));
+    else dispatch(fetchIssues({ categ: actual[slug], page: page }));
+  }, [page, slug]);
+
+  const calculatePageNums = () => {
+    if (issues.data[actual[slug]] != null) {
+      let lim_left = page - 2;
+      let lim_right = page + 2;
+
+      // adjust right
+      if (lim_right >= issues.data[actual[slug]].max_pages) {
+        lim_left -= lim_right - issues.data[actual[slug]].max_pages;
+        lim_right -= lim_right - issues.data[actual[slug]].max_pages;
+      }
+
+      // adjust left
+      if (lim_left <= 0) {
+        let excess = 1 - lim_left;
+        lim_left += 1 - lim_left;
+        if (lim_right < issues.data[actual[slug]].max_pages) {
+          lim_right += Math.min(
+            excess,
+            issues.data[actual[slug]].max_pages - lim_right
+          );
+        }
+      }
+
+      return [...Array(lim_right - lim_left + 1)].map(
+        (_, idx) => idx + lim_left
+      );
+    }
+
+    return [1];
+  };
 
   if (slug == null) return <Navigate to="/releases/recent" />;
 
@@ -201,6 +271,71 @@ function BrowsePage() {
           </svg>
         </div>
       </div>
+
+      <div className={`card-grid ${isGridView ? "" : "list"}`}>
+        {issues.data[actual[slug]] != null &&
+          issues.data[actual[slug]][page] != null &&
+          issues.data[actual[slug]][page].map((issue, idx) => (
+            <IssueCard key={`issue-${slug}-${idx}`} data={issue} />
+          ))}
+      </div>
+
+      {calculatePageNums().length > 1 && (
+        <div className="pagination">
+          <div
+            className={calculatePageNums()[0] == page ? "hide" : ""}
+            onClick={() => {
+              setPage((p) => p - 1);
+            }}
+          >
+            <svg
+              className="arrow"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="none"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M18 10C18 10.5523 17.5523 11 17 11H5.415L7.70711 13.2929C8.06759 13.6534 8.09532 14.2206 7.7903 14.6129L7.70711 14.7071C7.34662 15.0676 6.77939 15.0953 6.3871 14.7903L6.29289 14.7071L2.29289 10.7071L2.2515 10.6631L2.19633 10.5953L2.12467 10.4841L2.07123 10.3713L2.03585 10.266L2.00683 10.1175L2 10L2.00279 9.92476L2.02024 9.79927L2.04974 9.68786L2.09367 9.57678L2.146 9.47929L2.21279 9.38325C2.23767 9.35153 2.26443 9.32136 2.29289 9.29289L6.29289 5.29289C6.68342 4.90237 7.31658 4.90237 7.70711 5.29289C8.06759 5.65338 8.09532 6.22061 7.7903 6.6129L7.70711 6.70711L5.415 9H17C17.5523 9 18 9.44772 18 10Z"
+                fill="black"
+              />
+            </svg>
+          </div>
+
+          {calculatePageNums().map((num, idx) => (
+            <div
+              key={`page-num-${idx}`}
+              onClick={() => {
+                setPage(num);
+              }}
+            >
+              <p className={page == num ? "active" : ""}>{num}</p>
+            </div>
+          ))}
+
+          <div
+            className={calculatePageNums().pop() == page ? "hide" : ""}
+            onClick={() => {
+              setPage((p) => p + 1);
+            }}
+          >
+            <svg
+              className="arrow"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="none"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M2 10C2 9.44772 2.44772 9 3 9H14.585L12.2929 6.70711C11.9324 6.34662 11.9047 5.77939 12.2097 5.3871L12.2929 5.29289C12.6534 4.93241 13.2206 4.90468 13.6129 5.2097L13.7071 5.29289L17.7071 9.29289L17.7485 9.33685L17.8037 9.40469L17.8753 9.51594L17.9288 9.62866L17.9642 9.73401L17.9932 9.88253L18 10L17.9972 10.0752L17.9798 10.2007L17.9503 10.3121L17.9063 10.4232L17.854 10.5207L17.7872 10.6168C17.7623 10.6485 17.7356 10.6786 17.7071 10.7071L13.7071 14.7071C13.3166 15.0976 12.6834 15.0976 12.2929 14.7071C11.9324 14.3466 11.9047 13.7794 12.2097 13.3871L12.2929 13.2929L14.585 11H3C2.44772 11 2 10.5523 2 10Z"
+                fill="black"
+              />
+            </svg>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

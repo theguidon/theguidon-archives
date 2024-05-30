@@ -20,172 +20,50 @@
   margin: 0 0 16px;
 }
 
-#browse .filters {
+#browse .pagination {
+  margin: 40px 0 0;
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  column-gap: 24px;
-  row-gap: 20px;
+  flex-flow: row nowrap;
   align-items: center;
+  justify-content: center;
 }
 
-#browse .filters .categ-filters {
-  display: flex;
-  flex-flow: row nowrap;
-  column-gap: 8px;
-}
-
-#browse .filters .categ-filters a {
-  text-decoration: none;
-  color: #232130;
-  font-size: var(--body-s-font-size);
-
-  display: block;
-  padding: 8px 16px 12px;
-  border-bottom-width: 2px;
-  border-bottom-style: solid;
-  border-bottom-color: var(--gray-4);
-
-  transition: 0.3s;
-}
-
-#browse .filters .categ-filters a:hover {
-  border-bottom-color: var(--blue-alt-1);
-}
-
-#browse .filters .categ-filters a.active {
-  border-bottom-color: var(--gdn-blue);
-}
-
-#browse .filters .advanced-group {
-  display: flex;
-  flex-flow: row nowrap;
-  column-gap: 8px;
-}
-
-#browse .filters .advanced-group .advanced-filters {
-  display: flex;
-  flex-flow: row nowrap;
-  column-gap: 4px;
-}
-
-#browse .filters .advanced-group .advanced-filters .filter-container {
-  position: relative;
-}
-
-#browse .filters .advanced-group .advanced-filters .filter-container .filter {
-  padding: 8px 16px;
-  font-size: var(--body-s-font-size);
-  border-radius: 16px;
-
-  display: flex;
-  flex-flow: row nowrap;
-  column-gap: 4px;
-  align-items: center;
+#browse .pagination > div {
+  width: 48px;
+  height: 48px;
 
   cursor: pointer;
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
 }
 
-#browse
-  .filters
-  .advanced-group
-  .advanced-filters
-  .filter-container
-  .popup-container.active {
-  opacity: 1;
-  pointer-events: all;
-}
-
-#browse
-  .filters
-  .advanced-group
-  .advanced-filters
-  .filter-container
-  .filter.active {
-  background-color: var(--blue-light);
-  font-weight: bold;
-  color: var(--gdn-blue);
-}
-
-#browse
-  .filters
-  .advanced-group
-  .advanced-filters
-  .filter-container
-  .filter
-  svg {
+#browse .pagination .arrow {
   width: 20px;
   height: 20px;
 }
 
-#browse
-  .filters
-  .advanced-group
-  .advanced-filters
-  .sort-filter-container
-  .popup {
-  display: flex;
-  flex-flow: column nowrap;
-  padding: 8px 16px;
-  row-gap: 8px;
-  align-items: center;
+#browse .pagination > div.hide {
+  opacity: 0;
+  pointer-events: none;
 }
 
-#browse
-  .filters
-  .advanced-group
-  .advanced-filters
-  .sort-filter-container
-  .popup
-  p {
-  padding: 4px 8px;
-  min-width: max-content;
-  border-radius: 16px;
-  width: 100%;
+#browse .pagination > div p {
+  width: fit-content;
+  line-height: 48px;
+  font-size: 18px;
 
-  text-align: center;
-  font-size: var(--body-s-font-size);
-  cursor: pointer;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: transparent;
 
   transition: 0.3s;
 }
 
-#browse
-  .filters
-  .advanced-group
-  .advanced-filters
-  .sort-filter-container
-  .popup
-  p:hover {
-  background-color: var(--blue-alt-2);
-  color: white;
-}
-
-#browse
-  .filters
-  .advanced-group
-  .advanced-filters
-  .sort-filter-container
-  .popup
-  p.active {
-  background-color: var(--gdn-blue);
-  color: white;
-  font-weight: bold;
-}
-
-#browse .filters .advanced-group .view {
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
-
-  color: var(--gray-3);
-  transition: 0.3s;
-}
-
-#browse .filters .advanced-group .view:hover {
-  color: var(--blue-alt-1);
-}
-
-#browse .filters .advanced-group .view.active {
+#browse .pagination > div p.active {
   color: var(--gdn-blue);
+  border-bottom-color: var(--gdn-blue);
+  font-weight: bold;
 }

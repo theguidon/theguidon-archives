@@ -255,9 +255,9 @@ function IssuePage() {
             onMouseUp={onEndDragging}
           >
             <Document
-              // file={issue.full_issue}
+              file={issue.full_issue}
               // file={`/issues/${issue.fixed_slug}.pdf`}
-              file={sample}
+              // file={sample}
               loading={null}
               inputRef={documentRef}
               onLoadError={console.error}

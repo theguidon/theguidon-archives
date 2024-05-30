@@ -18,6 +18,7 @@ function HomePage() {
     dispatch(fetchIssues({ categ: "graduation-magazine" }));
     dispatch(fetchIssues({ categ: "freshmanual" }));
     dispatch(fetchIssues({ categ: "uaap-primer" }));
+    dispatch(fetchIssues({ categ: "legacy" }));
     dispatch(fetchIssues({ categ: "other" }));
   }, []);
 
@@ -72,40 +73,42 @@ function HomePage() {
 
   return (
     <div id="home">
-      {issues.data.all != null && issues.data.all[0] != null && (
-        <div
-          id="hero"
-          style={{
-            backgroundImage: `url(${issues.data.all[0].issues[0].cover})`,
-          }}
-        >
-          <div className="bg-tint" />
+      {issues.data.all != null &&
+        issues.data.all[1] != null &&
+        issues.data.all[1].length >= 1 && (
+          <div
+            id="hero"
+            style={{
+              backgroundImage: `url(${issues.data.all[1][0].cover})`,
+            }}
+          >
+            <div className="bg-tint" />
 
-          <div className="general-container">
-            <div className="info">
-              <p className="badge">Latest Release</p>
-              <h1 className="title">{issues.data.all[0].issues[0].title}</h1>
-              <p className="date">
-                {DateFormatter(issues.data.all[0].issues[0].date_published)}
-              </p>
-              <p className="desc">{issues.data.all[0].issues[0].description}</p>
+            <div className="general-container">
+              <div className="info">
+                <p className="badge">Latest Release</p>
+                <h1 className="title">{issues.data.all[1][0].title}</h1>
+                <p className="date">
+                  {DateFormatter(issues.data.all[1][0].date_published)}
+                </p>
+                <p className="desc">{issues.data.all[1][0].description}</p>
 
-              <Link
-                to={`/issue/${issues.data.all[0].issues[0].fixed_slug}`}
-                className="read-now"
-              >
-                Read now
-              </Link>
+                <Link
+                  to={`/issue/${issues.data.all[1][0].fixed_slug}`}
+                  className="read-now"
+                >
+                  Read now
+                </Link>
+              </div>
+
+              <img
+                className="cover"
+                src={issues.data.all[1][0].cover}
+                alt={issues.data.all[1][0].title}
+              />
             </div>
-
-            <img
-              className="cover"
-              src={issues.data.all[0].issues[0].cover}
-              alt={issues.data.all[0].issues[0].title}
-            />
           </div>
-        </div>
-      )}
+        )}
 
       <main className="general-container">
         <p className="subheader">Recently Uploaded</p>
@@ -116,12 +119,9 @@ function HomePage() {
         <hr />
         <div id="latest" className="card-grid mobile-list">
           {issues.data.all != null &&
-            issues.data.all[0] != null &&
-            [...Array(5)].map((_, idx) => (
-              <IssueCard
-                data={issues.data.all[0].issues[idx]}
-                key={`recent-${idx}`}
-              />
+            issues.data.all[1] != null &&
+            [...Array(Math.min(5, issues.data.all[1].length))].map((_, idx) => (
+              <IssueCard data={issues.data.all[1][idx]} key={`recent-${idx}`} />
             ))}
         </div>
 
@@ -150,10 +150,10 @@ function HomePage() {
               <hr />
               <div className="cover-container">
                 {issues.data[categ.key] != null &&
-                  issues.data[categ.key][0] != null &&
-                  issues.data[categ.key][0].issues[0] != null && (
+                  issues.data[categ.key][1] != null &&
+                  issues.data[categ.key][1][0] != null && (
                     <img
-                      src={issues.data[categ.key][0].issues[0].cover}
+                      src={issues.data[categ.key][1][0].cover}
                       alt={categ.title}
                     />
                   )}
@@ -169,11 +169,16 @@ function HomePage() {
         </Link>
         <hr />
         <div id="history" className="card-grid mobile-list">
-          <IssueCard data={sample} />
-          <IssueCard data={sample} />
-          <IssueCard data={sample} />
-          <IssueCard data={sample} />
-          <IssueCard data={sample} />
+          {issues.data.legacy != null &&
+            issues.data.legacy[1] != null &&
+            [...Array(Math.min(5, issues.data.legacy[1].length))].map(
+              (_, idx) => (
+                <IssueCard
+                  data={issues.data.legacy[1][idx]}
+                  key={`recent-${idx}`}
+                />
+              )
+            )}
         </div>
       </main>
     </div>

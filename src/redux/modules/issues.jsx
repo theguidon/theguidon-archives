@@ -18,28 +18,26 @@ export const fetchIssues = createAsyncThunk(
 const issuesSlice = createSlice({
   name: "issues",
   initialState: {
-    isLoading: true,
+    // isLoading: true,
+    // isReady: false,
     isError: false,
-    isReady: false,
     data: {},
   },
   extraReducers: (builder) => {
     builder.addCase(fetchIssues.pending, (state, action) => {
-      state.isLoading = true;
+      // state.isLoading = true;
     });
 
     builder.addCase(fetchIssues.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.isReady = true;
+      // state.isLoading = false;
+      // state.isReady = true;
 
-      if (action.payload.categ === null)
-        state.data["all"] = {
-          [action.payload.page]: action.payload,
-        };
-      else
-        state.data[action.payload.categ] = {
-          [action.payload.page]: action.payload,
-        };
+      let slug = action.payload.categ === null ? "all" : action.payload.categ;
+
+      if (state.data[slug] == null) state.data[slug] = {};
+      state.data[slug].found = action.payload.found;
+      state.data[slug].max_pages = action.payload.max_pages;
+      state.data[slug][action.payload.page] = action.payload.issues;
     });
 
     builder.addCase(fetchIssues.rejected, (state, action) => {

@@ -50,9 +50,6 @@
 
 #issue .title-bar .controls-left .back-group .chevron {
   background-color: white;
-  mask-size: contain;
-  mask-position: center;
-  mask-repeat: no-repeat;
 
   width: 20px;
   height: 20px;
