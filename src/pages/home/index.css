@@ -94,7 +94,6 @@
 }
 
 #home main {
-  padding-top: 56px;
   padding-bottom: 80px;
 }
 
@@ -188,7 +187,6 @@
 
 @media screen and (max-width: 1200px) {
   #home main {
-    padding-top: 48px;
     padding-bottom: 68px;
   }
 
@@ -199,7 +197,6 @@
 
 @media screen and (max-width: 992px) {
   #home main {
-    padding-top: 40px;
     padding-bottom: 56px;
   }
 
@@ -224,7 +221,6 @@
   }
 
   #home main {
-    padding-top: 36px;
     padding-bottom: 44px;
   }
 
@@ -284,7 +280,6 @@
   }
 
   #home main {
-    padding-top: 32px;
     padding-bottom: 32px;
   }
 

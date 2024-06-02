@@ -110,7 +110,7 @@ function HomePage() {
           </div>
         )}
 
-      <main className="general-container">
+      <main className="general-container general-padding-top">
         <p className="subheader">Recently Uploaded</p>
         <Link to="releases/recent" className="row">
           <h3>New on the Archive</h3>

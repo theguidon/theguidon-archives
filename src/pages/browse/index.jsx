@@ -135,7 +135,7 @@ function BrowsePage() {
   if (slug == null) return <Navigate to="/releases/recent" />;
 
   return (
-    <div id="browse" className="general-container">
+    <div id="browse" className="general-container general-padding-top">
       <p className="subheader">
         {slug == null || slug === "recent" ? "Recently Uploaded" : "Browse"}
       </p>
