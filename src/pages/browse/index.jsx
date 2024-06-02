@@ -9,9 +9,9 @@ import Pagination from "../../components/pagination";
 
 function BrowsePage() {
   const { slug } = useParams();
-  const dispatch = useDispatch();
-  const [isGridView, setIsGridView] = useState(true);
 
+  const [isGridView, setIsGridView] = useState(true);
+  const [page, setPage] = useState(1);
   const [yearFilter, setYearFilter] = useState(null);
   const [sortOldestFilter, setSortOldestFilter] = useState(null);
   const [activeFilterPopup, setActiveFilterPopup] = useState(null);
@@ -26,8 +26,8 @@ function BrowsePage() {
     dispatch(fetchIssues({ categ: "other" }));
   }, []);
 
+  const dispatch = useDispatch();
   const issues = useSelector((state) => state.issues);
-  const [page, setPage] = useState(1);
 
   const getSortedIssuesPage = () => {
     let key = `${sortOldestFilter === true ? "asc-" : ""}${page}`;
@@ -39,8 +39,6 @@ function BrowsePage() {
       return issues.data[actual[slug]][key];
     return [];
   };
-
-  // console.log(issues);
 
   const categ_filters = [
     {
@@ -100,7 +98,7 @@ function BrowsePage() {
           order: sortOldestFilter ? "asc" : "desc",
         })
       );
-  }, [page, slug, sortOldestFilter]);
+  }, [slug, page, yearFilter, sortOldestFilter]);
 
   const calculatePageNums = () => {
     if (issues.data[actual[slug]] != null) {
