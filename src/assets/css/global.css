@@ -27,8 +27,10 @@ body {
   --subheader-letter-spacing: 0.8px;
   --subheader-s-letter-spacing: 0.6px;
 
-  --body-l-font-size: 24px;
-  --body-m-font-size: 20px;
+  --body-xxl-font-size: 24px;
+  --body-xl-font-size: 22px;
+  --body-l-font-size: 20px;
+  --body-m-font-size: 18px;
   --body-font-size: 16px;
   --body-s-font-size: 14px;
   --body-xs-font-size: 12px;
@@ -216,8 +218,10 @@ hr {
     --subheader-letter-spacing: 0.7px;
     --subheader-s-letter-spacing: 0.6px;
 
-    --body-l-font-size: 24px;
-    --body-m-font-size: 20px;
+    --body-xxl-font-size: 24px;
+    --body-xl-font-size: 22px;
+    --body-l-font-size: 20px;
+    --body-m-font-size: 18px;
     --body-font-size: 16px;
     --body-s-font-size: 14px;
     --body-xs-font-size: 12px;

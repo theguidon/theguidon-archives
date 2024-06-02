@@ -53,7 +53,7 @@
 #browse .pagination > div p {
   width: fit-content;
   line-height: 48px;
-  font-size: 18px;
+  font-size: var(--body-m-font-size);
 
   border-bottom-width: 2px;
   border-bottom-style: solid;
