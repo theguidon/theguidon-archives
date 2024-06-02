@@ -1,5 +1,4 @@
 #page-404 {
-  padding-top: 56px;
   padding-bottom: 160px;
 }
 
@@ -31,7 +30,6 @@
 
 @media screen and (max-width: 1200px) {
   #page-404 {
-    padding-top: 48px;
     padding-bottom: 128px;
   }
 
@@ -43,7 +41,6 @@
 
 @media screen and (max-width: 992px) {
   #page-404 {
-    padding-top: 40px;
     padding-bottom: 96px;
   }
 
@@ -59,7 +56,6 @@
 
 @media screen and (max-width: 768px) {
   #page-404 {
-    padding-top: 36px;
     padding-bottom: 64px;
   }
 
@@ -75,7 +71,6 @@
 
 @media screen and (max-width: 576px) {
   #page-404 {
-    padding-top: 32px;
     padding-bottom: 32px;
   }
 

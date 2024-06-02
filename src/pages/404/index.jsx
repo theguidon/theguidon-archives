@@ -14,7 +14,7 @@ function Page404() {
   };
 
   return (
-    <div id="page-404" className="general-container">
+    <div id="page-404" className="general-container general-padding-top">
       <p className="subheader">Error 404</p>
       <h2>Page not found.</h2>
       <hr />
