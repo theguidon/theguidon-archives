@@ -42,8 +42,9 @@
 
 #browse .filters .advanced-group {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   column-gap: 8px;
+  row-gap: 8px;
 }
 
 #browse .filters .advanced-group .advanced-filters {
@@ -180,4 +181,20 @@
   flex-flow: row nowrap;
   column-gap: 8px;
   align-items: center;
+}
+
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 992px) {
+}
+
+@media screen and (max-width: 768px) {
+  #browse .filters .advanced-group {
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 576px) {
 }
