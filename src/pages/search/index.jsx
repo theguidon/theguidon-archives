@@ -3,6 +3,7 @@ import "./index.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchIssues } from "../../redux/modules/issues";
+import IssueCard from "../../components/issue-card";
 
 function SearchPage() {
   const { search } = useLocation();
@@ -21,27 +22,51 @@ function SearchPage() {
   useEffect(() => {
     dispatch(
       fetchIssues({
-        query: query,
+        search: query,
         page: page,
         order: sortOldestFilter ? "asc" : "desc",
       })
     );
   }, [query, page, yearFilter, sortOldestFilter]);
 
+  const getKey = () => `${sortOldestFilter === true ? "asc-" : ""}${page}`;
+
   return (
     <div id="search-results" className="general-container general-padding-top">
-      <p className="subheader">We couldn't find any matches for</p>
+      <p className="subheader">
+        {issues.data.search != null && issues.data.search.found == 0
+          ? `We couldn't find any matches for`
+          : `${
+              issues.data.search == null
+                ? "Loading"
+                : "Showing " + issues.data.search.found
+            } results for`}
+      </p>
       <h2>{`“${query}”`}</h2>
       <hr />
 
-      <ul>
-        <li>Double-check the spelling or try using different keywords.</li>
-        <li>Broaden your search query to include more general terms.</li>
-        <li>
-          Try refining your search with specific filters to narrow down the
-          results.
-        </li>
-      </ul>
+      {issues.data.search != null && issues.data.search.found == 0 ? (
+        <ul>
+          <li>Double-check the spelling or try using different keywords.</li>
+          <li>Broaden your search query to include more general terms.</li>
+          <li>
+            Try refining your search with specific filters to narrow down the
+            results.
+          </li>
+        </ul>
+      ) : (
+        <>
+          FILTERS
+          <div className={`card-grid ${isGridView ? "" : "list"}`}>
+            {issues.data.search != null &&
+              issues.data.search[getKey()] != null &&
+              issues.data.search[getKey()].map((issue, idx) => (
+                <IssueCard key={`issue-${idx}`} data={issue} />
+              ))}
+          </div>
+          PAGINATION
+        </>
+      )}
     </div>
   );
 }

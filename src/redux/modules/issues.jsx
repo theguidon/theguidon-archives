@@ -24,15 +24,17 @@ const issuesSlice = createSlice({
     data: {},
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchIssues.pending, (state, action) => {});
+    builder.addCase(fetchIssues.pending, (state, { meta }) => {
+      if (meta.arg.query != null) state.data.search = {};
+    });
 
     builder.addCase(fetchIssues.fulfilled, (state, action) => {
       let slug =
-        action.payload.categ === null
+        action.payload.search != null
+          ? "search"
+          : action.payload.categ === null
           ? "all"
-          : action.payload.search === null
-          ? action.payload.categ
-          : "search";
+          : action.payload.categ;
 
       if (state.data[slug] == null) state.data[slug] = {};
       state.data[slug].found = action.payload.found;

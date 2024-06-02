@@ -29,17 +29,6 @@ function BrowsePage() {
   const dispatch = useDispatch();
   const issues = useSelector((state) => state.issues);
 
-  const getSortedIssuesPage = () => {
-    let key = `${sortOldestFilter === true ? "asc-" : ""}${page}`;
-
-    if (
-      issues.data[actual[slug]] != null &&
-      issues.data[actual[slug]][key] != null
-    )
-      return issues.data[actual[slug]][key];
-    return [];
-  };
-
   const categ_filters = [
     {
       slug: "recent",
@@ -99,6 +88,8 @@ function BrowsePage() {
         })
       );
   }, [slug, page, yearFilter, sortOldestFilter]);
+
+  const getKey = () => `${sortOldestFilter === true ? "asc-" : ""}${page}`;
 
   const calculatePageNums = () => {
     if (issues.data[actual[slug]] != null) {
@@ -295,9 +286,11 @@ function BrowsePage() {
       </div>
 
       <div className={`card-grid ${isGridView ? "" : "list"}`}>
-        {getSortedIssuesPage().map((issue, idx) => (
-          <IssueCard key={`issue-${slug}-${idx}`} data={issue} />
-        ))}
+        {issues.data[actual[slug]] != null &&
+          issues.data[actual[slug]][getKey()] != null &&
+          issues.data[actual[slug]][getKey()].map((issue, idx) => (
+            <IssueCard key={`issue-${slug}-${idx}`} data={issue} />
+          ))}
       </div>
 
       {calculatePageNums().length > 1 && (
