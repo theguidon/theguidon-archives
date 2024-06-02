@@ -1,5 +1,4 @@
 #search-results {
-  padding-top: 56px;
   padding-bottom: 80px;
 }
 
@@ -23,4 +22,19 @@
 #search-results ul {
   font-size: var(--body-l-font-size);
   padding-left: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 992px) {
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 576px) {
+  #search-results ul {
+    font-size: var(--body-font-size);
+  }
 }

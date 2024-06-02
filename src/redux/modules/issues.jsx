@@ -3,11 +3,12 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // Action
 export const fetchIssues = createAsyncThunk(
   "fetchIssues",
-  async ({ categ, page, order }) => {
+  async ({ categ, page, order, search }) => {
     let params = new URLSearchParams();
     if (categ != null) params.append("categ", categ);
     if (page != null) params.append("page", page);
     if (order != null) params.append("order", order);
+    if (search != null) params.append("search", search);
 
     const response = await fetch(
       `https://api.theguidon.com/archives/wp-json/api/v1/issues?${params.toString()}`
@@ -26,7 +27,12 @@ const issuesSlice = createSlice({
     builder.addCase(fetchIssues.pending, (state, action) => {});
 
     builder.addCase(fetchIssues.fulfilled, (state, action) => {
-      let slug = action.payload.categ === null ? "all" : action.payload.categ;
+      let slug =
+        action.payload.categ === null
+          ? "all"
+          : action.payload.search === null
+          ? action.payload.categ
+          : "search";
 
       if (state.data[slug] == null) state.data[slug] = {};
       state.data[slug].found = action.payload.found;
