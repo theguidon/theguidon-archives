@@ -1,0 +1,72 @@
+.filters .advanced-filters {
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 4px;
+}
+
+.filters .advanced-filters .filter-container {
+  position: relative;
+}
+
+.filters .advanced-filters .filter-container .filter {
+  padding: 8px 16px;
+  font-size: var(--body-s-font-size);
+  border-radius: 16px;
+  background-color: var(--blue-gray-light);
+
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 4px;
+  align-items: center;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filters .advanced-filters .filter-container .popup-container.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.filters .advanced-filters .filter-container .filter.active {
+  background-color: var(--blue-light);
+  font-weight: bold;
+  color: var(--gdn-blue);
+}
+
+.filters .advanced-filters .filter-container .filter svg {
+  width: 20px;
+  height: 20px;
+}
+
+.filters .advanced-filters .sort-filter-container .popup {
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 8px 16px;
+  row-gap: 8px;
+  align-items: center;
+}
+
+.filters .advanced-filters .sort-filter-container .popup p {
+  padding: 4px 8px;
+  min-width: max-content;
+  border-radius: 16px;
+  width: 100%;
+
+  text-align: center;
+  font-size: var(--body-s-font-size);
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.filters .advanced-filters .sort-filter-container .popup p:hover {
+  background-color: var(--blue-alt-2);
+  color: white;
+}
+
+.filters .advanced-filters .sort-filter-container .popup p.active {
+  background-color: var(--gdn-blue);
+  color: white;
+  font-weight: bold;
+}
