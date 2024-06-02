@@ -11,11 +11,13 @@
 
 #browse .filters .categ-filters {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   column-gap: 8px;
+  row-gap: 8px;
 }
 
 #browse .filters .categ-filters a {
+  flex-shrink: 0;
   text-decoration: none;
   color: #232130;
   font-size: var(--body-s-font-size);
@@ -35,6 +37,7 @@
 
 #browse .filters .categ-filters a.active {
   border-bottom-color: var(--gdn-blue);
+  font-weight: bold;
 }
 
 #browse .filters .advanced-group {
@@ -57,6 +60,7 @@
   padding: 8px 16px;
   font-size: var(--body-s-font-size);
   border-radius: 16px;
+  background-color: var(--blue-gray-light);
 
   display: flex;
   flex-flow: row nowrap;
@@ -64,6 +68,7 @@
   align-items: center;
 
   cursor: pointer;
+  transition: 0.3s;
 }
 
 #browse
@@ -168,4 +173,11 @@
 
 #browse .filters .advanced-group .view.active {
   color: var(--gdn-blue);
+}
+
+#browse .filters .advanced-group .views-group {
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 8px;
+  align-items: center;
 }
