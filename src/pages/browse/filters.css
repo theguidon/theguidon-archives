@@ -159,30 +159,6 @@
   font-weight: bold;
 }
 
-#browse .filters .advanced-group .view {
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
-
-  color: var(--gray-3);
-  transition: 0.3s;
-}
-
-#browse .filters .advanced-group .view:hover {
-  color: var(--blue-alt-1);
-}
-
-#browse .filters .advanced-group .view.active {
-  color: var(--gdn-blue);
-}
-
-#browse .filters .advanced-group .views-group {
-  display: flex;
-  flex-flow: row nowrap;
-  column-gap: 8px;
-  align-items: center;
-}
-
 @media screen and (max-width: 1200px) {
 }
 
