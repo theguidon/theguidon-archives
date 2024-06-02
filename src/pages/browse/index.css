@@ -20,54 +20,6 @@
   margin: 0 0 16px;
 }
 
-#browse .pagination {
-  margin: 40px 0 0;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: center;
-}
-
-#browse .pagination > div {
-  width: 48px;
-  height: 48px;
-
-  cursor: pointer;
-
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: center;
-}
-
-#browse .pagination .arrow {
-  width: 20px;
-  height: 20px;
-}
-
-#browse .pagination > div.hide {
-  opacity: 0;
-  pointer-events: none;
-}
-
-#browse .pagination > div p {
-  width: fit-content;
-  line-height: 48px;
-  font-size: var(--body-m-font-size);
-
-  border-bottom-width: 2px;
-  border-bottom-style: solid;
-  border-bottom-color: transparent;
-
-  transition: 0.3s;
-}
-
-#browse .pagination > div p.active {
-  color: var(--gdn-blue);
-  border-bottom-color: var(--gdn-blue);
-  font-weight: bold;
-}
-
 @media screen and (max-width: 1200px) {
   #browse {
     padding-bottom: 48px;
