@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchIssues } from "../../redux/modules/issues";
 import IssueCard from "../../components/issue-card";
 import Pagination from "../../components/pagination";
+import { calculatePageNums } from "../../utils/calculate-page-nums";
 
 function BrowsePage() {
   const { slug } = useParams();
@@ -90,37 +91,6 @@ function BrowsePage() {
   }, [slug, page, yearFilter, sortOldestFilter]);
 
   const getKey = () => `${sortOldestFilter === true ? "asc-" : ""}${page}`;
-
-  const calculatePageNums = () => {
-    if (issues.data[actual[slug]] != null) {
-      let lim_left = page - 2;
-      let lim_right = page + 2;
-
-      // adjust right
-      if (lim_right >= issues.data[actual[slug]].max_pages) {
-        lim_left -= lim_right - issues.data[actual[slug]].max_pages;
-        lim_right -= lim_right - issues.data[actual[slug]].max_pages;
-      }
-
-      // adjust left
-      if (lim_left <= 0) {
-        let excess = 1 - lim_left;
-        lim_left += 1 - lim_left;
-        if (lim_right < issues.data[actual[slug]].max_pages) {
-          lim_right += Math.min(
-            excess,
-            issues.data[actual[slug]].max_pages - lim_right
-          );
-        }
-      }
-
-      return [...Array(lim_right - lim_left + 1)].map(
-        (_, idx) => idx + lim_left
-      );
-    }
-
-    return [1];
-  };
 
   if (slug == null) return <Navigate to="/releases/recent" />;
 
@@ -293,9 +263,9 @@ function BrowsePage() {
           ))}
       </div>
 
-      {calculatePageNums().length > 1 && (
+      {calculatePageNums(issues.data[actual[slug]], page).length > 1 && (
         <Pagination
-          pageNums={calculatePageNums()}
+          pageNums={calculatePageNums(issues.data[actual[slug]], page)}
           page={page}
           setPage={setPage}
         />

@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchIssues } from "../../redux/modules/issues";
 import IssueCard from "../../components/issue-card";
+import Pagination from "../../components/pagination";
+import { calculatePageNums } from "../../utils/calculate-page-nums";
 
 function SearchPage() {
   const { search } = useLocation();
@@ -64,7 +66,13 @@ function SearchPage() {
                 <IssueCard key={`issue-${idx}`} data={issue} />
               ))}
           </div>
-          PAGINATION
+          {calculatePageNums(issues.data.search, page).length > 1 && (
+            <Pagination
+              pageNums={calculatePageNums(issues.data.search, page)}
+              page={page}
+              setPage={setPage}
+            />
+          )}
         </>
       )}
     </div>
