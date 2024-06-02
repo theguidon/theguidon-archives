@@ -39,8 +39,6 @@ function BrowsePage() {
     return [];
   };
 
-  const getSortedIssues = () => {};
-
   // console.log(issues);
 
   const categ_filters = [
