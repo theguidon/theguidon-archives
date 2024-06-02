@@ -1,17 +1,17 @@
 import IssueCard from "../../components/issue-card";
 import "./index.css";
 
-import img from "./../../assets/images/broadsheet-sample.png";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchIssues } from "../../redux/modules/issues";
 
 function Page404() {
-  const data = {
-    cover: img,
-    slug: "aprmay-2024",
-    title: "April–May 2024",
-    date: "23 May 2024",
-    blurb:
-      "With 2022 nearing its end, The GUIDON takes a look at the events, issues, and developments that have come to define the past year.",
-  };
+  const dispatch = useDispatch();
+  const issues = useSelector((state) => state.issues);
+
+  useEffect(() => {
+    dispatch(fetchIssues({}));
+  }, []);
 
   return (
     <div id="page-404" className="general-container general-padding-top">
@@ -28,11 +28,11 @@ function Page404() {
       <h4>You might be interested in these instead.</h4>
 
       <div className="card-grid mobile-list">
-        <IssueCard data={data} />
-        <IssueCard data={data} />
-        <IssueCard data={data} />
-        <IssueCard data={data} />
-        <IssueCard data={data} />
+        {issues.data.all != null &&
+          issues.data.all[1] != null &&
+          [...Array(Math.min(5, issues.data.all[1].length))].map((_, idx) => (
+            <IssueCard data={issues.data.all[1][idx]} key={`issue-${idx}`} />
+          ))}
       </div>
     </div>
   );
