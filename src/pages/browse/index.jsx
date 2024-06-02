@@ -37,35 +37,6 @@ function BrowsePage() {
     )
       return issues.data[actual[slug]][key];
     return [];
-
-    // console.log(issues.data[actual[slug]]);
-
-    if (sortOldestFilter == null || !sortOldestFilter) {
-      if (
-        issues.data[actual[slug]] != null &&
-        issues.data[actual[slug]][page] != null
-      )
-        return issues.data[actual[slug]][page];
-      else return [];
-    } else {
-      let rev_page = issues.data[actual[slug]].max_pages + 1 - page;
-
-      // if (issues.data[actual[slug]][rev_page] == null)
-      //   dispatch(fetchIssues({ categ: actual[slug], page: rev_page }));
-
-      if (
-        issues.data[actual[slug]] != null &&
-        issues.data[actual[slug]][rev_page] != null
-      )
-        return issues.data[actual[slug]][rev_page];
-      else return [];
-
-      // console.log(rev_page);
-      // return [];
-      // return issues.data[actual[slug]][
-      //   issues.data[actual[slug]].max_pages + 1 - page
-      // ];
-    }
   };
 
   const getSortedIssues = () => {};
