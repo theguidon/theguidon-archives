@@ -69,13 +69,25 @@
 }
 
 @media screen and (max-width: 1200px) {
+  #browse {
+    padding-bottom: 48px;
+  }
 }
 
 @media screen and (max-width: 992px) {
+  #browse {
+    padding-bottom: 40px;
+  }
 }
 
 @media screen and (max-width: 768px) {
+  #browse {
+    padding-bottom: 36px;
+  }
 }
 
 @media screen and (max-width: 576px) {
+  #browse {
+    padding-bottom: 32px;
+  }
 }
