@@ -79,7 +79,7 @@ function HomePage() {
           <div
             id="hero"
             style={{
-              backgroundImage: `url(${issues.data.all[1][0].cover})`,
+              backgroundImage: `url(${issues.data.all[1][0].cover_full})`,
             }}
           >
             <div className="bg-tint" />
