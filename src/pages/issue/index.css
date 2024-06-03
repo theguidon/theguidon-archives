@@ -46,7 +46,9 @@
 }
 
 #issue #issue-info .desc {
-  color: var(--gdn-blue);
+  /* color: var(--gdn-blue); */
+  /* color: black; */
+  font-size: var(--body-font-size);
 
   margin: 0 0 32px;
 }
@@ -76,4 +78,45 @@
   color: var(--gdn-blue);
   width: 24px;
   height: 24px;
+}
+
+@media screen and (max-width: 1200px) {
+  #issue #issue-info {
+    padding-top: 48px;
+    padding-bottom: 64px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  #issue #issue-info {
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #issue #issue-info {
+    padding-top: 32px;
+    padding-bottom: 36px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #issue #issue-info {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  #issue #issue-info .cover-container {
+    width: 160px;
+    height: 200px;
+  }
+
+  #issue #issue-info .title {
+    margin: 0;
+  }
+
+  #issue #issue-info .desc {
+    margin: 0 0 24px;
+  }
 }

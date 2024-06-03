@@ -69,3 +69,39 @@
   font-size: var(--body-s-font-size);
   text-align: center;
 }
+
+@media screen and (max-width: 1200px) {
+  #issue .slider-section .general-container {
+    padding: 0 52px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  #issue .slider-section .general-container {
+    padding: 0 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #issue .slider-section .general-container {
+    padding: 0 28px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #issue .slider-section {
+    padding: 16px 0;
+    height: unset;
+  }
+
+  #issue .slider-section .general-container {
+    flex-flow: column nowrap;
+    row-gap: 12px;
+
+    padding: 0 16px;
+  }
+
+  #issue .slider-section .slider {
+    width: 100%;
+  }
+}
