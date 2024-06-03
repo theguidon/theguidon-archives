@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const fullscreenSlice = createSlice({
   name: "fullscreen",
   initialState: {
-    isFullscreen: true,
+    isFullscreen: false,
   },
   reducers: {
     setFullscreen: (state, action) => {
