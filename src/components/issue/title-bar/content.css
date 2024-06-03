@@ -7,7 +7,7 @@
   /* width: fit-content;
   max-width: 360px; */
   width: 360px;
-  max-height: 500px;
+  max-height: calc(min(600px, 65vh));
 
   overflow-y: auto;
 
