@@ -23,6 +23,7 @@
   background-color: #262626;
   border-radius: 16px;
   padding: 2px 8px;
+  padding: 8px 16px;
 }
 
 #issue.fullscreen .title-bar .controls-left .back-group {
