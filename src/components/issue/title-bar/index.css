@@ -7,6 +7,15 @@
   top: var(--header-height);
   width: 100%;
   z-index: 10;
+
+  overflow-x: auto;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#issue .title-bar::-webkit-scrollbar {
+  display: none;
 }
 
 #issue .title-bar .icon {
