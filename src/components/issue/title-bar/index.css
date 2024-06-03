@@ -23,7 +23,7 @@
   cursor: pointer;
 }
 
-#issue .title-bar .icon svg {
+#issue .title-bar .icon > svg {
   display: block;
   width: 100%;
   height: 100%;
@@ -94,10 +94,66 @@
   background-color: #ffffff1a;
 }
 
-#issue .title-bar .controls-left .controls-group .search {
+#issue .title-bar .controls-left .controls-group .search-container {
   width: 32px;
   height: 32px;
   padding: 6px;
+
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  column-gap: 8px;
+  justify-content: flex-start;
+}
+
+#issue .title-bar .controls-left .controls-group .search-container.active {
+  width: 360px;
+  background-color: #ffffff1a;
+  border-radius: 32px;
+  padding: 6px 12px;
+}
+
+#issue .title-bar .controls-left .controls-group .search {
+  width: 20px;
+  height: 20px;
+  flex-grow: 0;
+  width: unset;
+}
+
+#issue .title-bar .controls-left .controls-group .search-container input {
+  display: none;
+  flex-grow: 1;
+
+  outline: none;
+  background-color: transparent;
+  border: none;
+  caret-color: white;
+
+  color: white;
+  font-weight: bold;
+  font-size: var(--body-font-size);
+}
+
+#issue
+  .title-bar
+  .controls-left
+  .controls-group
+  .search-container.active
+  input {
+  display: block;
+}
+
+#issue .title-bar .controls-left .controls-group .search-container .close {
+  display: none;
+}
+
+#issue
+  .title-bar
+  .controls-left
+  .controls-group
+  .search-container.active
+  .close {
+  display: block;
 }
 
 /* center */
