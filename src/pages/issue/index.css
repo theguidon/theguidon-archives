@@ -1,7 +1,3 @@
-#issue {
-  padding-top: 56px;
-}
-
 #issue #issue-info {
   display: grid;
   grid-template-columns: max-content 1fr;

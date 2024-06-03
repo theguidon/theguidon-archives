@@ -233,12 +233,7 @@ function TitleBar(props) {
             </div>
           </div>
 
-          <div
-            className="fullscreen icon"
-            onClick={() => {
-              props.setIsFullscreen(!props.isFullscreen);
-            }}
-          >
+          <div className="fullscreen icon" onClick={props.toggleFullscreen}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"

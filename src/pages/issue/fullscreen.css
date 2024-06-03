@@ -1,0 +1,8 @@
+#issue.fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+
+#issue.fullscreen #issue-info {
+  display: none;
+}

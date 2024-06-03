@@ -3,7 +3,7 @@
   background-color: var(--gdn-blue);
   color: white;
 
-  position: fixed;
+  position: sticky;
   top: var(--header-height);
   width: 100%;
   z-index: 10;
@@ -11,8 +11,6 @@
 
 #issue .title-bar .icon {
   cursor: pointer;
-  /* width: 32px;
-  height: 32px; */
 }
 
 #issue .title-bar .icon svg {
@@ -35,7 +33,6 @@
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  /* column-gap: 24px; */
   column-gap: 32px;
   width: fit-content;
 }

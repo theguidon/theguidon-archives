@@ -3,11 +3,13 @@ import { DateFormatter } from "../../utils/date-formatter";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchIssue } from "../../redux/modules/issue";
+import { setFullscreen } from "../../redux/modules/fullscreen";
 
 import sample from "./../../assets/sample-2.pdf";
 
 import "./index.css";
 import "./reader.css";
+import "./fullscreen.css";
 import { Document, Page, pdfjs } from "react-pdf";
 import TitleBar from "../../components/issue/title-bar";
 import SliderSection from "../../components/issue/slider-section";
@@ -151,6 +153,11 @@ function IssuePage() {
   const isLocalhost = () =>
     location.hostname === "localhost" || location.hostname === "127.0.0.1";
 
+  const toggleFullscreen = () => {
+    dispatch(setFullscreen(!isFullscreen));
+    setIsFullscreen((p) => !p);
+  };
+
   return (
     issue != null && (
       <div id="issue" className={isFullscreen ? "fullscreen" : ""}>
@@ -161,7 +168,7 @@ function IssuePage() {
           isDoubleReader={isDoubleReader}
           setIsDoubleReader={setIsDoubleReader}
           isFullscreen={isFullscreen}
-          setIsFullscreen={setIsFullscreen}
+          toggleFullscreen={toggleFullscreen}
         />
 
         <main id="reader" ref={mainRef}>

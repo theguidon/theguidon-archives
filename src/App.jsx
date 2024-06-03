@@ -11,6 +11,7 @@ import AboutPage from "./pages/about";
 import Page404 from "./pages/404";
 
 import ScrollToTop from "./utils/scroll-to-top";
+import { useSelector } from "react-redux";
 
 function App() {
   return (
@@ -32,11 +33,13 @@ function App() {
 }
 
 function GeneralLayout() {
+  const isFullscreen = useSelector((state) => state.fullscreen.isFullscreen);
+
   return (
     <React.Fragment>
-      <Header />
+      {isFullscreen ? null : <Header />}
       <Outlet />
-      <Footer />
+      {isFullscreen ? null : <Footer />}
     </React.Fragment>
   );
 }

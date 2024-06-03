@@ -96,8 +96,6 @@ h6 {
   display: flex;
   flex-flow: column nowrap;
   min-height: 100vh;
-
-  padding-top: var(--header-height);
 }
 
 .general-container {

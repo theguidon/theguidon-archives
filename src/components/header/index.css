@@ -1,10 +1,9 @@
 header {
   height: var(--header-height);
-  /* padding: 16px 0; */
   padding: 10px 0;
   background-color: var(--gdn-blue);
 
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
