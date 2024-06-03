@@ -1,6 +1,7 @@
 import "./index.css";
 import "./fullscreen.css";
 import "./content.css";
+import "./content-fullscreen.css";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 
