@@ -30,7 +30,7 @@
 }
 
 /* center */
-#issue.fullscreen .title-bar .title {
+#issue.fullscreen .title-bar .general-container > .title {
   display: none;
 }
 
@@ -43,9 +43,9 @@
   padding: 8px 16px;
 }
 
-#issue.fullscreen .title-bar .reader-group .reader.active {
+/* #issue.fullscreen .title-bar .reader-group .reader.active {
   background-color: #353535;
-}
+} */
 
 #issue.fullscreen .title-bar .reader-group .reader svg:first-child {
   display: none;

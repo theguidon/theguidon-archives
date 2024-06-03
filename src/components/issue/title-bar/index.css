@@ -9,6 +9,7 @@
   z-index: 10;
 
   overflow-x: auto;
+  overflow: visible;
 
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -76,10 +77,21 @@
   column-gap: 8px;
 }
 
+#issue .title-bar .controls-left .controls-group .list-container {
+  position: relative;
+}
+
 #issue .title-bar .controls-left .controls-group .list {
   width: 32px;
   height: 32px;
   padding: 6px;
+
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+#issue .title-bar .controls-left .controls-group .list.active {
+  background-color: #ffffff1a;
 }
 
 #issue .title-bar .controls-left .controls-group .search {

@@ -118,6 +118,7 @@ function IssuePage() {
           setIsDoubleReader={setIsDoubleReader}
           isFullscreen={isFullscreen}
           toggleFullscreen={toggleFullscreen}
+          setPage={setPage}
         />
 
         <IssueReader
