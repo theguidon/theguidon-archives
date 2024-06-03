@@ -1,5 +1,5 @@
-import React from "react";
-import { Outlet, Route, Routes } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Outlet, Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/header";
 import Footer from "./components/footer";
 
@@ -33,11 +33,25 @@ function App() {
 }
 
 function GeneralLayout() {
+  const { pathname } = useLocation();
   const isFullscreen = useSelector((state) => state.fullscreen.isFullscreen);
+
+  useEffect(() => {
+    if (isFullscreen) document.body.requestFullscreen();
+    else if (document.fullscreenElement != null) document.exitFullscreen();
+  }, [isFullscreen]);
+
+  // does not work because it doesn't detect F11
+  // useEffect(() => {
+  //   document.addEventListener("fullscreenchange", () => {
+  //     console.log(document.fullscreenElement != null);
+  //     dispatch(setFullscreen(document.fullscreenElement != null));
+  //   });
+  // }, []);
 
   return (
     <React.Fragment>
-      {isFullscreen ? null : <Header />}
+      {pathname.includes("/issue") && isFullscreen ? null : <Header />}
       <Outlet />
       {isFullscreen ? null : <Footer />}
     </React.Fragment>

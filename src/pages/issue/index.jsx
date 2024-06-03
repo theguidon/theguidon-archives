@@ -162,6 +162,7 @@ function IssuePage() {
     issue != null && (
       <div id="issue" className={isFullscreen ? "fullscreen" : ""}>
         <TitleBar
+          title={issue.title}
           onZoomIn={onZoomIn}
           onZoomOut={onZoomOut}
           zoom={((scale - minZoom) / (maxZoom - minZoom)) * 100}
