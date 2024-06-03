@@ -75,6 +75,10 @@
   flex-flow: row nowrap;
   align-items: center;
   column-gap: 8px;
+
+  height: 32px;
+  align-items: flex-start;
+  overflow-y: visible;
 }
 
 #issue .title-bar .controls-left .controls-group .list-container {
@@ -98,7 +102,24 @@
   width: 32px;
   height: 32px;
   padding: 6px;
+  row-gap: 4px;
+}
 
+#issue .title-bar .controls-left .controls-group .search-container.active {
+  width: 360px;
+  background-color: #ffffff1a;
+  background-color: #33578d;
+  border-radius: 16px;
+  padding: 6px 12px;
+
+  height: unset;
+  max-height: calc(min(600px, 65vh));
+
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#issue .title-bar .controls-left .controls-group .search-container .search-row {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -106,21 +127,26 @@
   justify-content: flex-start;
 }
 
-#issue .title-bar .controls-left .controls-group .search-container.active {
-  width: 360px;
-  background-color: #ffffff1a;
-  border-radius: 32px;
-  padding: 6px 12px;
-}
-
-#issue .title-bar .controls-left .controls-group .search {
+#issue
+  .title-bar
+  .controls-left
+  .controls-group
+  .search-container
+  .search-row
+  .search {
   width: 20px;
   height: 20px;
   flex-grow: 0;
   width: unset;
 }
 
-#issue .title-bar .controls-left .controls-group .search-container input {
+#issue
+  .title-bar
+  .controls-left
+  .controls-group
+  .search-container
+  .search-row
+  input {
   display: none;
   flex-grow: 1;
 
@@ -139,11 +165,18 @@
   .controls-left
   .controls-group
   .search-container.active
+  .search-row
   input {
   display: block;
 }
 
-#issue .title-bar .controls-left .controls-group .search-container .close {
+#issue
+  .title-bar
+  .controls-left
+  .controls-group
+  .search-container
+  .search-row
+  .close {
   display: none;
 }
 
@@ -152,8 +185,130 @@
   .controls-left
   .controls-group
   .search-container.active
+  .search-row
   .close {
   display: block;
+}
+
+#issue
+  .title-bar
+  .controls-left
+  .controls-group
+  .search-container
+  .section-row {
+  padding: 12px 0;
+  border-bottom: 1px solid white;
+}
+
+#issue
+  .title-bar
+  .controls-left
+  .controls-group
+  .search-container
+  .section-row
+  .name {
+  font-weight: bold;
+}
+
+#issue
+  .title-bar
+  .controls-left
+  .controls-group
+  .search-container
+  .search-results {
+  display: none;
+
+  flex-flow: column nowrap;
+  overflow-y: auto;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  margin-bottom: -6px;
+}
+
+#issue
+  .title-bar
+  .controls-left
+  .controls-group
+  .search-container
+  .search-results::-webkit-scrollbar {
+  display: none;
+}
+
+#issue
+  .title-bar
+  .controls-left
+  .controls-group
+  .search-container.active
+  .search-results {
+  display: flex;
+}
+
+#issue
+  .title-bar
+  .controls-left
+  .controls-group
+  .search-container
+  .section-content {
+  padding: 12px 0 12px 24px;
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 16px;
+}
+
+#issue
+  .title-bar
+  .controls-left
+  .controls-group
+  .search-container
+  .section-content:not(:last-child) {
+  border-bottom: 1px solid white;
+}
+
+#issue
+  .title-bar
+  .controls-left
+  .controls-group
+  .search-container
+  .section-content
+  .article {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  column-gap: 8px;
+  justify-content: space-between;
+
+  cursor: pointer;
+}
+
+#issue
+  .title-bar
+  .controls-left
+  .controls-group
+  .search-container
+  .section-content
+  .article
+  .title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  text-overflow: ellipsis;
+  overflow: clip;
+}
+
+#issue
+  .title-bar
+  .controls-left
+  .controls-group
+  .search-container
+  .section-content
+  .article
+  .page {
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
 }
 
 /* center */
