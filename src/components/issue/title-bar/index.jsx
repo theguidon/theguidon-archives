@@ -338,7 +338,7 @@ function TitleBar(props) {
                               article.page % 2 == 1
                                 ? article.page == 1
                                   ? 1
-                                  : isDoubleReader
+                                  : props.isDoubleReader
                                   ? article.page - 1
                                   : article.page
                                 : article.page
