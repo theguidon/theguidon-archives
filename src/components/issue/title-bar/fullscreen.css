@@ -3,4 +3,55 @@
   top: 0;
 
   background-color: transparent;
+
+  padding: 0;
+  /* height: 80px; */
+  height: 64px;
+
+  color: var(--gray-2);
+}
+
+#issue.fullscreen .general-container {
+  height: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+/* left */
+#issue.fullscreen .title-bar .controls-left {
+  background-color: #262626;
+  border-radius: 16px;
+  padding: 2px 8px;
+}
+
+#issue.fullscreen .title-bar .controls-left .back-group {
+  display: none;
+}
+
+/* center */
+#issue.fullscreen .title-bar .title {
+  display: none;
+}
+
+/* right */
+#issue.fullscreen .title-bar .controls-right {
+  margin-left: unset;
+
+  background-color: #262626;
+  border-radius: 16px;
+  padding: 8px 16px;
+}
+
+#issue.fullscreen .title-bar .controls-right .zoom-group .zoom-container {
+  background-color: var(--gray-2);
+}
+
+#issue.fullscreen
+  .title-bar
+  .controls-right
+  .zoom-group
+  .zoom-container
+  .zoom-fill {
+  background-color: var(--blue-gray-dark);
 }

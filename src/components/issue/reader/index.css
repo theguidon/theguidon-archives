@@ -19,6 +19,7 @@
   z-index: 5;
 
   cursor: pointer;
+  color: var(--gray-3);
 }
 
 #issue #reader .edge.left {

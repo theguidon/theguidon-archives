@@ -6,6 +6,8 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
+
+  color: #666666;
 }
 
 #issue .slider-section .general-container {
@@ -65,7 +67,6 @@
 }
 
 #issue .slider-section .text-controls .page {
-  color: #666666;
   font-size: var(--body-s-font-size);
   text-align: center;
 }
