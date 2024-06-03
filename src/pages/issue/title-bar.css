@@ -143,5 +143,10 @@
   cursor: pointer;
 }
 
-/* #issue .title-bar .controls-right .fullscreen {
-} */
+#issue .title-bar .controls-right .fullscreen {
+  padding: 8px;
+}
+
+#issue .title-bar .controls-right .fullscreen svg {
+  display: block;
+}
