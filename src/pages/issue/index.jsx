@@ -102,6 +102,9 @@ function IssuePage() {
     if (isDoubleReader) {
       np += 2;
       if (np % 2 == 1) np--;
+
+      if (issue.num_pages % 2 == 1 && np >= issue.num_pages)
+        np = issue.num_pages - 1;
     } else np++;
 
     if (np > issue.num_pages) np = issue.num_pages;
