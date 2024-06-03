@@ -81,6 +81,11 @@
     padding-top: 48px;
     padding-bottom: 64px;
   }
+
+  #issue #issue-info .cover-container {
+    width: 264px;
+    height: 272px;
+  }
 }
 
 @media screen and (max-width: 992px) {
@@ -88,12 +93,22 @@
     padding-top: 40px;
     padding-bottom: 48px;
   }
+
+  #issue #issue-info .cover-container {
+    width: 228px;
+    height: 248px;
+  }
 }
 
 @media screen and (max-width: 768px) {
   #issue #issue-info {
     padding-top: 32px;
     padding-bottom: 36px;
+  }
+
+  #issue #issue-info .cover-container {
+    width: 192px;
+    height: 224px;
   }
 }
 
