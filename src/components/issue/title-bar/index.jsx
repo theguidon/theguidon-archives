@@ -77,6 +77,7 @@ function TitleBar(props) {
                 className={`list icon ${isTOCVisible ? "active" : ""}`}
                 onClick={() => {
                   setIsTOCVisible((v) => !v);
+                  if (searchActive) setSearchActive(false);
                 }}
               >
                 <svg
@@ -158,6 +159,8 @@ function TitleBar(props) {
                 if (!searchActive) {
                   setSearchActive(true);
                   setQuery("");
+
+                  if (isTOCVisible) setIsTOCVisible(false);
                 }
               }}
             >
