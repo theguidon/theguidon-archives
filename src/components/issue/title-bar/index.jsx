@@ -297,6 +297,16 @@ function TitleBar(props) {
                       className={`section-row ${
                         openAccordions.includes(section.name) ? "active" : ""
                       }`}
+                      onClick={() => {
+                        let nactive = [...openAccordions];
+                        if (openAccordions.includes(section.name)) {
+                          nactive.splice(nactive.indexOf(section.name), 1);
+                        } else {
+                          nactive.push(section.name);
+                        }
+
+                        setOpenAccordions(nactive);
+                      }}
                     >
                       <p className="name">{section.name}</p>
 
