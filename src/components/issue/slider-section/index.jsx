@@ -1,4 +1,5 @@
 import "./index.css";
+import "./fullscreen.css";
 
 function SliderSection(props) {
   return (

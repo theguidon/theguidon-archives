@@ -13,6 +13,7 @@ import "./fullscreen.css";
 import { Document, Page, pdfjs } from "react-pdf";
 import TitleBar from "../../components/issue/title-bar";
 import SliderSection from "../../components/issue/slider-section";
+import IssueReader from "../../components/issue/reader";
 
 function IssuePage() {
   const dispatch = useDispatch();
@@ -24,22 +25,6 @@ function IssuePage() {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const [scale, setScale] = useState(1.0);
-  const [tx, setTx] = useState(0.0);
-  const [ty, setTy] = useState(0.0);
-  const [docIsDragging, setDocIsDragging] = useState(false);
-  const [ox, setOx] = useState(0.0);
-  const [oy, setOy] = useState(0.0);
-
-  const mainRef = useRef(null);
-  const documentRef = useRef(null);
-  const [loadedPages, setLoadedPages] = useState(0);
-
-  // pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  //   "pdfjs-dist/build/pdf.worker.min.mjs",
-  //   import.meta.url
-  // ).toString();
-
-  pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
   useEffect(() => {
     dispatch(fetchIssue({ slug: slug }));
@@ -65,24 +50,6 @@ function IssuePage() {
     if (ns >= maxZoom) ns = maxZoom;
 
     setScale(ns);
-  };
-
-  const onStartDragging = (e) => {
-    e.preventDefault();
-    setDocIsDragging(true);
-    // setOx(e.screenX);
-    // setOy(e.screenY);
-  };
-
-  const onDrag = (e) => {
-    // if (docIsDragging) {
-    //   setTx(e.screenX - ox);
-    //   setTy(e.screenY - oy);
-    // }
-  };
-
-  const onEndDragging = (e) => {
-    setDocIsDragging(false);
   };
 
   const onLeftClick = () => {
@@ -138,21 +105,6 @@ function IssuePage() {
     if (isDoubleReader && page > 1 && page % 2 == 1) setPage(page - 1);
   }, [isDoubleReader]);
 
-  const determineShowPage = (p) => {
-    if (isDoubleReader) {
-      if (page == 1) {
-        return p == 1;
-      } else {
-        return p == page || p == page + 1;
-      }
-    } else {
-      return p == page;
-    }
-  };
-
-  const isLocalhost = () =>
-    location.hostname === "localhost" || location.hostname === "127.0.0.1";
-
   const toggleFullscreen = () => {
     dispatch(setFullscreen(!isFullscreen));
     setIsFullscreen((p) => !p);
@@ -172,74 +124,14 @@ function IssuePage() {
           toggleFullscreen={toggleFullscreen}
         />
 
-        <main id="reader" ref={mainRef}>
-          <div className="edge left" onClick={onLeftClick}>
-            <svg
-              className="chevron"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 32 45"
-              fill="none"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M23.1998 41.0315C22.7391 41.0315 22.2783 40.8246 21.9273 40.413L7.52759 23.5242C6.82381 22.6987 6.82381 21.3645 7.52759 20.5391L21.9273 3.65033C22.6311 2.82489 23.7686 2.82489 24.4724 3.65033C25.1762 4.47577 25.1762 5.80998 24.4724 6.63542L11.3453 22.0316L24.4724 37.4279C25.1762 38.2533 25.1762 39.5875 24.4724 40.413C24.1214 40.8246 23.6606 41.0315 23.1998 41.0315Z"
-                fill="#B6C2CD"
-              />
-            </svg>
-          </div>
-
-          <div
-            className={`document-container ${docIsDragging ? "dragging" : ""}`}
-            style={{ transform: `translate(${tx}px, ${ty}px) scale(${scale})` }}
-            onMouseDown={onStartDragging}
-            onMouseMove={onDrag}
-            onMouseUp={onEndDragging}
-          >
-            <Document
-              file={isLocalhost() ? sample : issue.full_issue}
-              // file={`/issues/${issue.fixed_slug}.pdf`}
-              // file={sample}
-              loading={null}
-              inputRef={documentRef}
-              onLoadError={console.error}
-              className="document"
-            >
-              {[...Array(issue.num_pages)].map((_, idx) => (
-                <Page
-                  key={`page-${idx}`}
-                  canvasBackground="white"
-                  pageNumber={idx + 1}
-                  onRenderSuccess={() => {
-                    setLoadedPages((loaded) => loaded + 1);
-                  }}
-                  renderAnnotationLayer={false}
-                  renderTextLayer={false}
-                  height={2400}
-                  className={`page ${
-                    determineShowPage(idx + 1) ? "active" : ""
-                  }`}
-                />
-              ))}
-            </Document>
-          </div>
-
-          <div className="edge right" onClick={onRightClick}>
-            <svg
-              className="chevron"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 32 45"
-              fill="none"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M8.80015 41.0315C9.26094 41.0315 9.72173 40.8246 10.0727 40.413L24.4724 23.5242C25.1762 22.6987 25.1762 21.3645 24.4724 20.5391L10.0727 3.65033C9.36894 2.82489 8.23137 2.82489 7.52758 3.65033C6.8238 4.47577 6.8238 5.80998 7.52758 6.63542L20.6547 22.0316L7.52758 37.4279C6.8238 38.2533 6.8238 39.5875 7.52758 40.413C7.87857 40.8246 8.33937 41.0315 8.80015 41.0315Z"
-                fill="#B6C2CD"
-              />
-            </svg>
-          </div>
-        </main>
+        <IssueReader
+          onLeftClick={onLeftClick}
+          onRightClick={onRightClick}
+          isDoubleReader={isDoubleReader}
+          scale={scale}
+          issue={issue}
+          page={page}
+        />
 
         <SliderSection
           sliderPercentage={getSliderPercentage()}

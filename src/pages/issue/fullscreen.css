@@ -4,20 +4,10 @@
   /* padding-top: 56px; */
 }
 
-#issue.fullscreen .title-bar {
-  position: fixed;
-  top: 0;
-}
-
 #issue.fullscreen #reader {
   height: 100%;
-}
 
-#issue.fullscreen .slider-section {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  background-color: #262626;
 }
 
 #issue.fullscreen #issue-info {

@@ -1,0 +1,6 @@
+#issue.fullscreen .title-bar {
+  position: fixed;
+  top: 0;
+
+  background-color: transparent;
+}

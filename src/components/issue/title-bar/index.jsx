@@ -1,4 +1,5 @@
 import "./index.css";
+import "./fullscreen.css";
 import { Link } from "react-router-dom";
 
 function TitleBar(props) {
