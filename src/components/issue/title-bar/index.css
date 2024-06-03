@@ -11,6 +11,14 @@
 
 #issue .title-bar .icon {
   cursor: pointer;
+  /* width: 32px;
+  height: 32px; */
+}
+
+#issue .title-bar .icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 #issue .title-bar .general-container {
@@ -59,20 +67,20 @@
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  column-gap: 16px;
+  column-gap: 8px;
 }
 
-/* #issue .title-bar .controls-left .controls-group .list {
-} */
+#issue .title-bar .controls-left .controls-group .list {
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+}
 
 #issue .title-bar .controls-left .controls-group .search {
-  width: 20px;
-  height: 20px;
+  width: 32px;
+  height: 32px;
+  padding: 6px;
 }
-
-/* center */
-/* #issue .title-bar .title {
-} */
 
 /* right */
 
@@ -94,6 +102,8 @@
 }
 
 #issue .title-bar .controls-right .reader-group .reader {
+  width: 32px;
+  height: 32px;
   padding: 8px;
   border-radius: 4px;
   transition: 0.3s;
@@ -110,8 +120,10 @@
   column-gap: 8px;
 }
 
-/* #issue .title-bar .controls-right .zoom-group .zoom {
-} */
+#issue .title-bar .controls-right .zoom-group .zoom {
+  width: 20px;
+  height: 20px;
+}
 
 #issue .title-bar .controls-right .zoom-group .zoom-container {
   width: 100px;
@@ -149,4 +161,5 @@
 
 #issue .title-bar .controls-right .fullscreen svg {
   display: block;
+  color: white;
 }
