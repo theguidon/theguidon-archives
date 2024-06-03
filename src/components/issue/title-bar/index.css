@@ -121,6 +121,10 @@
   background-color: #ffffff1a;
 }
 
+#issue .title-bar .controls-right .reader-group .reader svg:last-child {
+  display: none;
+}
+
 #issue .title-bar .controls-right .zoom-group {
   display: flex;
   flex-flow: row nowrap;

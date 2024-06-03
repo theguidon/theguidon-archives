@@ -127,6 +127,76 @@ function TitleBar(props) {
                   strokeLinecap="round"
                 />
               </svg>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 17 17"
+                fill="none"
+              >
+                <rect
+                  x="1.27335"
+                  y="1.84659"
+                  width="14.1818"
+                  height="14.1818"
+                  rx="2"
+                  stroke="#6A757C"
+                  strokeWidth="1.81818"
+                />
+                <line
+                  x1="3.99973"
+                  y1="5.30007"
+                  x2="6.90882"
+                  y2="5.30007"
+                  stroke="#6A757C"
+                  strokeWidth="1.45455"
+                  strokeLinecap="round"
+                />
+                <line
+                  x1="9.81809"
+                  y1="5.30007"
+                  x2="12.7272"
+                  y2="5.30007"
+                  stroke="#6A757C"
+                  strokeWidth="1.45455"
+                  strokeLinecap="round"
+                />
+                <line
+                  x1="3.99973"
+                  y1="12.5735"
+                  x2="6.90882"
+                  y2="12.5735"
+                  stroke="#6A757C"
+                  strokeWidth="1.45455"
+                  strokeLinecap="round"
+                />
+                <line
+                  x1="9.81809"
+                  y1="12.5735"
+                  x2="12.7272"
+                  y2="12.5735"
+                  stroke="#6A757C"
+                  strokeWidth="1.45455"
+                  strokeLinecap="round"
+                />
+                <line
+                  x1="3.99973"
+                  y1="8.93679"
+                  x2="6.90882"
+                  y2="8.93679"
+                  stroke="#6A757C"
+                  strokeWidth="1.45455"
+                  strokeLinecap="round"
+                />
+                <line
+                  x1="9.81809"
+                  y1="8.93679"
+                  x2="12.7272"
+                  y2="8.93679"
+                  stroke="#6A757C"
+                  strokeWidth="1.45455"
+                  strokeLinecap="round"
+                />
+              </svg>
             </div>
 
             <div
@@ -173,6 +243,49 @@ function TitleBar(props) {
                   y2="7.99929"
                   stroke="#1C4480"
                   strokeWidth="1.45455"
+                  strokeLinecap="round"
+                />
+              </svg>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 17 17"
+                fill="none"
+              >
+                <rect
+                  x="1.54669"
+                  y="1.78595"
+                  width="14.1781"
+                  height="14.1781"
+                  rx="2.00409"
+                  stroke="#6A757C"
+                  strokeWidth="1.8219"
+                />
+                <line
+                  x1="4.27271"
+                  y1="5.23804"
+                  x2="12.997"
+                  y2="5.23804"
+                  stroke="#6A757C"
+                  strokeWidth="1.45752"
+                  strokeLinecap="round"
+                />
+                <line
+                  x1="4.27271"
+                  y1="12.5095"
+                  x2="12.997"
+                  y2="12.5095"
+                  stroke="#6A757C"
+                  strokeWidth="1.45752"
+                  strokeLinecap="round"
+                />
+                <line
+                  x1="4.27271"
+                  y1="8.8728"
+                  x2="12.997"
+                  y2="8.8728"
+                  stroke="#6A757C"
+                  strokeWidth="1.45752"
                   strokeLinecap="round"
                 />
               </svg>
