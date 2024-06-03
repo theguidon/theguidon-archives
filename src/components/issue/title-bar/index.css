@@ -103,6 +103,13 @@
   height: 32px;
   padding: 6px;
   row-gap: 4px;
+  border-radius: 4px;
+
+  transition: 0.3s background-color, 0.3s border-radius;
+  /* transition: 0.3s; */
+
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 #issue .title-bar .controls-left .controls-group .search-container.active {
@@ -114,9 +121,6 @@
 
   height: unset;
   max-height: calc(min(600px, 65vh));
-
-  display: flex;
-  flex-flow: column nowrap;
 }
 
 #issue .title-bar .controls-left .controls-group .search-container .search-row {
@@ -137,7 +141,7 @@
   width: 20px;
   height: 20px;
   flex-grow: 0;
-  width: unset;
+  /* width: unset; */
 }
 
 #issue

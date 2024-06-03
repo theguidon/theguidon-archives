@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import content from "./sample.json";
 
 function TitleBar(props) {
-  const [isTOCVisible, setIsTOCVisible] = useState(false);
+  const [TOCActive, setTOCActive] = useState(false);
   const [openAccordions, setOpenAccordions] = useState([]);
   const [searchActive, setSearchActive] = useState(false);
   const [query, setQuery] = useState("");
@@ -74,9 +74,9 @@ function TitleBar(props) {
           <div className="controls-group">
             <div className="list-container">
               <div
-                className={`list icon ${isTOCVisible ? "active" : ""}`}
+                className={`list icon ${TOCActive ? "active" : ""}`}
                 onClick={() => {
-                  setIsTOCVisible((v) => !v);
+                  setTOCActive((v) => !v);
                   if (searchActive) setSearchActive(false);
                 }}
               >
@@ -93,7 +93,7 @@ function TitleBar(props) {
                 </svg>
               </div>
 
-              <div className={`popup ${isTOCVisible ? "active" : ""}`}>
+              <div className={`popup ${TOCActive ? "active" : ""}`}>
                 <p className="heading">Table of Contents</p>
 
                 {content.map((section, idx) => (
@@ -160,7 +160,7 @@ function TitleBar(props) {
                   setSearchActive(true);
                   setQuery("");
 
-                  if (isTOCVisible) setIsTOCVisible(false);
+                  if (TOCActive) setTOCActive(false);
                 }
               }}
             >
