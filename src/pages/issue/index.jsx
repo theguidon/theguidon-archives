@@ -5,12 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchIssue } from "../../redux/modules/issue";
 import { setFullscreen } from "../../redux/modules/fullscreen";
 
-import sample from "./../../assets/sample-2.pdf";
-
 import "./index.css";
-import "./reader.css";
 import "./fullscreen.css";
-import { Document, Page, pdfjs } from "react-pdf";
 import TitleBar from "../../components/issue/title-bar";
 import SliderSection from "../../components/issue/slider-section";
 import IssueReader from "../../components/issue/reader";

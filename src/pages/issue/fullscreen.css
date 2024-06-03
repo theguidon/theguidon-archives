@@ -4,12 +4,6 @@
   /* padding-top: 56px; */
 }
 
-#issue.fullscreen #reader {
-  height: 100%;
-
-  background-color: #262626;
-}
-
 #issue.fullscreen #issue-info {
   display: none;
 }
