@@ -55,7 +55,11 @@
         "title": "What the heart wants",
         "bylines": "JURIS SALVANERA"
       },
-      { "page": 9, "title": "Au revoir", "bylines": "Emman Evangelista" },
+      {
+        "page": 9,
+        "title": "<i>Au revoir</i>",
+        "bylines": "Emman Evangelista"
+      },
       { "page": 10, "title": "A losing game", "bylines": "Therese Garcia" },
       {
         "page": 10,
@@ -165,7 +169,7 @@
       },
       {
         "page": 23,
-        "title": "Launching the raket era",
+        "title": "Launching the <i>raket</i> era",
         "bylines": "RIE TESORO AND ALYSSA E. DUQUE"
       },
       {
@@ -175,7 +179,7 @@
       },
       {
         "page": 24,
-        "title": "Kuwento ng mga barbero",
+        "title": "<i>Kuwento ng mga barbero</i>",
         "bylines": "ZAKI DAYRIT"
       }
     ]
