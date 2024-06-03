@@ -153,10 +153,8 @@ function IssuePage() {
     }
   };
 
-  // useEffect(() => {
-  //   if (mainRef.current)
-  //     console.log(mainRef.current.getBoundingClientRect().height);
-  // }, [window.innerWidth]);
+  const isLocalhost = () =>
+    location.hostname === "localhost" || location.hostname === "127.0.0.1";
 
   return (
     issue != null && (
@@ -255,7 +253,7 @@ function IssuePage() {
             onMouseUp={onEndDragging}
           >
             <Document
-              file={issue.full_issue}
+              file={isLocalhost() ? sample : issue.full_issue}
               // file={`/issues/${issue.fixed_slug}.pdf`}
               // file={sample}
               loading={null}
