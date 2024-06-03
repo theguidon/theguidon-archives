@@ -195,26 +195,6 @@
   .controls-left
   .controls-group
   .search-container
-  .section-row {
-  padding: 12px 0;
-  border-bottom: 1px solid white;
-}
-
-#issue
-  .title-bar
-  .controls-left
-  .controls-group
-  .search-container
-  .section-row
-  .name {
-  font-weight: bold;
-}
-
-#issue
-  .title-bar
-  .controls-left
-  .controls-group
-  .search-container
   .search-results {
   display: none;
 
@@ -250,6 +230,29 @@
   .controls-left
   .controls-group
   .search-container
+  .search-results
+  .section-row {
+  padding: 12px 0;
+  border-bottom: 1px solid white;
+}
+
+#issue
+  .title-bar
+  .controls-left
+  .controls-group
+  .search-container
+  .search-results
+  .section-row
+  .name {
+  font-weight: bold;
+}
+
+#issue
+  .title-bar
+  .controls-left
+  .controls-group
+  .search-container
+  .search-results
   .section-content {
   padding: 12px 0 12px 24px;
   display: flex;
@@ -262,6 +265,7 @@
   .controls-left
   .controls-group
   .search-container
+  .search-results
   .section-content:not(:last-child) {
   border-bottom: 1px solid white;
 }
@@ -271,6 +275,7 @@
   .controls-left
   .controls-group
   .search-container
+  .search-results
   .section-content
   .article {
   display: flex;
@@ -287,6 +292,7 @@
   .controls-left
   .controls-group
   .search-container
+  .search-results
   .section-content
   .article
   .title {
@@ -303,6 +309,7 @@
   .controls-left
   .controls-group
   .search-container
+  .search-results
   .section-content
   .article
   .page {

@@ -38,6 +38,36 @@
   background-color: #353535;
 }
 
+#issue.fullscreen
+  .title-bar
+  .controls-left
+  .controls-group
+  .search-container
+  .search-results {
+  color: var(--gray-3);
+}
+
+#issue.fullscreen
+  .title-bar
+  .controls-left
+  .controls-group
+  .search-container
+  .search-results
+  .section-row {
+  padding: 12px 0;
+  border-bottom-color: var(--gray-2);
+}
+
+#issue.fullscreen
+  .title-bar
+  .controls-left
+  .controls-group
+  .search-container
+  .search-results
+  .section-content:not(:last-child) {
+  border-bottom-color: var(--gray-2);
+}
+
 /* center */
 #issue.fullscreen .title-bar .general-container > .title {
   display: none;
