@@ -32,6 +32,7 @@
   background-color: var(--gdn-blue);
   height: 100%;
   border-radius: 12px;
+  transition: 0.3s;
 }
 
 #issue .slider-section .slider .slider-circle {
@@ -46,6 +47,7 @@
   transform: translate(-50%, -50%);
 
   cursor: pointer;
+  transition: 0.3s;
 }
 
 #issue .slider-section .text-controls {

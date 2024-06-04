@@ -1,0 +1,130 @@
+#issue .title-bar .list-container .popup {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  color: black;
+
+  /* width: fit-content;
+  max-width: 360px; */
+  width: 360px;
+  max-height: calc(min(600px, 65vh));
+
+  overflow-y: auto;
+
+  opacity: 0;
+  transition: 0.3s;
+  pointer-events: none;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#issue .title-bar .list-container .popup::-webkit-scrollbar {
+  display: none;
+}
+
+#issue .title-bar .list-container .popup.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#issue .title-bar .list-container .popup .heading {
+  font-weight: bold;
+  margin: 0 0 4px;
+  color: var(--gdn-blue);
+}
+
+#issue .title-bar .list-container .popup .section-row {
+  padding: 12px 0;
+  border-bottom: 1px solid black;
+
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+
+  cursor: pointer;
+}
+
+#issue .title-bar .list-container .popup .section-row .name {
+  font-weight: bold;
+}
+
+#issue .title-bar .list-container .popup .section-row .chevron {
+  width: 16px;
+  height: 16px;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+
+  transition: 0.3s;
+}
+
+#issue .title-bar .list-container .popup .section-row.active .chevron {
+  transform: rotate(180deg);
+}
+
+#issue .title-bar .list-container .popup .section-content {
+  /* padding: 12px 0 12px 24px; */
+  padding: 0 0 0 12px;
+
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 16px;
+
+  max-height: 0;
+  overflow-y: clip;
+  box-sizing: border-box;
+
+  transition: 0.3s;
+
+  border-bottom: 1px solid transparent;
+}
+
+#issue .title-bar .list-container .popup .section-content.active {
+  max-height: 1000px;
+}
+
+#issue
+  .title-bar
+  .list-container
+  .popup
+  .section-content.active:not(:last-child) {
+  border-bottom-color: black;
+}
+
+#issue .title-bar .list-container .popup .section-content .article {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  column-gap: 8px;
+  justify-content: space-between;
+
+  cursor: pointer;
+}
+
+#issue .title-bar .list-container .popup .section-content .article:first-child {
+  margin-top: 12px;
+}
+
+#issue .title-bar .list-container .popup .section-content .article:last-child {
+  margin-bottom: 12px;
+}
+
+#issue .title-bar .list-container .popup .section-content .article .title {
+  flex-grow: 1;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  text-overflow: ellipsis;
+  overflow: clip;
+}
+
+#issue .title-bar .list-container .popup .section-content .article .page {
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+}

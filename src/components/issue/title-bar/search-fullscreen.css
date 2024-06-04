@@ -1,0 +1,29 @@
+#issue.fullscreen .title-bar .search-container.active {
+  background-color: #353535;
+}
+
+#issue.fullscreen .title-bar .bottom .search-container .search-row input {
+  color: white;
+  caret-color: white;
+}
+
+#issue.fullscreen .title-bar .bottom .search-container .search-row .close svg {
+  stroke: #353535;
+}
+
+#issue.fullscreen .title-bar .search-container .search-results {
+  color: var(--gray-3);
+}
+
+#issue.fullscreen .title-bar .search-container .search-results .section-row {
+  padding: 12px 0;
+  border-bottom-color: var(--gray-2);
+}
+
+#issue.fullscreen
+  .title-bar
+  .search-container
+  .search-results
+  .section-content:not(:last-child) {
+  border-bottom-color: var(--gray-2);
+}
