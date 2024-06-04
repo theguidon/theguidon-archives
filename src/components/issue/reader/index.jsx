@@ -160,7 +160,7 @@ function IssueReader(props) {
         )}
       </div>
 
-      {showModal && loadedPages < props.issue.num_pages + 1 && (
+      {showModal && loadedPages < props.issue.num_pages && (
         <div className="bg-tint">
           <div className="loading-modal">
             <svg
@@ -208,12 +208,14 @@ function IssueReader(props) {
         </div>
       )}
 
-      <SliderSection
-        sliderPercentage={getSliderPercentage()}
-        pageText={`${getPageText()} of ${props.issue.num_pages}`}
-        onLeftClick={props.onLeftClick}
-        onRightClick={props.onRightClick}
-      />
+      {!props.issue.is_legacy && (
+        <SliderSection
+          sliderPercentage={getSliderPercentage()}
+          pageText={`${getPageText()} of ${props.issue.num_pages}`}
+          onLeftClick={props.onLeftClick}
+          onRightClick={props.onRightClick}
+        />
+      )}
     </main>
   );
 }

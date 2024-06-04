@@ -244,4 +244,7 @@
 }
 
 @media screen and (max-width: 576px) {
+  #issue .title-bar .top {
+    height: 48px;
+  }
 }

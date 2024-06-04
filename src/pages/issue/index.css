@@ -101,6 +101,7 @@
 #issue #issue-metadata .row p {
   min-height: 24px;
   color: var(--gdn-blue);
+  word-break: break-word;
 }
 
 #issue #issue-metadata .row p a {

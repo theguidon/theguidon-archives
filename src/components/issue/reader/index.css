@@ -177,14 +177,28 @@
 }
 
 @media screen and (max-width: 992px) {
+  #issue .title-bar .top {
+    height: 50px;
+  }
+
+  #issue .title-bar .bottom {
+    min-height: 44px;
+  }
+
+  #issue #reader {
+    height: calc(100vh - var(--header-height) - 50px - 44px);
+  }
 }
 
 @media screen and (max-width: 768px) {
 }
 
 @media screen and (max-width: 576px) {
-  /* #issue #reader .loading-modal .close {
-    top: 18px;
-    right: 24px;
-  } */
+  #issue #reader {
+    height: calc(100vh - var(--header-height) - 48px - 44px);
+  }
+
+  #issue #reader .edge {
+    width: 64px;
+  }
 }

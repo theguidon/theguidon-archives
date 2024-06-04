@@ -222,59 +222,16 @@ function TitleBar(props) {
                     d="M7.99967 14.6693C11.6817 14.6693 14.6663 11.6846 14.6663 8.0026C14.6663 4.3206 11.6817 1.33594 7.99967 1.33594C4.31767 1.33594 1.33301 4.3206 1.33301 8.0026C1.33301 11.6846 4.31767 14.6693 7.99967 14.6693Z"
                     fill="currentColor"
                     stroke="currentColor"
-                    stroke-width="1.33333"
-                    stroke-linejoin="round"
+                    strokeWidth="1.33333"
+                    strokeLinejoin="round"
                   />
                   <path
                     d="M9.88535 6.11719L6.11401 9.88852M6.11401 6.11719L9.88535 9.88852"
-                    stroke-width="1.33333"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.33333"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
-
-                {/* <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="currentColor"
-                >
-                  <g clipPath="url(#clip0_4052_14109)">
-                    <mask
-                      id="mask0_4052_14109"
-                      style={{ maskType: "luminance" }}
-                      maskUnits="userSpaceOnUse"
-                      x="0"
-                      y="0"
-                      width="16"
-                      height="16"
-                    >
-                      <path
-                        d="M7.99967 14.6693C11.6817 14.6693 14.6663 11.6846 14.6663 8.0026C14.6663 4.3206 11.6817 1.33594 7.99967 1.33594C4.31767 1.33594 1.33301 4.3206 1.33301 8.0026C1.33301 11.6846 4.31767 14.6693 7.99967 14.6693Z"
-                        fill="white"
-                        stroke="white"
-                        strokeWidth="1.33333"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M9.88535 6.11719L6.11401 9.88852M6.11401 6.11719L9.88535 9.88852"
-                        stroke="black"
-                        strokeWidth="1.33333"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </mask>
-                    <g mask="url(#mask0_4052_14109)">
-                      <path d="M-0.000244141 0.00195312H15.9998V16.002H-0.000244141V0.00195312Z" />
-                    </g>
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_4052_14109">
-                      <rect width="16" height="16" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg> */}
               </div>
             </div>
 
