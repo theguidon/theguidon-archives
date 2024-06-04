@@ -176,10 +176,7 @@ function TitleBar(props) {
               if (!searchActive) {
                 setSearchActive(true);
                 setQuery("");
-
                 if (TOCActive) setTOCActive(false);
-
-                // if (searchFieldRef != null) searchFieldRef.current.focus();
               }
             }}
           >

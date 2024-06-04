@@ -10,6 +10,8 @@
 
   display: flex;
   flex-flow: column nowrap;
+
+  cursor: pointer;
 }
 
 #issue .title-bar .search-container.active {
@@ -21,6 +23,8 @@
 
   height: unset;
   max-height: calc(min(600px, 65vh));
+
+  cursor: unset;
 }
 
 #issue .title-bar .bottom .search-container.active {
