@@ -2,12 +2,14 @@ import "./index.css";
 import "./fullscreen.css";
 import "./content.css";
 import "./content-fullscreen.css";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import React, { useEffect, useRef, useState } from "react";
 
 import content from "./sample.json";
 
 function TitleBar(props) {
+  const navigate = useNavigate();
+
   const [TOCActive, setTOCActive] = useState(false);
   const [openAccordions, setOpenAccordions] = useState([]);
   const [searchActive, setSearchActive] = useState(false);
@@ -67,7 +69,12 @@ function TitleBar(props) {
     <section className="title-bar">
       <div className="general-container">
         <div className="controls-left">
-          <Link to={``} className="back-group">
+          <div
+            className="back-group"
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -76,7 +83,7 @@ function TitleBar(props) {
               <path d="M15.2528 7.91226C15.6219 7.57846 15.6512 7.00787 15.3183 6.63781C14.9853 6.26776 14.4162 6.23837 14.0472 6.57217L8.74512 11.3674C8.34795 11.7266 8.34904 12.3518 8.74746 12.7096L14.0032 17.4296C14.3735 17.7621 14.9425 17.7307 15.2741 17.3595C15.6057 16.9883 15.5744 16.4178 15.2042 16.0853L11.0245 12.3316C10.8479 12.1731 10.8474 11.8966 11.0234 11.7374L15.2528 7.91226Z" />
             </svg>
             Back
-          </Link>
+          </div>
 
           <div className="controls-group">
             <div className="list-container">
