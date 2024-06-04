@@ -1,11 +1,23 @@
 #issue #reader {
   /* background-color: var(--blue-gray-light); */
   background-color: var(--gray-1);
-  /* height: calc(100vh - var(--header-height) - 56px - 48px - 16px); */
-  height: calc(100vh - var(--header-height) - 56px - 48px);
+  height: calc(100vh - var(--header-height) - 56px);
 
   position: relative;
   overflow: clip;
+
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#issue #reader .container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  height: 0;
+  flex-grow: 1;
+
+  position: relative;
 }
 
 #issue #reader .edge {
@@ -54,12 +66,6 @@
 }
 
 /* hack */
-#issue #reader {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-}
-
 #issue #reader .document-container:not(.dragging) {
   transition: 0.2s;
 }

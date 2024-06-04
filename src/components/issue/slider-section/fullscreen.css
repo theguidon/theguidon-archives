@@ -1,4 +1,4 @@
-#issue.fullscreen .slider-section {
+#issue.fullscreen #reader .slider-section {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -9,15 +9,15 @@
   color: #818f98;
 }
 
-#issue.fullscreen .slider-section .slider {
+#issue.fullscreen #reader .slider-section .slider {
   background-color: var(--gray-2);
 }
 
-#issue.fullscreen .slider-section .slider .slider-fill {
+#issue.fullscreen #reader .slider-section .slider-fill {
   background-color: var(--blue-gray-dark);
 }
 
-#issue.fullscreen .slider-section .slider .slider-circle {
+#issue.fullscreen #reader .slider-section .slider-circle {
   background-color: var(--gray-3);
   border-color: #666666;
 }

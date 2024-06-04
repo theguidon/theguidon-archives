@@ -8,7 +8,6 @@ import { setFullscreen } from "../../redux/modules/fullscreen";
 import "./index.css";
 import "./fullscreen.css";
 import TitleBar from "../../components/issue/title-bar";
-import SliderSection from "../../components/issue/slider-section";
 import IssueReader from "../../components/issue/reader";
 import { ArchivesData } from "../../data/archives";
 
@@ -80,26 +79,6 @@ function IssuePage() {
     setPage(np);
   };
 
-  const getPageText = () => {
-    if (page == 1) return `Page ${page}`;
-    if (page == issue.num_pages) return `Page ${page}`;
-
-    if (isDoubleReader) return `Pages ${page}-${page + 1}`;
-    else return `Page ${page}`;
-  };
-
-  const getSliderPercentage = () => {
-    if (isDoubleReader) {
-      let cur = page == 1 ? 0 : page;
-      let max =
-        issue.num_pages % 2 == 1 ? issue.num_pages - 1 : issue.num_pages;
-
-      return (cur / max) * 100;
-    } else {
-      return ((page - 1) / (issue.num_pages - 1)) * 100;
-    }
-  };
-
   useEffect(() => {
     if (isDoubleReader && page > 1 && page % 2 == 1) setPage(page - 1);
   }, [isDoubleReader]);
@@ -108,8 +87,6 @@ function IssuePage() {
     dispatch(setFullscreen(!isFullscreen));
     setIsFullscreen((p) => !p);
   };
-
-  // console.log(issue);
 
   return (
     issue != null && (
@@ -136,15 +113,6 @@ function IssuePage() {
           page={page}
           isLegacy={issue.is_legacy}
         />
-
-        {!issue.is_legacy && (
-          <SliderSection
-            sliderPercentage={getSliderPercentage()}
-            pageText={`${getPageText()} of ${issue.num_pages}`}
-            onLeftClick={onLeftClick}
-            onRightClick={onRightClick}
-          />
-        )}
 
         <section id="issue-metadata" className="general-container">
           <div className="cover-container">

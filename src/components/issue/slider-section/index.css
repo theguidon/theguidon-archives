@@ -1,7 +1,11 @@
-#issue .slider-section {
+#issue #reader .slider-section {
   background-color: var(--blue-light);
   padding: 12px 0;
   height: 48px;
+
+  flex-grow: 0;
+  flex-shrink: 0;
+  z-index: 5;
 
   display: flex;
   flex-flow: column nowrap;
@@ -10,7 +14,7 @@
   color: #666666;
 }
 
-#issue .slider-section .general-container {
+#issue #reader .slider-section .general-container {
   padding: 0 64px;
 
   display: flex;
@@ -19,7 +23,7 @@
   align-items: center;
 }
 
-#issue .slider-section .slider {
+#issue #reader .slider-section .slider {
   flex-grow: 1;
   background-color: white;
   height: 12px;
@@ -28,14 +32,14 @@
   position: relative;
 }
 
-#issue .slider-section .slider .slider-fill {
+#issue #reader .slider-section .slider-fill {
   background-color: var(--gdn-blue);
   height: 100%;
   border-radius: 12px;
   transition: 0.3s;
 }
 
-#issue .slider-section .slider .slider-circle {
+#issue #reader .slider-section .slider-circle {
   width: 20px;
   height: 20px;
   background-color: #e9eef2;
@@ -50,7 +54,7 @@
   transition: 0.3s;
 }
 
-#issue .slider-section .text-controls {
+#issue #reader .slider-section .text-controls {
   min-width: 180px;
   width: fit-content;
 
@@ -61,50 +65,50 @@
   align-items: center;
 }
 
-#issue .slider-section .text-controls .chevron {
+#issue #reader .slider-section .chevron {
   display: block;
   width: 24px;
   height: 24px;
   cursor: pointer;
 }
 
-#issue .slider-section .text-controls .page {
+#issue #reader .slider-section .page {
   font-size: var(--body-s-font-size);
   text-align: center;
 }
 
 @media screen and (max-width: 1200px) {
-  #issue .slider-section .general-container {
+  #issue #reader .slider-section .general-container {
     padding: 0 52px;
   }
 }
 
 @media screen and (max-width: 992px) {
-  #issue .slider-section .general-container {
+  #issue #reader .slider-section .general-container {
     padding: 0 40px;
   }
 }
 
 @media screen and (max-width: 768px) {
-  #issue .slider-section .general-container {
+  #issue #reader .slider-section .general-container {
     padding: 0 28px;
   }
 }
 
 @media screen and (max-width: 576px) {
-  #issue .slider-section {
+  #issue #reader .slider-section {
     padding: 16px 0;
     height: unset;
   }
 
-  #issue .slider-section .general-container {
+  #issue #reader .slider-section .general-container {
     flex-flow: column nowrap;
     row-gap: 12px;
 
     padding: 0 16px;
   }
 
-  #issue .slider-section .slider {
+  #issue #reader .slider-section .slider {
     width: 100%;
   }
 }
