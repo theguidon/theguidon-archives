@@ -132,7 +132,7 @@ function IssueReader(props) {
                   }}
                   renderAnnotationLayer={false}
                   renderTextLayer={false}
-                  height={2400}
+                  height={1600}
                   className={`page ${
                     determineShowPage(idx + 1) ? "active" : ""
                   }`}
