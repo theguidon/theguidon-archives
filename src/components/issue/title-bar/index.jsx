@@ -3,7 +3,7 @@ import "./fullscreen.css";
 import "./content.css";
 import "./content-fullscreen.css";
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import content from "./sample.json";
 
@@ -12,6 +12,7 @@ function TitleBar(props) {
   const [openAccordions, setOpenAccordions] = useState([]);
   const [searchActive, setSearchActive] = useState(false);
   const [query, setQuery] = useState("");
+  const searchFieldRef = useRef(null);
 
   const getFilteredContent = () => {
     if (query === "") return [];
@@ -55,6 +56,12 @@ function TitleBar(props) {
         : article.page
     );
   };
+
+  useEffect(() => {
+    if (searchFieldRef.current != null) {
+      if (searchActive) searchFieldRef.current.focus();
+    }
+  }, [searchActive]);
 
   return (
     <section className="title-bar">
@@ -161,6 +168,8 @@ function TitleBar(props) {
                   setQuery("");
 
                   if (TOCActive) setTOCActive(false);
+
+                  // if (searchFieldRef != null) searchFieldRef.current.focus();
                 }
               }}
             >
@@ -184,6 +193,7 @@ function TitleBar(props) {
                   type="text"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
+                  ref={searchFieldRef}
                 />
 
                 <div
