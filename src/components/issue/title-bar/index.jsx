@@ -85,188 +85,74 @@ function TitleBar(props) {
             Back
           </div>
 
-          <div className="controls-group">
-            <div className="list-container">
-              <div
-                className={`list icon ${TOCActive ? "active" : ""}`}
-                onClick={() => {
-                  setTOCActive((v) => !v);
-                  if (searchActive) setSearchActive(false);
-                }}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M3 14C3.55228 14 4 14.4477 4 15C4 15.5523 3.55228 16 3 16C2.44772 16 2 15.5523 2 15C2 14.4477 2.44772 14 3 14ZM17 14C17.5523 14 18 14.4477 18 15C18 15.5523 17.5523 16 17 16H7C6.44772 16 6 15.5523 6 15C6 14.4477 6.44772 14 7 14H17ZM3 9C3.55228 9 4 9.44772 4 10C4 10.5523 3.55228 11 3 11C2.44772 11 2 10.5523 2 10C2 9.44772 2.44772 9 3 9ZM17 9C17.5523 9 18 9.44772 18 10C18 10.5523 17.5523 11 17 11H7C6.44772 11 6 10.5523 6 10C6 9.44772 6.44772 9 7 9H17ZM3 4C3.55228 4 4 4.44772 4 5C4 5.55228 3.55228 6 3 6C2.44772 6 2 5.55228 2 5C2 4.44772 2.44772 4 3 4ZM17 4C17.5523 4 18 4.44772 18 5C18 5.55228 17.5523 6 17 6H7C6.44772 6 6 5.55228 6 5C6 4.44772 6.44772 4 7 4H17Z"
-                  />
-                </svg>
-              </div>
-
-              <div className={`popup ${TOCActive ? "active" : ""}`}>
-                <p className="heading">Table of Contents</p>
-
-                {content.map((section, idx) => (
-                  <React.Fragment key={`section-${idx}`}>
-                    <div
-                      className={`section-row ${
-                        openAccordions.includes(section.name) ? "active" : ""
-                      }`}
-                      onClick={() => {
-                        let nactive = [...openAccordions];
-                        if (openAccordions.includes(section.name)) {
-                          nactive.splice(nactive.indexOf(section.name), 1);
-                        } else {
-                          nactive.push(section.name);
-                        }
-
-                        setOpenAccordions(nactive);
-                      }}
-                    >
-                      <p className="name">{section.name}</p>
-
-                      <svg
-                        className="chevron"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 16 17"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M3.70711 6.00188C3.31658 5.61135 2.68342 5.61135 2.29289 6.00188C1.90237 6.3924 1.90237 7.02557 2.29289 7.41609L7.29289 12.4161C7.68342 12.8066 8.31658 12.8066 8.70711 12.4161L13.7071 7.41609C14.0976 7.02557 14.0976 6.3924 13.7071 6.00188C13.3166 5.61135 12.6834 5.61135 12.2929 6.00188L8 10.2948L3.70711 6.00188Z"
-                        />
-                      </svg>
-                    </div>
-
-                    <div
-                      className={`section-content ${
-                        openAccordions.includes(section.name) ? "active" : ""
-                      }`}
-                    >
-                      {section.articles.map((article, idx2) => (
-                        <div
-                          className="article"
-                          key={`section-${idx}-article-${idx2}`}
-                          onClick={() => goToArticle(article)}
-                        >
-                          <p
-                            className="title"
-                            dangerouslySetInnerHTML={{ __html: article.title }}
-                          />
-                          <p className="page">{article.page}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </React.Fragment>
-                ))}
-              </div>
-            </div>
-
-            <div
-              className={`search-container ${searchActive ? "active" : ""}`}
-              onClick={() => {
-                if (!searchActive) {
-                  setSearchActive(true);
-                  setQuery("");
-
-                  if (TOCActive) setTOCActive(false);
-
-                  // if (searchFieldRef != null) searchFieldRef.current.focus();
-                }
-              }}
-            >
-              <div className="search-row">
-                <div className="search icon">
-                  <svg
-                    className="search-icon"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M10.8004 2.40039C15.4396 2.40039 19.2004 6.1612 19.2004 10.8004C19.2004 12.692 18.5751 14.4377 17.5199 15.8418L17.5858 15.8933L17.6489 15.9519L21.2489 19.5519C21.7175 20.0205 21.7175 20.7803 21.2489 21.2489C20.8163 21.6815 20.1357 21.7148 19.6649 21.3487L19.5519 21.2489L15.9519 17.6489C15.9108 17.6079 15.8734 17.5646 15.8395 17.5195C14.4377 18.5751 12.692 19.2004 10.8004 19.2004C6.1612 19.2004 2.40039 15.4396 2.40039 10.8004C2.40039 6.1612 6.1612 2.40039 10.8004 2.40039ZM10.8004 4.80039C7.48668 4.80039 4.80039 7.48668 4.80039 10.8004C4.80039 14.1141 7.48668 16.8004 10.8004 16.8004C14.1141 16.8004 16.8004 14.1141 16.8004 10.8004C16.8004 7.48668 14.1141 4.80039 10.8004 4.80039Z"
-                    />
-                  </svg>
-                </div>
-
-                <input
-                  type="text"
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  ref={searchFieldRef}
-                />
-
+          {!props.isLegacy && (
+            <div className="controls-group">
+              <div className="list-container">
                 <div
-                  className="close icon"
+                  className={`list icon ${TOCActive ? "active" : ""}`}
                   onClick={() => {
+                    setTOCActive((v) => !v);
                     if (searchActive) setSearchActive(false);
                   }}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
+                    viewBox="0 0 20 20"
                     fill="currentColor"
                   >
-                    <g clipPath="url(#clip0_4052_14109)">
-                      <mask
-                        id="mask0_4052_14109"
-                        style={{ maskType: "luminance" }}
-                        maskUnits="userSpaceOnUse"
-                        x="0"
-                        y="0"
-                        width="16"
-                        height="16"
-                      >
-                        <path
-                          d="M7.99967 14.6693C11.6817 14.6693 14.6663 11.6846 14.6663 8.0026C14.6663 4.3206 11.6817 1.33594 7.99967 1.33594C4.31767 1.33594 1.33301 4.3206 1.33301 8.0026C1.33301 11.6846 4.31767 14.6693 7.99967 14.6693Z"
-                          fill="white"
-                          stroke="white"
-                          strokeWidth="1.33333"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M9.88535 6.11719L6.11401 9.88852M6.11401 6.11719L9.88535 9.88852"
-                          stroke="black"
-                          strokeWidth="1.33333"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </mask>
-                      <g mask="url(#mask0_4052_14109)">
-                        <path d="M-0.000244141 0.00195312H15.9998V16.002H-0.000244141V0.00195312Z" />
-                      </g>
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_4052_14109">
-                        <rect width="16" height="16" fill="white" />
-                      </clipPath>
-                    </defs>
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M3 14C3.55228 14 4 14.4477 4 15C4 15.5523 3.55228 16 3 16C2.44772 16 2 15.5523 2 15C2 14.4477 2.44772 14 3 14ZM17 14C17.5523 14 18 14.4477 18 15C18 15.5523 17.5523 16 17 16H7C6.44772 16 6 15.5523 6 15C6 14.4477 6.44772 14 7 14H17ZM3 9C3.55228 9 4 9.44772 4 10C4 10.5523 3.55228 11 3 11C2.44772 11 2 10.5523 2 10C2 9.44772 2.44772 9 3 9ZM17 9C17.5523 9 18 9.44772 18 10C18 10.5523 17.5523 11 17 11H7C6.44772 11 6 10.5523 6 10C6 9.44772 6.44772 9 7 9H17ZM3 4C3.55228 4 4 4.44772 4 5C4 5.55228 3.55228 6 3 6C2.44772 6 2 5.55228 2 5C2 4.44772 2.44772 4 3 4ZM17 4C17.5523 4 18 4.44772 18 5C18 5.55228 17.5523 6 17 6H7C6.44772 6 6 5.55228 6 5C6 4.44772 6.44772 4 7 4H17Z"
+                    />
                   </svg>
                 </div>
-              </div>
 
-              {getFilteredContent().length > 0 && (
-                <div className="search-results">
-                  {getFilteredContent().map((section, idx) => (
-                    <React.Fragment key={`search-section-${idx}`}>
-                      <div className="section-row">
+                <div className={`popup ${TOCActive ? "active" : ""}`}>
+                  <p className="heading">Table of Contents</p>
+
+                  {content.map((section, idx) => (
+                    <React.Fragment key={`section-${idx}`}>
+                      <div
+                        className={`section-row ${
+                          openAccordions.includes(section.name) ? "active" : ""
+                        }`}
+                        onClick={() => {
+                          let nactive = [...openAccordions];
+                          if (openAccordions.includes(section.name)) {
+                            nactive.splice(nactive.indexOf(section.name), 1);
+                          } else {
+                            nactive.push(section.name);
+                          }
+
+                          setOpenAccordions(nactive);
+                        }}
+                      >
                         <p className="name">{section.name}</p>
+
+                        <svg
+                          className="chevron"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 16 17"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M3.70711 6.00188C3.31658 5.61135 2.68342 5.61135 2.29289 6.00188C1.90237 6.3924 1.90237 7.02557 2.29289 7.41609L7.29289 12.4161C7.68342 12.8066 8.31658 12.8066 8.70711 12.4161L13.7071 7.41609C14.0976 7.02557 14.0976 6.3924 13.7071 6.00188C13.3166 5.61135 12.6834 5.61135 12.2929 6.00188L8 10.2948L3.70711 6.00188Z"
+                          />
+                        </svg>
                       </div>
 
-                      <div className="section-content">
+                      <div
+                        className={`section-content ${
+                          openAccordions.includes(section.name) ? "active" : ""
+                        }`}
+                      >
                         {section.articles.map((article, idx2) => (
                           <div
                             className="article"
-                            key={`search-section-${idx}-article-${idx2}`}
+                            key={`section-${idx}-article-${idx2}`}
                             onClick={() => goToArticle(article)}
                           >
                             <p
@@ -282,253 +168,377 @@ function TitleBar(props) {
                     </React.Fragment>
                   ))}
                 </div>
-              )}
+              </div>
+
+              <div
+                className={`search-container ${searchActive ? "active" : ""}`}
+                onClick={() => {
+                  if (!searchActive) {
+                    setSearchActive(true);
+                    setQuery("");
+
+                    if (TOCActive) setTOCActive(false);
+
+                    // if (searchFieldRef != null) searchFieldRef.current.focus();
+                  }
+                }}
+              >
+                <div className="search-row">
+                  <div className="search icon">
+                    <svg
+                      className="search-icon"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M10.8004 2.40039C15.4396 2.40039 19.2004 6.1612 19.2004 10.8004C19.2004 12.692 18.5751 14.4377 17.5199 15.8418L17.5858 15.8933L17.6489 15.9519L21.2489 19.5519C21.7175 20.0205 21.7175 20.7803 21.2489 21.2489C20.8163 21.6815 20.1357 21.7148 19.6649 21.3487L19.5519 21.2489L15.9519 17.6489C15.9108 17.6079 15.8734 17.5646 15.8395 17.5195C14.4377 18.5751 12.692 19.2004 10.8004 19.2004C6.1612 19.2004 2.40039 15.4396 2.40039 10.8004C2.40039 6.1612 6.1612 2.40039 10.8004 2.40039ZM10.8004 4.80039C7.48668 4.80039 4.80039 7.48668 4.80039 10.8004C4.80039 14.1141 7.48668 16.8004 10.8004 16.8004C14.1141 16.8004 16.8004 14.1141 16.8004 10.8004C16.8004 7.48668 14.1141 4.80039 10.8004 4.80039Z"
+                      />
+                    </svg>
+                  </div>
+
+                  <input
+                    type="text"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    ref={searchFieldRef}
+                  />
+
+                  <div
+                    className="close icon"
+                    onClick={() => {
+                      if (searchActive) setSearchActive(false);
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                    >
+                      <g clipPath="url(#clip0_4052_14109)">
+                        <mask
+                          id="mask0_4052_14109"
+                          style={{ maskType: "luminance" }}
+                          maskUnits="userSpaceOnUse"
+                          x="0"
+                          y="0"
+                          width="16"
+                          height="16"
+                        >
+                          <path
+                            d="M7.99967 14.6693C11.6817 14.6693 14.6663 11.6846 14.6663 8.0026C14.6663 4.3206 11.6817 1.33594 7.99967 1.33594C4.31767 1.33594 1.33301 4.3206 1.33301 8.0026C1.33301 11.6846 4.31767 14.6693 7.99967 14.6693Z"
+                            fill="white"
+                            stroke="white"
+                            strokeWidth="1.33333"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M9.88535 6.11719L6.11401 9.88852M6.11401 6.11719L9.88535 9.88852"
+                            stroke="black"
+                            strokeWidth="1.33333"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </mask>
+                        <g mask="url(#mask0_4052_14109)">
+                          <path d="M-0.000244141 0.00195312H15.9998V16.002H-0.000244141V0.00195312Z" />
+                        </g>
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_4052_14109">
+                          <rect width="16" height="16" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </div>
+                </div>
+
+                {getFilteredContent().length > 0 && (
+                  <div className="search-results">
+                    {getFilteredContent().map((section, idx) => (
+                      <React.Fragment key={`search-section-${idx}`}>
+                        <div className="section-row">
+                          <p className="name">{section.name}</p>
+                        </div>
+
+                        <div className="section-content">
+                          {section.articles.map((article, idx2) => (
+                            <div
+                              className="article"
+                              key={`search-section-${idx}-article-${idx2}`}
+                              onClick={() => goToArticle(article)}
+                            >
+                              <p
+                                className="title"
+                                dangerouslySetInnerHTML={{
+                                  __html: article.title,
+                                }}
+                              />
+                              <p className="page">{article.page}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </React.Fragment>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         <h6 className="title">{props.title}</h6>
 
         <div className="controls-right">
-          <div className="reader-group">
-            <div
-              className={`reader icon ${props.isDoubleReader ? "active" : ""}`}
-              onClick={() => props.setIsDoubleReader(true)}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                fill="none"
+          {!props.isLegacy && (
+            <div className="reader-group">
+              <div
+                className={`reader icon ${
+                  props.isDoubleReader ? "active" : ""
+                }`}
+                onClick={() => props.setIsDoubleReader(true)}
               >
-                <rect
-                  x="0.909091"
-                  y="0.909091"
-                  width="14.1818"
-                  height="14.1818"
-                  rx="2"
-                  fill="white"
-                  stroke="white"
-                  strokeWidth="1.81818"
-                />
-                <line
-                  x1="3.63548"
-                  y1="4.36355"
-                  x2="6.54457"
-                  y2="4.36355"
-                  stroke="#1C4480"
-                  strokeWidth="1.45455"
-                  strokeLinecap="round"
-                />
-                <line
-                  x1="9.45384"
-                  y1="4.36355"
-                  x2="12.3629"
-                  y2="4.36355"
-                  stroke="#1C4480"
-                  strokeWidth="1.45455"
-                  strokeLinecap="round"
-                />
-                <line
-                  x1="3.63548"
-                  y1="11.6365"
-                  x2="6.54457"
-                  y2="11.6365"
-                  stroke="#1C4480"
-                  strokeWidth="1.45455"
-                  strokeLinecap="round"
-                />
-                <line
-                  x1="9.45384"
-                  y1="11.6365"
-                  x2="12.3629"
-                  y2="11.6365"
-                  stroke="#1C4480"
-                  strokeWidth="1.45455"
-                  strokeLinecap="round"
-                />
-                <line
-                  x1="3.63548"
-                  y1="7.99978"
-                  x2="6.54457"
-                  y2="7.99978"
-                  stroke="#1C4480"
-                  strokeWidth="1.45455"
-                  strokeLinecap="round"
-                />
-                <line
-                  x1="9.45384"
-                  y1="7.99978"
-                  x2="12.3629"
-                  y2="7.99978"
-                  stroke="#1C4480"
-                  strokeWidth="1.45455"
-                  strokeLinecap="round"
-                />
-              </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <rect
+                    x="0.909091"
+                    y="0.909091"
+                    width="14.1818"
+                    height="14.1818"
+                    rx="2"
+                    fill="white"
+                    stroke="white"
+                    strokeWidth="1.81818"
+                  />
+                  <line
+                    x1="3.63548"
+                    y1="4.36355"
+                    x2="6.54457"
+                    y2="4.36355"
+                    stroke="#1C4480"
+                    strokeWidth="1.45455"
+                    strokeLinecap="round"
+                  />
+                  <line
+                    x1="9.45384"
+                    y1="4.36355"
+                    x2="12.3629"
+                    y2="4.36355"
+                    stroke="#1C4480"
+                    strokeWidth="1.45455"
+                    strokeLinecap="round"
+                  />
+                  <line
+                    x1="3.63548"
+                    y1="11.6365"
+                    x2="6.54457"
+                    y2="11.6365"
+                    stroke="#1C4480"
+                    strokeWidth="1.45455"
+                    strokeLinecap="round"
+                  />
+                  <line
+                    x1="9.45384"
+                    y1="11.6365"
+                    x2="12.3629"
+                    y2="11.6365"
+                    stroke="#1C4480"
+                    strokeWidth="1.45455"
+                    strokeLinecap="round"
+                  />
+                  <line
+                    x1="3.63548"
+                    y1="7.99978"
+                    x2="6.54457"
+                    y2="7.99978"
+                    stroke="#1C4480"
+                    strokeWidth="1.45455"
+                    strokeLinecap="round"
+                  />
+                  <line
+                    x1="9.45384"
+                    y1="7.99978"
+                    x2="12.3629"
+                    y2="7.99978"
+                    stroke="#1C4480"
+                    strokeWidth="1.45455"
+                    strokeLinecap="round"
+                  />
+                </svg>
 
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 17 17"
-                fill="none"
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 17 17"
+                  fill="none"
+                >
+                  <rect
+                    x="1.27335"
+                    y="1.84659"
+                    width="14.1818"
+                    height="14.1818"
+                    rx="2"
+                    stroke="#6A757C"
+                    strokeWidth="1.81818"
+                  />
+                  <line
+                    x1="3.99973"
+                    y1="5.30007"
+                    x2="6.90882"
+                    y2="5.30007"
+                    stroke="#6A757C"
+                    strokeWidth="1.45455"
+                    strokeLinecap="round"
+                  />
+                  <line
+                    x1="9.81809"
+                    y1="5.30007"
+                    x2="12.7272"
+                    y2="5.30007"
+                    stroke="#6A757C"
+                    strokeWidth="1.45455"
+                    strokeLinecap="round"
+                  />
+                  <line
+                    x1="3.99973"
+                    y1="12.5735"
+                    x2="6.90882"
+                    y2="12.5735"
+                    stroke="#6A757C"
+                    strokeWidth="1.45455"
+                    strokeLinecap="round"
+                  />
+                  <line
+                    x1="9.81809"
+                    y1="12.5735"
+                    x2="12.7272"
+                    y2="12.5735"
+                    stroke="#6A757C"
+                    strokeWidth="1.45455"
+                    strokeLinecap="round"
+                  />
+                  <line
+                    x1="3.99973"
+                    y1="8.93679"
+                    x2="6.90882"
+                    y2="8.93679"
+                    stroke="#6A757C"
+                    strokeWidth="1.45455"
+                    strokeLinecap="round"
+                  />
+                  <line
+                    x1="9.81809"
+                    y1="8.93679"
+                    x2="12.7272"
+                    y2="8.93679"
+                    stroke="#6A757C"
+                    strokeWidth="1.45455"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
+
+              <div
+                className={`reader icon ${
+                  props.isDoubleReader ? "" : "active"
+                }`}
+                onClick={() => props.setIsDoubleReader(false)}
               >
-                <rect
-                  x="1.27335"
-                  y="1.84659"
-                  width="14.1818"
-                  height="14.1818"
-                  rx="2"
-                  stroke="#6A757C"
-                  strokeWidth="1.81818"
-                />
-                <line
-                  x1="3.99973"
-                  y1="5.30007"
-                  x2="6.90882"
-                  y2="5.30007"
-                  stroke="#6A757C"
-                  strokeWidth="1.45455"
-                  strokeLinecap="round"
-                />
-                <line
-                  x1="9.81809"
-                  y1="5.30007"
-                  x2="12.7272"
-                  y2="5.30007"
-                  stroke="#6A757C"
-                  strokeWidth="1.45455"
-                  strokeLinecap="round"
-                />
-                <line
-                  x1="3.99973"
-                  y1="12.5735"
-                  x2="6.90882"
-                  y2="12.5735"
-                  stroke="#6A757C"
-                  strokeWidth="1.45455"
-                  strokeLinecap="round"
-                />
-                <line
-                  x1="9.81809"
-                  y1="12.5735"
-                  x2="12.7272"
-                  y2="12.5735"
-                  stroke="#6A757C"
-                  strokeWidth="1.45455"
-                  strokeLinecap="round"
-                />
-                <line
-                  x1="3.99973"
-                  y1="8.93679"
-                  x2="6.90882"
-                  y2="8.93679"
-                  stroke="#6A757C"
-                  strokeWidth="1.45455"
-                  strokeLinecap="round"
-                />
-                <line
-                  x1="9.81809"
-                  y1="8.93679"
-                  x2="12.7272"
-                  y2="8.93679"
-                  stroke="#6A757C"
-                  strokeWidth="1.45455"
-                  strokeLinecap="round"
-                />
-              </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 17 16"
+                  fill="none"
+                >
+                  <rect
+                    x="1.16593"
+                    y="0.909091"
+                    width="14.1818"
+                    height="14.1818"
+                    rx="2"
+                    fill="white"
+                    stroke="white"
+                    strokeWidth="1.81818"
+                  />
+                  <line
+                    x1="3.89231"
+                    y1="4.36257"
+                    x2="12.6196"
+                    y2="4.36257"
+                    stroke="#1C4480"
+                    strokeWidth="1.45455"
+                    strokeLinecap="round"
+                  />
+                  <line
+                    x1="3.89231"
+                    y1="11.636"
+                    x2="12.6196"
+                    y2="11.636"
+                    stroke="#1C4480"
+                    strokeWidth="1.45455"
+                    strokeLinecap="round"
+                  />
+                  <line
+                    x1="3.89231"
+                    y1="7.99929"
+                    x2="12.6196"
+                    y2="7.99929"
+                    stroke="#1C4480"
+                    strokeWidth="1.45455"
+                    strokeLinecap="round"
+                  />
+                </svg>
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 17 17"
+                  fill="none"
+                >
+                  <rect
+                    x="1.54669"
+                    y="1.78595"
+                    width="14.1781"
+                    height="14.1781"
+                    rx="2.00409"
+                    stroke="#6A757C"
+                    strokeWidth="1.8219"
+                  />
+                  <line
+                    x1="4.27271"
+                    y1="5.23804"
+                    x2="12.997"
+                    y2="5.23804"
+                    stroke="#6A757C"
+                    strokeWidth="1.45752"
+                    strokeLinecap="round"
+                  />
+                  <line
+                    x1="4.27271"
+                    y1="12.5095"
+                    x2="12.997"
+                    y2="12.5095"
+                    stroke="#6A757C"
+                    strokeWidth="1.45752"
+                    strokeLinecap="round"
+                  />
+                  <line
+                    x1="4.27271"
+                    y1="8.8728"
+                    x2="12.997"
+                    y2="8.8728"
+                    stroke="#6A757C"
+                    strokeWidth="1.45752"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
             </div>
-
-            <div
-              className={`reader icon ${props.isDoubleReader ? "" : "active"}`}
-              onClick={() => props.setIsDoubleReader(false)}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 17 16"
-                fill="none"
-              >
-                <rect
-                  x="1.16593"
-                  y="0.909091"
-                  width="14.1818"
-                  height="14.1818"
-                  rx="2"
-                  fill="white"
-                  stroke="white"
-                  strokeWidth="1.81818"
-                />
-                <line
-                  x1="3.89231"
-                  y1="4.36257"
-                  x2="12.6196"
-                  y2="4.36257"
-                  stroke="#1C4480"
-                  strokeWidth="1.45455"
-                  strokeLinecap="round"
-                />
-                <line
-                  x1="3.89231"
-                  y1="11.636"
-                  x2="12.6196"
-                  y2="11.636"
-                  stroke="#1C4480"
-                  strokeWidth="1.45455"
-                  strokeLinecap="round"
-                />
-                <line
-                  x1="3.89231"
-                  y1="7.99929"
-                  x2="12.6196"
-                  y2="7.99929"
-                  stroke="#1C4480"
-                  strokeWidth="1.45455"
-                  strokeLinecap="round"
-                />
-              </svg>
-
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 17 17"
-                fill="none"
-              >
-                <rect
-                  x="1.54669"
-                  y="1.78595"
-                  width="14.1781"
-                  height="14.1781"
-                  rx="2.00409"
-                  stroke="#6A757C"
-                  strokeWidth="1.8219"
-                />
-                <line
-                  x1="4.27271"
-                  y1="5.23804"
-                  x2="12.997"
-                  y2="5.23804"
-                  stroke="#6A757C"
-                  strokeWidth="1.45752"
-                  strokeLinecap="round"
-                />
-                <line
-                  x1="4.27271"
-                  y1="12.5095"
-                  x2="12.997"
-                  y2="12.5095"
-                  stroke="#6A757C"
-                  strokeWidth="1.45752"
-                  strokeLinecap="round"
-                />
-                <line
-                  x1="4.27271"
-                  y1="8.8728"
-                  x2="12.997"
-                  y2="8.8728"
-                  stroke="#6A757C"
-                  strokeWidth="1.45752"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
-          </div>
+          )}
 
           <div className="zoom-group">
             <div className="zoom icon" onClick={props.onZoomIn}>

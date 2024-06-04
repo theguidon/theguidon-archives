@@ -1,23 +1,23 @@
-#issue #issue-info {
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  column-gap: 40px;
-  align-items: center;
-}
-
-#issue #issue-info {
+#issue #issue-metadata {
   padding-top: 56px;
   padding-bottom: 80px;
 }
 
-#issue #issue-info .cover-container {
+#issue #issue-metadata .issue-info {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 40px;
+  align-items: stretch;
+}
+
+#issue #issue-metadata .issue-info .cover-container {
   width: 300px;
   height: 300px;
   background-color: var(--blue-gray-light);
   padding: 24px;
 }
 
-#issue #issue-info .cover-container img {
+#issue #issue-metadata .issue-info .cover-container img {
   width: 100%;
   height: 100%;
 
@@ -25,7 +25,14 @@
   object-position: center;
 }
 
-#issue #issue-info .vol-issue {
+#issue #issue-metadata .issue-info .info {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#issue #issue-metadata .issue-info .vol-issue {
   color: #979797;
   text-transform: uppercase;
   font-size: var(--subheading-font-size);
@@ -40,13 +47,13 @@
   margin: 0 0 8px;
 }
 
-#issue #issue-info .title {
+#issue #issue-metadata .issue-info .title {
   color: var(--gdn-blue);
   margin: 0 0 4px;
   font-weight: bold;
 }
 
-#issue #issue-info .date {
+#issue #issue-metadata .issue-info .date {
   color: #979797;
   text-transform: uppercase;
   font-size: var(--subheading-font-size);
@@ -56,15 +63,51 @@
   margin: 0 0 8px;
 }
 
-#issue #issue-info .desc {
-  /* color: var(--gdn-blue); */
+#issue #issue-metadata .issue-info .desc {
+  color: var(--gdn-blue);
   /* color: black; */
   font-size: var(--body-font-size);
 
   margin: 0 0 32px;
 }
 
-#issue #issue-info .share {
+#issue #issue-metadata .issue-info .to-access {
+  color: var(--gdn-blue);
+  margin: 0 0 16px;
+}
+
+#issue #issue-metadata .issue-info .rows-container {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 8px;
+  margin: 0 0 32px;
+}
+
+#issue #issue-metadata .issue-info .row {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  column-gap: 8px;
+}
+
+#issue #issue-metadata .issue-info .row svg {
+  width: 24px;
+  height: 24px;
+  color: var(--blue-alt-1);
+
+  flex-shrink: 0;
+}
+
+#issue #issue-metadata .issue-info .row p {
+  min-height: 24px;
+  color: var(--gdn-blue);
+}
+
+#issue #issue-metadata .issue-info .row p a {
+  color: inherit;
+}
+
+#issue #issue-metadata .issue-info .share {
   color: #979797;
   text-transform: uppercase;
   font-size: var(--subheading-font-size);
@@ -74,75 +117,89 @@
   margin: 0 0 8px;
 }
 
-#issue #issue-info .socials {
+#issue #issue-metadata .issue-info .socials {
   display: flex;
   flex-flow: row nowrap;
   column-gap: 16px;
 }
 
-#issue #issue-info .socials a {
+#issue #issue-metadata .issue-info .socials a {
   display: block;
 }
 
-#issue #issue-info .socials svg {
+#issue #issue-metadata .issue-info .socials svg {
   display: block;
   color: var(--gdn-blue);
   width: 24px;
   height: 24px;
 }
 
+#issue #issue-metadata .issue-content {
+  margin-top: 64px;
+}
+
+#issue #issue-metadata .issue-content .subheading {
+  margin: 0 0 12px;
+
+  color: var(--gdn-blue);
+  text-transform: uppercase;
+  font-size: var(--subheading-m-font-size);
+  letter-spacing: var(--subheading-m-letter-spacing);
+  font-weight: bold;
+}
+
 @media screen and (max-width: 1200px) {
-  #issue #issue-info {
+  #issue #issue-metadata .issue-info {
     padding-top: 48px;
     padding-bottom: 64px;
   }
 
-  #issue #issue-info .cover-container {
+  #issue #issue-metadata .issue-info .cover-container {
     width: 264px;
     height: 272px;
   }
 }
 
 @media screen and (max-width: 992px) {
-  #issue #issue-info {
+  #issue #issue-metadata .issue-info {
     padding-top: 40px;
     padding-bottom: 48px;
   }
 
-  #issue #issue-info .cover-container {
+  #issue #issue-metadata .issue-info .cover-container {
     width: 228px;
     height: 248px;
   }
 }
 
 @media screen and (max-width: 768px) {
-  #issue #issue-info {
+  #issue #issue-metadata .issue-info {
     padding-top: 32px;
     padding-bottom: 36px;
   }
 
-  #issue #issue-info .cover-container {
+  #issue #issue-metadata .issue-info .cover-container {
     width: 192px;
     height: 224px;
   }
 }
 
 @media screen and (max-width: 576px) {
-  #issue #issue-info {
+  #issue #issue-metadata .issue-info {
     padding-top: 24px;
     padding-bottom: 24px;
   }
 
-  #issue #issue-info .cover-container {
+  #issue #issue-metadata .issue-info .cover-container {
     width: 160px;
     height: 200px;
   }
 
-  #issue #issue-info .title {
+  #issue #issue-metadata .issue-info .title {
     margin: 0;
   }
 
-  #issue #issue-info .desc {
+  #issue #issue-metadata .issue-info .desc {
     margin: 0 0 24px;
   }
 }

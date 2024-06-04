@@ -10,6 +10,7 @@ import "./fullscreen.css";
 import TitleBar from "../../components/issue/title-bar";
 import SliderSection from "../../components/issue/slider-section";
 import IssueReader from "../../components/issue/reader";
+import { ArchivesData } from "../../data/archives";
 
 function IssuePage() {
   const dispatch = useDispatch();
@@ -106,6 +107,8 @@ function IssuePage() {
     setIsFullscreen((p) => !p);
   };
 
+  // console.log(issue);
+
   return (
     issue != null && (
       <div id="issue" className={isFullscreen ? "fullscreen" : ""}>
@@ -119,6 +122,7 @@ function IssuePage() {
           isFullscreen={isFullscreen}
           toggleFullscreen={toggleFullscreen}
           setPage={setPage}
+          isLegacy={issue.is_legacy}
         />
 
         <IssueReader
@@ -128,61 +132,94 @@ function IssuePage() {
           scale={scale}
           issue={issue}
           page={page}
+          isLegacy={issue.is_legacy}
         />
 
-        <SliderSection
-          sliderPercentage={getSliderPercentage()}
-          pageText={`${getPageText()} of ${issue.num_pages}`}
-          onLeftClick={onLeftClick}
-          onRightClick={onRightClick}
-        />
+        {!issue.is_legacy && (
+          <SliderSection
+            sliderPercentage={getSliderPercentage()}
+            pageText={`${getPageText()} of ${issue.num_pages}`}
+            onLeftClick={onLeftClick}
+            onRightClick={onRightClick}
+          />
+        )}
 
-        <section id="issue-info" className="general-container">
-          <div className="cover-container">
-            <img src={issue.cover} alt={issue.title} />
-          </div>
+        <section id="issue-metadata" className="general-container">
+          <div className={`issue-info ${issue.is_legacy ? "legacy" : ""}`}>
+            <div className="cover-container">
+              <img src={issue.cover} alt={issue.title} />
+            </div>
 
-          <div className="info">
-            {issue.volume_num != null && issue.issue_num != null && (
-              <p className="vol-issue">
-                {"Vol. " + issue.volume_num + ", No. " + issue.issue_num}
-              </p>
-            )}
-            <h3 className="title">{issue.title}</h3>
+            <div className="info">
+              {issue.volume_num != null && issue.issue_num != null && (
+                <p className="vol-issue">
+                  {"Vol. " + issue.volume_num + ", No. " + issue.issue_num}
+                </p>
+              )}
+              <h3 className="title">{issue.title}</h3>
+              <p className="date">{DateFormatter(issue.date_published)}</p>
 
-            <p className="date">{DateFormatter(issue.date_published)}</p>
+              {issue.is_legacy ? (
+                <>
+                  <p className="to-access">
+                    To access the complete issue, please visit:
+                  </p>
 
-            <p className="desc">{issue.description}</p>
+                  <div className="rows-container">
+                    {Object.keys(ArchivesData).map((key, idx) => (
+                      <div className="row">
+                        {ArchivesData[key].icon}
 
-            <p className="share">Share</p>
-            <div className="socials">
-              <Link
-                to={`http://www.facebook.com/sharer.php?u=https://archives.theguidon.com/issue/${issue.fixed_slug}`}
-                target="_blank"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: ArchivesData[key].text,
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <p className="desc">{issue.description}</p>
+              )}
+
+              <p className="share">Share</p>
+              <div className="socials">
+                <Link
+                  to={`http://www.facebook.com/sharer.php?u=https://archives.theguidon.com/issue/${issue.fixed_slug}`}
+                  target="_blank"
                 >
-                  <path d="M22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 16.84 5.44 20.87 10 21.8V15H8V12H10V9.5C10 7.57 11.57 6 13.5 6H16V9H14C13.45 9 13 9.45 13 10V12H16V15H13V21.95C18.05 21.45 22 17.19 22 12Z" />
-                </svg>
-              </Link>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 16.84 5.44 20.87 10 21.8V15H8V12H10V9.5C10 7.57 11.57 6 13.5 6H16V9H14C13.45 9 13 9.45 13 10V12H16V15H13V21.95C18.05 21.45 22 17.19 22 12Z" />
+                  </svg>
+                </Link>
 
-              <Link
-                to={`http://x.com/share?url=https://issues.theguidon.com/issue/${issue.fixed_slug}&text=${issue.title}`}
-                target="_blank"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
+                <Link
+                  to={`http://x.com/share?url=https://issues.theguidon.com/issue/${issue.fixed_slug}&text=${issue.title}`}
+                  target="_blank"
                 >
-                  <path d="M12.8998 11.1983L19.0923 4H17.6249L12.2479 10.2502L7.9533 4H3L9.49426 13.4514L3 21H4.46752L10.1458 14.3996L14.6812 21H19.6345L12.8994 11.1983H12.8998ZM10.8898 13.5347L10.2318 12.5936L4.99629 5.10473H7.25031L11.4754 11.1485L12.1334 12.0896L17.6256 19.9455H15.3715L10.8898 13.5351V13.5347Z" />
-                </svg>
-              </Link>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M12.8998 11.1983L19.0923 4H17.6249L12.2479 10.2502L7.9533 4H3L9.49426 13.4514L3 21H4.46752L10.1458 14.3996L14.6812 21H19.6345L12.8994 11.1983H12.8998ZM10.8898 13.5347L10.2318 12.5936L4.99629 5.10473H7.25031L11.4754 11.1485L12.1334 12.0896L17.6256 19.9455H15.3715L10.8898 13.5351V13.5347Z" />
+                  </svg>
+                </Link>
+              </div>
             </div>
           </div>
+
+          {issue.is_legacy && (
+            <div className="issue-content">
+              <p className="subheading">In this issue</p>
+              <hr />
+            </div>
+          )}
         </section>
       </div>
     )

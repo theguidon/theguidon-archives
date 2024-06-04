@@ -1,6 +1,8 @@
 #issue #reader {
-  background-color: var(--blue-gray-light);
-  height: calc(100vh - var(--header-height) - 56px - 48px - 16px);
+  /* background-color: var(--blue-gray-light); */
+  background-color: var(--gray-1);
+  /* height: calc(100vh - var(--header-height) - 56px - 48px - 16px); */
+  height: calc(100vh - var(--header-height) - 56px - 48px);
 
   position: relative;
   overflow: clip;
@@ -81,7 +83,8 @@
   display: block;
 }
 
-#issue #reader .document .page canvas {
+#issue #reader .document .page canvas,
+#issue #reader .document .page img.cover {
   height: 100% !important;
   width: auto !important;
 }
