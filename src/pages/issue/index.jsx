@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { DateFormatter } from "../../utils/date-formatter";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchIssue } from "../../redux/modules/issue";
 import { setFullscreen } from "../../redux/modules/fullscreen";
@@ -11,6 +11,8 @@ import TitleBar from "../../components/issue/title-bar";
 import SliderSection from "../../components/issue/slider-section";
 import IssueReader from "../../components/issue/reader";
 import { ArchivesData } from "../../data/archives";
+
+import content from "./../../components/issue/title-bar/sample.json";
 
 function IssuePage() {
   const dispatch = useDispatch();
@@ -217,6 +219,35 @@ function IssuePage() {
           <section id="issue-content">
             <div className="general-container">
               <h4>In this issue</h4>
+
+              {content.map((section, idx) => (
+                <div className="section" key={`content-section-${idx}`}>
+                  <p className="section-name">{section.name}</p>
+                  <hr />
+
+                  <div
+                    className="articles-container"
+                    style={{
+                      gridTemplateRows: `repeat(${Math.ceil(
+                        section.articles.length / 2
+                      )}, auto)`,
+                    }}
+                  >
+                    {section.articles.map((article, idx2) => (
+                      <div
+                        className="article"
+                        key={`content-section-${idx}-${idx2}`}
+                      >
+                        <p
+                          className="title"
+                          dangerouslySetInnerHTML={{ __html: article.title }}
+                        />
+                        <p className="bylines">By {article.bylines}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </section>
         )}
