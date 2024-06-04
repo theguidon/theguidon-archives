@@ -25,6 +25,21 @@
   object-position: center;
 }
 
+#issue #issue-info .vol-issue {
+  color: #979797;
+  text-transform: uppercase;
+  font-size: var(--subheading-font-size);
+  letter-spacing: var(--subheading-letter-spacing);
+  font-weight: bold;
+
+  padding: 4px 16px;
+  background-color: var(--gdn-blue);
+  border-radius: 16px;
+  color: white;
+  width: fit-content;
+  margin: 0 0 8px;
+}
+
 #issue #issue-info .title {
   color: var(--gdn-blue);
   margin: 0 0 4px;

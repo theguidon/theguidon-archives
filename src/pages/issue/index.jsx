@@ -143,9 +143,15 @@ function IssuePage() {
           </div>
 
           <div className="info">
+            {issue.volume_num != null && issue.issue_num != null && (
+              <p className="vol-issue">
+                {"Vol. " + issue.volume_num + ", No. " + issue.issue_num}
+              </p>
+            )}
             <h3 className="title">{issue.title}</h3>
 
             <p className="date">{DateFormatter(issue.date_published)}</p>
+
             <p className="desc">{issue.description}</p>
 
             <p className="share">Share</p>

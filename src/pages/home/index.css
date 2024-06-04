@@ -40,7 +40,8 @@
   width: fit-content;
   border-radius: 20px;
 
-  font-size: var(--subheader-m-font-size);
+  font-size: var(--subheader-font-size);
+  letter-spacing: var(--subheader-letter-spacing);
   text-transform: uppercase;
   font-weight: bold;
 
