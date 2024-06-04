@@ -4,21 +4,15 @@
   width: 100%;
   z-index: 10;
 
-  overflow-x: auto;
   overflow: visible;
-
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-#issue .title-bar::-webkit-scrollbar {
-  display: none;
 }
 
 #issue .title-bar .top {
   background-color: var(--gdn-blue);
   padding: 12px 0;
   color: white;
+
+  overflow-x: clip;
 }
 
 #issue .title-bar .top .general-container {
