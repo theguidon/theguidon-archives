@@ -275,19 +275,15 @@ function TitleBar(props) {
             className={`reader icon ${props.isDoubleReader ? "active" : ""}`}
             onClick={() => props.setIsDoubleReader(true)}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              fill="none"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
               <rect
                 x="0.909091"
                 y="0.909091"
                 width="14.1818"
                 height="14.1818"
                 rx="2"
-                fill="white"
-                stroke="white"
+                fill={props.isDoubleReader ? "currentColor" : "transparent"}
+                stroke="currentColor"
                 strokeWidth="1.81818"
               />
               <line
@@ -295,7 +291,7 @@ function TitleBar(props) {
                 y1="4.36355"
                 x2="6.54457"
                 y2="4.36355"
-                stroke="#1C4480"
+                stroke={props.isDoubleReader ? "inherit" : "currentColor"}
                 strokeWidth="1.45455"
                 strokeLinecap="round"
               />
@@ -304,7 +300,7 @@ function TitleBar(props) {
                 y1="4.36355"
                 x2="12.3629"
                 y2="4.36355"
-                stroke="#1C4480"
+                stroke={props.isDoubleReader ? "inherit" : "currentColor"}
                 strokeWidth="1.45455"
                 strokeLinecap="round"
               />
@@ -313,7 +309,7 @@ function TitleBar(props) {
                 y1="11.6365"
                 x2="6.54457"
                 y2="11.6365"
-                stroke="#1C4480"
+                stroke={props.isDoubleReader ? "inherit" : "currentColor"}
                 strokeWidth="1.45455"
                 strokeLinecap="round"
               />
@@ -322,7 +318,7 @@ function TitleBar(props) {
                 y1="11.6365"
                 x2="12.3629"
                 y2="11.6365"
-                stroke="#1C4480"
+                stroke={props.isDoubleReader ? "inherit" : "currentColor"}
                 strokeWidth="1.45455"
                 strokeLinecap="round"
               />
@@ -331,7 +327,7 @@ function TitleBar(props) {
                 y1="7.99978"
                 x2="6.54457"
                 y2="7.99978"
-                stroke="#1C4480"
+                stroke={props.isDoubleReader ? "inherit" : "currentColor"}
                 strokeWidth="1.45455"
                 strokeLinecap="round"
               />
@@ -340,71 +336,7 @@ function TitleBar(props) {
                 y1="7.99978"
                 x2="12.3629"
                 y2="7.99978"
-                stroke="#1C4480"
-                strokeWidth="1.45455"
-                strokeLinecap="round"
-              />
-            </svg>
-
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 17 17"
-              fill="none"
-              stroke="currentColor"
-            >
-              <rect
-                x="1.27335"
-                y="1.84659"
-                width="14.1818"
-                height="14.1818"
-                rx="2"
-                strokeWidth="1.81818"
-              />
-              <line
-                x1="3.99973"
-                y1="5.30007"
-                x2="6.90882"
-                y2="5.30007"
-                strokeWidth="1.45455"
-                strokeLinecap="round"
-              />
-              <line
-                x1="9.81809"
-                y1="5.30007"
-                x2="12.7272"
-                y2="5.30007"
-                strokeWidth="1.45455"
-                strokeLinecap="round"
-              />
-              <line
-                x1="3.99973"
-                y1="12.5735"
-                x2="6.90882"
-                y2="12.5735"
-                strokeWidth="1.45455"
-                strokeLinecap="round"
-              />
-              <line
-                x1="9.81809"
-                y1="12.5735"
-                x2="12.7272"
-                y2="12.5735"
-                strokeWidth="1.45455"
-                strokeLinecap="round"
-              />
-              <line
-                x1="3.99973"
-                y1="8.93679"
-                x2="6.90882"
-                y2="8.93679"
-                strokeWidth="1.45455"
-                strokeLinecap="round"
-              />
-              <line
-                x1="9.81809"
-                y1="8.93679"
-                x2="12.7272"
-                y2="8.93679"
+                stroke={props.isDoubleReader ? "inherit" : "currentColor"}
                 strokeWidth="1.45455"
                 strokeLinecap="round"
               />
@@ -418,7 +350,8 @@ function TitleBar(props) {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 17 16"
-              fill="none"
+              // fill="none"
+              // stroke="currentColor"
             >
               <rect
                 x="1.16593"
@@ -426,8 +359,8 @@ function TitleBar(props) {
                 width="14.1818"
                 height="14.1818"
                 rx="2"
-                fill="white"
-                stroke="white"
+                fill={props.isDoubleReader ? "transparent" : "currentColor"}
+                stroke="currentColor"
                 strokeWidth="1.81818"
               />
               <line
@@ -435,7 +368,7 @@ function TitleBar(props) {
                 y1="4.36257"
                 x2="12.6196"
                 y2="4.36257"
-                stroke="#1C4480"
+                stroke={props.isDoubleReader ? "currentColor" : "inherit"}
                 strokeWidth="1.45455"
                 strokeLinecap="round"
               />
@@ -444,7 +377,7 @@ function TitleBar(props) {
                 y1="11.636"
                 x2="12.6196"
                 y2="11.636"
-                stroke="#1C4480"
+                stroke={props.isDoubleReader ? "currentColor" : "inherit"}
                 strokeWidth="1.45455"
                 strokeLinecap="round"
               />
@@ -453,48 +386,8 @@ function TitleBar(props) {
                 y1="7.99929"
                 x2="12.6196"
                 y2="7.99929"
-                stroke="#1C4480"
+                stroke={props.isDoubleReader ? "currentColor" : "inherit"}
                 strokeWidth="1.45455"
-                strokeLinecap="round"
-              />
-            </svg>
-
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 17 17"
-              fill="none"
-              stroke="currentColor"
-            >
-              <rect
-                x="1.54669"
-                y="1.78595"
-                width="14.1781"
-                height="14.1781"
-                rx="2.00409"
-                strokeWidth="1.8219"
-              />
-              <line
-                x1="4.27271"
-                y1="5.23804"
-                x2="12.997"
-                y2="5.23804"
-                strokeWidth="1.45752"
-                strokeLinecap="round"
-              />
-              <line
-                x1="4.27271"
-                y1="12.5095"
-                x2="12.997"
-                y2="12.5095"
-                strokeWidth="1.45752"
-                strokeLinecap="round"
-              />
-              <line
-                x1="4.27271"
-                y1="8.8728"
-                x2="12.997"
-                y2="8.8728"
-                strokeWidth="1.45752"
                 strokeLinecap="round"
               />
             </svg>

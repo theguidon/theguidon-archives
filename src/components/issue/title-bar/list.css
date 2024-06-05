@@ -1,13 +1,32 @@
+/* list */
+#issue .title-bar .list-container {
+  position: relative;
+}
+
+#issue .title-bar .list {
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+#issue .title-bar .list.active {
+  background-color: var(--active-bg-color);
+}
+
+/* popup */
 #issue .title-bar .list-container .popup {
   position: absolute;
   top: calc(100% + 4px);
-  left: 0;
+  /* left: 0; */
   color: black;
 
   /* width: fit-content;
   max-width: 360px; */
-  width: 360px;
-  max-height: calc(min(600px, 65vh));
+  /* width: 360px; */
+  /* max-height: calc(min(600px, 65vh)); */
 
   overflow-y: auto;
 
@@ -127,4 +146,19 @@
   flex-shrink: 0;
   width: 24px;
   text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 992px) {
+  #issue .title-bar .list-container {
+    position: static;
+  }
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 576px) {
 }

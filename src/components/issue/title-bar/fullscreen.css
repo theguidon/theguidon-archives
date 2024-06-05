@@ -18,7 +18,10 @@
 #issue.fullscreen .title-bar .bottom {
   display: block;
   background-color: transparent;
-  color: var(--gray-2);
+
+  --icon-color: var(--gray-2);
+  /* --active-bg-color: #ffffff1a; */
+  --active-bg-color: #353535;
 }
 
 #issue.fullscreen .general-container {
@@ -56,16 +59,12 @@
 }
 
 /* reader */
-/* #issue.fullscreen .title-bar .reader.active {
-  background-color: #353535;
-} */
-
-#issue.fullscreen .title-bar .reader svg:first-child {
-  display: none;
+#issue.fullscreen .title-bar .reader-group .reader.active {
+  background-color: var(--active-bg-color);
 }
 
-#issue.fullscreen .title-bar .reader svg:last-child {
-  display: block;
+#issue.fullscreen .title-bar .reader svg {
+  stroke: var(--active-bg-color);
 }
 
 /* zoom */

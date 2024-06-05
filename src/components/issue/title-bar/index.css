@@ -10,9 +10,14 @@
 #issue .title-bar .top {
   background-color: var(--gdn-blue);
   padding: 12px 0;
-  color: white;
 
   overflow-x: clip;
+
+  --icon-color: white;
+  /* --active-bg-color: #ffffff1a; */
+  --active-bg-color: #33578d;
+
+  color: var(--icon-color);
 }
 
 #issue .title-bar .top .general-container {
@@ -29,10 +34,14 @@
 }
 
 #issue .title-bar .bottom {
-  display: none;
+  /* display: none; */
   background-color: var(--blue-gray-light);
   padding: 6px 0;
-  color: var(--blue-dark);
+
+  --icon-color: var(--blue-dark);
+  --active-bg-color: var(--blue-light);
+
+  color: var(--icon-color);
 }
 
 #issue .title-bar .bottom .general-container {
@@ -69,7 +78,7 @@
 
   text-decoration: none;
   font-weight: bold;
-  color: white;
+  color: var(--icon-color);
 
   cursor: pointer;
 }
@@ -103,22 +112,12 @@
   overflow-y: visible;
 }
 
-/* list */
-#issue .title-bar .list-container {
-  position: relative;
-}
+/* popup */
+#issue .title-bar .popup {
+  width: 360px;
+  max-height: calc(min(600px, 65vh));
 
-#issue .title-bar .list {
-  width: 32px;
-  height: 32px;
-  padding: 6px;
-
-  border-radius: 4px;
-  transition: 0.3s;
-}
-
-#issue .title-bar .list.active {
-  background-color: #ffffff1a;
+  left: 0;
 }
 
 /* title */
@@ -146,7 +145,7 @@
   column-gap: 8px;
 }
 
-#issue .title-bar .reader-group .reader {
+#issue .title-bar .reader {
   width: 32px;
   height: 32px;
   padding: 8px;
@@ -154,20 +153,16 @@
   transition: 0.3s;
 }
 
-#issue .title-bar .reader-group .reader.active {
-  background-color: #ffffff1a;
+#issue .title-bar .reader.active {
+  background-color: var(--active-bg-color);
 }
 
-#issue .title-bar .reader-group .reader svg:last-child {
-  display: none;
+#issue .title-bar .reader.active svg {
+  stroke: var(--active-bg-color);
 }
 
-#issue .title-bar .bottom .reader-group .reader svg:first-child {
-  display: none;
-}
-
-#issue .title-bar .bottom .reader-group .reader svg:last-child {
-  display: block;
+#issue .title-bar .reader svg {
+  color: var(--icon-color);
 }
 
 /* zoom */
@@ -249,6 +244,15 @@
   #issue .title-bar .top .controls-right {
     display: none;
   }
+
+  #issue .title-bar .bottom {
+    position: relative;
+  }
+
+  #issue .title-bar .popup {
+    top: calc(100% + 8px) !important;
+    left: var(--general-container-padding-x);
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -257,5 +261,9 @@
 @media screen and (max-width: 576px) {
   #issue .title-bar .top {
     height: 48px;
+  }
+
+  #issue .title-bar .popup {
+    width: calc(100% - 2 * var(--general-container-padding-x));
   }
 }

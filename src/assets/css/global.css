@@ -52,6 +52,8 @@ body {
   --blue-gray-light: #eff5fa;
 
   --header-height: 64px;
+
+  --general-container-padding-x: 100px;
 }
 
 h1 {
@@ -101,7 +103,7 @@ h6 {
 .general-container {
   width: 100%;
   max-width: 1440px;
-  padding: 0 100px;
+  padding: 0 var(--general-container-padding-x);
   margin: 0 auto;
 }
 
@@ -151,8 +153,8 @@ hr {
 }
 
 @media screen and (max-width: 1200px) {
-  .general-container {
-    padding: 0 80px;
+  :root {
+    --general-container-padding-x: 80px;
   }
 
   .general-padding-top {
@@ -166,8 +168,8 @@ hr {
 }
 
 @media screen and (max-width: 992px) {
-  .general-container {
-    padding: 0 60px;
+  :root {
+    --general-container-padding-x: 60px;
   }
 
   .general-padding-top {
@@ -182,8 +184,8 @@ hr {
 }
 
 @media screen and (max-width: 768px) {
-  .general-container {
-    padding: 0 40px;
+  :root {
+    --general-container-padding-x: 40px;
   }
 
   .general-padding-top {
@@ -223,10 +225,8 @@ hr {
     --body-font-size: 16px;
     --body-s-font-size: 14px;
     --body-xs-font-size: 12px;
-  }
 
-  .general-container {
-    padding: 0 24px;
+    --general-container-padding-x: 24px;
   }
 
   .general-padding-top {

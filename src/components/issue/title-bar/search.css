@@ -16,8 +16,7 @@
 
 #issue .title-bar .search-container.active {
   width: 360px;
-  background-color: #ffffff1a;
-  background-color: #33578d;
+  background-color: var(--active-bg-color);
   border-radius: 16px;
   padding: 6px 12px;
 
@@ -25,11 +24,6 @@
   max-height: calc(min(600px, 65vh));
 
   cursor: unset;
-}
-
-#issue .title-bar .bottom .search-container.active {
-  background-color: var(--blue-light);
-  /* background-color: var(--gray-4); */
 }
 
 /* header */

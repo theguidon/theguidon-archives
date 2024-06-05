@@ -1,5 +1,5 @@
 #issue.fullscreen .title-bar .search-container.active {
-  background-color: #353535;
+  background-color: var(--active-bg-color);
 }
 
 #issue.fullscreen .title-bar .bottom .search-container .search-row input {
