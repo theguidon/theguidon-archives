@@ -574,7 +574,9 @@ function TitleBar(props) {
   return (
     <section className="title-bar">
       <div className="top">
-        <div className="general-container">
+        <div
+          className={`general-container ${searchActive ? "search-active" : ""}`}
+        >
           {getLeftControls()}
           <h6 className="issue-title">{props.title}</h6>
           {getRightControls()}

@@ -24,6 +24,10 @@
   position: relative;
 }
 
+#issue .title-bar .top .general-container.search-active {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 #issue .title-bar .bottom {
   display: none;
   background-color: var(--blue-gray-light);
@@ -115,6 +119,11 @@
 
 #issue .title-bar .list.active {
   background-color: #ffffff1a;
+}
+
+/* title */
+#issue .title-bar .top .general-container.search-active .issue-title {
+  display: none;
 }
 
 /* right */
@@ -227,6 +236,14 @@
 
   #issue .title-bar .top .controls-group {
     display: none;
+  }
+
+  #issue .title-bar .top .general-container.search-active {
+    grid-template-columns: 1fr max-content 1fr;
+  }
+
+  #issue .title-bar .top .general-container.search-active .issue-title {
+    display: block;
   }
 
   #issue .title-bar .top .controls-right {
