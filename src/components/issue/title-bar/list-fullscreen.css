@@ -1,8 +1,15 @@
 /* popup */
+#issue.fullscreen .title-bar .list-container {
+  position: static;
+}
+
 #issue.fullscreen .title-bar .list-container .popup {
   background-color: #353535;
 
   color: var(--gray-3);
+
+  top: calc(100% + 8px + 8px);
+  left: var(--general-container-padding-x);
 }
 
 #issue.fullscreen .title-bar .list-container .popup .heading {

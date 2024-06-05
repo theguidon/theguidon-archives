@@ -19,6 +19,7 @@
   background-color: var(--active-bg-color);
   border-radius: 16px;
   padding: 6px 12px;
+  z-index: 6;
 
   height: unset;
   max-height: calc(min(600px, 65vh));
