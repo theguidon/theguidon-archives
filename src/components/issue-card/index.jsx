@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { DateFormatter } from "../../utils/date-formatter";
+import { DateFormatter } from "../../utils";
 import "./index.css";
 
 function IssueCard(props) {

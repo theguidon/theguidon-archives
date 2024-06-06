@@ -4,6 +4,7 @@ import "./index.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchIssues } from "../../redux/modules/issues";
+import { setDocumentTitle } from "../../utils";
 
 function Page404() {
   const dispatch = useDispatch();
@@ -11,6 +12,8 @@ function Page404() {
 
   useEffect(() => {
     dispatch(fetchIssues({}));
+
+    setDocumentTitle("Page not found");
   }, []);
 
   return (

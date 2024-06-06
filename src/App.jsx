@@ -10,7 +10,7 @@ import SearchPage from "./pages/search";
 import AboutPage from "./pages/about";
 import Page404 from "./pages/404";
 
-import ScrollToTop from "./utils/scroll-to-top";
+import { ScrollToTop } from "./utils";
 import { useSelector } from "react-redux";
 
 function App() {

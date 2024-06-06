@@ -19,10 +19,12 @@ const issueSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchIssue.pending, (state, action) => {
       state.isLoading = true;
+      state.isReady = false;
     });
     builder.addCase(fetchIssue.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.data[action.payload.fixed_slug] = action.payload;
+      if (Array.isArray(action.payload)) state.data[action.meta.arg.slug] = {};
+      else state.data[action.payload.fixed_slug] = action.payload;
       state.isReady = true;
     });
     builder.addCase(fetchIssue.rejected, (state, action) => {

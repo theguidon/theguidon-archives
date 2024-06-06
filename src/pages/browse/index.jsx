@@ -6,10 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchIssues } from "../../redux/modules/issues";
 import IssueCard from "../../components/issue-card";
 import Pagination from "../../components/pagination";
-import { calculatePageNums } from "../../utils/calculate-page-nums";
+import { calculatePageNums } from "../../utils";
 import ViewsFilterGroup from "../../components/filters/views";
 import CategoriesFilterGroup from "../../components/filters/categories";
 import AdvancedFiltersGroup from "../../components/filters/advanced";
+import { setDocumentTitle } from "../../utils";
 
 function BrowsePage() {
   const { slug } = useParams();
@@ -43,8 +44,20 @@ function BrowsePage() {
     others: "other",
   };
 
+  const titles = {
+    recent: "Recently Uploaded",
+    press: "Press Issues",
+    gradmag: "Graduation Magazines",
+    freshmanual: "Freshmanuals",
+    "uaap-primer": "UAAP Primers",
+    legacy: "Over the Years",
+    others: "Others",
+  };
+
   useEffect(() => {
     setPage(1);
+
+    if (titles[slug] != null) setDocumentTitle(titles[slug]);
   }, [slug]);
 
   useEffect(() => {

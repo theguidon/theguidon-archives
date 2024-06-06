@@ -6,9 +6,10 @@ import { useEffect, useState } from "react";
 import { fetchIssues } from "../../redux/modules/issues";
 import IssueCard from "../../components/issue-card";
 import Pagination from "../../components/pagination";
-import { calculatePageNums } from "../../utils/calculate-page-nums";
+import { calculatePageNums } from "../../utils";
 import ViewsFilterGroup from "../../components/filters/views";
 import AdvancedFiltersGroup from "../../components/filters/advanced";
+import { setDocumentTitle } from "../../utils";
 
 function SearchPage() {
   const { search } = useLocation();
@@ -33,6 +34,10 @@ function SearchPage() {
       })
     );
   }, [query, page, yearFilter, sortOldestFilter]);
+
+  useEffect(() => {
+    setDocumentTitle(`Search results for ${query}`);
+  }, [query]);
 
   const getKey = () => `${sortOldestFilter === true ? "asc-" : ""}${page}`;
 

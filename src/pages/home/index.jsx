@@ -5,9 +5,10 @@ import img from "./../../assets/images/broadsheet-sample.png";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { DateFormatter } from "../../utils/date-formatter";
+import { DateFormatter } from "../../utils";
 import { useEffect } from "react";
 import { fetchIssues } from "../../redux/modules/issues";
+import { setDocumentTitle } from "../../utils";
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -20,6 +21,8 @@ function HomePage() {
     dispatch(fetchIssues({ categ: "uaap-primer" }));
     dispatch(fetchIssues({ categ: "legacy" }));
     dispatch(fetchIssues({ categ: "other" }));
+
+    setDocumentTitle("");
   }, []);
 
   const issues = useSelector((state) => state.issues);

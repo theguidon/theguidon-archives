@@ -1,6 +1,6 @@
-import { Link, useParams } from "react-router-dom";
-import { DateFormatter } from "../../utils/date-formatter";
-import React, { useEffect, useRef, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { DateFormatter } from "../../utils";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchIssue } from "../../redux/modules/issue";
 import { setFullscreen } from "../../redux/modules/fullscreen";
@@ -12,8 +12,10 @@ import IssueReader from "../../components/issue/reader";
 import { ArchivesData } from "../../data/archives";
 
 import content from "./../../components/issue/title-bar/sample.json";
+import { setDocumentTitle } from "../../utils";
 
 function IssuePage() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { slug } = useParams();
   const issue = useSelector((state) => state.issue.data[slug]);
@@ -87,6 +89,13 @@ function IssuePage() {
     dispatch(setFullscreen(!isFullscreen));
     setIsFullscreen((p) => !p);
   };
+
+  useEffect(() => {
+    if (issue != null) {
+      if (Object.keys(issue).length == 0) navigate("/404");
+      else setDocumentTitle(issue.title);
+    }
+  }, [issue]);
 
   return (
     issue != null && (
