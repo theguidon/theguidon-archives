@@ -126,6 +126,7 @@ function IssuePage() {
           issue={issue}
           page={page}
           isLegacy={issue.is_legacy}
+          maxZoom={maxZoom}
         />
 
         <section id="issue-metadata" className="general-container">
