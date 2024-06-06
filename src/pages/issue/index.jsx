@@ -1,5 +1,5 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { DateFormatter } from "../../utils";
+import { DateFormatter, formatBylines } from "../../utils";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchIssue } from "../../redux/modules/issue";
@@ -11,7 +11,6 @@ import TitleBar from "../../components/issue/title-bar";
 import IssueReader from "../../components/issue/reader";
 import { ArchivesData } from "../../data/archives";
 
-import content from "./../../components/issue/title-bar/sample.json";
 import { setDocumentTitle } from "../../utils";
 
 function IssuePage() {
@@ -19,6 +18,7 @@ function IssuePage() {
   const dispatch = useDispatch();
   const { slug } = useParams();
   const issue = useSelector((state) => state.issue.data[slug]);
+  const [articleContent, setArticleContent] = useState([]);
 
   const [isDoubleReader, setIsDoubleReader] = useState(true);
   const [page, setPage] = useState(1);
@@ -93,7 +93,11 @@ function IssuePage() {
   useEffect(() => {
     if (issue != null) {
       if (Object.keys(issue).length == 0) navigate("/404");
-      else setDocumentTitle(issue.title);
+      else {
+        setDocumentTitle(issue.title);
+
+        setArticleContent(JSON.parse(issue.article_content));
+      }
     }
   }, [issue]);
 
@@ -101,6 +105,7 @@ function IssuePage() {
     issue != null && (
       <div id="issue" className={isFullscreen ? "fullscreen" : ""}>
         <TitleBar
+          articleContent={articleContent}
           title={issue.title}
           onZoomIn={onZoomIn}
           onZoomOut={onZoomOut}
@@ -192,12 +197,12 @@ function IssuePage() {
           </div>
         </section>
 
-        {issue.is_legacy && (
+        {articleContent.length > 0 && (
           <section id="issue-content">
             <div className="general-container">
               <h4>In this issue</h4>
 
-              {content.map((section, idx) => (
+              {articleContent.map((section, idx) => (
                 <div className="section" key={`content-section-${idx}`}>
                   <p className="section-name">{section.name}</p>
                   <hr />
@@ -217,9 +222,16 @@ function IssuePage() {
                       >
                         <p
                           className="title"
-                          dangerouslySetInnerHTML={{ __html: article.title }}
+                          dangerouslySetInnerHTML={{
+                            __html: article.title,
+                          }}
                         />
-                        <p className="bylines">By {article.bylines}</p>
+                        <p
+                          className="bylines"
+                          dangerouslySetInnerHTML={{
+                            __html: `By ${formatBylines(article.bylines)}`,
+                          }}
+                        />
                       </div>
                     ))}
                   </div>

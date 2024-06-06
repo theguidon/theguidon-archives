@@ -61,3 +61,15 @@ export const setDocumentTitle = (title) => {
   if (title) document.title = `${title} | The GUIDON Archives`;
   else document.title = "The GUIDON Archives";
 };
+
+export const formatBylines = (bylines) => {
+  if (bylines.length == 0) return "";
+
+  bylines = bylines.map((byline) => `<span class="nowrap">${byline}</span>`);
+
+  return (
+    bylines.slice(0, -1).join(", ") +
+    (bylines.length >= 3 ? ", and " : bylines.length > 1 ? " and " : "") +
+    bylines.slice(-1)
+  );
+};

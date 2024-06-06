@@ -27,5 +27,5 @@ node_modules
 
 # scripts
 content_script/input.txt
-content_script/output.txt
+content_script/output.json
 content_script/parse.bat

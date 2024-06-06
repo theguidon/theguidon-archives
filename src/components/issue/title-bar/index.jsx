@@ -7,8 +7,6 @@ import "./search-fullscreen.css";
 import { useNavigate } from "react-router-dom";
 import React, { useRef, useState } from "react";
 
-import content from "./sample.json";
-
 function TitleBar(props) {
   const navigate = useNavigate();
 
@@ -24,7 +22,7 @@ function TitleBar(props) {
     let filtered = [];
     let lc = query.toLowerCase();
 
-    content.forEach((section) => {
+    props.articleContent.forEach((section) => {
       let articles;
 
       if (section.name.toLowerCase().includes(lc)) {
@@ -32,7 +30,12 @@ function TitleBar(props) {
       } else {
         articles = section.articles.filter((article) => {
           if (article.title.toLowerCase().includes(lc)) return true;
-          if (article.bylines.toLowerCase().includes(lc)) return true;
+
+          let contains_byline = false;
+          article.bylines.map((byline) => {
+            if (byline.toLowerCase().includes(lc)) contains_byline = true;
+          });
+          if (contains_byline) return true;
 
           return false;
         });
@@ -105,7 +108,7 @@ function TitleBar(props) {
             <div className={`popup ${TOCActive ? "active" : ""}`}>
               <p className="heading">Table of Contents</p>
 
-              {content.map((section, idx) => (
+              {props.articleContent.map((section, idx) => (
                 <React.Fragment key={`section-${idx}`}>
                   <div
                     className={`section-row ${
