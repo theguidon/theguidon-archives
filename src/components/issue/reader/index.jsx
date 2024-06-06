@@ -7,11 +7,17 @@ import { Document, Page, pdfjs } from "react-pdf";
 import SliderSection from "../slider-section";
 
 function IssueReader(props) {
-  const [tx, setTx] = useState(0.0);
-  const [ty, setTy] = useState(0.0);
+  // stored
+  const [sx, setSx] = useState(0.0);
+  const [sy, setSy] = useState(0.0);
   const [docIsDragging, setDocIsDragging] = useState(false);
+  // origin
   const [ox, setOx] = useState(0.0);
   const [oy, setOy] = useState(0.0);
+  // translate
+  const [tx, setTx] = useState(0.0);
+  const [ty, setTy] = useState(0.0);
+
   const [loadedPages, setLoadedPages] = useState(0);
 
   const [showModal, setShowModal] = useState(true);
@@ -38,15 +44,20 @@ function IssueReader(props) {
   const onStartDragging = (e) => {
     e.preventDefault();
     setDocIsDragging(true);
-    // setOx(e.screenX);
-    // setOy(e.screenY);
+
+    setSx(sx + tx);
+    setSy(sy + ty);
+    setOx(e.screenX);
+    setOy(e.screenY);
+    setTx(0);
+    setTy(0);
   };
 
   const onDrag = (e) => {
-    // if (docIsDragging) {
-    //   setTx(e.screenX - ox);
-    //   setTy(e.screenY - oy);
-    // }
+    if (docIsDragging) {
+      setTx(e.screenX - ox);
+      setTy(e.screenY - oy);
+    }
   };
 
   const onEndDragging = (e) => {
@@ -101,7 +112,9 @@ function IssueReader(props) {
         <div
           className={`document-container ${docIsDragging ? "dragging" : ""}`}
           style={{
-            transform: `translate(${tx}px, ${ty}px) scale(${props.scale})`,
+            transform: `translate(${sx + tx}px, ${sy + ty}px) scale(${
+              props.scale
+            })`,
           }}
           onMouseDown={onStartDragging}
           onMouseMove={onDrag}
