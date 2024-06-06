@@ -5,7 +5,7 @@ import "./list-fullscreen.css";
 import "./search.css";
 import "./search-fullscreen.css";
 import { useNavigate } from "react-router-dom";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 import content from "./sample.json";
 
@@ -16,7 +16,7 @@ function TitleBar(props) {
   const [openAccordions, setOpenAccordions] = useState([]);
   const [searchActive, setSearchActive] = useState(false);
   const [query, setQuery] = useState("");
-  const searchFieldRef = useRef(null);
+  const searchFieldRef = useRef({ top: null, bottom: null });
 
   const getFilteredContent = () => {
     if (query === "") return [];
@@ -61,13 +61,7 @@ function TitleBar(props) {
     );
   };
 
-  useEffect(() => {
-    if (searchFieldRef.current != null) {
-      if (searchActive) searchFieldRef.current.focus();
-    }
-  }, [searchActive]);
-
-  const getLeftControls = () => (
+  const getLeftControls = (loc) => (
     <div className="controls-left">
       <div
         className="back-group"
@@ -170,97 +164,101 @@ function TitleBar(props) {
             </div>
           </div>
 
-          <div
-            className={`search-container ${searchActive ? "active" : ""}`}
-            onClick={() => {
-              if (!searchActive) {
-                setSearchActive(true);
-                setQuery("");
-                if (TOCActive) setTOCActive(false);
-              }
-            }}
-          >
-            <div className="search-row">
-              <div className="search icon">
-                <svg
-                  className="search-icon"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M10.8004 2.40039C15.4396 2.40039 19.2004 6.1612 19.2004 10.8004C19.2004 12.692 18.5751 14.4377 17.5199 15.8418L17.5858 15.8933L17.6489 15.9519L21.2489 19.5519C21.7175 20.0205 21.7175 20.7803 21.2489 21.2489C20.8163 21.6815 20.1357 21.7148 19.6649 21.3487L19.5519 21.2489L15.9519 17.6489C15.9108 17.6079 15.8734 17.5646 15.8395 17.5195C14.4377 18.5751 12.692 19.2004 10.8004 19.2004C6.1612 19.2004 2.40039 15.4396 2.40039 10.8004C2.40039 6.1612 6.1612 2.40039 10.8004 2.40039ZM10.8004 4.80039C7.48668 4.80039 4.80039 7.48668 4.80039 10.8004C4.80039 14.1141 7.48668 16.8004 10.8004 16.8004C14.1141 16.8004 16.8004 14.1141 16.8004 10.8004C16.8004 7.48668 14.1141 4.80039 10.8004 4.80039Z"
-                  />
-                </svg>
-              </div>
+          <div className="search-container">
+            <div
+              className={`search icon ${searchActive ? "active" : ""}`}
+              onClick={() => {
+                if (!searchActive) {
+                  setSearchActive(true);
+                  setQuery("");
+                  if (TOCActive) setTOCActive(false);
 
-              <input
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                ref={searchFieldRef}
-              />
-
-              <div
-                className="close icon"
-                onClick={() => {
-                  if (searchActive) setSearchActive(false);
-                }}
+                  searchFieldRef[loc].focus();
+                }
+              }}
+            >
+              <svg
+                className="search-icon"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
               >
-                <svg
-                  viewBox="0 0 16 16"
-                  fill="currentColor"
-                  stroke="currentStroke"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M7.99967 14.6693C11.6817 14.6693 14.6663 11.6846 14.6663 8.0026C14.6663 4.3206 11.6817 1.33594 7.99967 1.33594C4.31767 1.33594 1.33301 4.3206 1.33301 8.0026C1.33301 11.6846 4.31767 14.6693 7.99967 14.6693Z"
-                    fill="currentColor"
-                    stroke="currentColor"
-                    strokeWidth="1.33333"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M9.88535 6.11719L6.11401 9.88852M6.11401 6.11719L9.88535 9.88852"
-                    strokeWidth="1.33333"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M10.8004 2.40039C15.4396 2.40039 19.2004 6.1612 19.2004 10.8004C19.2004 12.692 18.5751 14.4377 17.5199 15.8418L17.5858 15.8933L17.6489 15.9519L21.2489 19.5519C21.7175 20.0205 21.7175 20.7803 21.2489 21.2489C20.8163 21.6815 20.1357 21.7148 19.6649 21.3487L19.5519 21.2489L15.9519 17.6489C15.9108 17.6079 15.8734 17.5646 15.8395 17.5195C14.4377 18.5751 12.692 19.2004 10.8004 19.2004C6.1612 19.2004 2.40039 15.4396 2.40039 10.8004C2.40039 6.1612 6.1612 2.40039 10.8004 2.40039ZM10.8004 4.80039C7.48668 4.80039 4.80039 7.48668 4.80039 10.8004C4.80039 14.1141 7.48668 16.8004 10.8004 16.8004C14.1141 16.8004 16.8004 14.1141 16.8004 10.8004C16.8004 7.48668 14.1141 4.80039 10.8004 4.80039Z"
+                />
+              </svg>
             </div>
 
-            {getFilteredContent().length > 0 && (
-              <div className="search-results">
-                {getFilteredContent().map((section, idx) => (
-                  <React.Fragment key={`search-section-${idx}`}>
-                    <div className="section-row">
-                      <p className="name">{section.name}</p>
-                    </div>
+            <div className={`popup ${searchActive ? "active" : ""}`}>
+              <div className="search-row">
+                <input
+                  type="text"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  ref={(el) => (searchFieldRef[loc] = el)}
+                />
 
-                    <div className="section-content">
-                      {section.articles.map((article, idx2) => (
-                        <div
-                          className="article"
-                          key={`search-section-${idx}-article-${idx2}`}
-                          onClick={() => goToArticle(article)}
-                        >
-                          <p
-                            className="title"
-                            dangerouslySetInnerHTML={{
-                              __html: article.title,
-                            }}
-                          />
-                          <p className="page">{article.page}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </React.Fragment>
-                ))}
+                <div
+                  className="close icon"
+                  onClick={() => {
+                    if (searchActive) setSearchActive(false);
+                  }}
+                >
+                  <svg
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    stroke="currentStroke"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.99967 14.6693C11.6817 14.6693 14.6663 11.6846 14.6663 8.0026C14.6663 4.3206 11.6817 1.33594 7.99967 1.33594C4.31767 1.33594 1.33301 4.3206 1.33301 8.0026C1.33301 11.6846 4.31767 14.6693 7.99967 14.6693Z"
+                      fill="currentColor"
+                      stroke="currentColor"
+                      strokeWidth="1.33333"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M9.88535 6.11719L6.11401 9.88852M6.11401 6.11719L9.88535 9.88852"
+                      strokeWidth="1.33333"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
               </div>
-            )}
+
+              {getFilteredContent().length > 0 && (
+                <div className="search-results">
+                  {getFilteredContent().map((section, idx) => (
+                    <React.Fragment key={`search-section-${idx}`}>
+                      <div className="section-row">
+                        <p className="name">{section.name}</p>
+                      </div>
+
+                      <div className="section-content">
+                        {section.articles.map((article, idx2) => (
+                          <div
+                            className="article"
+                            key={`search-section-${idx}-article-${idx2}`}
+                            onClick={() => goToArticle(article)}
+                          >
+                            <p
+                              className="title"
+                              dangerouslySetInnerHTML={{
+                                __html: article.title,
+                              }}
+                            />
+                            <p className="page">{article.page}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </React.Fragment>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}
@@ -347,12 +345,7 @@ function TitleBar(props) {
             className={`reader icon ${props.isDoubleReader ? "" : "active"}`}
             onClick={() => props.setIsDoubleReader(false)}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 17 16"
-              // fill="none"
-              // stroke="currentColor"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 16">
               <rect
                 x="1.16593"
                 y="0.909091"
@@ -470,7 +463,7 @@ function TitleBar(props) {
         <div
           className={`general-container ${searchActive ? "search-active" : ""}`}
         >
-          {getLeftControls()}
+          {getLeftControls("top")}
           <h6 className="issue-title">{props.title}</h6>
           {getRightControls()}
         </div>
@@ -478,7 +471,7 @@ function TitleBar(props) {
 
       <div className="bottom">
         <div className="general-container">
-          {getLeftControls()}
+          {getLeftControls("bottom")}
           {getRightControls()}
         </div>
       </div>

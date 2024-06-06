@@ -14,7 +14,6 @@
   overflow-x: clip;
 
   --icon-color: white;
-  /* --active-bg-color: #ffffff1a; */
   --active-bg-color: #33578d;
 
   color: var(--icon-color);
@@ -251,7 +250,7 @@
 
   #issue .title-bar .popup {
     top: calc(100% + 8px) !important;
-    left: var(--general-container-padding-x);
+    left: var(--general-container-padding-x) !important;
   }
 }
 

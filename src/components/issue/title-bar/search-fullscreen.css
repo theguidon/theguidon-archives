@@ -1,5 +1,9 @@
-#issue.fullscreen .title-bar .search-container.active {
+#issue.fullscreen .title-bar .search-container .popup {
   background-color: var(--active-bg-color);
+}
+
+#issue.fullscreen .title-bar .search-container .search.active {
+  background-color: transparent;
 }
 
 #issue.fullscreen .title-bar .bottom .search-container .search-row input {
@@ -26,4 +30,19 @@
   .search-results
   .section-content:not(:last-child) {
   border-bottom-color: var(--gray-2);
+}
+
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 992px) {
+  #issue.fullscreen .title-bar .search-container .search.active {
+    background-color: var(--active-bg-color);
+  }
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 576px) {
 }
