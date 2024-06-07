@@ -16,6 +16,8 @@ function TitleBar(props) {
   const [query, setQuery] = useState("");
   const searchFieldRef = useRef({ top: null, bottom: null });
 
+  const zoomCircle = useRef(null);
+
   const getFilteredContent = () => {
     if (query === "") return [];
 
@@ -62,6 +64,16 @@ function TitleBar(props) {
           : article.page
         : article.page
     );
+  };
+
+  const onZoomContainerClick = (event) => {
+    if (event.target.className == "zoom-container") {
+      let bcr = event.target.getBoundingClientRect();
+      let perc = (event.clientX - bcr.left) / bcr.width;
+      let val = perc * (props.maxZoom - props.minZoom) + props.minZoom;
+
+      props.setScale(val);
+    }
   };
 
   const getLeftControls = (loc) => (
@@ -406,7 +418,7 @@ function TitleBar(props) {
           </svg>
         </div>
 
-        <div className="zoom-container">
+        <div className="zoom-container" onClick={onZoomContainerClick}>
           <div
             className="zoom-fill"
             style={{
@@ -418,6 +430,7 @@ function TitleBar(props) {
             style={{
               left: `${props.zoom}%`,
             }}
+            ref={zoomCircle}
           />
         </div>
 

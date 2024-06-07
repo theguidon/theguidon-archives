@@ -191,6 +191,8 @@
   background-color: var(--blue-alt-1);
   border-radius: 8px;
   transition: 0.3s;
+
+  pointer-events: none;
 }
 
 #issue .title-bar .zoom-circle {

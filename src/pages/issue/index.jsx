@@ -109,6 +109,9 @@ function IssuePage() {
           title={issue.title}
           onZoomIn={onZoomIn}
           onZoomOut={onZoomOut}
+          minZoom={minZoom}
+          maxZoom={maxZoom}
+          setScale={setScale}
           zoom={((scale - minZoom) / (maxZoom - minZoom)) * 100}
           isDoubleReader={isDoubleReader}
           setIsDoubleReader={setIsDoubleReader}
