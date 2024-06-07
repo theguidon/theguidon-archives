@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // Action
 export const fetchIssues = createAsyncThunk(
   "fetchIssues",
-  async ({ categ, page, order, search, isLegacy }) => {
+  async ({ categ, page, order, search, year, isLegacy }) => {
     let params = new URLSearchParams();
 
     if ((categ != null && categ == "legacy") || (isLegacy != null && isLegacy))
@@ -13,6 +13,7 @@ export const fetchIssues = createAsyncThunk(
     if (page != null) params.append("page", page);
     if (order != null) params.append("order", order);
     if (search != null) params.append("search", search);
+    if (year != null) params.append("year", year);
 
     const response = await fetch(
       `https://api.theguidon.com/archives/wp-json/api/v1/issues?${params.toString()}`
@@ -40,7 +41,8 @@ const issuesSlice = createSlice({
       //   ? "all"
       //   : action.payload.categ;
 
-      if (action.payload.search != null) slug = "search";
+      if (action.payload.year != null) slug = "filtered";
+      else if (action.payload.search != null) slug = "search";
       else if (action.payload.categ === null) slug = "all";
       else slug = action.payload.categ;
 

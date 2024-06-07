@@ -83,7 +83,11 @@ function BrowsePage() {
   useEffect(() => {
     if (slug == "recent")
       dispatch(
-        fetchIssues({ page: page, order: sortOldestFilter ? "asc" : "desc" })
+        fetchIssues({
+          page: page,
+          order: sortOldestFilter ? "asc" : "desc",
+          year: yearFilter,
+        })
       );
     else
       dispatch(
@@ -91,6 +95,7 @@ function BrowsePage() {
           categ: actual[slug],
           page: page,
           order: sortOldestFilter ? "asc" : "desc",
+          year: yearFilter,
         })
       );
   }, [slug, page, yearFilter, sortOldestFilter]);

@@ -43,6 +43,7 @@ function SearchPage() {
         search: query,
         page: page,
         order: sortOldestFilter ? "asc" : "desc",
+        year: yearFilter,
       })
     );
   }, [query, page, yearFilter, sortOldestFilter]);
@@ -71,6 +72,12 @@ function SearchPage() {
   }, []);
 
   /**
+   * Used in mapping issues based on categ or date filters
+   * @returns string
+   */
+  const getCategKey = () => (yearFilter != null ? "filtered" : "search");
+
+  /**
    * Used in mapping issues based on sort
    * @returns string
    */
@@ -94,18 +101,20 @@ function SearchPage() {
   return (
     <div id="search-results" className="general-container general-padding-top">
       <p className="subheader">
-        {issues.data.search != null && issues.data.search.found == 0
+        {issues.data[getCategKey()] != null &&
+        issues.data[getCategKey()].found == 0
           ? `We couldn't find any matches for`
           : `${
-              issues.data.search == null
+              issues.data[getCategKey()] == null
                 ? "Loading"
-                : "Showing " + issues.data.search.found
+                : "Showing " + issues.data[getCategKey()].found
             } results for`}
       </p>
       <h2>{`“${query}”`}</h2>
       <hr />
 
-      {issues.data.search != null && issues.data.search.found == 0 ? (
+      {issues.data[getCategKey()] != null &&
+      issues.data[getCategKey()].found == 0 ? (
         <ul>
           <li>Double-check the spelling or try using different keywords.</li>
           <li>Broaden your search query to include more general terms.</li>
@@ -122,15 +131,15 @@ function SearchPage() {
           />
 
           <div className={`card-grid ${isGridView ? "" : "list"}`}>
-            {issues.data.search != null &&
-              issues.data.search[getKey()] != null &&
-              issues.data.search[getKey()].map((issue, idx) => (
+            {issues.data[getCategKey()] != null &&
+              issues.data[getCategKey()][getKey()] != null &&
+              issues.data[getCategKey()][getKey()].map((issue, idx) => (
                 <IssueCard key={`issue-${idx}`} data={issue} />
               ))}
           </div>
-          {calculatePageNums(issues.data.search, page).length > 1 && (
+          {calculatePageNums(issues.data[getCategKey()], page).length > 1 && (
             <Pagination
-              pageNums={calculatePageNums(issues.data.search, page)}
+              pageNums={calculatePageNums(issues.data[getCategKey()], page)}
               page={page}
               replaceSearchParams={replaceSearchParams}
             />
