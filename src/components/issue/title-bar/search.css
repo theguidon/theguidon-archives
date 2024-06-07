@@ -40,6 +40,8 @@
 
   opacity: 0;
   transition: 0.3s;
+
+  box-shadow: none;
 }
 
 #issue .title-bar .search-container .popup.active {
@@ -205,6 +207,8 @@
 
   #issue .title-bar .search-container .popup {
     background-color: white;
+
+    box-shadow: var(--default-box-shadow);
   }
 
   #issue .title-bar .search-container .popup .search-row {

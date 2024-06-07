@@ -2,6 +2,10 @@
   background-color: var(--active-bg-color);
 }
 
+#issue.fullscreen .title-bar .search-container.active {
+  width: 360px;
+}
+
 #issue.fullscreen .title-bar .search-container .search.active {
   background-color: transparent;
 }
@@ -36,6 +40,10 @@
 }
 
 @media screen and (max-width: 992px) {
+  #issue.fullscreen .title-bar .search-container.active {
+    width: 32px;
+  }
+
   #issue.fullscreen .title-bar .search-container .search.active {
     background-color: var(--active-bg-color);
   }

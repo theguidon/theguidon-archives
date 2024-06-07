@@ -167,7 +167,7 @@ function TitleBar(props) {
             </div>
           </div>
 
-          <div className="search-container">
+          <div className={`search-container ${searchActive ? "active" : ""}`}>
             <div
               className={`search icon ${searchActive ? "active" : ""}`}
               onClick={() => {
