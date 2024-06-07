@@ -3,20 +3,63 @@ import "./index.css";
 import { setDocumentTitle } from "../../utils";
 
 import { ArchivesData } from "../../data/archives";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAboutCovers } from "../../redux/modules/about-covers";
 
 function AboutPage() {
+  const dispatch = useDispatch();
+  const covers = useSelector((state) => state.aboutCovers);
+
   useEffect(() => {
     setDocumentTitle("About");
+    dispatch(fetchAboutCovers());
   }, []);
+
+  const getCoverOrder = (isLeft) => {
+    if (covers.isReady) {
+      if (isLeft)
+        return [
+          covers.data.standard[0],
+          covers.data.legacy[0],
+          covers.data.primer[0],
+          covers.data.standard[1],
+          covers.data.legacy[1],
+          covers.data.primer[1],
+        ];
+
+      return [
+        covers.data.standard[0],
+        covers.data.primer[0],
+        covers.data.primer[1],
+        covers.data.legacy[0],
+        covers.data.legacy[1],
+        covers.data.standard[1],
+      ];
+    }
+
+    return [];
+  };
 
   return (
     <div id="about">
       <div className="covers">
-        <div className="col">
-          <div className="group"></div>
+        <div className="col left">
+          {[...Array(3)].map((_, idx) => (
+            <div className="group" key={`col-1-group-${idx}`}>
+              {getCoverOrder(true).map((cover, idx2) => (
+                <img src={cover} key={`col-1-group-${idx}-img-${idx2}`} />
+              ))}
+            </div>
+          ))}
         </div>
-        <div className="col">
-          <div className="group"></div>
+        <div className="col right">
+          {[...Array(3)].map((_, idx) => (
+            <div className="group" key={`col-2-group-${idx}`}>
+              {getCoverOrder(false).map((cover, idx2) => (
+                <img src={cover} key={`col-1-group-${idx}-img-${idx2}`} />
+              ))}
+            </div>
+          ))}
         </div>
       </div>
       <main className="content general-padding-top">

@@ -1,6 +1,6 @@
 #about {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 3fr 5fr;
 
   width: 100%;
   max-width: 1600px;
@@ -9,14 +9,13 @@
   flex-grow: 1;
 }
 
-/*
-  animation: marquee-right 12s linear infinite;
-*/
-
 #about .covers {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  column-gap: 40px;
+  padding: 0 40px;
   align-items: stretch;
+  overflow-y: clip;
 
   background-color: var(--blue-light);
 }
@@ -24,15 +23,46 @@
 #about .covers .col {
   display: flex;
   flex-flow: column nowrap;
+  height: 0;
+  justify-content: center;
 }
 
-@keyframes marquee-right {
+#about .covers .col .group {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 40px;
+  padding: 20px 0;
+}
+
+#about .covers .col.left .group {
+  animation: marquee-to-top 15s linear infinite;
+}
+
+#about .covers .col.right .group {
+  animation: marquee-to-bottom 15s linear infinite;
+}
+
+#about .covers .col .group img {
+  width: 100%;
+}
+
+@keyframes marquee-to-top {
   from {
-    transform: translate(0);
+    transform: translate(0, 0);
   }
 
   to {
-    transform: translate(100%);
+    transform: translate(0, -100%);
+  }
+}
+
+@keyframes marquee-to-bottom {
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(0, 100%);
   }
 }
 
@@ -116,12 +146,20 @@
 }
 
 @media screen and (max-width: 1200px) {
+  #about {
+    grid-template-columns: 3fr 4fr;
+  }
+
   #about .content {
     padding: var(--general-padding-top, 48px) 48px 48px;
   }
 }
 
 @media screen and (max-width: 992px) {
+  #about {
+    grid-template-columns: 1fr 1fr;
+  }
+
   #about .content {
     padding: var(--general-padding-top, 40px) 40px 40px;
   }
