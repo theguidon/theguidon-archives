@@ -157,7 +157,7 @@ function BrowsePage() {
         {issues.data[getCategKey()] != null &&
           issues.data[getCategKey()][getKey()] != null &&
           issues.data[getCategKey()][getKey()].map((issue, idx) => (
-            <IssueCard key={`issue-${slug}-${idx}`} data={issue} />
+            <IssueCard key={`issue-${issue.fixed_slug}`} data={issue} />
           ))}
       </div>
 
