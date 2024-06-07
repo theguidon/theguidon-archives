@@ -19,21 +19,21 @@ function AboutPage() {
     if (covers.isReady) {
       if (isLeft)
         return [
-          covers.data.standard[0],
-          covers.data.legacy[0],
-          covers.data.primer[0],
-          covers.data.standard[1],
-          covers.data.legacy[1],
-          covers.data.primer[1],
+          covers.data["press-issue"][0],
+          covers.data["graduation-magazine"][0],
+          covers.data["freshmanual"][0],
+          covers.data["uaap-primer"][0],
+          covers.data["other"][0],
+          covers.data["legacy"][0],
         ];
 
       return [
-        covers.data.standard[0],
-        covers.data.primer[0],
-        covers.data.primer[1],
-        covers.data.legacy[0],
-        covers.data.legacy[1],
-        covers.data.standard[1],
+        covers.data["press-issue"][1],
+        covers.data["graduation-magazine"][1],
+        covers.data["freshmanual"][1],
+        covers.data["uaap-primer"][1],
+        covers.data["other"][1],
+        covers.data["legacy"][1],
       ];
     }
 
