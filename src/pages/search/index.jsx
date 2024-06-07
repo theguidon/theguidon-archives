@@ -1,29 +1,38 @@
-import { useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import "./index.css";
 import "./filters.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { fetchIssues } from "../../redux/modules/issues";
 import IssueCard from "../../components/issue-card";
 import Pagination from "../../components/pagination";
-import { calculatePageNums } from "../../utils";
-import ViewsFilterGroup from "../../components/filters/views";
-import AdvancedFiltersGroup from "../../components/filters/advanced";
+import {
+  calculatePageNums,
+  validatePage,
+  validateSortFilter,
+  validateView,
+  validateYearFilter,
+} from "../../utils";
 import { setDocumentTitle } from "../../utils";
+import FiltersGroup from "../../components/filters";
+import { fetchMinmaxYears } from "../../redux/modules/minmax-years";
 
 function SearchPage() {
-  const { search } = useLocation();
-  const params = new URLSearchParams(search);
-  const query = params.get("query");
-
-  const [isGridView, setIsGridView] = useState(true);
-  const [page, setPage] = useState(1);
-  const [yearFilter, setYearFilter] = useState(null);
-  const [sortOldestFilter, setSortOldestFilter] = useState(null);
-  const [activeFilterPopup, setActiveFilterPopup] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("query");
 
   const dispatch = useDispatch();
   const issues = useSelector((state) => state.issues);
+  const minmaxYears = useSelector((state) => state.minmaxYears);
+
+  const page = validatePage(searchParams.get("page"));
+  const yearFilter = validateYearFilter(
+    searchParams.get("year"),
+    minmaxYears.min,
+    minmaxYears.max
+  );
+  const sortOldestFilter = validateSortFilter(searchParams.get("sort"));
+  const isGridView = validateView(searchParams.get("view"));
 
   useEffect(() => {
     dispatch(
@@ -39,7 +48,34 @@ function SearchPage() {
     setDocumentTitle(`Search results for ${query}`);
   }, [query]);
 
+  useEffect(() => {
+    dispatch(fetchMinmaxYears());
+
+    let defsp = searchParams;
+
+    if (searchParams.get("page") == null) defsp.set("page", "1");
+    if (searchParams.get("sort") == null) defsp.set("sort", "newest");
+    if (searchParams.get("view") == null) defsp.set("view", "grid");
+
+    setSearchParams(defsp);
+  }, []);
+
   const getKey = () => `${sortOldestFilter === true ? "asc-" : ""}${page}`;
+
+  /**
+   * Replaces in search params
+   * @param {object[]} newParams Array of params to be updated { key, value, delete? }
+   */
+  const replaceSearchParams = (newParams) => {
+    let nsp = searchParams;
+
+    newParams.forEach((pair) => {
+      if (pair.delete == null) nsp.set(pair.key, pair.value);
+      else nsp.delete(pair.key);
+    });
+
+    setSearchParams(nsp);
+  };
 
   return (
     <div id="search-results" className="general-container general-padding-top">
@@ -66,21 +102,10 @@ function SearchPage() {
         </ul>
       ) : (
         <>
-          <div className="filters">
-            <AdvancedFiltersGroup
-              activeFilterPopup={activeFilterPopup}
-              setActiveFilterPopup={setActiveFilterPopup}
-              yearFilter={yearFilter}
-              setYearFilter={setYearFilter}
-              sortOldestFilter={sortOldestFilter}
-              setSortOldestFilter={setSortOldestFilter}
-            />
-
-            <ViewsFilterGroup
-              isGridView={isGridView}
-              setIsGridView={setIsGridView}
-            />
-          </div>
+          <FiltersGroup
+            hideCategories={true}
+            replaceSearchParams={replaceSearchParams}
+          />
 
           <div className={`card-grid ${isGridView ? "" : "list"}`}>
             {issues.data.search != null &&
@@ -93,7 +118,7 @@ function SearchPage() {
             <Pagination
               pageNums={calculatePageNums(issues.data.search, page)}
               page={page}
-              setPage={setPage}
+              replaceSearchParams={replaceSearchParams}
             />
           )}
         </>

@@ -77,3 +77,24 @@ export const formatBylines = (bylines) => {
     bylines.slice(-1)
   );
 };
+
+export const validatePage = (str) => {
+  if (!isNaN(str) && parseInt(str) >= 1) return parseInt(str);
+  return 1;
+};
+
+export const validateYearFilter = (str, minYear, maxYear) => {
+  if (!isNaN(str) && parseInt(str) >= minYear && parseInt(str) <= maxYear)
+    return parseInt(str);
+  return null;
+};
+
+// newest is the default
+export const validateSortFilter = (str) => {
+  return str == "oldest";
+};
+
+// grid is the default
+export const validateView = (str) => {
+  return str != "list";
+};

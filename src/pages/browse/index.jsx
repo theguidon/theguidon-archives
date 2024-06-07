@@ -1,17 +1,20 @@
 import { useParams, Navigate, useSearchParams } from "react-router-dom";
 import "./index.css";
-import "./filters.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchIssues } from "../../redux/modules/issues";
 import IssueCard from "../../components/issue-card";
 import Pagination from "../../components/pagination";
-import { calculatePageNums } from "../../utils";
-import ViewsFilterGroup from "../../components/filters/views";
-import CategoriesFilterGroup from "../../components/filters/categories";
-import AdvancedFiltersGroup from "../../components/filters/advanced";
+import {
+  calculatePageNums,
+  validatePage,
+  validateSortFilter,
+  validateView,
+  validateYearFilter,
+} from "../../utils";
 import { setDocumentTitle } from "../../utils";
 import { fetchMinmaxYears } from "../../redux/modules/minmax-years";
+import FiltersGroup from "../../components/filters";
 
 function BrowsePage() {
   const { slug } = useParams();
@@ -21,28 +24,14 @@ function BrowsePage() {
   const issues = useSelector((state) => state.issues);
   const minmaxYears = useSelector((state) => state.minmaxYears);
 
-  const [page, setPage] = useState(
-    searchParams.get("page") != null &&
-      !isNaN(searchParams.get("page")) &&
-      parseInt(searchParams.get("page")) >= 1
-      ? parseInt(searchParams.get("page"))
-      : 1
+  const page = validatePage(searchParams.get("page"));
+  const yearFilter = validateYearFilter(
+    searchParams.get("year"),
+    minmaxYears.min,
+    minmaxYears.max
   );
-  const [yearFilter, setYearFilter] = useState(
-    searchParams.get("year") != null &&
-      !isNaN(searchParams.get("year")) &&
-      parseInt(searchParams.get("year")) >= minmaxYears.min &&
-      parseInt(searchParams.get("year")) <= minmaxYears.max
-      ? parseInt(searchParams.get("year"))
-      : null
-  );
-  const [sortOldestFilter, setSortOldestFilter] = useState(
-    searchParams.get("sort") != "oldest"
-  );
-  const [isGridView, setIsGridView] = useState(
-    searchParams.get("view") != "list"
-  );
-  const [activeFilterPopup, setActiveFilterPopup] = useState(null);
+  const sortOldestFilter = validateSortFilter(searchParams.get("sort"));
+  const isGridView = validateView(searchParams.get("view"));
 
   const actual = {
     recent: "all",
@@ -133,65 +122,12 @@ function BrowsePage() {
     if (slug != null) setSearchParams(nsp);
   };
 
-  useEffect(() => {
-    if (titles[slug] != null) setDocumentTitle(titles[slug]);
-
-    if (slug != null) {
-      let toReplace = [];
-
-      // page
-      let page = searchParams.get("page");
-      if (!isNaN(page)) {
-        let intpage = parseInt(page);
-
-        if (intpage >= 1) {
-          if (parseFloat(page) % 1 == 0) setPage(intpage);
-          else toReplace.push({ key: "page", value: intpage });
-        } else toReplace.push({ key: "page", value: 1 });
-      } else toReplace.push({ key: "page", value: 1 });
-
-      // year
-      let year = searchParams.get("year");
-      if (!isNaN(year)) {
-        let intyear = parseInt(year);
-
-        if (intyear >= minmaxYears.min && intyear <= minmaxYears.max) {
-          if (parseFloat(year) % 1 == 0) setYearFilter(intyear);
-          else toReplace.push({ key: "year", value: intyear });
-        } else {
-          toReplace.push({ key: "year", delete: true });
-          setYearFilter(null);
-        }
-      } else {
-        toReplace.push({ key: "year", delete: true });
-        setYearFilter(null);
-      }
-
-      // sort
-      let sort = searchParams.get("sort");
-      setSortOldestFilter(sort != "newest");
-      if (sort != "newest" && sort != "oldest")
-        toReplace.push({ key: "sort", value: "newest" });
-
-      // view
-      let view = searchParams.get("view");
-      setIsGridView(view != "list");
-      if (view != "grid" && view != "list")
-        toReplace.push({ key: "view", value: "grid" });
-
-      replaceSearchParams(toReplace);
-    }
-  }, [slug, searchParams]);
-
   /**
-   * Remove yearFilter if out of bounds
+   * Update document title
    */
   useEffect(() => {
-    if (minmaxYears.isUpdated) {
-      if (yearFilter < minmaxYears.min || yearFilter > minmaxYears.max)
-        replaceSearchParams([{ key: "year", delete: true }]);
-    }
-  }, [minmaxYears]);
+    if (titles[slug] != null) setDocumentTitle(titles[slug]);
+  }, [slug, searchParams]);
 
   /**
    * If path is /releases, redirect to /releases/recent
@@ -210,27 +146,7 @@ function BrowsePage() {
       </h2>
 
       <hr />
-
-      <div className="filters">
-        <CategoriesFilterGroup searchParams={searchParams} />
-
-        <div className="advanced-group">
-          <AdvancedFiltersGroup
-            activeFilterPopup={activeFilterPopup}
-            setActiveFilterPopup={setActiveFilterPopup}
-            yearFilter={yearFilter}
-            minYear={minmaxYears.min}
-            maxYear={minmaxYears.max}
-            sortOldestFilter={sortOldestFilter}
-            replaceSearchParams={replaceSearchParams}
-          />
-
-          <ViewsFilterGroup
-            isGridView={isGridView}
-            replaceSearchParams={replaceSearchParams}
-          />
-        </div>
-      </div>
+      <FiltersGroup replaceSearchParams={replaceSearchParams} />
 
       <div className={`card-grid ${isGridView ? "" : "list"}`}>
         {issues.data[getCategKey()] != null &&

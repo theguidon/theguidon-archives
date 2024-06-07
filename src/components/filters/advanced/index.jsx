@@ -145,11 +145,7 @@ function AdvancedFiltersGroup(props) {
             else props.setActiveFilterPopup("sort");
           }}
         >
-          {props.sortOldestFilter == null
-            ? "Sort by"
-            : props.sortOldestFilter
-            ? "Oldest first"
-            : "Newest first"}
+          {props.sortOldestFilter ? "Oldest first" : "Newest first"}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
