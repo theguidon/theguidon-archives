@@ -12,7 +12,10 @@ function SearchField(props) {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    navigate(`/search?query=${encodeURIComponent(query)}`);
+
+    let nsp = searchParams;
+    nsp.set("query", query);
+    navigate(`/search?${nsp.toString()}`);
   };
 
   useEffect(() => {
