@@ -4,6 +4,7 @@ import issueReducer from "./modules/issue";
 import fullscreenReducer from "./modules/fullscreen";
 import aboutCoversReducer from "./modules/about-covers";
 import minmaxYearsReducer from "./modules/minmax-years";
+import alertBarReducer from "./modules/alert-bar";
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     fullscreen: fullscreenReducer,
     aboutCovers: aboutCoversReducer,
     minmaxYears: minmaxYearsReducer,
+    alertBar: alertBarReducer,
   },
 });

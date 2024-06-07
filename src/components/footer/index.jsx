@@ -7,10 +7,56 @@ import icon_twitter from "./../../assets/icons/twitter.svg";
 import icon_instagram from "./../../assets/icons/instagram.svg";
 import icon_youtube from "./../../assets/icons/youtube.svg";
 import icon_spotify from "./../../assets/icons/spotify.svg";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { showAlertBar } from "../../redux/modules/alert-bar";
 
 function Footer() {
+  const dispatch = useDispatch();
+
+  const [email, setEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+
   const onSubscribe = (event) => {
     event.preventDefault();
+
+    if (
+      email.match(
+        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+    ) {
+      const formdata = new FormData();
+      formdata.append("email", email);
+
+      setSubmitting(true);
+      setDisabled(true);
+
+      fetch(
+        "https://script.google.com/macros/s/AKfycbwdn8fWAQePWM5krVdYzwC_ksQ6pRQ561_Y1pIX6xq9fueADpNqIy-j9mJW_5zc99nr/exec",
+        {
+          method: "POST",
+          body: formdata,
+        }
+      )
+        .then(() => {
+          setSubmitting(false);
+          dispatch(
+            showAlertBar(
+              "Successfully subscribed to The GUIDON's newsletter. Thank you!"
+            )
+          );
+        })
+        .catch(() => {
+          dispatch(
+            showAlertBar(
+              "An unexpected error has occurred. Please refresh the page and try again later."
+            )
+          );
+        });
+    } else {
+      dispatch(showAlertBar("Invalid email address"));
+    }
   };
 
   return (
@@ -69,9 +115,20 @@ function Footer() {
                 />
               </svg>
 
-              <input name="email" type="text" placeholder="Email Address" />
+              <input
+                name="email"
+                type="text"
+                placeholder="Email Address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                readOnly={disabled}
+              />
 
-              <input type="submit" value="Subscribe" />
+              <input
+                type="submit"
+                value={submitting ? "Subscribing..." : "Subscribe"}
+                disabled={disabled}
+              />
             </form>
 
             <div className="social-links">

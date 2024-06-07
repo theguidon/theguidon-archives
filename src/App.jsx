@@ -12,6 +12,7 @@ import Page404 from "./pages/404";
 
 import { ScrollToTop } from "./utils";
 import { useSelector } from "react-redux";
+import AlertBar from "./components/alert-bar";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function GeneralLayout() {
       {pathname.includes("/issue") && isFullscreen ? null : <Header />}
       <Outlet />
       {isFullscreen ? null : <Footer />}
+      <AlertBar />
     </React.Fragment>
   );
 }

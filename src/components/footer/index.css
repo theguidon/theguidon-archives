@@ -89,6 +89,12 @@ footer .newsletter-group form input[type="submit"] {
   cursor: pointer;
 }
 
+footer .newsletter-group form input[type="submit"][disabled] {
+  background-color: #d8d8d8;
+  color: #888888;
+  cursor: unset;
+}
+
 footer .newsletter-group .social-links {
   display: flex;
   flex-flow: row nowrap;
