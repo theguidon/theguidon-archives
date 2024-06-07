@@ -6,7 +6,7 @@ function Pagination(props) {
       <div
         className={props.pageNums[0] == props.page ? "hide" : ""}
         onClick={() => {
-          props.setPage(props.page - 1);
+          props.replaceSearchParams([{ key: "page", value: props.page - 1 }]);
         }}
       >
         <svg
@@ -28,7 +28,7 @@ function Pagination(props) {
         <div
           key={`page-num-${idx}`}
           onClick={() => {
-            props.setPage(num);
+            props.replaceSearchParams([{ key: "page", value: num }]);
           }}
         >
           <p className={props.page == num ? "active" : ""}>{num}</p>
@@ -40,7 +40,7 @@ function Pagination(props) {
           props.pageNums[props.pageNums.length - 1] == props.page ? "hide" : ""
         }
         onClick={() => {
-          props.setPage(props.page + 1);
+          props.replaceSearchParams([{ key: "page", value: props.page + 1 }]);
         }}
       >
         <svg

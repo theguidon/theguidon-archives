@@ -33,6 +33,7 @@ export const DateFormatter = (d) => {
 
 export const calculatePageNums = (root, page) => {
   if (root != null) {
+    // if (page <= root.max_pages) {
     let lim_left = page - 2;
     let lim_right = page + 2;
 
@@ -52,6 +53,9 @@ export const calculatePageNums = (root, page) => {
     }
 
     return [...Array(lim_right - lim_left + 1)].map((_, idx) => idx + lim_left);
+    // } else {
+    //   return [...Array(Math.min(5, root.max_pages))].map((_, idx) => idx + 1);
+    // }
   }
 
   return [1];

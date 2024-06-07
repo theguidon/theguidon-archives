@@ -33,12 +33,16 @@ const issuesSlice = createSlice({
     });
 
     builder.addCase(fetchIssues.fulfilled, (state, action) => {
-      let slug =
-        action.payload.search != null
-          ? "search"
-          : action.payload.categ === null
-          ? "all"
-          : action.payload.categ;
+      let slug = null;
+      // action.payload.search != null
+      //   ? "search"
+      //   : action.payload.categ === null
+      //   ? "all"
+      //   : action.payload.categ;
+
+      if (action.payload.search != null) slug = "search";
+      else if (action.payload.categ === null) slug = "all";
+      else slug = action.payload.categ;
 
       if (state.data[slug] == null) state.data[slug] = {};
       state.data[slug].found = action.payload.found;

@@ -122,9 +122,18 @@ function BrowsePage() {
     if (titles[slug] != null) setDocumentTitle(titles[slug]);
 
     if (slug != null) {
-      console.log("checking params");
-
       let toReplace = [];
+
+      // page
+      let page = searchParams.get("page");
+      if (!isNaN(page)) {
+        let intpage = parseInt(page);
+
+        if (intpage >= 1) {
+          if (parseFloat(page) % 1 == 0) setPage(intpage);
+          else toReplace.push({ key: "page", value: intpage });
+        } else toReplace.push({ key: "page", value: 1 });
+      } else toReplace.push({ key: "page", value: 1 });
 
       // year
       let year = searchParams.get("year");
@@ -132,11 +141,9 @@ function BrowsePage() {
         let intyear = parseInt(year);
 
         if (intyear >= minYear && intyear <= maxYear) {
-          if (parseFloat(year) % 1 == 0) setYearFilter(parseInt(year));
-          else toReplace.push({ key: "year", value: parseInt(year) });
-        } else {
-          toReplace.push({ key: "year", delete: true });
-        }
+          if (parseFloat(year) % 1 == 0) setYearFilter(intyear);
+          else toReplace.push({ key: "year", value: intyear });
+        } else toReplace.push({ key: "year", delete: true });
       } else toReplace.push({ key: "year", delete: true });
 
       // sort
@@ -206,7 +213,7 @@ function BrowsePage() {
         <Pagination
           pageNums={calculatePageNums(issues.data[actual[slug]], page)}
           page={page}
-          setPage={setPage}
+          replaceSearchParams={replaceSearchParams}
         />
       )}
     </div>

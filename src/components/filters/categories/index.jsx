@@ -33,13 +33,19 @@ function CategoriesFilterGroup(props) {
     },
   ];
 
+  const getPageOneSearchParams = () => {
+    let nsp = new URLSearchParams(props.searchParams);
+    nsp.set("page", "1");
+    return nsp;
+  };
+
   return (
     <div className="categ-filters">
       {categ_filters.map((categ) => (
         <NavLink
           to={`/releases${
             categ.slug ? "/" + categ.slug : ""
-          }?${props.searchParams.toString()}`}
+          }?${getPageOneSearchParams().toString()}`}
           key={`categ-filter-${categ.slug}`}
         >
           {categ.text}
