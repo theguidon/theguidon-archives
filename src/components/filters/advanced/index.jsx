@@ -65,7 +65,14 @@ function AdvancedFiltersGroup(props) {
                     let year = selectedDecade + idx;
 
                     if (year >= props.minYear && year <= props.maxYear) {
-                      props.replaceSearchParams([{ key: "year", value: year }]);
+                      if (year == props.yearFilter)
+                        props.replaceSearchParams([
+                          { key: "year", delete: true },
+                        ]);
+                      else
+                        props.replaceSearchParams([
+                          { key: "year", value: year },
+                        ]);
                       props.setActiveFilterPopup(null);
                     }
                   }}

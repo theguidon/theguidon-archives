@@ -143,8 +143,14 @@ function BrowsePage() {
         if (intyear >= minYear && intyear <= maxYear) {
           if (parseFloat(year) % 1 == 0) setYearFilter(intyear);
           else toReplace.push({ key: "year", value: intyear });
-        } else toReplace.push({ key: "year", delete: true });
-      } else toReplace.push({ key: "year", delete: true });
+        } else {
+          toReplace.push({ key: "year", delete: true });
+          setYearFilter(null);
+        }
+      } else {
+        toReplace.push({ key: "year", delete: true });
+        setYearFilter(null);
+      }
 
       // sort
       let sort = searchParams.get("sort");
