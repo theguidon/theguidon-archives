@@ -116,6 +116,7 @@ h6 {
   position: absolute;
   top: 100%;
   left: 0;
+  z-index: 3;
 
   padding-top: 8px;
 
@@ -125,7 +126,7 @@ h6 {
 }
 
 .popup {
-  width: fit-content;
+  width: max-content;
   padding: 16px;
   background-color: white;
   border-radius: 16px;

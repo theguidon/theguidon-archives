@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./index.css";
 
-function CategoriesFilterGroup() {
+function CategoriesFilterGroup(props) {
   const categ_filters = [
     {
       slug: "recent",
@@ -37,7 +37,9 @@ function CategoriesFilterGroup() {
     <div className="categ-filters">
       {categ_filters.map((categ) => (
         <NavLink
-          to={`/releases${categ.slug ? "/" + categ.slug : ""}`}
+          to={`/releases${
+            categ.slug ? "/" + categ.slug : ""
+          }?${props.searchParams.toString()}`}
           key={`categ-filter-${categ.slug}`}
         >
           {categ.text}

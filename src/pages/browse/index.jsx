@@ -1,4 +1,10 @@
-import { NavLink, useParams, Navigate } from "react-router-dom";
+import {
+  NavLink,
+  useParams,
+  Navigate,
+  useLocation,
+  useSearchParams,
+} from "react-router-dom";
 import "./index.css";
 import "./filters.css";
 import { useEffect, useState } from "react";
@@ -14,11 +20,33 @@ import { setDocumentTitle } from "../../utils";
 
 function BrowsePage() {
   const { slug } = useParams();
+  const { search } = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const [isGridView, setIsGridView] = useState(true);
-  const [page, setPage] = useState(1);
-  const [yearFilter, setYearFilter] = useState(null);
-  const [sortOldestFilter, setSortOldestFilter] = useState(null);
+  const minYear = 1929;
+  const maxYear = 2024;
+
+  const [page, setPage] = useState(
+    searchParams.get("page") != null &&
+      !isNaN(searchParams.get("page")) &&
+      parseInt(searchParams.get("page")) >= 1
+      ? parseInt(searchParams.get("page"))
+      : 1
+  );
+  const [yearFilter, setYearFilter] = useState(
+    searchParams.get("year") != null &&
+      !isNaN(searchParams.get("year")) &&
+      parseInt(searchParams.get("year")) >= minYear &&
+      parseInt(searchParams.get("year")) <= maxYear
+      ? parseInt(searchParams.get("year"))
+      : null
+  );
+  const [sortOldestFilter, setSortOldestFilter] = useState(
+    searchParams.get("sort") != "oldest"
+  );
+  const [isGridView, setIsGridView] = useState(
+    searchParams.get("view") != "list"
+  );
   const [activeFilterPopup, setActiveFilterPopup] = useState(null);
 
   useEffect(() => {
@@ -29,6 +57,14 @@ function BrowsePage() {
     dispatch(fetchIssues({ categ: "uaap-primer" }));
     dispatch(fetchIssues({ categ: "legacy" }));
     dispatch(fetchIssues({ categ: "other" }));
+
+    let defsp = searchParams;
+
+    if (searchParams.get("page") == null) defsp.set("page", "1");
+    if (searchParams.get("sort") == null) defsp.set("sort", "newest");
+    if (searchParams.get("view") == null) defsp.set("view", "grid");
+
+    if (slug != null) setSearchParams(defsp);
   }, []);
 
   const dispatch = useDispatch();
@@ -55,12 +91,6 @@ function BrowsePage() {
   };
 
   useEffect(() => {
-    setPage(1);
-
-    if (titles[slug] != null) setDocumentTitle(titles[slug]);
-  }, [slug]);
-
-  useEffect(() => {
     if (slug == "recent")
       dispatch(
         fetchIssues({ page: page, order: sortOldestFilter ? "asc" : "desc" })
@@ -77,7 +107,58 @@ function BrowsePage() {
 
   const getKey = () => `${sortOldestFilter === true ? "asc-" : ""}${page}`;
 
-  if (slug == null) return <Navigate to="/releases/recent" />;
+  const replaceSearchParams = (newParams) => {
+    let nsp = searchParams;
+
+    newParams.forEach((pair) => {
+      if (pair.delete == null) nsp.set(pair.key, pair.value);
+      else nsp.delete(pair.key);
+    });
+
+    if (slug != null) setSearchParams(nsp);
+  };
+
+  useEffect(() => {
+    if (titles[slug] != null) setDocumentTitle(titles[slug]);
+
+    if (slug != null) {
+      console.log("checking params");
+
+      let toReplace = [];
+
+      // year
+      let year = searchParams.get("year");
+      if (!isNaN(year)) {
+        let intyear = parseInt(year);
+
+        if (intyear >= minYear && intyear <= maxYear) {
+          if (parseFloat(year) % 1 == 0) setYearFilter(parseInt(year));
+          else toReplace.push({ key: "year", value: parseInt(year) });
+        } else {
+          toReplace.push({ key: "year", delete: true });
+        }
+      } else toReplace.push({ key: "year", delete: true });
+
+      // sort
+      let sort = searchParams.get("sort");
+      setSortOldestFilter(sort != "newest");
+      if (sort != "newest" && sort != "oldest")
+        toReplace.push({ key: "sort", value: "newest" });
+
+      // view
+      let view = searchParams.get("view");
+      setIsGridView(view != "list");
+      if (view != "grid" && view != "list")
+        toReplace.push({ key: "view", value: "grid" });
+
+      replaceSearchParams(toReplace);
+    }
+  }, [slug, searchParams]);
+
+  if (slug == null) {
+    console.log("redirecting");
+    return <Navigate to="/releases/recent" />;
+  }
 
   return (
     <div id="browse" className="general-container general-padding-top">
@@ -93,21 +174,22 @@ function BrowsePage() {
       <hr />
 
       <div className="filters">
-        <CategoriesFilterGroup />
+        <CategoriesFilterGroup searchParams={searchParams} />
 
         <div className="advanced-group">
           <AdvancedFiltersGroup
             activeFilterPopup={activeFilterPopup}
             setActiveFilterPopup={setActiveFilterPopup}
             yearFilter={yearFilter}
-            setYearFilter={setYearFilter}
+            minYear={minYear}
+            maxYear={maxYear}
             sortOldestFilter={sortOldestFilter}
-            setSortOldestFilter={setSortOldestFilter}
+            replaceSearchParams={replaceSearchParams}
           />
 
           <ViewsFilterGroup
             isGridView={isGridView}
-            setIsGridView={setIsGridView}
+            replaceSearchParams={replaceSearchParams}
           />
         </div>
       </div>

@@ -9,7 +9,7 @@ function ViewsFilterGroup(props) {
         viewBox="0 0 32 32"
         fill="currentColor"
         onClick={() => {
-          props.setIsGridView(true);
+          props.replaceSearchParams([{ key: "view", value: "grid" }]);
         }}
       >
         <path
@@ -25,7 +25,7 @@ function ViewsFilterGroup(props) {
         viewBox="0 0 32 32"
         fill="currentColor"
         onClick={() => {
-          props.setIsGridView(false);
+          props.replaceSearchParams([{ key: "view", value: "list" }]);
         }}
       >
         <path
