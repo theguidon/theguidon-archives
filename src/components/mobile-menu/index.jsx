@@ -80,8 +80,7 @@ function MobileMenu(props) {
   return (
     <>
       <div
-        id="bg-tint"
-        className={props.isActive ? "active" : ""}
+        className={`bg-tint ${props.isActive ? "active" : ""}`}
         onClick={props.toggleMobileMenu}
       />
       <div id="mobile-menu" className={props.isActive ? "active" : ""}>

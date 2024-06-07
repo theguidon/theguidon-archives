@@ -10,9 +10,10 @@
   border-radius: 32px;
 }
 
-.search-field img {
+.search-field .search {
   width: 24px;
   height: 24px;
+  color: var(--gray-2);
 }
 
 .search-field input {
@@ -30,4 +31,9 @@
 
 .search-field input:focus {
   outline: none;
+}
+
+header #mobile-search .search-field {
+  display: flex;
+  background-color: #ecf4ff;
 }
