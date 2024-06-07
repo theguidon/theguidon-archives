@@ -32,7 +32,7 @@ function IssuePage() {
 
   const minZoom = 0.5;
   const maxZoom = 6.0;
-  const zoomStep = 0.5;
+  const zoomStep = 0.25;
 
   const onZoomIn = () => {
     let ns = scale;
