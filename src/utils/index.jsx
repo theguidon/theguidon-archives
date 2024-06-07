@@ -89,12 +89,20 @@ export const validateYearFilter = (str, minYear, maxYear) => {
   return null;
 };
 
-// newest is the default
+/**
+ * Determines sort filter value
+ * @param {string} str From URL
+ * @returns True if value is oldest
+ */
 export const validateSortFilter = (str) => {
   return str == "oldest";
 };
 
-// grid is the default
+/**
+ * Determines view
+ * @param {string} str From URL
+ * @returns True if value is not list
+ */
 export const validateView = (str) => {
   return str != "list";
 };

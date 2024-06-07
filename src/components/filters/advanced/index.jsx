@@ -117,15 +117,6 @@ function AdvancedFiltersGroup(props) {
         >
           <div className="popup">
             <p
-              className={props.sortOldestFilter ? "active" : ""}
-              onClick={() => {
-                props.replaceSearchParams([{ key: "sort", value: "oldest" }]);
-                props.setActiveFilterPopup(null);
-              }}
-            >
-              Oldest first
-            </p>
-            <p
               className={props.sortOldestFilter ? "" : "active"}
               onClick={() => {
                 props.replaceSearchParams([{ key: "sort", value: "newest" }]);
@@ -133,6 +124,15 @@ function AdvancedFiltersGroup(props) {
               }}
             >
               Newest first
+            </p>
+            <p
+              className={props.sortOldestFilter ? "active" : ""}
+              onClick={() => {
+                props.replaceSearchParams([{ key: "sort", value: "oldest" }]);
+                props.setActiveFilterPopup(null);
+              }}
+            >
+              Oldest first
             </p>
           </div>
         </div>

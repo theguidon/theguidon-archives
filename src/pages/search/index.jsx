@@ -34,6 +34,9 @@ function SearchPage() {
   const sortOldestFilter = validateSortFilter(searchParams.get("sort"));
   const isGridView = validateView(searchParams.get("view"));
 
+  /**
+   * Fetch data on filter or query update
+   */
   useEffect(() => {
     dispatch(
       fetchIssues({
@@ -44,10 +47,17 @@ function SearchPage() {
     );
   }, [query, page, yearFilter, sortOldestFilter]);
 
+  /**
+   * Change document title on query change
+   */
   useEffect(() => {
     setDocumentTitle(`Search results for ${query}`);
   }, [query]);
 
+  /**
+   * Fetch data
+   * Add default page, sort, and view filters
+   */
   useEffect(() => {
     dispatch(fetchMinmaxYears());
 
@@ -60,6 +70,10 @@ function SearchPage() {
     setSearchParams(defsp);
   }, []);
 
+  /**
+   * Used in mapping issues based on sort
+   * @returns string
+   */
   const getKey = () => `${sortOldestFilter === true ? "asc-" : ""}${page}`;
 
   /**
