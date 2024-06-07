@@ -24,7 +24,7 @@ function AboutPage() {
         <h2>The GUIDON Archives</h2>
         <hr className="first" />
 
-        <p className="text-content">
+        <div className="text-content">
           <p className="text">
             The Archives is a collection of{" "}
             <span className="nowrap">The GUIDON's</span> published content since
@@ -44,7 +44,7 @@ function AboutPage() {
             Email <a href="mailto:desk@theguidon.com">desk@theguidon.com</a> for
             any comments, suggestions, or inquiries.
           </p>
-        </p>
+        </div>
 
         <p className="subheader second">
           In partnership with the University Archives
