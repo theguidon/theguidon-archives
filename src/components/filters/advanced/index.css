@@ -37,6 +37,18 @@
 .filters .advanced-filters .filter-container .filter svg {
   width: 20px;
   height: 20px;
+
+  transform: rotate(0deg);
+  transition: 0.3s;
+}
+
+.filters
+  .advanced-filters
+  .filter-container
+  .popup-container.active
+  ~ .filter
+  svg {
+  transform: rotate(180deg);
 }
 
 .filters .advanced-filters .sort-filter-container .popup {
