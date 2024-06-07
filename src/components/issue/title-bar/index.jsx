@@ -16,8 +16,6 @@ function TitleBar(props) {
   const [query, setQuery] = useState("");
   const searchFieldRef = useRef({ top: null, bottom: null });
 
-  const zoomCircle = useRef(null);
-
   const getFilteredContent = () => {
     if (query === "") return [];
 
@@ -430,7 +428,6 @@ function TitleBar(props) {
             style={{
               left: `${props.zoom}%`,
             }}
-            ref={zoomCircle}
           />
         </div>
 
