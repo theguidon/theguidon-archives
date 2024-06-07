@@ -1,10 +1,4 @@
-import {
-  NavLink,
-  useParams,
-  Navigate,
-  useLocation,
-  useSearchParams,
-} from "react-router-dom";
+import { useParams, Navigate, useSearchParams } from "react-router-dom";
 import "./index.css";
 import "./filters.css";
 import { useEffect, useState } from "react";
@@ -17,14 +11,15 @@ import ViewsFilterGroup from "../../components/filters/views";
 import CategoriesFilterGroup from "../../components/filters/categories";
 import AdvancedFiltersGroup from "../../components/filters/advanced";
 import { setDocumentTitle } from "../../utils";
+import { fetchMinmaxYears } from "../../redux/modules/minmax-years";
 
 function BrowsePage() {
   const { slug } = useParams();
-  const { search } = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const minYear = 1929;
-  const maxYear = 2024;
+  const dispatch = useDispatch();
+  const issues = useSelector((state) => state.issues);
+  const minmaxYears = useSelector((state) => state.minmaxYears);
 
   const [page, setPage] = useState(
     searchParams.get("page") != null &&
@@ -36,8 +31,8 @@ function BrowsePage() {
   const [yearFilter, setYearFilter] = useState(
     searchParams.get("year") != null &&
       !isNaN(searchParams.get("year")) &&
-      parseInt(searchParams.get("year")) >= minYear &&
-      parseInt(searchParams.get("year")) <= maxYear
+      parseInt(searchParams.get("year")) >= minmaxYears.min &&
+      parseInt(searchParams.get("year")) <= minmaxYears.max
       ? parseInt(searchParams.get("year"))
       : null
   );
@@ -48,27 +43,6 @@ function BrowsePage() {
     searchParams.get("view") != "list"
   );
   const [activeFilterPopup, setActiveFilterPopup] = useState(null);
-
-  useEffect(() => {
-    dispatch(fetchIssues({}));
-    dispatch(fetchIssues({ categ: "press-issue" }));
-    dispatch(fetchIssues({ categ: "graduation-magazine" }));
-    dispatch(fetchIssues({ categ: "freshmanual" }));
-    dispatch(fetchIssues({ categ: "uaap-primer" }));
-    dispatch(fetchIssues({ categ: "legacy" }));
-    dispatch(fetchIssues({ categ: "other" }));
-
-    let defsp = searchParams;
-
-    if (searchParams.get("page") == null) defsp.set("page", "1");
-    if (searchParams.get("sort") == null) defsp.set("sort", "newest");
-    if (searchParams.get("view") == null) defsp.set("view", "grid");
-
-    if (slug != null) setSearchParams(defsp);
-  }, []);
-
-  const dispatch = useDispatch();
-  const issues = useSelector((state) => state.issues);
 
   const actual = {
     recent: "all",
@@ -90,6 +64,33 @@ function BrowsePage() {
     others: "Others",
   };
 
+  /**
+   * Fetch data
+   * Add default page, sort, and view filters
+   */
+  useEffect(() => {
+    dispatch(fetchMinmaxYears());
+
+    dispatch(fetchIssues({}));
+    dispatch(fetchIssues({ categ: "press-issue" }));
+    dispatch(fetchIssues({ categ: "graduation-magazine" }));
+    dispatch(fetchIssues({ categ: "freshmanual" }));
+    dispatch(fetchIssues({ categ: "uaap-primer" }));
+    dispatch(fetchIssues({ categ: "legacy" }));
+    dispatch(fetchIssues({ categ: "other" }));
+
+    let defsp = searchParams;
+
+    if (searchParams.get("page") == null) defsp.set("page", "1");
+    if (searchParams.get("sort") == null) defsp.set("sort", "newest");
+    if (searchParams.get("view") == null) defsp.set("view", "grid");
+
+    if (slug != null) setSearchParams(defsp);
+  }, []);
+
+  /**
+   * Fetch data on filter, slug, or page update
+   */
   useEffect(() => {
     if (slug == "recent")
       dispatch(
@@ -105,8 +106,22 @@ function BrowsePage() {
       );
   }, [slug, page, yearFilter, sortOldestFilter]);
 
+  /**
+   * Used in mapping issues based on categ or date filters
+   * @returns string
+   */
+  const getCategKey = () => (yearFilter != null ? "filtered" : actual[slug]);
+
+  /**
+   * Used in mapping issues based on sort
+   * @returns string
+   */
   const getKey = () => `${sortOldestFilter === true ? "asc-" : ""}${page}`;
 
+  /**
+   * Replaces in search params
+   * @param {object[]} newParams Array of params to be updated { key, value, delete? }
+   */
   const replaceSearchParams = (newParams) => {
     let nsp = searchParams;
 
@@ -140,7 +155,7 @@ function BrowsePage() {
       if (!isNaN(year)) {
         let intyear = parseInt(year);
 
-        if (intyear >= minYear && intyear <= maxYear) {
+        if (intyear >= minmaxYears.min && intyear <= minmaxYears.max) {
           if (parseFloat(year) % 1 == 0) setYearFilter(intyear);
           else toReplace.push({ key: "year", value: intyear });
         } else {
@@ -168,10 +183,20 @@ function BrowsePage() {
     }
   }, [slug, searchParams]);
 
-  if (slug == null) {
-    console.log("redirecting");
-    return <Navigate to="/releases/recent" />;
-  }
+  /**
+   * Remove yearFilter if out of bounds
+   */
+  useEffect(() => {
+    if (minmaxYears.isUpdated) {
+      if (yearFilter < minmaxYears.min || yearFilter > minmaxYears.max)
+        replaceSearchParams([{ key: "year", delete: true }]);
+    }
+  }, [minmaxYears]);
+
+  /**
+   * If path is /releases, redirect to /releases/recent
+   */
+  if (slug == null) return <Navigate to="/releases/recent" />;
 
   return (
     <div id="browse" className="general-container general-padding-top">
@@ -194,8 +219,8 @@ function BrowsePage() {
             activeFilterPopup={activeFilterPopup}
             setActiveFilterPopup={setActiveFilterPopup}
             yearFilter={yearFilter}
-            minYear={minYear}
-            maxYear={maxYear}
+            minYear={minmaxYears.min}
+            maxYear={minmaxYears.max}
             sortOldestFilter={sortOldestFilter}
             replaceSearchParams={replaceSearchParams}
           />
@@ -208,16 +233,16 @@ function BrowsePage() {
       </div>
 
       <div className={`card-grid ${isGridView ? "" : "list"}`}>
-        {issues.data[actual[slug]] != null &&
-          issues.data[actual[slug]][getKey()] != null &&
-          issues.data[actual[slug]][getKey()].map((issue, idx) => (
+        {issues.data[getCategKey()] != null &&
+          issues.data[getCategKey()][getKey()] != null &&
+          issues.data[getCategKey()][getKey()].map((issue, idx) => (
             <IssueCard key={`issue-${slug}-${idx}`} data={issue} />
           ))}
       </div>
 
-      {calculatePageNums(issues.data[actual[slug]], page).length > 1 && (
+      {calculatePageNums(issues.data[getCategKey()], page).length > 1 && (
         <Pagination
-          pageNums={calculatePageNums(issues.data[actual[slug]], page)}
+          pageNums={calculatePageNums(issues.data[getCategKey()], page)}
           page={page}
           replaceSearchParams={replaceSearchParams}
         />

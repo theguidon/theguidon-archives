@@ -3,7 +3,10 @@ import "./index.css";
 
 function AdvancedFiltersGroup(props) {
   const [selectedDecade, setSelectedDecade] = useState(
-    Math.floor(new Date().getFullYear() / 10) * 10
+    Math.floor(
+      (props.yearFilter != null ? props.yearFilter : new Date().getFullYear()) /
+        10
+    ) * 10
   );
 
   return (
@@ -60,7 +63,7 @@ function AdvancedFiltersGroup(props) {
                       ? "active"
                       : ""
                   }`}
-                  key={`year-${idx}`}
+                  key={`year-${selectedDecade + idx}`}
                   onClick={() => {
                     let year = selectedDecade + idx;
 
