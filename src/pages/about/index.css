@@ -1,0 +1,166 @@
+#about {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+
+  flex-grow: 1;
+}
+
+/*
+  animation: marquee-right 12s linear infinite;
+*/
+
+#about .covers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: stretch;
+
+  background-color: var(--blue-light);
+}
+
+#about .covers .col {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translate(0);
+  }
+
+  to {
+    transform: translate(100%);
+  }
+}
+
+#about .content {
+  padding: var(--general-padding-top, 56px) 56px 56px;
+}
+
+#about .subheader {
+  font-size: var(--subheader-font-size);
+  letter-spacing: var(--subheader-letter-spacing);
+  color: var(--gdn-blue);
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 0 0 4px;
+}
+
+#about h2 {
+  margin: 0 0 4px;
+}
+
+#about hr.first {
+  margin: 0 0 40px;
+}
+
+#about .text-content {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 32px;
+  margin: 0 0 48px;
+}
+
+#about p.text {
+  font-size: var(--body-l-font-size);
+}
+
+#about p.text a {
+  color: var(--gdn-blue);
+}
+
+#about .subheader.second {
+  margin: 0 0 12px;
+}
+
+#about hr.second {
+  margin: 0 0 12px;
+}
+
+#about p.text.about-ua {
+  margin: 0 0 16px;
+}
+
+#about .rows-container {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 8px;
+}
+
+#about .rows-container .row {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  column-gap: 8px;
+}
+
+#about .rows-container .row svg {
+  width: 24px;
+  height: 24px;
+  color: var(--blue-alt-1);
+
+  flex-shrink: 0;
+}
+
+#about .rows-container .row p {
+  min-height: 24px;
+  color: var(--gdn-blue);
+  word-break: break-word;
+}
+
+#about .rows-container .row p a {
+  color: inherit;
+}
+
+@media screen and (max-width: 1200px) {
+  #about .content {
+    padding: var(--general-padding-top, 48px) 48px 48px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  #about .content {
+    padding: var(--general-padding-top, 40px) 40px 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #about {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  #about .covers {
+    height: 240px;
+  }
+
+  #about .content {
+    padding: var(--general-padding-top, 36px) 32px 36px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #about {
+    flex-flow: column-reverse nowrap;
+  }
+
+  #about .content {
+    padding: var(--general-padding-top, 32px) 24px 32px;
+  }
+
+  #about hr.first {
+    margin: 0 0 16px;
+  }
+
+  #about .text-content {
+    row-gap: 24px;
+    margin: 0 0 32px;
+  }
+
+  #about p.text {
+    font-size: var(--body-font-size);
+  }
+}

@@ -108,7 +108,8 @@ h6 {
 }
 
 .general-padding-top {
-  padding-top: 56px;
+  --general-padding-top: 56px;
+  padding-top: var(--general-padding-top);
 }
 
 .popup-container {
@@ -160,7 +161,7 @@ hr {
   }
 
   .general-padding-top {
-    padding: 48px;
+    --general-padding-top: 48px;
   }
 
   .card-grid {
@@ -175,7 +176,7 @@ hr {
   }
 
   .general-padding-top {
-    padding: 40px;
+    padding-top: 40px;
   }
 
   .card-grid {
@@ -191,7 +192,7 @@ hr {
   }
 
   .general-padding-top {
-    padding: 36px;
+    --general-padding-top: 36px;
   }
 
   .card-grid {
@@ -232,7 +233,7 @@ hr {
   }
 
   .general-padding-top {
-    padding: 32px;
+    --general-padding-top: 32px;
   }
 
   .card-grid {
