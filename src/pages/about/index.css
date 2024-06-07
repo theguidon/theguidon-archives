@@ -35,11 +35,11 @@
 }
 
 #about .covers .col.left .group {
-  animation: marquee-to-top 15s linear infinite;
+  animation: marquee-to-top 18s linear infinite;
 }
 
 #about .covers .col.right .group {
-  animation: marquee-to-bottom 15s linear infinite;
+  animation: marquee-to-bottom 18s linear infinite;
 }
 
 #about .covers .col .group img {
