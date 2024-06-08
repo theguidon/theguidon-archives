@@ -102,42 +102,49 @@ function IssuePage() {
   }, [issue]);
 
   return (
-    issue != null && (
-      <div id="issue" className={isFullscreen ? "fullscreen" : ""}>
-        <TitleBar
-          articleContent={articleContent}
-          title={issue.title}
-          onZoomIn={onZoomIn}
-          onZoomOut={onZoomOut}
-          minZoom={minZoom}
-          maxZoom={maxZoom}
-          setScale={setScale}
-          zoom={((scale - minZoom) / (maxZoom - minZoom)) * 100}
-          isDoubleReader={isDoubleReader}
-          setIsDoubleReader={setIsDoubleReader}
-          isFullscreen={isFullscreen}
-          toggleFullscreen={toggleFullscreen}
-          setPage={setPage}
-          isLegacy={issue.is_legacy}
-        />
+    // issue != null && (
+    <div id="issue" className={isFullscreen ? "fullscreen" : ""}>
+      <TitleBar
+        loading={issue == null}
+        articleContent={articleContent}
+        title={issue != null ? issue.title : null}
+        onZoomIn={onZoomIn}
+        onZoomOut={onZoomOut}
+        minZoom={minZoom}
+        maxZoom={maxZoom}
+        setScale={setScale}
+        zoom={((scale - minZoom) / (maxZoom - minZoom)) * 100}
+        isDoubleReader={isDoubleReader}
+        setIsDoubleReader={setIsDoubleReader}
+        isFullscreen={isFullscreen}
+        toggleFullscreen={toggleFullscreen}
+        setPage={setPage}
+        isLegacy={issue != null ? issue.is_legacy : false}
+      />
 
-        <IssueReader
-          onLeftClick={onLeftClick}
-          onRightClick={onRightClick}
-          isDoubleReader={isDoubleReader}
-          scale={scale}
-          issue={issue}
-          page={page}
-          setPage={setPage}
-          isLegacy={issue.is_legacy}
-          maxZoom={maxZoom}
-        />
+      <IssueReader
+        loading={issue == null}
+        onLeftClick={onLeftClick}
+        onRightClick={onRightClick}
+        isDoubleReader={isDoubleReader}
+        scale={scale}
+        issue={issue}
+        page={page}
+        setPage={setPage}
+        isLegacy={issue != null ? issue.is_legacy : false}
+        maxZoom={maxZoom}
+      />
 
-        <section id="issue-metadata" className="general-container">
+      <section id="issue-metadata" className="general-container">
+        {issue != null && false ? (
           <div className="cover-container">
-            <img src={issue.cover} alt={issue.title} />
+            <img className="cover" src={issue.cover} alt={issue.title} />
           </div>
+        ) : (
+          <div className="cover-container loading" />
+        )}
 
+        {issue != null && false ? (
           <div className="info">
             {issue.volume_num != null && issue.issue_num != null && (
               <p className="vol-issue">
@@ -200,53 +207,73 @@ function IssuePage() {
               </Link>
             </div>
           </div>
-        </section>
-
-        {articleContent.length > 0 && (
-          <section id="issue-content">
-            <div className="general-container">
-              <h4>In this issue</h4>
-
-              {articleContent.map((section, idx) => (
-                <div className="section" key={`content-section-${idx}`}>
-                  <p className="section-name">{section.name}</p>
-                  <hr />
-
-                  <div
-                    className="articles-container"
-                    style={{
-                      gridTemplateRows: `repeat(${Math.ceil(
-                        section.articles.length / 2
-                      )}, auto)`,
-                    }}
-                  >
-                    {section.articles.map((article, idx2) => (
-                      <div
-                        className="article"
-                        key={`content-section-${idx}-${idx2}`}
-                      >
-                        <p
-                          className="title"
-                          dangerouslySetInnerHTML={{
-                            __html: article.title,
-                          }}
-                        />
-                        <p
-                          className="bylines"
-                          dangerouslySetInnerHTML={{
-                            __html: `By ${formatBylines(article.bylines)}`,
-                          }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+        ) : (
+          <div className="info">
+            <div className="vol-issue loading" />
+            <div
+              className="title loading"
+              style={{ maxWidth: `${Math.random() * 200 + 400}px` }}
+            />
+            <div
+              className="date loading"
+              style={{ maxWidth: `${Math.random() * 100 + 150}px` }}
+            />
+            <div
+              className="desc loading"
+              style={{
+                maxWidth: `${Math.random() * 400 + 200}px`,
+                height: `${Math.random() * 60 + 40}px`,
+              }}
+            />
+          </div>
         )}
-      </div>
-    )
+      </section>
+
+      {issue != null && articleContent.length > 0 && (
+        <section id="issue-content">
+          <div className="general-container">
+            <h4>In this issue</h4>
+
+            {articleContent.map((section, idx) => (
+              <div className="section" key={`content-section-${idx}`}>
+                <p className="section-name">{section.name}</p>
+                <hr />
+
+                <div
+                  className="articles-container"
+                  style={{
+                    gridTemplateRows: `repeat(${Math.ceil(
+                      section.articles.length / 2
+                    )}, auto)`,
+                  }}
+                >
+                  {section.articles.map((article, idx2) => (
+                    <div
+                      className="article"
+                      key={`content-section-${idx}-${idx2}`}
+                    >
+                      <p
+                        className="title"
+                        dangerouslySetInnerHTML={{
+                          __html: article.title,
+                        }}
+                      />
+                      <p
+                        className="bylines"
+                        dangerouslySetInnerHTML={{
+                          __html: `By ${formatBylines(article.bylines)}`,
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+    // )
   );
 }
 

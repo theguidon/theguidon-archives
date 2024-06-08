@@ -232,6 +232,11 @@
   height: 32px;
 }
 
+/* loading */
+#issue .title-bar .issue-title.loading {
+  height: 24px;
+}
+
 @media screen and (max-width: 1200px) {
 }
 

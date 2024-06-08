@@ -91,8 +91,12 @@ function IssueReader(props) {
 
   return (
     <main id="reader">
-      <div className="container">
-        {!props.isLegacy && (
+      <div
+        className={`container ${
+          props.loading || loadedPages < props.issue.num_pages ? "loading" : ""
+        }`}
+      >
+        {!props.loading && !props.isLegacy && (
           <div className="edge left" onClick={props.onLeftClick}>
             <svg
               className="chevron"
@@ -109,53 +113,55 @@ function IssueReader(props) {
           </div>
         )}
 
-        <div
-          className={`document-container ${docIsDragging ? "dragging" : ""}`}
-          style={{
-            transform: `translate(${sx + tx}px, ${sy + ty}px) scale(${
-              props.scale
-            })`,
-          }}
-          onMouseDown={onStartDragging}
-          onMouseMove={onDrag}
-          onMouseUp={onEndDragging}
-        >
-          {props.isLegacy ? (
-            <div className="document">
-              <div className="page active">
-                <img className="cover" src={props.issue.cover} />
+        {!props.loading && (
+          <div
+            className={`document-container ${docIsDragging ? "dragging" : ""}`}
+            style={{
+              transform: `translate(${sx + tx}px, ${sy + ty}px) scale(${
+                props.scale
+              })`,
+            }}
+            onMouseDown={onStartDragging}
+            onMouseMove={onDrag}
+            onMouseUp={onEndDragging}
+          >
+            {props.isLegacy ? (
+              <div className="document">
+                <div className="page active">
+                  <img className="cover" src={props.issue.cover} />
+                </div>
               </div>
-            </div>
-          ) : (
-            <Document
-              file={isLocalhost() ? sample : props.issue.full_issue}
-              // file={`/issues/${issue.fixed_slug}.pdf`}
-              // file={sample}
-              loading={null}
-              onLoadError={console.error}
-              className="document"
-            >
-              {[...Array(props.issue.num_pages)].map((_, idx) => (
-                <Page
-                  key={`page-${idx}`}
-                  canvasBackground="white"
-                  pageNumber={idx + 1}
-                  onRenderSuccess={() => {
-                    setLoadedPages((loaded) => loaded + 1);
-                  }}
-                  renderAnnotationLayer={false}
-                  renderTextLayer={false}
-                  height={Math.floor(window.screen.height * 1.75)}
-                  className={`page ${
-                    determineShowPage(idx + 1) ? "active" : ""
-                  }`}
-                />
-              ))}
-            </Document>
-          )}
-        </div>
+            ) : (
+              <Document
+                file={isLocalhost() ? sample : props.issue.full_issue}
+                // file={`/issues/${issue.fixed_slug}.pdf`}
+                // file={sample}
+                loading={null}
+                onLoadError={console.error}
+                className="document"
+              >
+                {[...Array(props.issue.num_pages)].map((_, idx) => (
+                  <Page
+                    key={`page-${idx}`}
+                    canvasBackground="white"
+                    pageNumber={idx + 1}
+                    onRenderSuccess={() => {
+                      setLoadedPages((loaded) => loaded + 1);
+                    }}
+                    renderAnnotationLayer={false}
+                    renderTextLayer={false}
+                    height={Math.floor(window.screen.height * 1.75)}
+                    className={`page ${
+                      determineShowPage(idx + 1) ? "active" : ""
+                    }`}
+                  />
+                ))}
+              </Document>
+            )}
+          </div>
+        )}
 
-        {!props.isLegacy && (
+        {!props.loading && !props.isLegacy && (
           <div className="edge right" onClick={props.onRightClick}>
             <svg
               className="chevron"
@@ -173,7 +179,7 @@ function IssueReader(props) {
         )}
       </div>
 
-      {showModal && loadedPages < props.issue.num_pages && (
+      {!props.loading && showModal && loadedPages < props.issue.num_pages && (
         <div className="bg-tint">
           <div className="loading-modal">
             <svg
@@ -221,7 +227,7 @@ function IssueReader(props) {
         </div>
       )}
 
-      {!props.issue.is_legacy && (
+      {!props.loading && !props.issue.is_legacy && (
         <SliderSection
           isDoubleReader={props.isDoubleReader}
           numPages={props.issue.num_pages}

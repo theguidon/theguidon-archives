@@ -503,7 +503,16 @@ function TitleBar(props) {
           className={`general-container ${searchActive ? "search-active" : ""}`}
         >
           {getLeftControls("top")}
-          <h6 className="issue-title">{props.title}</h6>
+          {!props.loading ? (
+            <h6 className="issue-title">{props.title}</h6>
+          ) : (
+            <div
+              className="issue-title loading"
+              style={{
+                width: `${Math.random() * 100 + 200}px`,
+              }}
+            />
+          )}
           {getRightControls()}
         </div>
       </div>

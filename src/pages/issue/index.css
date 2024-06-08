@@ -198,6 +198,23 @@
   /* font-size: var(--body-l-font-size); */
 }
 
+/* loading */
+#issue #issue-metadata .vol-issue.loading {
+  width: 160px;
+  height: 32px;
+}
+#issue #issue-metadata .title {
+  height: 56px;
+  width: 100%;
+}
+#issue #issue-metadata .date {
+  height: 20px;
+  width: 100%;
+}
+#issue #issue-metadata .desc.loading {
+  width: 100%;
+}
+
 @media screen and (max-width: 1200px) {
   #issue #issue-metadata {
     padding-top: 48px;
