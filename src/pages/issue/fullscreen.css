@@ -7,3 +7,7 @@
 #issue.fullscreen #issue-metadata {
   display: none;
 }
+
+#issue.fullscreen #issue-content {
+  display: none;
+}

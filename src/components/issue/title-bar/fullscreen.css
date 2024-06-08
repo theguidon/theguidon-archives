@@ -37,6 +37,8 @@
   border-radius: 16px;
   padding: 2px 8px;
   padding: 8px 16px;
+
+  position: relative;
 }
 
 /* back */
@@ -74,4 +76,19 @@
 
 #issue.fullscreen .title-bar .zoom-container .zoom-fill {
   background-color: var(--blue-gray-dark);
+}
+
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 992px) {
+  #issue.fullscreen .title-bar .controls-left {
+    position: static;
+  }
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 576px) {
 }
