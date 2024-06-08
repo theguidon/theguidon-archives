@@ -79,6 +79,22 @@
   color: black;
 }
 
+/* loading */
+.issue-card.loading-container .info {
+  flex-grow: 1;
+}
+.issue-card .title.loading {
+  height: 24px;
+  width: 100%;
+}
+.issue-card .date.loading {
+  height: 14px;
+  width: 50%;
+}
+/* .issue-card .desc.loading {
+  height: 40px;
+} */
+
 @media screen and (max-width: 1200px) {
   .issue-card .cover-container {
     height: 214px;

@@ -3,6 +3,25 @@ import { DateFormatter } from "../../utils";
 import "./index.css";
 
 function IssueCard(props) {
+  if (props.loading)
+    return (
+      <div className="issue-card loading-container">
+        <div className="cover-container loading" />
+
+        <div className="info">
+          <div
+            className="title loading"
+            style={{ width: `${Math.random() * 25 + 75}%` }}
+          />
+          <div
+            className="date loading"
+            style={{ width: `${Math.random() * 25 + 50}%` }}
+          />
+          <div className="desc loading" />
+        </div>
+      </div>
+    );
+
   return (
     <Link to={`/issue/${props.issue.fixed_slug}`} className="issue-card">
       <div className="cover-container">

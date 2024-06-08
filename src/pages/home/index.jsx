@@ -77,41 +77,60 @@ function HomePage() {
   return (
     <div id="home">
       {issues.data.all != null &&
-        issues.data.all[1] != null &&
-        issues.data.all[1].length >= 1 && (
-          <div
-            id="hero"
-            style={{
-              backgroundImage: `url(${issues.data.all[1][0].cover_full})`,
-            }}
-          >
-            <div className="bg-tint" />
+      issues.data.all[1] != null &&
+      issues.data.all[1].length >= 1 ? (
+        <div
+          id="hero"
+          style={{
+            backgroundImage: `url(${issues.data.all[1][0].cover_full})`,
+          }}
+        >
+          <div className="bg-tint" />
 
-            <div className="general-container">
-              <div className="info">
-                <p className="badge">Latest Release</p>
-                <h1 className="title">{issues.data.all[1][0].title}</h1>
-                <p className="date">
-                  {DateFormatter(issues.data.all[1][0].date_published)}
-                </p>
-                <p className="desc">{issues.data.all[1][0].description}</p>
+          <div className="general-container">
+            <div className="info">
+              <p className="badge">Latest Release</p>
+              <h1 className="title">{issues.data.all[1][0].title}</h1>
+              <p className="date">
+                {DateFormatter(issues.data.all[1][0].date_published)}
+              </p>
+              <p className="desc">{issues.data.all[1][0].description}</p>
 
-                <Link
-                  to={`/issue/${issues.data.all[1][0].fixed_slug}`}
-                  className="read-now"
-                >
-                  Read now
-                </Link>
-              </div>
-
-              <img
-                className="cover"
-                src={issues.data.all[1][0].cover}
-                alt={issues.data.all[1][0].title}
-              />
+              <Link
+                to={`/issue/${issues.data.all[1][0].fixed_slug}`}
+                className="read-now"
+              >
+                Read now
+              </Link>
             </div>
+
+            <img
+              className="cover"
+              src={issues.data.all[1][0].cover}
+              alt={issues.data.all[1][0].title}
+            />
           </div>
-        )}
+        </div>
+      ) : (
+        <div id="hero" className="loading-container">
+          <div className="bg-tint" />
+
+          <div className="general-container">
+            <div className="info">
+              <div className="badge loading" />
+              <div className="title loading" />
+              <div className="date loading" />
+              <div
+                className="desc loading"
+                style={{ width: `${Math.random() * 50 + 50}%` }}
+              />
+              <div className="read-now loading" />
+            </div>
+
+            <div className="cover loading" />
+          </div>
+        </div>
+      )}
 
       <main className="general-container general-padding-top">
         <p className="subheader">Recently Uploaded</p>
@@ -121,14 +140,18 @@ function HomePage() {
         </Link>
         <hr />
         <div id="latest" className="card-grid mobile-list">
-          {issues.data.all != null &&
-            issues.data.all[1] != null &&
-            [...Array(Math.min(5, issues.data.all[1].length))].map((_, idx) => (
-              <IssueCard
-                issue={issues.data.all[1][idx]}
-                key={`recent-${idx}`}
-              />
-            ))}
+          {issues.data.all != null && issues.data.all[1] != null
+            ? [...Array(Math.min(5, issues.data.all[1].length))].map(
+                (_, idx) => (
+                  <IssueCard
+                    issue={issues.data.all[1][idx]}
+                    key={`recent-${idx}`}
+                  />
+                )
+              )
+            : [...Array(5)].map((_, idx) => (
+                <IssueCard loading={true} key={`recent-loading-${idx}`} />
+              ))}
         </div>
 
         <p className="subheader">Browse</p>
@@ -156,13 +179,16 @@ function HomePage() {
               <hr />
               <div className="cover-container">
                 {issues.data[categ.key] != null &&
-                  issues.data[categ.key][1] != null &&
-                  issues.data[categ.key][1][0] != null && (
-                    <img
-                      src={issues.data[categ.key][1][0].cover}
-                      alt={categ.title}
-                    />
-                  )}
+                issues.data[categ.key][1] != null &&
+                issues.data[categ.key][1][0] != null ? (
+                  <img
+                    className="cover"
+                    src={issues.data[categ.key][1][0].cover}
+                    alt={categ.title}
+                  />
+                ) : (
+                  <div className="cover loading" />
+                )}
               </div>
             </Link>
           ))}
@@ -175,16 +201,18 @@ function HomePage() {
         </Link>
         <hr />
         <div id="history" className="card-grid mobile-list">
-          {issues.data.legacy != null &&
-            issues.data.legacy[1] != null &&
-            [...Array(Math.min(5, issues.data.legacy[1].length))].map(
-              (_, idx) => (
-                <IssueCard
-                  issue={issues.data.legacy[1][idx]}
-                  key={`recent-${idx}`}
-                />
+          {issues.data.legacy != null && issues.data.legacy[1] != null
+            ? [...Array(Math.min(5, issues.data.legacy[1].length))].map(
+                (_, idx) => (
+                  <IssueCard
+                    issue={issues.data.legacy[1][idx]}
+                    key={`history-${idx}`}
+                  />
+                )
               )
-            )}
+            : [...Array(5)].map((_, idx) => (
+                <IssueCard loading={true} key={`history-loading-${idx}`} />
+              ))}
         </div>
       </main>
     </div>
