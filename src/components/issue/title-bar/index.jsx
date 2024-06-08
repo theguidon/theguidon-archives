@@ -16,6 +16,9 @@ function TitleBar(props) {
   const [query, setQuery] = useState("");
   const searchFieldRef = useRef({ top: null, bottom: null });
 
+  const [zoomCircleInside, setZoomCircleInside] = useState(true);
+  const [zoomCircleDragging, setZoomCircleDragging] = useState(false);
+
   const getFilteredContent = () => {
     if (query === "") return [];
 
@@ -64,13 +67,24 @@ function TitleBar(props) {
     );
   };
 
+  const calculateZoom = (event, parent) => {
+    let bcr = parent.getBoundingClientRect();
+    let perc = (event.clientX - bcr.left) / bcr.width;
+    let val = perc * (props.maxZoom - props.minZoom) + props.minZoom;
+
+    return val;
+  };
+
   const onZoomContainerClick = (event) => {
     if (event.target.className == "zoom-container") {
-      let bcr = event.target.getBoundingClientRect();
-      let perc = (event.clientX - bcr.left) / bcr.width;
-      let val = perc * (props.maxZoom - props.minZoom) + props.minZoom;
+      props.setScale(calculateZoom(event, event.target));
+    }
+  };
 
-      props.setScale(val);
+  const onZoomCircleDrag = (event) => {
+    let calculated = calculateZoom(event, event.target.parentNode);
+    if (calculated >= props.minZoom && calculated <= props.maxZoom) {
+      props.setScale(calculateZoom(event, event.target.parentNode));
     }
   };
 
@@ -416,17 +430,37 @@ function TitleBar(props) {
           </svg>
         </div>
 
-        <div className="zoom-container" onClick={onZoomContainerClick}>
+        <div
+          className="zoom-container"
+          onClick={onZoomContainerClick}
+          onDragOver={(event) => {
+            event.preventDefault();
+          }}
+          onDragEnter={() => {
+            setZoomCircleInside(true);
+          }}
+          onDragLeave={() => {
+            setZoomCircleInside(false);
+          }}
+        >
           <div
-            className="zoom-fill"
+            className={`zoom-fill ${zoomCircleDragging ? "dragging" : ""}`}
             style={{
               width: `${props.zoom}%`,
             }}
           />
           <div
-            className="zoom-circle"
+            className={`zoom-circle ${zoomCircleDragging ? "dragging" : ""}`}
             style={{
               left: `${props.zoom}%`,
+            }}
+            onDragStart={() => {
+              setZoomCircleInside(true);
+              setZoomCircleDragging(true);
+            }}
+            onDrag={onZoomCircleDrag}
+            onDragOver={(event) => {
+              event.preventDefault();
             }}
           />
         </div>

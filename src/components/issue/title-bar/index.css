@@ -190,9 +190,12 @@
   height: 100%;
   background-color: var(--blue-alt-1);
   border-radius: 8px;
-  transition: 0.3s;
 
   pointer-events: none;
+}
+
+#issue .title-bar .zoom-fill:not(.dragging) {
+  transition: 0.3s;
 }
 
 #issue .title-bar .zoom-circle {
@@ -207,7 +210,18 @@
   border: 1px solid var(--gray-4);
   border-radius: 16px;
 
-  cursor: pointer;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+#issue .title-bar .zoom-circle:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+#issue .title-bar .zoom-circle:not(.dragging) {
   transition: 0.3s;
 }
 
