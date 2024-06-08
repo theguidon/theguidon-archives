@@ -72,14 +72,25 @@
   user-select: none;
 }
 
-.filters .advanced-filters .year-filter-container .nav .chevron {
+.filters .nav .chevron {
   width: 20px;
   height: 20px;
   color: var(--gdn-blue);
   flex-shrink: 0;
 
   cursor: pointer;
+  transition: 0.3s;
 }
+
+.filters .nav .chevron:hover {
+  color: var(--blue-alt-1);
+}
+
+.filters .nav .chevron.disabled {
+  color: var(--gray-3);
+  pointer-events: none !important;
+}
+
 .filters .advanced-filters .year-filter-container hr {
   margin: 0 0 16px;
 }
@@ -141,7 +152,7 @@
 
 .filters .calendar .day {
   padding: 4px;
-  color: var(--gray-2);
+  /* color: var(--gray-2); */
 }
 
 .filters .years .year:hover,
@@ -164,6 +175,7 @@
 .filters .calendar .day.disabled {
   color: var(--gray-3);
   cursor: default;
+  pointer-events: none !important;
 }
 
 /* sort */

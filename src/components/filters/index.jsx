@@ -102,6 +102,8 @@ function FiltersGroup(props) {
           activeFilterPopup={activeFilterPopup}
           setActiveFilterPopup={setActiveFilterPopup}
           yearFilter={yearFilter}
+          minDate={minmaxDates.min}
+          maxDate={minmaxDates.max}
           minYear={minmaxDates.min.year}
           maxYear={minmaxDates.max.year}
           rangeFilter={rangeFilter}

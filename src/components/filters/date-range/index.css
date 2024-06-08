@@ -13,15 +13,6 @@
   column-gap: 8px;
 }
 
-.filters .range-filter-container .nav .chevron {
-  width: 20px;
-  height: 20px;
-  color: var(--gdn-blue);
-  flex-shrink: 0;
-
-  cursor: pointer;
-}
-
 .filters .range-filter-container .nav .selected {
   display: flex;
   flex-flow: row nowrap;

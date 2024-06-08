@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./index.css";
 
 function DateRangeFilter(props) {
@@ -12,6 +12,11 @@ function DateRangeFilter(props) {
   const [selectedYear, setSelectedYear] = useState(null);
   const [selectedMonth, setSelectedMonth] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
+
+  useEffect(() => {
+    if (selectedYear != null)
+      setSelectedDecade(Math.floor(selectedYear / 10) * 10);
+  }, [selectedYear]);
 
   const months = [
     "January",
@@ -37,9 +42,6 @@ function DateRangeFilter(props) {
     "Friday",
     "Saturday",
   ];
-
-  const minYear = 1971;
-  const maxYear = 2024;
 
   const getSelectedNav = () => {
     if (step == "decade") {
@@ -92,8 +94,8 @@ function DateRangeFilter(props) {
           {[...Array(10)].map((_, idx) => (
             <p
               className={`year ${
-                selectedDecade + idx < props.minYear ||
-                selectedDecade + idx > props.maxYear
+                selectedDecade + idx < props.minDate.year ||
+                selectedDecade + idx > props.maxDate.year
                   ? "disabled"
                   : ""
               } ${
@@ -103,13 +105,10 @@ function DateRangeFilter(props) {
               }`}
               key={`year-${selectedDecade + idx}`}
               onClick={() => {
-                let year = selectedDecade + idx;
-                if (year >= props.minYear && year <= props.maxYear) {
-                  setSelectedYear(selectedDecade + idx);
-                  setSelectedMonth(null);
-                  setSelectedDay(null);
-                  setStep("year");
-                }
+                setSelectedYear(selectedDecade + idx);
+                setSelectedMonth(null);
+                setSelectedDay(null);
+                setStep("year");
               }}
             >
               {selectedDecade + idx}
@@ -122,7 +121,18 @@ function DateRangeFilter(props) {
         <div className="months">
           {months.map((month, idx) => (
             <p
-              className={`month`}
+              className={`month ${
+                (selectedYear == props.minDate.year &&
+                  idx + 1 < props.minDate.month) ||
+                (selectedYear == props.maxDate.year &&
+                  idx + 1 > props.maxDate.month)
+                  ? "disabled"
+                  : ""
+              } ${
+                selectedMonth != null && selectedMonth == idx + 1
+                  ? "active"
+                  : ""
+              }`}
               key={`month-${idx}`}
               onClick={() => {
                 setSelectedMonth(idx + 1);
@@ -153,10 +163,20 @@ function DateRangeFilter(props) {
 
           {[...Array(numOfDays)].map((_, idx) => (
             <p
-              className={`day ${selectedDay == idx + 1 ? "active" : ""}`}
+              className={`day ${
+                (selectedYear == props.minDate.year &&
+                  selectedMonth == props.minDate.month &&
+                  idx + 1 < props.minDate.day) ||
+                (selectedYear == props.maxDate.year &&
+                  selectedMonth == props.maxDate.month &&
+                  idx + 1 > props.maxDate.day)
+                  ? "disabled"
+                  : ""
+              } ${selectedDay == idx + 1 ? "active" : ""}`}
               key={`day-${idx + 1}`}
               onClick={() => {
                 setSelectedDay(idx + 1);
+                props.setDate(mode, selectedYear, selectedMonth, idx + 1);
               }}
             >
               {idx + 1}
@@ -173,18 +193,32 @@ function DateRangeFilter(props) {
     <>
       <div className="nav">
         <svg
-          className="chevron"
+          className={`chevron ${
+            (step == "decade" &&
+              selectedDecade - 10 < Math.floor(props.minDate.year / 10) * 10) ||
+            (step == "year" && selectedYear - 1 < props.minDate.year) ||
+            (step == "month" &&
+              selectedYear == props.minDate.year &&
+              selectedMonth - 1 < props.minDate.month)
+              ? "disabled"
+              : ""
+          }`}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 21"
           fill="currentColor"
           onClick={() => {
             if (step == "decade") {
-              if (selectedDecade - 10 >= Math.floor(props.minYear / 10) * 10)
-                setSelectedDecade((d) => d - 10);
+              setSelectedDecade((d) => d - 10);
             } else if (step == "year") {
-              // add year
+              setSelectedYear((y) => y - 1);
+              setSelectedMonth(null);
             } else if (step == "month") {
-              // add month
+              if (selectedMonth == 1) {
+                setSelectedYear((y) => y - 1);
+                setSelectedMonth(12);
+              } else {
+                setSelectedMonth((m) => m - 1);
+              }
             }
           }}
         >
@@ -194,13 +228,34 @@ function DateRangeFilter(props) {
         <div className="selected">{getSelectedNav()}</div>
 
         <svg
-          className="chevron"
+          className={`chevron ${
+            (step == "decade" &&
+              selectedDecade + 10 >=
+                Math.floor(props.maxDate.year / 10) * 10 + 10) ||
+            (step == "year" && selectedYear + 1 > props.maxDate.year) ||
+            (step == "month" &&
+              selectedYear == props.maxDate.year &&
+              selectedMonth + 1 > props.maxDate.month)
+              ? "disabled"
+              : ""
+          }`}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 21"
           fill="currentColor"
           onClick={() => {
-            if (selectedDecade + 10 < Math.floor(props.maxYear / 10) * 10 + 10)
+            if (step == "decade") {
               setSelectedDecade((d) => d + 10);
+            } else if (step == "year") {
+              setSelectedYear((y) => y + 1);
+              setSelectedMonth(null);
+            } else if (step == "month") {
+              if (selectedMonth == 12) {
+                setSelectedYear((y) => y + 1);
+                setSelectedMonth(1);
+              } else {
+                setSelectedMonth((m) => m + 1);
+              }
+            }
           }}
         >
           <path d="M7.28934 13.4377C6.98177 13.7159 6.95735 14.1914 7.23479 14.4997C7.51223 14.8081 7.98647 14.8326 8.29404 14.5544L12.7124 10.5584C13.0434 10.2591 13.0425 9.73809 12.7105 9.43992L8.33066 5.50656C8.02212 5.22947 7.54796 5.25563 7.2716 5.56498C6.99524 5.87433 7.02132 6.34973 7.32986 6.62682L10.7579 9.70546C10.9345 9.86402 10.935 10.1405 10.759 10.2997L7.28934 13.4377Z" />

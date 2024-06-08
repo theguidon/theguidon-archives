@@ -10,6 +10,10 @@ function AdvancedFiltersGroup(props) {
     ) * 10
   );
 
+  const setDate = (mode, year, month, day) => {
+    console.log(mode, year, month, day);
+  };
+
   return (
     <div className="advanced-filters">
       <div className="year-filter-container filter-container">
@@ -28,7 +32,7 @@ function AdvancedFiltersGroup(props) {
                 onClick={() => {
                   if (
                     selectedDecade - 10 >=
-                    Math.floor(props.minYear / 10) * 10
+                    Math.floor(props.minDate.year / 10) * 10
                   )
                     setSelectedDecade((d) => d - 10);
                 }}
@@ -48,7 +52,7 @@ function AdvancedFiltersGroup(props) {
                 onClick={() => {
                   if (
                     selectedDecade + 10 <
-                    Math.floor(props.maxYear / 10) * 10 + 10
+                    Math.floor(props.maxDate.year / 10) * 10 + 10
                   )
                     setSelectedDecade((d) => d + 10);
                 }}
@@ -62,8 +66,8 @@ function AdvancedFiltersGroup(props) {
               {[...Array(10)].map((_, idx) => (
                 <p
                   className={`year ${
-                    selectedDecade + idx < props.minYear ||
-                    selectedDecade + idx > props.maxYear
+                    selectedDecade + idx < props.minDate.year ||
+                    selectedDecade + idx > props.maxDate.year
                       ? "disabled"
                       : ""
                   } ${
@@ -76,7 +80,10 @@ function AdvancedFiltersGroup(props) {
                   onClick={() => {
                     let year = selectedDecade + idx;
 
-                    if (year >= props.minYear && year <= props.maxYear) {
+                    if (
+                      year >= props.minDate.year &&
+                      year <= props.maxDate.year
+                    ) {
                       if (year == props.yearFilter)
                         props.replaceSearchParams([
                           { key: "year", delete: true },
@@ -125,7 +132,11 @@ function AdvancedFiltersGroup(props) {
           }`}
         >
           <div className="popup">
-            <DateRangeFilter minYear={props.minYear} maxYear={props.maxYear} />
+            <DateRangeFilter
+              minDate={props.minDate}
+              maxDate={props.maxDate}
+              setDate={setDate}
+            />
           </div>
         </div>
 
