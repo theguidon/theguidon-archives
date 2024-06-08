@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 function SearchField(props) {
-  const [query, setQuery] = useState("");
+  const location = useLocation();
   const navigate = useNavigate();
+  const [query, setQuery] = useState("");
   const [searchParams] = useSearchParams();
 
-  const location = useLocation();
+  const [variant, setVariant] = useState(Math.floor(Math.random() * 3));
+  const [subvariant, setSubvariant] = useState(Math.floor(Math.random() * 5));
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -16,6 +18,19 @@ function SearchField(props) {
     let nsp = searchParams;
     nsp.set("query", query);
     navigate(`/search?${nsp.toString()}`);
+  };
+
+  const getVariantText = () => {
+    // 0: Find a press issue, magazine, primer, etc.
+    // 1: Search 'Colayco'
+    // 2: Search 'Volume [#]' or '[title]'
+    if (variant == 0) {
+      return "Find a press issue, magazine, primer, etc.";
+    } else if (variant == 1) {
+      return 'Search "Colayco"';
+    } else if (variant == 2) {
+      return 'Search "Volume [#]" or "[title]"';
+    }
   };
 
   useEffect(() => {
@@ -45,7 +60,7 @@ function SearchField(props) {
       <input
         type="text"
         name="query"
-        placeholder="Find a press issue, magazine, primer, etc."
+        placeholder={getVariantText()}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         ref={(e) => {
