@@ -8,7 +8,7 @@ function SliderSection(props) {
   const calculatePage = (event, parent) => {
     let bcr = parent.getBoundingClientRect();
     let perc = (event.clientX - bcr.left) / bcr.width;
-    let val = Math.round(perc * props.numPages) + 1;
+    let val = Math.round(perc * (props.numPages - 1)) + 1;
 
     if (props.isDoubleReader) {
       if (props.numPages % 2 == 0) {
