@@ -31,11 +31,13 @@ function Page404() {
       <h4>You might be interested in these instead.</h4>
 
       <div className="card-grid mobile-list">
-        {issues.data.all != null &&
-          issues.data.all[1] != null &&
-          [...Array(Math.min(5, issues.data.all[1].length))].map((_, idx) => (
-            <IssueCard issue={issues.data.all[1][idx]} key={`issue-${idx}`} />
-          ))}
+        {issues.data.all != null && issues.data.all[1] != null
+          ? [...Array(Math.min(5, issues.data.all[1].length))].map((_, idx) => (
+              <IssueCard issue={issues.data.all[1][idx]} key={`issue-${idx}`} />
+            ))
+          : [...Array(5)].map((_, idx) => (
+              <IssueCard loading={true} key={`issue-loading-${idx}`} />
+            ))}
       </div>
     </div>
   );

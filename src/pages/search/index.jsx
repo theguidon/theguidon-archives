@@ -132,10 +132,13 @@ function SearchPage() {
 
           <div className={`card-grid ${isGridView ? "" : "list"}`}>
             {issues.data[getCategKey()] != null &&
-              issues.data[getCategKey()][getKey()] != null &&
-              issues.data[getCategKey()][getKey()].map((issue, idx) => (
-                <IssueCard key={`issue-${issue.fixed_slug}`} issue={issue} />
-              ))}
+            issues.data[getCategKey()][getKey()] != null
+              ? issues.data[getCategKey()][getKey()].map((issue, idx) => (
+                  <IssueCard key={`issue-${issue.fixed_slug}`} issue={issue} />
+                ))
+              : [...Array(20)].map((_, idx) => (
+                  <IssueCard loading={true} key={`issue-loading-${idx}`} />
+                ))}
           </div>
           {calculatePageNums(issues.data[getCategKey()], page).length > 1 && (
             <Pagination
