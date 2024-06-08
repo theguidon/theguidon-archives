@@ -194,9 +194,9 @@ function HomePage() {
           ))}
         </div>
 
-        <p className="subheader">Explore</p>
+        <p className="subheader">The GUIDON Through the Years</p>
         <Link to="/releases/legacy" className="row">
-          <h3>History</h3>
+          <h3>Explore History</h3>
           {chevronRight}
         </Link>
         <hr />
