@@ -136,7 +136,7 @@ function IssuePage() {
       />
 
       <section id="issue-metadata" className="general-container">
-        {issue != null && false ? (
+        {issue != null ? (
           <div className="cover-container">
             <img className="cover" src={issue.cover} alt={issue.title} />
           </div>
@@ -144,7 +144,7 @@ function IssuePage() {
           <div className="cover-container loading" />
         )}
 
-        {issue != null && false ? (
+        {issue != null ? (
           <div className="info">
             {issue.volume_num != null && issue.issue_num != null && (
               <p className="vol-issue">

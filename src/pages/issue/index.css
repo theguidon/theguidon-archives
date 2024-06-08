@@ -200,14 +200,15 @@
 
 /* loading */
 #issue #issue-metadata .vol-issue.loading {
-  width: 160px;
+  width: 100%;
+  max-width: 160px;
   height: 32px;
 }
-#issue #issue-metadata .title {
+#issue #issue-metadata .title.loading {
   height: 56px;
   width: 100%;
 }
-#issue #issue-metadata .date {
+#issue #issue-metadata .date.loading {
   height: 20px;
   width: 100%;
 }
