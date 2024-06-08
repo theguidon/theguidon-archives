@@ -97,6 +97,8 @@ header .main-nav .releases-link-container .popup {
   row-gap: 8px;
   justify-content: stretch;
   align-items: stretch;
+
+  border-radius: 12px;
 }
 
 header .main-nav .releases-link-container .popup a {

@@ -129,7 +129,7 @@ h6 {
   width: max-content;
   padding: 16px;
   background-color: white;
-  border-radius: 12px;
+  border-radius: 16px;
 
   --default-box-shadow: 3px 2px 20px 6px rgba(0, 0, 0, 0.08);
 
