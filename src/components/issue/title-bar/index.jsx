@@ -196,7 +196,6 @@ function TitleBar(props) {
               onClick={() => {
                 if (!searchActive) {
                   setSearchActive(true);
-                  setQuery("");
                   if (TOCActive) setTOCActive(false);
 
                   searchFieldRef[loc].focus();
@@ -230,6 +229,7 @@ function TitleBar(props) {
                   className="close icon"
                   onClick={() => {
                     if (searchActive) setSearchActive(false);
+                    setQuery("");
                   }}
                 >
                   <svg

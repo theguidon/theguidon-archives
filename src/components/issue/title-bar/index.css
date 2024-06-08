@@ -230,6 +230,7 @@
   padding: 8px;
   width: 32px;
   height: 32px;
+  flex-shrink: 0;
 }
 
 /* loading */
@@ -285,5 +286,25 @@
 
   #issue .title-bar .popup {
     width: calc(100% - 2 * var(--general-container-padding-x));
+  }
+
+  #issue .title-bar .bottom .general-container {
+    flex-flow: column nowrap;
+  }
+
+  #issue .title-bar .controls-left {
+    width: 100%;
+  }
+
+  #issue .title-bar .controls-group {
+    flex-grow: 1;
+  }
+
+  #issue .title-bar .controls-right {
+    width: 100%;
+  }
+
+  #issue .title-bar .zoom-group {
+    margin-left: auto;
   }
 }
