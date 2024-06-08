@@ -22,6 +22,8 @@ while True:
 
       # attempt to fix bylines
       formatted = []
+      if bylines.startswith('By ') or bylines.startswith('BY '):
+        bylines = bylines[3:]
       andsplit = re.split(' and | AND ', bylines)
       if len(andsplit) == 2:
         # 2 or more bylines
@@ -31,13 +33,13 @@ while True:
         for byline in commasplit:
           trimmed = byline.strip()
           if len(trimmed) > 0:
-            formatted.append(trimmed)
+            formatted.append(trimmed.title())
 
         # add second half
-        formatted.append(andsplit[1].strip())
+        formatted.append(andsplit[1].strip().title())
       else:
         # solo byline
-        formatted.append(bylines)
+        formatted.append(bylines.title())
       
       articles.append({
         'page': page_num,
@@ -53,7 +55,7 @@ while True:
 
 json_str = json.dumps(
   content,
-  # indent=2,
+  indent=2,
   separators=(',', ':'),
   ensure_ascii=False
 )
