@@ -36,6 +36,11 @@
   background-color: var(--gdn-blue);
   height: 100%;
   border-radius: 12px;
+
+  pointer-events: none;
+}
+
+#issue #reader .slider-section .slider-fill:not(.dragging) {
   transition: 0.3s;
 }
 
@@ -50,12 +55,23 @@
   top: 50%;
   transform: translate(-50%, -50%);
 
-  cursor: pointer;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+#issue #reader .slider-section .slider-circle:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+#issue #reader .slider-section .slider-circle:not(.dragging) {
   transition: 0.3s;
 }
 
 #issue #reader .slider-section .text-controls {
-  min-width: 180px;
+  min-width: 200px;
   width: fit-content;
 
   display: flex;

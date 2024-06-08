@@ -1,22 +1,65 @@
 import "./index.css";
 import "./fullscreen.css";
+import { useState } from "react";
 
 function SliderSection(props) {
+  const [sliderCircleDragging, setSliderCircleDragging] = useState(false);
+
+  const calculatePage = (event, parent) => {
+    let bcr = parent.getBoundingClientRect();
+    let perc = (event.clientX - bcr.left) / bcr.width;
+    let val = Math.round(perc * props.numPages) + 1;
+
+    if (props.isDoubleReader) {
+      if (props.numPages % 2 == 0) {
+        if (val % 2 == 1 && val > 1 && val < props.numPages) val--;
+      } else {
+        if (val % 2 == 1 && val > 1) val--;
+      }
+    }
+
+    return val;
+  };
+
+  const onSliderContainerClick = (event) => {
+    if (event.target.className == "slider") {
+      props.setPage(calculatePage(event, event.target));
+    }
+  };
+
+  const onSliderCircleDrag = (event) => {
+    let calculated = calculatePage(event, event.target.parentNode);
+    if (calculated >= 1 && calculated <= props.numPages) {
+      props.setPage(calculated);
+    }
+  };
+
   return (
-    <section className="slider-section">
+    <section
+      className="slider-section"
+      onDragOver={(event) => {
+        event.preventDefault();
+      }}
+    >
       <div className="general-container">
-        <div className="slider">
+        <div className="slider" onClick={onSliderContainerClick}>
           <div
-            className="slider-fill"
+            className={`slider-fill ${sliderCircleDragging ? "dragging" : ""}`}
             style={{
               width: `${props.sliderPercentage}%`,
             }}
           />
           <div
-            className="slider-circle"
+            className={`slider-circle ${
+              sliderCircleDragging ? "dragging" : ""
+            }`}
             style={{
               left: `${props.sliderPercentage}%`,
             }}
+            onDragStart={() => {
+              setSliderCircleDragging(true);
+            }}
+            onDrag={onSliderCircleDrag}
           />
         </div>
 

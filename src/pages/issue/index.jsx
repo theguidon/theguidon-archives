@@ -128,6 +128,7 @@ function IssuePage() {
           scale={scale}
           issue={issue}
           page={page}
+          setPage={setPage}
           isLegacy={issue.is_legacy}
           maxZoom={maxZoom}
         />

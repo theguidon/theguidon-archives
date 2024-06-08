@@ -223,7 +223,10 @@ function IssueReader(props) {
 
       {!props.issue.is_legacy && (
         <SliderSection
+          isDoubleReader={props.isDoubleReader}
+          numPages={props.issue.num_pages}
           sliderPercentage={getSliderPercentage()}
+          setPage={props.setPage}
           pageText={`${getPageText()} of ${props.issue.num_pages}`}
           onLeftClick={props.onLeftClick}
           onRightClick={props.onRightClick}
