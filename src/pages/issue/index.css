@@ -283,9 +283,9 @@
     margin: 0 0 24px;
   }
 
-  #issue #issue-content .section:not(:last-child) {
+  /* #issue #issue-content .section:not(:last-child) {
     margin: 0 0 16px;
-  }
+  } */
 
   #issue #issue-content .articles-container {
     grid-auto-flow: row;
