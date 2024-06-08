@@ -45,6 +45,10 @@
   transform: scale(1.1);
 }
 
+.issue-card .info {
+  max-width: 800px;
+}
+
 .issue-card .title {
   color: var(--gdn-blue);
 
@@ -77,6 +81,11 @@
 
   font-size: var(--body-s-font-size);
   color: black;
+}
+
+.card-grid.list .issue-card .desc {
+  line-clamp: 4;
+  -webkit-line-clamp: 4;
 }
 
 /* loading */
