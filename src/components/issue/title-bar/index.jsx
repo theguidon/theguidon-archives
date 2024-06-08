@@ -16,7 +16,6 @@ function TitleBar(props) {
   const [query, setQuery] = useState("");
   const searchFieldRef = useRef({ top: null, bottom: null });
 
-  const [zoomCircleInside, setZoomCircleInside] = useState(true);
   const [zoomCircleDragging, setZoomCircleDragging] = useState(false);
 
   const getFilteredContent = () => {
@@ -436,12 +435,6 @@ function TitleBar(props) {
           onDragOver={(event) => {
             event.preventDefault();
           }}
-          onDragEnter={() => {
-            setZoomCircleInside(true);
-          }}
-          onDragLeave={() => {
-            setZoomCircleInside(false);
-          }}
         >
           <div
             className={`zoom-fill ${zoomCircleDragging ? "dragging" : ""}`}
@@ -455,7 +448,6 @@ function TitleBar(props) {
               left: `${props.zoom}%`,
             }}
             onDragStart={() => {
-              setZoomCircleInside(true);
               setZoomCircleDragging(true);
             }}
             onDrag={onZoomCircleDrag}
