@@ -113,6 +113,11 @@ function SearchPage() {
       <h2>{`“${query}”`}</h2>
       <hr />
 
+      <FiltersGroup
+        hideCategories={true}
+        replaceSearchParams={replaceSearchParams}
+      />
+
       {issues.data[getCategKey()] != null &&
       issues.data[getCategKey()].found == 0 ? (
         <ul>
@@ -125,11 +130,6 @@ function SearchPage() {
         </ul>
       ) : (
         <>
-          <FiltersGroup
-            hideCategories={true}
-            replaceSearchParams={replaceSearchParams}
-          />
-
           <div className={`card-grid ${isGridView ? "" : "list"}`}>
             {issues.data[getCategKey()] != null &&
             issues.data[getCategKey()][getKey()] != null
