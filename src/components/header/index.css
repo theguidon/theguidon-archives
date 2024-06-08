@@ -36,7 +36,7 @@ header .main-nav {
 header .main-nav > a,
 header .main-nav .releases-link-container > a {
   padding: 8px 24px;
-  border-radius: 16px;
+  border-radius: 8px;
 
   color: var(--blue-light);
   text-decoration: none;
@@ -106,7 +106,7 @@ header .main-nav .releases-link-container .popup a {
 
   min-width: max-content;
   padding: 4px 12px;
-  border-radius: 16px;
+  border-radius: 8px;
 
   transition: 0.3s;
 }
