@@ -91,6 +91,8 @@ function IssueReader(props) {
 
   return (
     <main id="reader">
+      {props.titleBar}
+
       <div
         className={`container ${
           props.loading || loadedPages < props.issue.num_pages ? "loading" : ""

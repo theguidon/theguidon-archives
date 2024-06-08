@@ -104,24 +104,6 @@ function IssuePage() {
   return (
     // issue != null && (
     <div id="issue" className={isFullscreen ? "fullscreen" : ""}>
-      <TitleBar
-        loading={issue == null}
-        articleContent={articleContent}
-        title={issue != null ? issue.title : null}
-        onZoomIn={onZoomIn}
-        onZoomOut={onZoomOut}
-        minZoom={minZoom}
-        maxZoom={maxZoom}
-        setScale={setScale}
-        zoom={((scale - minZoom) / (maxZoom - minZoom)) * 100}
-        isDoubleReader={isDoubleReader}
-        setIsDoubleReader={setIsDoubleReader}
-        isFullscreen={isFullscreen}
-        toggleFullscreen={toggleFullscreen}
-        setPage={setPage}
-        isLegacy={issue != null ? issue.is_legacy : false}
-      />
-
       <IssueReader
         loading={issue == null}
         onLeftClick={onLeftClick}
@@ -133,6 +115,25 @@ function IssuePage() {
         setPage={setPage}
         isLegacy={issue != null ? issue.is_legacy : false}
         maxZoom={maxZoom}
+        titleBar={
+          <TitleBar
+            loading={issue == null}
+            articleContent={articleContent}
+            title={issue != null ? issue.title : null}
+            onZoomIn={onZoomIn}
+            onZoomOut={onZoomOut}
+            minZoom={minZoom}
+            maxZoom={maxZoom}
+            setScale={setScale}
+            zoom={((scale - minZoom) / (maxZoom - minZoom)) * 100}
+            isDoubleReader={isDoubleReader}
+            setIsDoubleReader={setIsDoubleReader}
+            isFullscreen={isFullscreen}
+            toggleFullscreen={toggleFullscreen}
+            setPage={setPage}
+            isLegacy={issue != null ? issue.is_legacy : false}
+          />
+        }
       />
 
       <section id="issue-metadata" className="general-container">
