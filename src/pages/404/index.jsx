@@ -34,7 +34,7 @@ function Page404() {
         {issues.data.all != null &&
           issues.data.all[1] != null &&
           [...Array(Math.min(5, issues.data.all[1].length))].map((_, idx) => (
-            <IssueCard data={issues.data.all[1][idx]} key={`issue-${idx}`} />
+            <IssueCard issue={issues.data.all[1][idx]} key={`issue-${idx}`} />
           ))}
       </div>
     </div>

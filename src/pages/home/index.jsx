@@ -124,7 +124,10 @@ function HomePage() {
           {issues.data.all != null &&
             issues.data.all[1] != null &&
             [...Array(Math.min(5, issues.data.all[1].length))].map((_, idx) => (
-              <IssueCard data={issues.data.all[1][idx]} key={`recent-${idx}`} />
+              <IssueCard
+                issue={issues.data.all[1][idx]}
+                key={`recent-${idx}`}
+              />
             ))}
         </div>
 
@@ -177,7 +180,7 @@ function HomePage() {
             [...Array(Math.min(5, issues.data.legacy[1].length))].map(
               (_, idx) => (
                 <IssueCard
-                  data={issues.data.legacy[1][idx]}
+                  issue={issues.data.legacy[1][idx]}
                   key={`recent-${idx}`}
                 />
               )

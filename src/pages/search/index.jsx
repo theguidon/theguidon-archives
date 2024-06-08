@@ -134,7 +134,7 @@ function SearchPage() {
             {issues.data[getCategKey()] != null &&
               issues.data[getCategKey()][getKey()] != null &&
               issues.data[getCategKey()][getKey()].map((issue, idx) => (
-                <IssueCard key={`issue-${issue.fixed_slug}`} data={issue} />
+                <IssueCard key={`issue-${issue.fixed_slug}`} issue={issue} />
               ))}
           </div>
           {calculatePageNums(issues.data[getCategKey()], page).length > 1 && (
