@@ -155,6 +155,7 @@
 
 #home #recently-uploaded .categ-card .row h5 {
   color: black;
+  line-height: 100%;
 }
 
 #home #recently-uploaded .categ-card .row svg {
