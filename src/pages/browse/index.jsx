@@ -13,7 +13,7 @@ import {
   validateYearFilter,
 } from "../../utils";
 import { setDocumentTitle } from "../../utils";
-import { fetchMinmaxYears } from "../../redux/modules/minmax-years";
+import { fetchMinmaxDates } from "../../redux/modules/minmax-dates";
 import FiltersGroup from "../../components/filters";
 
 function BrowsePage() {
@@ -22,13 +22,13 @@ function BrowsePage() {
 
   const dispatch = useDispatch();
   const issues = useSelector((state) => state.issues);
-  const minmaxYears = useSelector((state) => state.minmaxYears);
+  const minmaxDates = useSelector((state) => state.minmaxDates);
 
   const page = validatePage(searchParams.get("page"));
   const yearFilter = validateYearFilter(
     searchParams.get("year"),
-    minmaxYears.min,
-    minmaxYears.max
+    minmaxDates.min.year,
+    minmaxDates.max.year
   );
   const sortOldestFilter = validateSortFilter(searchParams.get("sort"));
   const isGridView = validateView(searchParams.get("view"));
@@ -58,7 +58,7 @@ function BrowsePage() {
    * Add default page, sort, and view filters
    */
   useEffect(() => {
-    dispatch(fetchMinmaxYears());
+    dispatch(fetchMinmaxDates());
 
     dispatch(fetchIssues({}));
     dispatch(fetchIssues({ categ: "press-issue" }));

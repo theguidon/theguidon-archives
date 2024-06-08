@@ -3,7 +3,7 @@ import issuesReducer from "./modules/issues";
 import issueReducer from "./modules/issue";
 import fullscreenReducer from "./modules/fullscreen";
 import aboutCoversReducer from "./modules/about-covers";
-import minmaxYearsReducer from "./modules/minmax-years";
+import minmaxDatesReducer from "./modules/minmax-dates";
 import alertBarReducer from "./modules/alert-bar";
 
 export const store = configureStore({
@@ -12,7 +12,7 @@ export const store = configureStore({
     issue: issueReducer,
     fullscreen: fullscreenReducer,
     aboutCovers: aboutCoversReducer,
-    minmaxYears: minmaxYearsReducer,
+    minmaxDates: minmaxDatesReducer,
     alertBar: alertBarReducer,
   },
 });

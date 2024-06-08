@@ -66,6 +66,10 @@
   font-size: var(--body-s-font-size);
   font-weight: bold;
   /* width: max-content; */
+
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .filters .advanced-filters .year-filter-container .nav .chevron {
@@ -76,12 +80,11 @@
 
   cursor: pointer;
 }
-
 .filters .advanced-filters .year-filter-container hr {
   margin: 0 0 16px;
 }
 
-.filters .advanced-filters .year-filter-container .years {
+.filters .years {
   display: grid;
   grid-template-rows: repeat(5, 1fr);
   grid-template-columns: repeat(2, 1fr);
@@ -90,7 +93,37 @@
   row-gap: 4px;
 }
 
-.filters .advanced-filters .year-filter-container .years .year {
+.filters .months {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 8px;
+  row-gap: 4px;
+}
+
+.filters .calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  column-gap: 4px;
+  row-gap: 4px;
+  justify-items: stretch;
+}
+
+.filters .calendar .day-of-week {
+  text-align: center;
+  font-size: var(--body-s-font-size);
+  font-weight: bold;
+
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  margin: 0 0 4px;
+}
+
+.filters .years .year,
+.filters .months .month,
+.filters .calendar .day {
   text-align: center;
   font-size: var(--body-s-font-size);
 
@@ -100,20 +133,35 @@
 
   cursor: pointer;
   transition: 0.3s;
+
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.filters .advanced-filters .year-filter-container .years .year:hover {
+.filters .calendar .day {
+  padding: 4px;
+  color: var(--gray-2);
+}
+
+.filters .years .year:hover,
+.filters .months .month:hover,
+.filters .calendar .day:hover {
   background-color: var(--blue-alt-2);
   color: white;
 }
 
-.filters .advanced-filters .year-filter-container .years .year.active {
+.filters .years .year.active,
+.filters .months .month.active,
+.filters .calendar .day.active {
   background-color: var(--gdn-blue);
   color: white;
   font-weight: bold;
 }
 
-.filters .advanced-filters .year-filter-container .years .year.disabled {
+.filters .years .year.disabled,
+.filters .months .month.disabled,
+.filters .calendar .day.disabled {
   color: var(--gray-3);
   cursor: default;
 }

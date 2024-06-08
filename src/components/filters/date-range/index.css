@@ -1,0 +1,59 @@
+.filters .range-filter-container .popup {
+  width: 100%;
+  max-width: 256px;
+}
+
+.filters .range-filter-container .nav {
+  margin: 0 0 4px;
+
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 8px;
+}
+
+.filters .range-filter-container .nav .chevron {
+  width: 20px;
+  height: 20px;
+  color: var(--gdn-blue);
+  flex-shrink: 0;
+
+  cursor: pointer;
+}
+
+.filters .range-filter-container .nav .selected {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.filters .range-filter-container .nav p {
+  font-weight: bold;
+  text-align: center;
+  font-size: var(--body-s-font-size);
+  border-radius: 16px;
+
+  padding: 4px 8px;
+
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  width: max-content;
+}
+
+.filters .range-filter-container .nav p.clickable {
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.filters .range-filter-container .nav p.clickable:hover {
+  background-color: var(--blue-alt-2);
+  color: white;
+}
+
+.filters .range-filter-container hr {
+  margin: 0 0 16px;
+}

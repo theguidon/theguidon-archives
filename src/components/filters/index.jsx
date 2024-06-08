@@ -4,7 +4,7 @@ import AdvancedFiltersGroup from "./advanced";
 import ViewsFilterGroup from "./views";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMinmaxYears } from "../../redux/modules/minmax-years";
+import { fetchMinmaxDates } from "../../redux/modules/minmax-dates";
 import { useParams, useSearchParams } from "react-router-dom";
 
 function FiltersGroup(props) {
@@ -12,16 +12,17 @@ function FiltersGroup(props) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const dispatch = useDispatch();
-  const minmaxYears = useSelector((state) => state.minmaxYears);
+  const minmaxDates = useSelector((state) => state.minmaxDates);
 
   const [yearFilter, setYearFilter] = useState(
     searchParams.get("year") != null &&
       !isNaN(searchParams.get("year")) &&
-      parseInt(searchParams.get("year")) >= minmaxYears.min &&
-      parseInt(searchParams.get("year")) <= minmaxYears.max
+      parseInt(searchParams.get("year")) >= minmaxDates.min.year &&
+      parseInt(searchParams.get("year")) <= minmaxDates.max.year
       ? parseInt(searchParams.get("year"))
       : null
   );
+  const [rangeFilter, setRangeFilter] = useState(null);
   const [sortOldestFilter, setSortOldestFilter] = useState(
     searchParams.get("sort") == "oldest"
   );
@@ -31,7 +32,7 @@ function FiltersGroup(props) {
   const [activeFilterPopup, setActiveFilterPopup] = useState(null);
 
   useEffect(() => {
-    dispatch(fetchMinmaxYears());
+    dispatch(fetchMinmaxDates());
   }, []);
 
   /**
@@ -49,7 +50,7 @@ function FiltersGroup(props) {
     if (!isNaN(year)) {
       let intyear = parseInt(year);
 
-      if (intyear >= minmaxYears.min && intyear <= minmaxYears.max) {
+      if (intyear >= minmaxDates.min.year && intyear <= minmaxDates.max.year) {
         if (parseFloat(year) % 1 == 0) setYearFilter(intyear);
         else toReplace.push({ key: "year", value: intyear });
       } else {
@@ -81,11 +82,14 @@ function FiltersGroup(props) {
    * Remove yearFilter if out of bounds
    */
   useEffect(() => {
-    if (minmaxYears.isUpdated) {
-      if (yearFilter < minmaxYears.min || yearFilter > minmaxYears.max)
+    if (minmaxDates.isUpdated) {
+      if (
+        yearFilter < minmaxDates.min.year ||
+        yearFilter > minmaxDates.max.year
+      )
         props.replaceSearchParams([{ key: "year", delete: true }]);
     }
-  }, [minmaxYears]);
+  }, [minmaxDates]);
 
   return (
     <div className="filters">
@@ -98,8 +102,9 @@ function FiltersGroup(props) {
           activeFilterPopup={activeFilterPopup}
           setActiveFilterPopup={setActiveFilterPopup}
           yearFilter={yearFilter}
-          minYear={minmaxYears.min}
-          maxYear={minmaxYears.max}
+          minYear={minmaxDates.min.year}
+          maxYear={minmaxDates.max.year}
+          rangeFilter={rangeFilter}
           sortOldestFilter={sortOldestFilter}
           replaceSearchParams={props.replaceSearchParams}
         />
