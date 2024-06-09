@@ -101,6 +101,6 @@ export const ArchivesData = {
         </g>
       </svg>
     ),
-    text: "+63 2 8426-6001 loc. 4170-4172",
+    text: '<a href="tel:+63284266001">+63 2 8426-6001 loc. 4170-4172</a>',
   },
 };
