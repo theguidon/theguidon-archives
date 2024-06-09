@@ -121,7 +121,7 @@
 }
 
 #home main h3 {
-  font-family: Chivo;
+  /* font-family: Chivo; */
   color: black;
 }
 
@@ -156,6 +156,8 @@
 #home #recently-uploaded .categ-card .row h5 {
   color: black;
   line-height: 100%;
+  /* font-family: Chivo; */
+  /* font-weight: bold; */
 }
 
 #home #recently-uploaded .categ-card .row svg {
