@@ -101,7 +101,7 @@ function IssueReader(props) {
     if (fullscreen.isFullscreen) {
       if (hideControls) setHideControls(false);
 
-      if (readerRef != null) {
+      if (readerRef != null && readerRef.current != null) {
         let now = new Date();
         now.setSeconds(now.getSeconds() + 5);
         now.setMilliseconds(0);

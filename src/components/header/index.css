@@ -79,6 +79,10 @@ header .main-nav .releases-link-container a:hover .chevron,
 header .main-nav .releases-link-container a.active .chevron,
 header .main-nav .releases-link-container .popup-container:hover ~ a .chevron {
   color: var(--gdn-blue);
+}
+
+header .main-nav .releases-link-container a:hover .chevron,
+header .main-nav .releases-link-container .popup-container:hover ~ a .chevron {
   transform: rotate(180deg);
 }
 

@@ -126,7 +126,7 @@ function SearchPage() {
   };
 
   useEffect(() => {
-    if (topRef != null) {
+    if (topRef != null && topRef.current != null) {
       window.scrollTo({
         top:
           topRef.current.getBoundingClientRect().top -

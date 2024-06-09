@@ -164,13 +164,8 @@ function BrowsePage() {
     });
   }, [slug, searchParams]);
 
-  /**
-   * If path is /releases, redirect to /releases/recent
-   */
-  if (slug == null) return <Navigate to="/releases/recent" />;
-
   useEffect(() => {
-    if (topRef != null) {
+    if (topRef != null && topRef.current != null) {
       window.scrollTo({
         top:
           topRef.current.getBoundingClientRect().top -
@@ -183,6 +178,11 @@ function BrowsePage() {
   useEffect(() => {
     replaceSearchParams([{ key: "page", value: 1 }]);
   }, [yearFilter, rangeFilter.from, rangeFilter.until]);
+
+  /**
+   * If path is /releases, redirect to /releases/recent
+   */
+  if (slug == null) return <Navigate to="/releases/recent" />;
 
   return (
     <div id="browse" className="general-container general-padding-top">
