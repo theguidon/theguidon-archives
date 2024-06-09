@@ -1,10 +1,9 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import legacy from "@vitejs/plugin-legacy";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  // TODO change to /
+  plugins: [react(), legacy({ polyfills: ["es.promise.with-resolvers"] })],
   base: "/",
-  // base: "/theguidon-archives/",
 });
