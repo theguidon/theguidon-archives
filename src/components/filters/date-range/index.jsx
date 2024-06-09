@@ -18,8 +18,6 @@ function DateRangeFilter(props) {
   }, [selectedYear]);
 
   useEffect(() => {
-    console.log(props.rangeFilter, props.mode);
-
     if (props.rangeFilter != null && props.rangeFilter[props.mode] != null) {
       setSelectedYear(props.rangeFilter[props.mode].year);
       setSelectedMonth(
@@ -33,7 +31,7 @@ function DateRangeFilter(props) {
           : null
       );
     }
-  }, [props.rangeFilter]);
+  }, [props.rangeFilter, props.mode]);
 
   const months = [
     "January",
@@ -123,13 +121,31 @@ function DateRangeFilter(props) {
               key={`year-${selectedDecade + idx}`}
               onClick={() => {
                 setSelectedYear(selectedDecade + idx);
-                setSelectedMonth(null);
-                setSelectedDay(null);
+                // setSelectedMonth(null);
+                // setSelectedDay(null);
                 props.setStep("year");
 
-                if (props.mode == "from")
-                  props.setDate(props.mode, 1, selectedDecade + idx, 1, 1);
-                else props.setDate(props.mode, 1, selectedDecade + idx, 12, 31);
+                if (props.mode == "from") {
+                  if (
+                    props.rangeFilter[props.mode] == null ||
+                    props.rangeFilter[props.mode].year != selectedDecade + idx
+                  ) {
+                    console.log("changed year");
+                    props.setDate(props.mode, 1, selectedDecade + idx, 1, 1);
+                  } else {
+                    console.log("unchanged year");
+                  }
+                } else {
+                  if (
+                    props.rangeFilter[props.mode] == null ||
+                    props.rangeFilter[props.mode].year != selectedDecade + idx
+                  ) {
+                    console.log("changed year");
+                    props.setDate(props.mode, 1, selectedDecade + idx, 12, 31);
+                  } else {
+                    console.log("unchanged year");
+                  }
+                }
               }}
             >
               {selectedDecade + idx}
@@ -157,19 +173,36 @@ function DateRangeFilter(props) {
               key={`month-${idx}`}
               onClick={() => {
                 setSelectedMonth(idx + 1);
-                setSelectedDay(null);
+                // setSelectedDay(null);
                 props.setStep("month");
 
-                if (props.mode == "from")
-                  props.setDate(props.mode, 2, selectedYear, idx + 1, 1);
-                else
-                  props.setDate(
-                    props.mode,
-                    2,
-                    selectedYear,
-                    idx + 1,
-                    new Date(selectedYear, idx + 1, 0).getDate()
-                  );
+                if (props.mode == "from") {
+                  if (
+                    props.rangeFilter[props.mode] == null ||
+                    props.rangeFilter[props.mode].month != idx + 1
+                  ) {
+                    console.log("changed month");
+                    props.setDate(props.mode, 2, selectedYear, idx + 1, 1);
+                  } else {
+                    console.log("unchanged month");
+                  }
+                } else {
+                  if (
+                    props.rangeFilter[props.mode] == null ||
+                    props.rangeFilter[props.mode].month != idx + 1
+                  ) {
+                    console.log("changed month");
+                    props.setDate(
+                      props.mode,
+                      2,
+                      selectedYear,
+                      idx + 1,
+                      new Date(selectedYear, idx + 1, 0).getDate()
+                    );
+                  } else {
+                    console.log("unchanged month");
+                  }
+                }
               }}
             >
               {month.substring(0, 3)}
@@ -224,6 +257,12 @@ function DateRangeFilter(props) {
                     setSelectedYear(null);
                     setSelectedMonth(null);
                     setSelectedDay(null);
+                  } else {
+                    setSelectedYear(props.rangeFilter.until.year);
+                    if (props.rangeFilter.until.step >= 2)
+                      setSelectedMonth(props.rangeFilter.until.month);
+                    if (props.rangeFilter.until.step >= 3)
+                      setSelectedDay(props.rangeFilter.until.day);
                   }
                 } else {
                   props.setActiveFilterPopup(null);

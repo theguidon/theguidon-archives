@@ -118,6 +118,8 @@ export const validateRangeFilter = (str, mode) => {
 
   if (str == null) return null;
 
+  if (str.trim().length == 0) return null;
+
   let nums = str.split("-");
 
   // validate

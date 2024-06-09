@@ -73,6 +73,8 @@ function FiltersGroup(props) {
       from: validateRangeFilter(from, "from"),
       until: validateRangeFilter(until, "until"),
     };
+    // if (from != null && new_range.from == null)
+    //   toReplace.push({ key: "from", delete: true });
 
     setRangeFilter(new_range);
 
