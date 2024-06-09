@@ -156,9 +156,9 @@ function Footer() {
 
         <p className="credits">
           &copy; <span className="nowrap">The GUIDON</span> 2024 All rights
-          reserved. Designed and developed by Digital Development{" "}
-          <span style={{ whiteSpace: "nowrap" }}>2022–2023</span> and{" "}
-          <span style={{ whiteSpace: "nowrap" }}>2023–2024</span>.
+          reserved. <br className="tablet" /> Designed and developed by Digital
+          Development <span style={{ whiteSpace: "nowrap" }}>2022–2023</span>{" "}
+          and <span style={{ whiteSpace: "nowrap" }}>2023–2024</span>.
         </p>
       </div>
     </footer>

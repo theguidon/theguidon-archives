@@ -184,6 +184,14 @@ hr {
   content: "";
 }
 
+.tablet {
+  display: none;
+}
+
+.mobile {
+  display: none;
+}
+
 @keyframes loading-animation {
   from {
     background-position-x: 100%;
@@ -239,6 +247,10 @@ hr {
     column-gap: 20px;
     row-gap: 38px;
   }
+
+  .tablet {
+    display: block;
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -279,5 +291,9 @@ hr {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 24px;
     row-gap: 40px;
+  }
+
+  .mobile {
+    display: block;
   }
 }
