@@ -107,88 +107,90 @@ function TitleBar(props) {
 
       {!props.isLegacy && (
         <div className="controls-group">
-          <div className="list-container">
-            <div
-              className={`list icon ${TOCActive ? "active" : ""}`}
-              onClick={() => {
-                setTOCActive((v) => !v);
-                if (searchActive) setSearchActive(false);
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
+          {props.articleContent.length > 0 && (
+            <div className="list-container">
+              <div
+                className={`list icon ${TOCActive ? "active" : ""}`}
+                onClick={() => {
+                  setTOCActive((v) => !v);
+                  if (searchActive) setSearchActive(false);
+                }}
               >
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M3 14C3.55228 14 4 14.4477 4 15C4 15.5523 3.55228 16 3 16C2.44772 16 2 15.5523 2 15C2 14.4477 2.44772 14 3 14ZM17 14C17.5523 14 18 14.4477 18 15C18 15.5523 17.5523 16 17 16H7C6.44772 16 6 15.5523 6 15C6 14.4477 6.44772 14 7 14H17ZM3 9C3.55228 9 4 9.44772 4 10C4 10.5523 3.55228 11 3 11C2.44772 11 2 10.5523 2 10C2 9.44772 2.44772 9 3 9ZM17 9C17.5523 9 18 9.44772 18 10C18 10.5523 17.5523 11 17 11H7C6.44772 11 6 10.5523 6 10C6 9.44772 6.44772 9 7 9H17ZM3 4C3.55228 4 4 4.44772 4 5C4 5.55228 3.55228 6 3 6C2.44772 6 2 5.55228 2 5C2 4.44772 2.44772 4 3 4ZM17 4C17.5523 4 18 4.44772 18 5C18 5.55228 17.5523 6 17 6H7C6.44772 6 6 5.55228 6 5C6 4.44772 6.44772 4 7 4H17Z"
-                />
-              </svg>
-            </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M3 14C3.55228 14 4 14.4477 4 15C4 15.5523 3.55228 16 3 16C2.44772 16 2 15.5523 2 15C2 14.4477 2.44772 14 3 14ZM17 14C17.5523 14 18 14.4477 18 15C18 15.5523 17.5523 16 17 16H7C6.44772 16 6 15.5523 6 15C6 14.4477 6.44772 14 7 14H17ZM3 9C3.55228 9 4 9.44772 4 10C4 10.5523 3.55228 11 3 11C2.44772 11 2 10.5523 2 10C2 9.44772 2.44772 9 3 9ZM17 9C17.5523 9 18 9.44772 18 10C18 10.5523 17.5523 11 17 11H7C6.44772 11 6 10.5523 6 10C6 9.44772 6.44772 9 7 9H17ZM3 4C3.55228 4 4 4.44772 4 5C4 5.55228 3.55228 6 3 6C2.44772 6 2 5.55228 2 5C2 4.44772 2.44772 4 3 4ZM17 4C17.5523 4 18 4.44772 18 5C18 5.55228 17.5523 6 17 6H7C6.44772 6 6 5.55228 6 5C6 4.44772 6.44772 4 7 4H17Z"
+                  />
+                </svg>
+              </div>
 
-            <div className={`popup ${TOCActive ? "active" : ""}`}>
-              <p className="heading">Table of Contents</p>
+              <div className={`popup ${TOCActive ? "active" : ""}`}>
+                <p className="heading">Table of Contents</p>
 
-              {props.articleContent.map((section, idx) => (
-                <React.Fragment key={`section-${idx}`}>
-                  <div
-                    className={`section-row ${
-                      openAccordions.includes(section.name) ? "active" : ""
-                    }`}
-                    onClick={() => {
-                      let nactive = [...openAccordions];
-                      if (openAccordions.includes(section.name)) {
-                        nactive.splice(nactive.indexOf(section.name), 1);
-                      } else {
-                        nactive.push(section.name);
-                      }
+                {props.articleContent.map((section, idx) => (
+                  <React.Fragment key={`section-${idx}`}>
+                    <div
+                      className={`section-row ${
+                        openAccordions.includes(section.name) ? "active" : ""
+                      }`}
+                      onClick={() => {
+                        let nactive = [...openAccordions];
+                        if (openAccordions.includes(section.name)) {
+                          nactive.splice(nactive.indexOf(section.name), 1);
+                        } else {
+                          nactive.push(section.name);
+                        }
 
-                      setOpenAccordions(nactive);
-                    }}
-                  >
-                    <p className="name">{section.name}</p>
-
-                    <svg
-                      className="chevron"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 16 17"
-                      fill="currentColor"
+                        setOpenAccordions(nactive);
+                      }}
                     >
-                      <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M3.70711 6.00188C3.31658 5.61135 2.68342 5.61135 2.29289 6.00188C1.90237 6.3924 1.90237 7.02557 2.29289 7.41609L7.29289 12.4161C7.68342 12.8066 8.31658 12.8066 8.70711 12.4161L13.7071 7.41609C14.0976 7.02557 14.0976 6.3924 13.7071 6.00188C13.3166 5.61135 12.6834 5.61135 12.2929 6.00188L8 10.2948L3.70711 6.00188Z"
-                      />
-                    </svg>
-                  </div>
+                      <p className="name">{section.name}</p>
 
-                  <div
-                    className={`section-content ${
-                      openAccordions.includes(section.name) ? "active" : ""
-                    }`}
-                  >
-                    {section.articles.map((article, idx2) => (
-                      <div
-                        className="article"
-                        key={`section-${idx}-article-${idx2}`}
-                        onClick={() => goToArticle(article)}
+                      <svg
+                        className="chevron"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 16 17"
+                        fill="currentColor"
                       >
-                        <p
-                          className="title"
-                          dangerouslySetInnerHTML={{
-                            __html: article.title,
-                          }}
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M3.70711 6.00188C3.31658 5.61135 2.68342 5.61135 2.29289 6.00188C1.90237 6.3924 1.90237 7.02557 2.29289 7.41609L7.29289 12.4161C7.68342 12.8066 8.31658 12.8066 8.70711 12.4161L13.7071 7.41609C14.0976 7.02557 14.0976 6.3924 13.7071 6.00188C13.3166 5.61135 12.6834 5.61135 12.2929 6.00188L8 10.2948L3.70711 6.00188Z"
                         />
-                        <p className="page">{article.page}</p>
-                      </div>
-                    ))}
-                  </div>
-                </React.Fragment>
-              ))}
+                      </svg>
+                    </div>
+
+                    <div
+                      className={`section-content ${
+                        openAccordions.includes(section.name) ? "active" : ""
+                      }`}
+                    >
+                      {section.articles.map((article, idx2) => (
+                        <div
+                          className="article"
+                          key={`section-${idx}-article-${idx2}`}
+                          onClick={() => goToArticle(article)}
+                        >
+                          <p
+                            className="title"
+                            dangerouslySetInnerHTML={{
+                              __html: article.title,
+                            }}
+                          />
+                          <p className="page">{article.page}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </React.Fragment>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           <div className={`search-container ${searchActive ? "active" : ""}`}>
             <div
