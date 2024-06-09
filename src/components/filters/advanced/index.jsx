@@ -36,6 +36,30 @@ function AdvancedFiltersGroup(props) {
     props.replaceSearchParams([{ key: mode, value: val }]);
   };
 
+  const closeIcon = (
+    <svg
+      className="close"
+      viewBox="0 0 16 16"
+      fill="currentColor"
+      stroke="currentStroke"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M7.99967 14.6693C11.6817 14.6693 14.6663 11.6846 14.6663 8.0026C14.6663 4.3206 11.6817 1.33594 7.99967 1.33594C4.31767 1.33594 1.33301 4.3206 1.33301 8.0026C1.33301 11.6846 4.31767 14.6693 7.99967 14.6693Z"
+        fill="currentColor"
+        stroke="currentColor"
+        strokeWidth="1.33333"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9.88535 6.11719L6.11401 9.88852M6.11401 6.11719L9.88535 9.88852"
+        strokeWidth="1.33333"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+
   const getRangeValue = () => {
     if (props.rangeFilter.from == null && props.rangeFilter.until == null) {
       return "Date Range";
@@ -66,11 +90,15 @@ function AdvancedFiltersGroup(props) {
               : ""
           }`}
           onClick={() => {
-            setMode("from");
-            setStep("decade");
+            if (props.activeFilterPopup === "range" && mode == "from")
+              props.setActiveFilterPopup(null);
+            else {
+              setMode("from");
+              setStep("decade");
+            }
           }}
         >
-          From: {parser(props.rangeFilter.from)}
+          From: {parser(props.rangeFilter.from)} {closeIcon}
         </p>
       );
     } else {
@@ -82,11 +110,15 @@ function AdvancedFiltersGroup(props) {
               : ""
           }`}
           onClick={() => {
-            setMode("from");
-            setStep("decade");
+            if (props.activeFilterPopup === "range" && mode == "from")
+              props.setActiveFilterPopup(null);
+            else {
+              setMode("from");
+              setStep("decade");
+            }
           }}
         >
-          From: earliest
+          From: earliest {closeIcon}
         </p>
       );
     }
@@ -100,11 +132,15 @@ function AdvancedFiltersGroup(props) {
               : ""
           }`}
           onClick={() => {
-            setMode("until");
-            setStep("decade");
+            if (props.activeFilterPopup === "range" && mode == "until")
+              props.setActiveFilterPopup(null);
+            else {
+              setMode("until");
+              setStep("decade");
+            }
           }}
         >
-          Until: {parser(props.rangeFilter.until)}
+          Until: {parser(props.rangeFilter.until)} {closeIcon}
         </p>
       );
     } else {
@@ -116,11 +152,15 @@ function AdvancedFiltersGroup(props) {
               : ""
           }`}
           onClick={() => {
-            setMode("until");
-            setStep("decade");
+            if (props.activeFilterPopup === "range" && mode == "until")
+              props.setActiveFilterPopup(null);
+            else {
+              setMode("until");
+              setStep("decade");
+            }
           }}
         >
-          Until: latest
+          Until: latest {closeIcon}
         </p>
       );
     }
@@ -233,6 +273,7 @@ function AdvancedFiltersGroup(props) {
         >
           {props.yearFilter ? props.yearFilter : "Year"}
           <svg
+            className="chevron"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="none"
@@ -293,6 +334,7 @@ function AdvancedFiltersGroup(props) {
         >
           {getRangeValue()}
           <svg
+            className="chevron"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="none"
@@ -343,6 +385,7 @@ function AdvancedFiltersGroup(props) {
         >
           {props.sortOldestFilter ? "Oldest first" : "Newest first"}
           <svg
+            className="chevron"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="none"

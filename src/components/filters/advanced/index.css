@@ -34,7 +34,7 @@
   color: var(--gdn-blue);
 }
 
-.filters .advanced-filters .filter-container .filter svg {
+.filters .advanced-filters .filter-container .filter .chevron {
   width: 20px;
   height: 20px;
 
@@ -47,7 +47,7 @@
   .filter-container
   .popup-container.active
   ~ .filter
-  svg {
+  .chevron {
   transform: rotate(180deg);
 }
 
