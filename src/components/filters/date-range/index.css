@@ -2,7 +2,6 @@
   /* border: 1px solid var(--gdn-blue); */
   border-radius: 4px;
   padding: 0 12px;
-  /* padding: 0 calc(12px + 12px) 0 12px; */
 
   transition: 0.3s;
 
@@ -11,6 +10,10 @@
   user-select: none;
 
   position: relative;
+}
+
+.filters .range-filter-container .filter .nav-cell.has-filter {
+  padding: 0 calc(12px + 12px) 0 12px;
 }
 
 .filters .range-filter-container .filter .nav-cell.active {
@@ -25,7 +28,7 @@
 
 .filters .range-filter-container .nav-cell .close {
   display: inline-block;
-  display: none;
+  /* display: none; */
   width: 16px;
   height: 16px;
   color: var(--gdn-blue);
@@ -37,6 +40,10 @@
   transform: translate(0, -50%) !important;
 
   transition: 0.3s;
+}
+
+.filters .range-filter-container .nav-cell .close * {
+  pointer-events: none;
 }
 
 .filters .range-filter-container .nav-cell.active .close {

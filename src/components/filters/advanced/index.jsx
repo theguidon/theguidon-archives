@@ -36,13 +36,18 @@ function AdvancedFiltersGroup(props) {
     props.replaceSearchParams([{ key: mode, value: val }]);
   };
 
-  const closeIcon = (
+  const closeIcon = (cmode) => (
     <svg
       className="close"
       viewBox="0 0 16 16"
       fill="currentColor"
       stroke="currentStroke"
       xmlns="http://www.w3.org/2000/svg"
+      onClick={() => {
+        setMode(cmode);
+        // console.log("clicked", cmode);
+        props.replaceSearchParams([{ key: cmode, delete: true }]);
+      }}
     >
       <path
         d="M7.99967 14.6693C11.6817 14.6693 14.6663 11.6846 14.6663 8.0026C14.6663 4.3206 11.6817 1.33594 7.99967 1.33594C4.31767 1.33594 1.33301 4.3206 1.33301 8.0026C1.33301 11.6846 4.31767 14.6693 7.99967 14.6693Z"
@@ -81,89 +86,61 @@ function AdvancedFiltersGroup(props) {
 
     let els = [];
 
-    if (props.rangeFilter.from != null) {
-      els.push(
-        <p
-          className={`nav-cell ${
-            props.activeFilterPopup === "range" && mode == "from"
-              ? "active"
-              : ""
-          }`}
-          onClick={() => {
-            if (props.activeFilterPopup === "range" && mode == "from")
-              props.setActiveFilterPopup(null);
-            else {
-              setMode("from");
-              setStep("decade");
-            }
-          }}
-        >
-          From: {parser(props.rangeFilter.from)} {closeIcon}
-        </p>
-      );
-    } else {
-      els.push(
-        <p
-          className={`nav-cell ${
-            props.activeFilterPopup === "range" && mode == "from"
-              ? "active"
-              : ""
-          }`}
-          onClick={() => {
-            if (props.activeFilterPopup === "range" && mode == "from")
-              props.setActiveFilterPopup(null);
-            else {
-              setMode("from");
-              setStep("decade");
-            }
-          }}
-        >
-          From: earliest {closeIcon}
-        </p>
-      );
-    }
+    els.push(
+      <p
+        className={`nav-cell ${
+          props.activeFilterPopup === "range" && mode == "from" ? "active" : ""
+        } ${props.rangeFilter.from != null ? "has-filter" : ""}`}
+        onClick={(event) => {
+          // if (
+          //   event.target != null &&
+          //   event.target.getAttribute("class").includes("close")
+          // ) {
+          //   //
+          // } else {
+          if (props.activeFilterPopup === "range" && mode == "from")
+            props.setActiveFilterPopup(null);
+          else {
+            setMode("from");
+            setStep("decade");
+          }
+          // }
+        }}
+      >
+        {props.rangeFilter.from != null
+          ? `From: ${parser(props.rangeFilter.from)}`
+          : `From: earliest`}
+        {props.rangeFilter.from != null && closeIcon("from")}
+      </p>
+    );
 
-    if (props.rangeFilter.until != null) {
-      els.push(
-        <p
-          className={`nav-cell ${
-            props.activeFilterPopup === "range" && mode == "until"
-              ? "active"
-              : ""
-          }`}
-          onClick={() => {
-            if (props.activeFilterPopup === "range" && mode == "until")
-              props.setActiveFilterPopup(null);
-            else {
-              setMode("until");
-              setStep("decade");
-            }
-          }}
-        >
-          Until: {parser(props.rangeFilter.until)} {closeIcon}
-        </p>
-      );
-    } else {
-      els.push(
-        <p
-          className={`nav-cell ${
-            props.activeFilterPopup === "range" && mode == "until"
-              ? "active"
-              : ""
-          }`}
-          onClick={() => {
-            if (props.activeFilterPopup === "range" && mode == "until")
-              props.setActiveFilterPopup(null);
-            else {
-              setMode("until");
-              setStep("decade");
-            }
-          }}
-        >
-          Until: latest {closeIcon}
-        </p>
-      );
-    }
+    els.push(
+      <p
+        className={`nav-cell ${
+          props.activeFilterPopup === "range" && mode == "until" ? "active" : ""
+        } ${props.rangeFilter.until != null ? "has-filter" : ""}`}
+        onClick={(event) => {
+          // if (
+          //   event.target != null &&
+          //   event.target.getAttribute("class").includes("close")
+          // ) {
+          //   //
+          // } else {
+          if (props.activeFilterPopup === "range" && mode == "until")
+            props.setActiveFilterPopup(null);
+          else {
+            setMode("until");
+            setStep("decade");
+          }
+          // }
+        }}
+      >
+        {props.rangeFilter.until != null
+          ? `Until: ${parser(props.rangeFilter.until)}`
+          : `Until: latest`}
+        {props.rangeFilter.until != null && closeIcon("until")}
+      </p>
+    );
 
     return (
       <>
@@ -314,11 +291,10 @@ function AdvancedFiltersGroup(props) {
               : "active"
           }`}
           onClick={(event) => {
-            if (
-              event.target != null &&
-              event.target.className != null &&
-              typeof event.target.className == "string" &&
-              event.target.className.includes("nav-cell")
+            if (event.target.getAttribute("class").includes("close")) {
+              // do nothing
+            } else if (
+              event.target.getAttribute("class").includes("nav-cell")
             ) {
               if (props.activeFilterPopup !== "range")
                 props.setActiveFilterPopup("range");

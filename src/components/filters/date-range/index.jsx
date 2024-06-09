@@ -31,6 +31,12 @@ function DateRangeFilter(props) {
           : null
       );
     }
+
+    if (props.rangeFilter != null && props.rangeFilter[props.mode] == null) {
+      setSelectedYear(null);
+      setSelectedMonth(null);
+      setSelectedDay(null);
+    }
   }, [props.rangeFilter, props.mode]);
 
   const months = [
