@@ -38,12 +38,15 @@ function SearchPage() {
    * Fetch data on filter or query update
    */
   useEffect(() => {
+    let is_volume = query.match(/^(volume|vol|vol\.) [0-9]+/gi) != null;
+
     dispatch(
       fetchIssues({
         search: query,
         page: page,
         order: sortOldestFilter ? "asc" : "desc",
         year: yearFilter,
+        volume: is_volume ? parseInt(query.split(" ")[1]) : null,
       })
     );
   }, [query, page, yearFilter, sortOldestFilter]);

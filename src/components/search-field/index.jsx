@@ -55,6 +55,10 @@ function SearchField(props) {
     dispatch(fetchRandom());
   }, []);
 
+  // useEffect(() => {
+  //   console.log(query, query.match(/^(volume|vol|vol\.) [0-9]+/gi) != null);
+  // }, [query]);
+
   useEffect(() => {
     const interval = setInterval(() => {
       if (props.fieldRef.current != null) {

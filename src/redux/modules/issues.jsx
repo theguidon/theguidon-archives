@@ -3,7 +3,17 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // Action
 export const fetchIssues = createAsyncThunk(
   "fetchIssues",
-  async ({ categ, page, order, search, year, from, until, isLegacy }) => {
+  async ({
+    categ,
+    page,
+    order,
+    search,
+    year,
+    from,
+    until,
+    isLegacy,
+    volume,
+  }) => {
     let params = new URLSearchParams();
 
     if ((categ != null && categ == "legacy") || (isLegacy != null && isLegacy))
@@ -12,7 +22,10 @@ export const fetchIssues = createAsyncThunk(
 
     if (page != null) params.append("page", page);
     if (order != null) params.append("order", order);
-    if (search != null) params.append("search", search);
+
+    if (volume != null) params.append("volume", volume);
+    if (search != null && search.length > 1) params.append("search", search);
+
     if (year != null) params.append("year", year);
     if (from != null)
       params.append("from", `${from.year}-${from.month}-${from.day}`);
