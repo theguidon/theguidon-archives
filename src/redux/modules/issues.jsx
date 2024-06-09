@@ -63,16 +63,12 @@ const issuesSlice = createSlice({
       else if (action.payload.categ === null) slug = "all";
       else slug = action.payload.categ;
 
-      // console.log(slug);
-
       if (state.data[slug] == null) state.data[slug] = {};
       state.data[slug].found = action.payload.found;
       state.data[slug].max_pages = action.payload.max_pages;
       state.data[slug][
         `${action.payload.order == "asc" ? "asc-" : ""}${action.payload.page}`
       ] = action.payload.issues;
-
-      // console.log(state.data[slug]);
     });
 
     builder.addCase(fetchIssues.rejected, (state, action) => {

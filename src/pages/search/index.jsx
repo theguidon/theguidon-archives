@@ -2,13 +2,14 @@ import { useSearchParams } from "react-router-dom";
 import "./index.css";
 import "./filters.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchIssues } from "../../redux/modules/issues";
 import IssueCard from "../../components/issue-card";
 import Pagination from "../../components/pagination";
 import {
   calculatePageNums,
   validatePage,
+  validateRangeFilter,
   validateSortFilter,
   validateView,
   validateYearFilter,
@@ -31,8 +32,14 @@ function SearchPage() {
     minmaxDates.min.year,
     minmaxDates.max.year
   );
+  const [rangeFilter, setRangeFilter] = useState({
+    from: null,
+    until: null,
+  });
   const sortOldestFilter = validateSortFilter(searchParams.get("sort"));
   const isGridView = validateView(searchParams.get("view"));
+
+  const topRef = useRef(null);
 
   /**
    * Fetch data on filter or query update
@@ -46,17 +53,31 @@ function SearchPage() {
         page: page,
         order: sortOldestFilter ? "asc" : "desc",
         year: yearFilter,
+        from: rangeFilter.from,
+        until: rangeFilter.until,
         volume: is_volume ? parseInt(query.split(" ")[1]) : null,
       })
     );
-  }, [query, page, yearFilter, sortOldestFilter]);
+  }, [
+    query,
+    page,
+    yearFilter,
+    rangeFilter.from,
+    rangeFilter.until,
+    sortOldestFilter,
+  ]);
 
   /**
    * Change document title on query change
    */
   useEffect(() => {
     setDocumentTitle(`Search results for ${query}`);
-  }, [query]);
+
+    setRangeFilter({
+      from: validateRangeFilter(searchParams.get("from"), "from"),
+      until: validateRangeFilter(searchParams.get("until"), "until"),
+    });
+  }, [query, searchParams]);
 
   /**
    * Fetch data
@@ -78,7 +99,10 @@ function SearchPage() {
    * Used in mapping issues based on categ or date filters
    * @returns string
    */
-  const getCategKey = () => (yearFilter != null ? "filtered" : "search");
+  const getCategKey = () =>
+    yearFilter != null || rangeFilter.from != null || rangeFilter.until != null
+      ? "filtered"
+      : "search";
 
   /**
    * Used in mapping issues based on sort
@@ -101,6 +125,24 @@ function SearchPage() {
     setSearchParams(nsp);
   };
 
+  useEffect(() => {
+    if (topRef != null) {
+      window.scrollTo({
+        top:
+          topRef.current.getBoundingClientRect().top -
+          document.body.getBoundingClientRect().top,
+        behavior: "smooth",
+      });
+    }
+  }, [page]);
+
+  /**
+   * When year or range filter changes, change page to default 1
+   */
+  useEffect(() => {
+    replaceSearchParams([{ key: "page", value: 1 }]);
+  }, [yearFilter, rangeFilter.from, rangeFilter.to]);
+
   return (
     <div id="search-results" className="general-container general-padding-top">
       <p className="subheader">
@@ -113,7 +155,7 @@ function SearchPage() {
                 : "Showing " + issues.data[getCategKey()].found
             } results for`}
       </p>
-      <h2>{`“${query}”`}</h2>
+      <h2 ref={topRef}>{`“${query}”`}</h2>
       <hr />
 
       <FiltersGroup

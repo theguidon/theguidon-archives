@@ -1,6 +1,6 @@
 import { useParams, Navigate, useSearchParams } from "react-router-dom";
 import "./index.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchIssues } from "../../redux/modules/issues";
 import IssueCard from "../../components/issue-card";
@@ -41,6 +41,8 @@ function BrowsePage() {
   // };
   const sortOldestFilter = validateSortFilter(searchParams.get("sort"));
   const isGridView = validateView(searchParams.get("view"));
+
+  const topRef = useRef(null);
 
   const actual = {
     recent: "all",
@@ -167,12 +169,27 @@ function BrowsePage() {
    */
   if (slug == null) return <Navigate to="/releases/recent" />;
 
+  useEffect(() => {
+    if (topRef != null) {
+      window.scrollTo({
+        top:
+          topRef.current.getBoundingClientRect().top -
+          document.body.getBoundingClientRect().top,
+        behavior: "smooth",
+      });
+    }
+  }, [page]);
+
+  useEffect(() => {
+    replaceSearchParams([{ key: "page", value: 1 }]);
+  }, [yearFilter, rangeFilter.from, rangeFilter.until]);
+
   return (
     <div id="browse" className="general-container general-padding-top">
       <p className="subheader">
         {slug == null || slug === "recent" ? "Recently Uploaded" : "Browse"}
       </p>
-      <h2>
+      <h2 ref={topRef}>
         {slug == null || slug === "recent"
           ? "What's New on the Archive"
           : "The Archive"}
