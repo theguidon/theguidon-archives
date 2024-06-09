@@ -28,3 +28,28 @@
   border-bottom-color: var(--gdn-blue);
   font-weight: bold;
 }
+
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 992px) {
+}
+
+@media screen and (max-width: 768px) {
+  .filters .categ-filters {
+    flex-flow: row nowrap;
+    overflow-x: auto;
+    padding: 0 var(--general-container-padding-x);
+    margin: 0 calc(-1 * var(--general-container-padding-x));
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .filters .categ-filters::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 576px) {
+}
