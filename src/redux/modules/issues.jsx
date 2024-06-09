@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // Action
 export const fetchIssues = createAsyncThunk(
   "fetchIssues",
-  async ({ categ, page, order, search, year, isLegacy }) => {
+  async ({ categ, page, order, search, year, from, until, isLegacy }) => {
     let params = new URLSearchParams();
 
     if ((categ != null && categ == "legacy") || (isLegacy != null && isLegacy))
@@ -14,6 +14,10 @@ export const fetchIssues = createAsyncThunk(
     if (order != null) params.append("order", order);
     if (search != null) params.append("search", search);
     if (year != null) params.append("year", year);
+    if (from != null)
+      params.append("from", `${from.year}-${from.month}-${from.day}`);
+    if (until != null)
+      params.append("until", `${until.year}-${until.month}-${from.day}`);
 
     const response = await fetch(
       `https://api.theguidon.com/archives/wp-json/api/v1/issues?${params.toString()}`
@@ -35,16 +39,18 @@ const issuesSlice = createSlice({
 
     builder.addCase(fetchIssues.fulfilled, (state, action) => {
       let slug = null;
-      // action.payload.search != null
-      //   ? "search"
-      //   : action.payload.categ === null
-      //   ? "all"
-      //   : action.payload.categ;
 
-      if (action.payload.year != null) slug = "filtered";
+      if (
+        action.payload.year != null ||
+        action.payload.from != null ||
+        action.payload.until != null
+      )
+        slug = "filtered";
       else if (action.payload.search != null) slug = "search";
       else if (action.payload.categ === null) slug = "all";
       else slug = action.payload.categ;
+
+      // console.log(slug);
 
       if (state.data[slug] == null) state.data[slug] = {};
       state.data[slug].found = action.payload.found;
@@ -52,6 +58,8 @@ const issuesSlice = createSlice({
       state.data[slug][
         `${action.payload.order == "asc" ? "asc-" : ""}${action.payload.page}`
       ] = action.payload.issues;
+
+      // console.log(state.data[slug]);
     });
 
     builder.addCase(fetchIssues.rejected, (state, action) => {

@@ -1,6 +1,6 @@
 import { useParams, Navigate, useSearchParams } from "react-router-dom";
 import "./index.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchIssues } from "../../redux/modules/issues";
 import IssueCard from "../../components/issue-card";
@@ -8,6 +8,7 @@ import Pagination from "../../components/pagination";
 import {
   calculatePageNums,
   validatePage,
+  validateRangeFilter,
   validateSortFilter,
   validateView,
   validateYearFilter,
@@ -30,6 +31,14 @@ function BrowsePage() {
     minmaxDates.min.year,
     minmaxDates.max.year
   );
+  const [rangeFilter, setRangeFilter] = useState({
+    from: null,
+    until: null,
+  });
+  // const rangeFilter = {
+  //   from: validateRangeFilter(searchParams.get("from"), "from"),
+  //   until: validateRangeFilter(searchParams.get("until"), "until"),
+  // };
   const sortOldestFilter = validateSortFilter(searchParams.get("sort"));
   const isGridView = validateView(searchParams.get("view"));
 
@@ -87,6 +96,8 @@ function BrowsePage() {
           page: page,
           order: sortOldestFilter ? "asc" : "desc",
           year: yearFilter,
+          from: rangeFilter.from,
+          until: rangeFilter.until,
         })
       );
     else
@@ -96,15 +107,27 @@ function BrowsePage() {
           page: page,
           order: sortOldestFilter ? "asc" : "desc",
           year: yearFilter,
+          from: rangeFilter.from,
+          until: rangeFilter.until,
         })
       );
-  }, [slug, page, yearFilter, sortOldestFilter]);
+  }, [
+    slug,
+    page,
+    yearFilter,
+    rangeFilter.from,
+    rangeFilter.until,
+    sortOldestFilter,
+  ]);
 
   /**
    * Used in mapping issues based on categ or date filters
    * @returns string
    */
-  const getCategKey = () => (yearFilter != null ? "filtered" : actual[slug]);
+  const getCategKey = () =>
+    yearFilter != null || rangeFilter.from != null || rangeFilter.until != null
+      ? "filtered"
+      : actual[slug];
 
   /**
    * Used in mapping issues based on sort
@@ -132,6 +155,11 @@ function BrowsePage() {
    */
   useEffect(() => {
     if (titles[slug] != null) setDocumentTitle(titles[slug]);
+
+    setRangeFilter({
+      from: validateRangeFilter(searchParams.get("from"), "from"),
+      until: validateRangeFilter(searchParams.get("until"), "until"),
+    });
   }, [slug, searchParams]);
 
   /**

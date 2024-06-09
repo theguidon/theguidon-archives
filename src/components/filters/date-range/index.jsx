@@ -136,20 +136,20 @@ function DateRangeFilter(props) {
                     props.rangeFilter[props.mode] == null ||
                     props.rangeFilter[props.mode].year != selectedDecade + idx
                   ) {
-                    console.log("changed year");
+                    // console.log("changed year");
                     props.setDate(props.mode, 1, selectedDecade + idx, 1, 1);
                   } else {
-                    console.log("unchanged year");
+                    // console.log("unchanged year");
                   }
                 } else {
                   if (
                     props.rangeFilter[props.mode] == null ||
                     props.rangeFilter[props.mode].year != selectedDecade + idx
                   ) {
-                    console.log("changed year");
+                    // console.log("changed year");
                     props.setDate(props.mode, 1, selectedDecade + idx, 12, 31);
                   } else {
-                    console.log("unchanged year");
+                    // console.log("unchanged year");
                   }
                 }
               }}
@@ -187,17 +187,17 @@ function DateRangeFilter(props) {
                     props.rangeFilter[props.mode] == null ||
                     props.rangeFilter[props.mode].month != idx + 1
                   ) {
-                    console.log("changed month");
+                    // console.log("changed month");
                     props.setDate(props.mode, 2, selectedYear, idx + 1, 1);
                   } else {
-                    console.log("unchanged month");
+                    // console.log("unchanged month");
                   }
                 } else {
                   if (
                     props.rangeFilter[props.mode] == null ||
                     props.rangeFilter[props.mode].month != idx + 1
                   ) {
-                    console.log("changed month");
+                    // console.log("changed month");
                     props.setDate(
                       props.mode,
                       2,
@@ -206,7 +206,7 @@ function DateRangeFilter(props) {
                       new Date(selectedYear, idx + 1, 0).getDate()
                     );
                   } else {
-                    console.log("unchanged month");
+                    // console.log("unchanged month");
                   }
                 }
               }}
