@@ -95,7 +95,7 @@
 }
 
 #about p.text {
-  font-size: var(--body-l-font-size);
+  font-size: var(--body-font-size);
 }
 
 #about p.text a {
@@ -198,7 +198,7 @@
     margin: 0 0 32px;
   }
 
-  #about p.text {
+  /* #about p.text {
     font-size: var(--body-font-size);
-  }
+  } */
 }
