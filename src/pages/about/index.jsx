@@ -82,58 +82,6 @@ function AboutPage() {
             ))}
           </div>
         ))}
-        {/* <div className="col left">
-          {[...Array(3)].map((_, idx) => (
-            <div className="group" key={`col-1-group-${idx}`}>
-              {getCoverOrder(true).map((cover, idx2) => (
-                <div
-                  className={`cover-container ${
-                    loadedImages < 2 * 3 * 6 ? "loading" : ""
-                  }`}
-                  key={`col-1-group-${idx}-img-${idx2}`}
-                >
-                  <img
-                    src={cover}
-                    className="cover"
-                    onLoad={() => {
-                      setLoadedImages((l) => l + 1);
-                      // let nl = [...loadedImages];
-                      // console.log(0 * 16 + idx * 3 + idx2);
-                      // nl[0 * 16 + idx * 3 + idx2] = true;
-                      // setLoadedImages(nl);
-                    }}
-                  />
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-        <div className="col right">
-          {[...Array(3)].map((_, idx) => (
-            <div className="group" key={`col-2-group-${idx}`}>
-              {getCoverOrder(false).map((cover, idx2) => (
-                <div
-                  className={`cover-container ${
-                    loadedImages < 2 * 3 * 6 ? "loading" : ""
-                  }`}
-                  key={`col-1-group-${idx}-img-${idx2}`}
-                >
-                  <img
-                    src={cover}
-                    className="cover"
-                    onLoad={() => {
-                      setLoadedImages((l) => l + 1);
-                      // let nl = [...loadedImages];
-                      // console.log(1 * 16 + idx * 3 + idx2);
-                      // nl[1 * 16 + idx * 3 + idx2] = true;
-                      // setLoadedImages(nl);
-                    }}
-                  />
-                </div>
-              ))}
-            </div>
-          ))}
-        </div> */}
       </div>
       <main className="content general-padding-top">
         <p className="subheader first">About</p>

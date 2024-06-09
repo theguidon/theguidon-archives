@@ -25,6 +25,7 @@
   flex-flow: column nowrap;
   height: 0;
   justify-content: center;
+  overflow-y: visible;
 }
 
 #about .covers .col .group {
