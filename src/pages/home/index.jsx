@@ -164,7 +164,7 @@ function HomePage() {
           {categories.map((categ, idx) => (
             <Link to={categ.link} key={`categ-${idx}`} className="categ-card">
               <div className="row">
-                <h5>{categ.title}</h5>
+                <h5 className="categ-name">{categ.title}</h5>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 25"
@@ -176,20 +176,24 @@ function HomePage() {
                   />
                 </svg>
               </div>
-              <hr />
-              <div className="cover-container">
-                {issues.data[categ.key] != null &&
-                issues.data[categ.key][1] != null &&
-                issues.data[categ.key][1][0] != null ? (
-                  <img
-                    className="cover"
-                    src={issues.data[categ.key][1][0].cover}
-                    alt={categ.title}
-                  />
-                ) : (
-                  <div className="cover loading" />
-                )}
-              </div>
+              {issues.data[categ.key] != null &&
+              issues.data[categ.key][1] != null &&
+              true ? (
+                <div className="cover-container">
+                  {[
+                    ...Array(Math.min(3, issues.data[categ.key][1].length)),
+                  ].map((issue, idx2) => (
+                    <img
+                      className="cover"
+                      src={issues.data[categ.key][1][idx2].cover}
+                      alt={categ.title}
+                      key={`categ-${idx}-loading-${idx2}`}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="cover-container loading" />
+              )}
             </Link>
           ))}
         </div>
