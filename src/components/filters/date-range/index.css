@@ -1,3 +1,25 @@
+.filters .range-filter-container .filter .nav-cell {
+  /* border: 1px solid var(--gdn-blue); */
+  border-radius: 4px;
+  padding: 0 12px;
+
+  transition: 0.3s;
+
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.filters .range-filter-container .filter .nav-cell.active {
+  background-color: var(--gdn-blue);
+  color: white;
+}
+
+.filters .range-filter-container .filter .nav-cell:hover {
+  background-color: var(--blue-alt-1);
+  color: white;
+}
+
 .filters .range-filter-container .popup {
   width: 100%;
   max-width: 256px;

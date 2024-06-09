@@ -1,6 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./index.css";
 import DateRangeFilter from "../date-range";
+import { validateRangeFilter } from "../../../utils";
 
 function AdvancedFiltersGroup(props) {
   const [selectedDecade, setSelectedDecade] = useState(
@@ -10,8 +11,127 @@ function AdvancedFiltersGroup(props) {
     ) * 10
   );
 
-  const setDate = (mode, year, month, day) => {
-    console.log(mode, year, month, day);
+  // decade = selecting year
+  // year = selecting month
+  // month = selecting date
+  const [mode, setMode] = useState("from");
+  const [step, setStep] = useState("decade");
+
+  const setDate = (mode, step, year, month, day) => {
+    /**
+     * step
+     * 1 year
+     * 2 year, month
+     * 3 year, month, day
+     */
+
+    let val = "";
+    if (step == 1) val = `${year}`;
+    else if (step == 2) val = `${year}-${month.toString().padStart(2, "0")}`;
+    else if (step == 3)
+      val = `${year}-${month.toString().padStart(2, "0")}-${day
+        .toString()
+        .padStart(2, "0")}`;
+
+    props.replaceSearchParams([{ key: mode, value: val }]);
+  };
+
+  const getRangeValue = () => {
+    if (props.rangeFilter.from == null && props.rangeFilter.until == null) {
+      return "Date Range";
+    }
+
+    const parser = (vals) => {
+      if (vals.step == 1) {
+        return `${vals.year}`;
+      } else if (vals.step == 2) {
+        return `${vals.month.toString().padStart(2, "0")}/${vals.year}`;
+      } else if (vals.step == 3) {
+        return `${vals.month.toString().padStart(2, "0")}/${vals.day
+          .toString()
+          .padStart(2, "0")}/${vals.year}`;
+      }
+
+      return "";
+    };
+
+    let els = [];
+
+    if (props.rangeFilter.from != null) {
+      els.push(
+        <p
+          className={`nav-cell ${
+            props.activeFilterPopup === "range" && mode == "from"
+              ? "active"
+              : ""
+          }`}
+          onClick={() => {
+            setMode("from");
+            setStep("decade");
+          }}
+        >
+          From: {parser(props.rangeFilter.from)}
+        </p>
+      );
+    } else {
+      els.push(
+        <p
+          className={`nav-cell ${
+            props.activeFilterPopup === "range" && mode == "from"
+              ? "active"
+              : ""
+          }`}
+          onClick={() => {
+            setMode("from");
+            setStep("decade");
+          }}
+        >
+          From: earliest
+        </p>
+      );
+    }
+
+    if (props.rangeFilter.until != null) {
+      els.push(
+        <p
+          className={`nav-cell ${
+            props.activeFilterPopup === "range" && mode == "until"
+              ? "active"
+              : ""
+          }`}
+          onClick={() => {
+            setMode("until");
+            setStep("decade");
+          }}
+        >
+          Until: {parser(props.rangeFilter.until)}
+        </p>
+      );
+    } else {
+      els.push(
+        <p
+          className={`nav-cell ${
+            props.activeFilterPopup === "range" && mode == "until"
+              ? "active"
+              : ""
+          }`}
+          onClick={() => {
+            setMode("until");
+            setStep("decade");
+          }}
+        >
+          Until: latest
+        </p>
+      );
+    }
+
+    return (
+      <>
+        {els.map((el, idx) => (
+          <React.Fragment key={`rf-${idx}`}>{el}</React.Fragment>
+        ))}
+      </>
+    );
   };
 
   return (
@@ -133,22 +253,45 @@ function AdvancedFiltersGroup(props) {
         >
           <div className="popup">
             <DateRangeFilter
+              setActiveFilterPopup={props.setActiveFilterPopup}
+              mode={mode}
+              setMode={setMode}
+              step={step}
+              setStep={setStep}
               minDate={props.minDate}
               maxDate={props.maxDate}
               setDate={setDate}
+              rangeFilter={props.rangeFilter}
             />
           </div>
         </div>
 
         <div
-          className={`filter ${props.rangeFilter == null ? "" : "active"}`}
-          onClick={() => {
-            if (props.activeFilterPopup === "range")
-              props.setActiveFilterPopup(null);
-            else props.setActiveFilterPopup("range");
+          className={`filter ${
+            props.rangeFilter.from == null && props.rangeFilter.until == null
+              ? ""
+              : "active"
+          }`}
+          onClick={(event) => {
+            if (
+              event.target != null &&
+              event.target.className != null &&
+              typeof event.target.className == "string" &&
+              event.target.className.includes("nav-cell")
+            ) {
+              if (props.activeFilterPopup !== "range")
+                props.setActiveFilterPopup("range");
+            } else {
+              if (props.activeFilterPopup === "range")
+                props.setActiveFilterPopup(null);
+              else {
+                setStep("decade");
+                props.setActiveFilterPopup("range");
+              }
+            }
           }}
         >
-          {props.rangeFilter ? props.rangeFilter : "Date Range"}
+          {getRangeValue()}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"

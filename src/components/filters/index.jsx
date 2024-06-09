@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMinmaxDates } from "../../redux/modules/minmax-dates";
 import { useParams, useSearchParams } from "react-router-dom";
+import { validateRangeFilter } from "../../utils";
 
 function FiltersGroup(props) {
   const { slug } = useParams();
@@ -22,7 +23,10 @@ function FiltersGroup(props) {
       ? parseInt(searchParams.get("year"))
       : null
   );
-  const [rangeFilter, setRangeFilter] = useState(null);
+  const [rangeFilter, setRangeFilter] = useState({
+    from: null,
+    until: null,
+  });
   const [sortOldestFilter, setSortOldestFilter] = useState(
     searchParams.get("sort") == "oldest"
   );
@@ -61,6 +65,16 @@ function FiltersGroup(props) {
       toReplace.push({ key: "year", delete: true });
       setYearFilter(null);
     }
+
+    // range
+    let from = searchParams.get("from");
+    let until = searchParams.get("until");
+    let new_range = {
+      from: validateRangeFilter(from, "from"),
+      until: validateRangeFilter(until, "until"),
+    };
+
+    setRangeFilter(new_range);
 
     // sort
     let sort = searchParams.get("sort");
@@ -104,9 +118,8 @@ function FiltersGroup(props) {
           yearFilter={yearFilter}
           minDate={minmaxDates.min}
           maxDate={minmaxDates.max}
-          minYear={minmaxDates.min.year}
-          maxYear={minmaxDates.max.year}
           rangeFilter={rangeFilter}
+          setRangeFilter={setRangeFilter}
           sortOldestFilter={sortOldestFilter}
           replaceSearchParams={props.replaceSearchParams}
         />

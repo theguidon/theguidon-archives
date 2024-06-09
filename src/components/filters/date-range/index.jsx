@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import "./index.css";
 
 function DateRangeFilter(props) {
-  // decade = selecting year
-  // year = selecting month
-  // month = selecting date
-  const [mode, setMode] = useState("from");
-  const [step, setStep] = useState("decade");
+  // // decade = selecting year
+  // // year = selecting month
+  // // month = selecting date
+  // const [props.mode, props.setMode] = useState("from");
 
   const [selectedDecade, setSelectedDecade] = useState(2020);
   const [selectedYear, setSelectedYear] = useState(null);
@@ -17,6 +16,24 @@ function DateRangeFilter(props) {
     if (selectedYear != null)
       setSelectedDecade(Math.floor(selectedYear / 10) * 10);
   }, [selectedYear]);
+
+  useEffect(() => {
+    console.log(props.rangeFilter, props.mode);
+
+    if (props.rangeFilter != null && props.rangeFilter[props.mode] != null) {
+      setSelectedYear(props.rangeFilter[props.mode].year);
+      setSelectedMonth(
+        props.rangeFilter[props.mode].step >= 2
+          ? props.rangeFilter[props.mode].month
+          : null
+      );
+      setSelectedDay(
+        props.rangeFilter[props.mode].step >= 3
+          ? props.rangeFilter[props.mode].day
+          : null
+      );
+    }
+  }, [props.rangeFilter]);
 
   const months = [
     "January",
@@ -44,30 +61,30 @@ function DateRangeFilter(props) {
   ];
 
   const getSelectedNav = () => {
-    if (step == "decade") {
+    if (props.step == "decade") {
       return (
         <p>
           {selectedDecade}–{selectedDecade + 9}
         </p>
       );
-    } else if (step == "year") {
+    } else if (props.step == "year") {
       return (
         <p
           className="clickable"
           onClick={() => {
-            setStep("decade");
+            props.setStep("decade");
           }}
         >
           {selectedYear}
         </p>
       );
-    } else if (step == "month") {
+    } else if (props.step == "month") {
       return (
         <>
           <p
             className="clickable"
             onClick={() => {
-              setStep("year");
+              props.setStep("year");
             }}
           >
             {months[selectedMonth - 1]}
@@ -75,7 +92,7 @@ function DateRangeFilter(props) {
           <p
             className="clickable"
             onClick={() => {
-              setStep("decade");
+              props.setStep("decade");
             }}
           >
             {selectedYear}
@@ -88,7 +105,7 @@ function DateRangeFilter(props) {
   };
 
   const getSelectedContent = () => {
-    if (step == "decade") {
+    if (props.step == "decade") {
       return (
         <div className="years">
           {[...Array(10)].map((_, idx) => (
@@ -108,7 +125,11 @@ function DateRangeFilter(props) {
                 setSelectedYear(selectedDecade + idx);
                 setSelectedMonth(null);
                 setSelectedDay(null);
-                setStep("year");
+                props.setStep("year");
+
+                if (props.mode == "from")
+                  props.setDate(props.mode, 1, selectedDecade + idx, 1, 1);
+                else props.setDate(props.mode, 1, selectedDecade + idx, 12, 31);
               }}
             >
               {selectedDecade + idx}
@@ -116,7 +137,7 @@ function DateRangeFilter(props) {
           ))}
         </div>
       );
-    } else if (step == "year") {
+    } else if (props.step == "year") {
       return (
         <div className="months">
           {months.map((month, idx) => (
@@ -137,7 +158,18 @@ function DateRangeFilter(props) {
               onClick={() => {
                 setSelectedMonth(idx + 1);
                 setSelectedDay(null);
-                setStep("month");
+                props.setStep("month");
+
+                if (props.mode == "from")
+                  props.setDate(props.mode, 2, selectedYear, idx + 1, 1);
+                else
+                  props.setDate(
+                    props.mode,
+                    2,
+                    selectedYear,
+                    idx + 1,
+                    new Date(selectedYear, idx + 1, 0).getDate()
+                  );
               }}
             >
               {month.substring(0, 3)}
@@ -145,7 +177,7 @@ function DateRangeFilter(props) {
           ))}
         </div>
       );
-    } else if (step == "month") {
+    } else if (props.step == "month") {
       let dayInWeek = new Date(selectedYear, selectedMonth - 1, 1).getDay();
       let numOfDays = new Date(selectedYear, selectedMonth, 0).getDate();
 
@@ -176,7 +208,26 @@ function DateRangeFilter(props) {
               key={`day-${idx + 1}`}
               onClick={() => {
                 setSelectedDay(idx + 1);
-                props.setDate(mode, selectedYear, selectedMonth, idx + 1);
+                props.setDate(
+                  props.mode,
+                  3,
+                  selectedYear,
+                  selectedMonth,
+                  idx + 1
+                );
+
+                if (props.mode == "from") {
+                  props.setMode("until");
+                  props.setStep("decade");
+
+                  if (props.rangeFilter.until == null) {
+                    setSelectedYear(null);
+                    setSelectedMonth(null);
+                    setSelectedDay(null);
+                  }
+                } else {
+                  props.setActiveFilterPopup(null);
+                }
               }}
             >
               {idx + 1}
@@ -194,10 +245,10 @@ function DateRangeFilter(props) {
       <div className="nav">
         <svg
           className={`chevron ${
-            (step == "decade" &&
+            (props.step == "decade" &&
               selectedDecade - 10 < Math.floor(props.minDate.year / 10) * 10) ||
-            (step == "year" && selectedYear - 1 < props.minDate.year) ||
-            (step == "month" &&
+            (props.step == "year" && selectedYear - 1 < props.minDate.year) ||
+            (props.step == "month" &&
               selectedYear == props.minDate.year &&
               selectedMonth - 1 < props.minDate.month)
               ? "disabled"
@@ -207,12 +258,12 @@ function DateRangeFilter(props) {
           viewBox="0 0 20 21"
           fill="currentColor"
           onClick={() => {
-            if (step == "decade") {
+            if (props.step == "decade") {
               setSelectedDecade((d) => d - 10);
-            } else if (step == "year") {
+            } else if (props.step == "year") {
               setSelectedYear((y) => y - 1);
               setSelectedMonth(null);
-            } else if (step == "month") {
+            } else if (props.step == "month") {
               if (selectedMonth == 1) {
                 setSelectedYear((y) => y - 1);
                 setSelectedMonth(12);
@@ -229,11 +280,11 @@ function DateRangeFilter(props) {
 
         <svg
           className={`chevron ${
-            (step == "decade" &&
+            (props.step == "decade" &&
               selectedDecade + 10 >=
                 Math.floor(props.maxDate.year / 10) * 10 + 10) ||
-            (step == "year" && selectedYear + 1 > props.maxDate.year) ||
-            (step == "month" &&
+            (props.step == "year" && selectedYear + 1 > props.maxDate.year) ||
+            (props.step == "month" &&
               selectedYear == props.maxDate.year &&
               selectedMonth + 1 > props.maxDate.month)
               ? "disabled"
@@ -243,12 +294,12 @@ function DateRangeFilter(props) {
           viewBox="0 0 20 21"
           fill="currentColor"
           onClick={() => {
-            if (step == "decade") {
+            if (props.step == "decade") {
               setSelectedDecade((d) => d + 10);
-            } else if (step == "year") {
+            } else if (props.step == "year") {
               setSelectedYear((y) => y + 1);
               setSelectedMonth(null);
-            } else if (step == "month") {
+            } else if (props.step == "month") {
               if (selectedMonth == 12) {
                 setSelectedYear((y) => y + 1);
                 setSelectedMonth(1);
