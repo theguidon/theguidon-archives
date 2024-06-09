@@ -5,6 +5,7 @@ import fullscreenReducer from "./modules/fullscreen";
 import aboutCoversReducer from "./modules/about-covers";
 import minmaxDatesReducer from "./modules/minmax-dates";
 import alertBarReducer from "./modules/alert-bar";
+import randomReducer from "./modules/random";
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     aboutCovers: aboutCoversReducer,
     minmaxDates: minmaxDatesReducer,
     alertBar: alertBarReducer,
+    random: randomReducer,
   },
 });

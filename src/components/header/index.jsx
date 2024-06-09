@@ -15,6 +15,7 @@ function Header() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
 
+  const desktopFieldRef = useRef(null);
   const mobileFieldRef = useRef(null);
 
   const toggleMobileMenu = () => {
@@ -77,7 +78,7 @@ function Header() {
           />
         </svg>
 
-        <SearchField />
+        <SearchField fieldRef={desktopFieldRef} />
 
         <nav className="main-nav">
           <NavLink to="/">Home</NavLink>

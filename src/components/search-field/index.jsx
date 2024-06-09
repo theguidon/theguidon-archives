@@ -1,16 +1,22 @@
 import "./index.css";
 
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
+import { fetchRandom } from "../../redux/modules/random";
+
 function SearchField(props) {
+  const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [searchParams] = useSearchParams();
 
-  const [variant, setVariant] = useState(Math.floor(Math.random() * 3));
-  const [subvariant, setSubvariant] = useState(Math.floor(Math.random() * 5));
+  const [variant, setVariant] = useState(0);
+  const [subvariant, setSubvariant] = useState(0);
+
+  const random = useSelector((state) => state.random);
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -21,15 +27,18 @@ function SearchField(props) {
   };
 
   const getVariantText = () => {
-    // 0: Find a press issue, magazine, primer, etc.
-    // 1: Search 'Colayco'
-    // 2: Search 'Volume [#]' or '[title]'
     if (variant == 0) {
       return "Find a press issue, magazine, primer, etc.";
     } else if (variant == 1) {
-      return 'Search "Colayco"';
+      if (random.isReady) return `Search "${random.data.authors[subvariant]}"`;
+      else 'Search "Colayco"';
     } else if (variant == 2) {
-      return 'Search "Volume [#]" or "[title]"';
+      if (random.isReady)
+        return `Search "Volume ${random.data.volumes[subvariant]}"`;
+      else return 'Search "Volume 1"';
+    } else if (variant == 3) {
+      if (random.isReady) return `Search "${random.data.titles[subvariant]}"`;
+      else return "";
     }
   };
 
@@ -41,6 +50,42 @@ function SearchField(props) {
     let q = searchParams.get("query");
     if (q) setQuery(searchParams.get("query"));
   }, [searchParams.get("query")]);
+
+  useEffect(() => {
+    dispatch(fetchRandom());
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (props.fieldRef.current != null) {
+        props.fieldRef.current.classList.remove("variant-changing");
+        props.fieldRef.current.classList.add("variant-changing");
+
+        setTimeout(() => {
+          let nv = Math.floor(Math.random() * 4);
+          if (random.isReady) {
+            if (nv == 1)
+              setSubvariant(
+                Math.floor(Math.random() * random.data.authors.length)
+              );
+            else if (nv == 2)
+              setSubvariant(
+                Math.floor(Math.random() * random.data.volumes.length)
+              );
+            else if (nv == 3)
+              setSubvariant(
+                Math.floor(Math.random() * random.data.titles.length)
+              );
+          }
+          setVariant(nv);
+
+          props.fieldRef.current.classList.remove("variant-changing");
+        }, 500);
+      }
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, [variant]);
 
   return (
     <form className="search-field" onSubmit={onSubmit}>
@@ -63,9 +108,7 @@ function SearchField(props) {
         placeholder={getVariantText()}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        ref={(e) => {
-          if (props.fieldRef != null) props.fieldRef.current = e;
-        }}
+        ref={props.fieldRef}
       />
     </form>
   );
