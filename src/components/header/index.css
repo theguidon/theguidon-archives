@@ -174,11 +174,13 @@ header #mobile-search {
 
   background-color: white;
 
+  opacity: 0;
   transform: translate(0, -100%);
   transition: 0.3s;
 }
 
 header #mobile-search.active {
+  opacity: 1;
   transform: translate(0, 0);
 }
 
