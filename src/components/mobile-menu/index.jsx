@@ -107,7 +107,11 @@ function MobileMenu(props) {
 
         <nav>
           {nav.map((row, idx) => (
-            <Link to={row.link} key={`row-${idx}`}>
+            <Link
+              to={row.link}
+              key={`row-${idx}`}
+              className={row.icon ? "" : "no-border"}
+            >
               {row.icon ? row.icon : <div />}
               <p>{row.text}</p>
             </Link>

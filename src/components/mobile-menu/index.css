@@ -64,8 +64,12 @@
   flex-shrink: 0;
 }
 
-#mobile-menu nav a:not(:last-of-type) {
+#mobile-menu nav a:not(:last-of-type):not(.no-border) {
   border-bottom: 1px solid white;
+}
+
+#mobile-menu nav a:last-of-type {
+  border-top: 1px solid white;
 }
 
 #mobile-menu nav p {
