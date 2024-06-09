@@ -42,8 +42,19 @@
   animation: marquee-to-bottom 18s linear infinite;
 }
 
-#about .covers .col .group img {
+/* #about .covers .col .group .cover-container.loading {
+  height: 200px;
+} */
+
+#about .covers .col .group .cover {
   width: 100%;
+  opacity: 1;
+  transition: 1s;
+}
+
+#about .covers .col .group .cover-container.loading .cover {
+  /* display: none; */
+  opacity: 0;
 }
 
 @keyframes marquee-to-top {
