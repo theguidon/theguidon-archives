@@ -162,7 +162,11 @@ function AdvancedFiltersGroup(props) {
           <div className="popup">
             <div className="nav">
               <svg
-                className="chevron"
+                className={`chevron ${
+                  selectedDecade - 10 < Math.floor(props.minDate.year / 10) * 10
+                    ? "disabled"
+                    : ""
+                }`}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 21"
                 fill="currentColor"
@@ -182,7 +186,12 @@ function AdvancedFiltersGroup(props) {
               </p>
 
               <svg
-                className="chevron"
+                className={`chevron ${
+                  selectedDecade + 10 >=
+                  Math.floor(props.maxDate.year / 10) * 10 + 10
+                    ? "disabled"
+                    : ""
+                }`}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 21"
                 fill="currentColor"
