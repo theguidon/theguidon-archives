@@ -58,6 +58,8 @@ footer .newsletter-group form {
   flex-flow: row nowrap;
   column-gap: 8px;
   align-items: center;
+
+  overflow: clip;
 }
 
 footer .newsletter-group form input[type="text"] {
@@ -87,6 +89,8 @@ footer .newsletter-group form input[type="submit"] {
 
   padding: 12px 16px;
   cursor: pointer;
+
+  /* border-radius: 0 4px 4px 0; */
 }
 
 footer .newsletter-group form input[type="submit"][disabled] {
