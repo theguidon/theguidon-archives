@@ -24,7 +24,7 @@ export const fetchIssues = createAsyncThunk(
     if (order != null) params.append("order", order);
 
     if (volume != null) params.append("volume", volume);
-    if (search != null && search.length > 1) params.append("search", search);
+    if (search != null) params.append("search", search);
 
     if (year != null) params.append("year", year);
     if (from != null)
