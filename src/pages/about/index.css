@@ -187,6 +187,15 @@
     height: 240px;
   }
 
+  #about .covers .col.left .cover-container:nth-child(1),
+  #about .covers .col.left .cover-container:nth-child(2),
+  #about .covers .col.left .cover-container:nth-child(3),
+  #about .covers .col.right .cover-container:nth-child(4),
+  #about .covers .col.right .cover-container:nth-child(5),
+  #about .covers .col.right .cover-container:nth-child(6) {
+    display: none;
+  }
+
   #about .content {
     padding: var(--general-padding-top, 36px) 32px 36px;
   }
