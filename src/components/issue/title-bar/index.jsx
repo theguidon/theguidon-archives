@@ -10,9 +10,7 @@ import React, { useRef, useState } from "react";
 function TitleBar(props) {
   const navigate = useNavigate();
 
-  const [TOCActive, setTOCActive] = useState(false);
   const [openAccordions, setOpenAccordions] = useState([]);
-  const [searchActive, setSearchActive] = useState(false);
   const [query, setQuery] = useState("");
   const searchFieldRef = useRef({ top: null, bottom: null });
 
@@ -110,10 +108,10 @@ function TitleBar(props) {
           {props.articleContent.length > 0 && (
             <div className="list-container">
               <div
-                className={`list icon ${TOCActive ? "active" : ""}`}
+                className={`list icon ${props.TOCActive ? "active" : ""}`}
                 onClick={() => {
-                  setTOCActive((v) => !v);
-                  if (searchActive) setSearchActive(false);
+                  props.setTOCActive((v) => !v);
+                  if (props.searchActive) props.setSearchActive(false);
                 }}
               >
                 <svg
@@ -129,7 +127,7 @@ function TitleBar(props) {
                 </svg>
               </div>
 
-              <div className={`popup ${TOCActive ? "active" : ""}`}>
+              <div className={`popup ${props.TOCActive ? "active" : ""}`}>
                 <p className="heading">Table of Contents</p>
 
                 {props.articleContent.map((section, idx) => (
@@ -192,13 +190,15 @@ function TitleBar(props) {
             </div>
           )}
 
-          <div className={`search-container ${searchActive ? "active" : ""}`}>
+          <div
+            className={`search-container ${props.searchActive ? "active" : ""}`}
+          >
             <div
-              className={`search icon ${searchActive ? "active" : ""}`}
+              className={`search icon ${props.searchActive ? "active" : ""}`}
               onClick={() => {
-                if (!searchActive) {
-                  setSearchActive(true);
-                  if (TOCActive) setTOCActive(false);
+                if (!props.searchActive) {
+                  props.setSearchActive(true);
+                  if (props.TOCActive) props.setTOCActive(false);
 
                   searchFieldRef[loc].focus();
                 }
@@ -218,7 +218,7 @@ function TitleBar(props) {
               </svg>
             </div>
 
-            <div className={`popup ${searchActive ? "active" : ""}`}>
+            <div className={`popup ${props.searchActive ? "active" : ""}`}>
               <div className="search-row">
                 <input
                   type="text"
@@ -230,7 +230,7 @@ function TitleBar(props) {
                 <div
                   className="close icon"
                   onClick={() => {
-                    if (searchActive) setSearchActive(false);
+                    if (props.searchActive) props.setSearchActive(false);
                     setQuery("");
                   }}
                 >
@@ -502,7 +502,9 @@ function TitleBar(props) {
     <section className="title-bar">
       <div className="top">
         <div
-          className={`general-container ${searchActive ? "search-active" : ""}`}
+          className={`general-container ${
+            props.searchActive ? "search-active" : ""
+          }`}
         >
           {getLeftControls("top")}
           {!props.loading ? (

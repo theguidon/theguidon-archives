@@ -7,6 +7,8 @@
   background-color: #262626;
 
   color: #818f98;
+
+  transition: 0.3s;
 }
 
 #issue.fullscreen #reader .slider-section .slider {
@@ -20,4 +22,8 @@
 #issue.fullscreen #reader .slider-section .slider-circle {
   background-color: var(--gray-3);
   border-color: #666666;
+}
+
+#issue.fullscreen #reader.hide-controls .slider-section {
+  transform: translate(0, 100%);
 }

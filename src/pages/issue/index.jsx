@@ -20,6 +20,9 @@ function IssuePage() {
   const issue = useSelector((state) => state.issue.data[slug]);
   const [articleContent, setArticleContent] = useState([]);
 
+  const [TOCActive, setTOCActive] = useState(false);
+  const [searchActive, setSearchActive] = useState(false);
+
   const [isDoubleReader, setIsDoubleReader] = useState(true);
   const [page, setPage] = useState(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -108,6 +111,7 @@ function IssuePage() {
         loading={issue == null}
         onLeftClick={onLeftClick}
         onRightClick={onRightClick}
+        hasActiveModal={TOCActive || searchActive}
         isDoubleReader={isDoubleReader}
         scale={scale}
         issue={issue}
@@ -120,6 +124,10 @@ function IssuePage() {
             loading={issue == null}
             articleContent={articleContent}
             title={issue != null ? issue.title : null}
+            TOCActive={TOCActive}
+            setTOCActive={setTOCActive}
+            searchActive={searchActive}
+            setSearchActive={setSearchActive}
             onZoomIn={onZoomIn}
             onZoomOut={onZoomOut}
             minZoom={minZoom}

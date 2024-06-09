@@ -34,6 +34,7 @@
 
   cursor: pointer;
   color: var(--gray-3);
+  transition: 0.3s;
 }
 
 #issue #reader .edge.left {

@@ -1,12 +1,15 @@
 import "./index.css";
 import "./fullscreen.css";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import sample from "./../../../assets/sample-2.pdf";
 import { Document, Page, pdfjs } from "react-pdf";
 import SliderSection from "../slider-section";
+import { useSelector } from "react-redux";
 
 function IssueReader(props) {
+  const fullscreen = useSelector((state) => state.fullscreen);
+
   // stored
   const [sx, setSx] = useState(0.0);
   const [sy, setSy] = useState(0.0);
@@ -21,6 +24,11 @@ function IssueReader(props) {
   const [loadedPages, setLoadedPages] = useState(0);
 
   const [showModal, setShowModal] = useState(true);
+
+  const [idleTimeout, setIdleTimeout] = useState(null);
+  const [hideControls, setHideControls] = useState(false);
+
+  const readerRef = useRef(null);
 
   // pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   //   "pdfjs-dist/build/pdf.worker.min.mjs",
@@ -89,8 +97,46 @@ function IssueReader(props) {
   const isLocalhost = () =>
     location.hostname === "localhost" || location.hostname === "127.0.0.1";
 
+  const hideHandler = (event) => {
+    if (fullscreen.isFullscreen) {
+      if (hideControls) setHideControls(false);
+
+      if (readerRef != null) {
+        let now = new Date();
+        now.setSeconds(now.getSeconds() + 5);
+        now.setMilliseconds(0);
+        readerRef.current.dataset.nextUpdate = now.getTime();
+      }
+
+      if (idleTimeout != null) {
+        clearTimeout(idleTimeout);
+        setIdleTimeout(null);
+      }
+
+      let to = setTimeout(() => {
+        if (
+          new Date().getTime() >= readerRef.current.dataset.nextUpdate &&
+          true
+        ) {
+          setHideControls(true);
+        }
+      }, 5000);
+      setIdleTimeout(to);
+    }
+  };
+
   return (
-    <main id="reader">
+    <main
+      id="reader"
+      className={
+        fullscreen && hideControls && !props.hasActiveModal
+          ? "hide-controls"
+          : ""
+      }
+      onMouseMove={hideHandler}
+      onClick={hideHandler}
+      ref={readerRef}
+    >
       {props.titleBar}
 
       <div

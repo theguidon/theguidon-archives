@@ -8,3 +8,11 @@
   color: #666666;
   /* color: var(--gray-5); */
 }
+
+#issue.fullscreen #reader.hide-controls .edge.left {
+  transform: translate(-100%, 0);
+}
+
+#issue.fullscreen #reader.hide-controls .edge.right {
+  transform: translate(100%, 0);
+}
