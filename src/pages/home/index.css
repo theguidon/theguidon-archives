@@ -152,6 +152,7 @@
 #home #recently-uploaded .categ-card .row {
   row-gap: 4px;
   margin: 0 0 12px;
+  align-items: flex-end;
 }
 
 #home #recently-uploaded .categ-card .row .categ-name {
@@ -169,10 +170,12 @@
 
 #home #recently-uploaded .categ-card .cover-container {
   height: 220px;
+  /* height: 140px; */
   overflow: clip;
 
   background-color: var(--blue-gray-light);
   padding: 24px;
+  /* padding: 12px; */
 
   display: flex;
   flex-flow: row nowrap;
@@ -348,6 +351,10 @@
 
   #home #recently-uploaded .categ-card .row {
     margin: 0 0 16px;
+  }
+
+  #home #recently-uploaded .categ-card .row .categ-name {
+    color: black;
   }
 
   #home #recently-uploaded .categ-card .cover-container {
