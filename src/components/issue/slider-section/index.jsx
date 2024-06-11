@@ -60,6 +60,10 @@ function SliderSection(props) {
               setSliderCircleDragging(true);
             }}
             onDrag={onSliderCircleDrag}
+            onTouchStart={() => {
+              setSliderCircleDragging(true);
+            }}
+            onTouchMove={onSliderCircleDrag}
           />
         </div>
 

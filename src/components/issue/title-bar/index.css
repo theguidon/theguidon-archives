@@ -188,6 +188,10 @@
   border-radius: 8px;
 
   position: relative;
+
+  -webkit-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
 }
 
 #issue .title-bar .zoom-fill {
@@ -217,6 +221,8 @@
   cursor: grab;
   cursor: -moz-grab;
   cursor: -webkit-grab;
+
+  touch-action: none;
 }
 
 #issue .title-bar .zoom-circle:active {

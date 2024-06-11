@@ -16,3 +16,7 @@
 #issue.fullscreen #reader.hide-controls .edge.right {
   transform: translate(100%, 0);
 }
+
+#issue.fullscreen #reader .document-container:not(.dragging) {
+  touch-action: none;
+}

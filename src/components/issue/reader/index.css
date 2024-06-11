@@ -70,9 +70,10 @@
   width: auto;
 }
 
-/* hack */
 #issue #reader .document-container:not(.dragging) {
   transition: 0.2s;
+
+  /* touch-action: none; */
 }
 
 #issue #reader .document {

@@ -181,6 +181,9 @@ function IssueReader(props) {
             onMouseDown={onStartDragging}
             onMouseMove={onDrag}
             onMouseUp={onEndDragging}
+            onTouchStart={onStartDragging}
+            onTouchMove={onDrag}
+            onTouchEnd={onEndDragging}
           >
             {props.isLegacy ? (
               <div className="document">
@@ -208,7 +211,7 @@ function IssueReader(props) {
                       pageNumber={props.page}
                       renderAnnotationLayer={false}
                       renderTextLayer={false}
-                      height={Math.floor(window.screen.height * 3)}
+                      height={Math.floor(window.screen.height * 1.5)}
                       className="page active"
                       loading={null}
                     />
@@ -220,7 +223,7 @@ function IssueReader(props) {
                           pageNumber={props.page + 1}
                           renderAnnotationLayer={false}
                           renderTextLayer={false}
-                          height={Math.floor(window.screen.height * 3)}
+                          height={Math.floor(window.screen.height * 1.5)}
                           className="page active"
                           loading={null}
                         />
