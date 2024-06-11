@@ -298,7 +298,9 @@ function TitleBar(props) {
       {!props.isLegacy && (
         <div className="reader-group">
           <div
-            className={`reader icon ${props.isDoubleReader ? "active" : ""}`}
+            className={`reader icon ${props.isDoubleReader ? "active" : ""} ${
+              props.initOnMobile ? "init-mobile" : ""
+            }`}
             onClick={() => props.setIsDoubleReader(true)}
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">

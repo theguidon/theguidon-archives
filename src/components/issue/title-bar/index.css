@@ -164,6 +164,10 @@
   color: var(--icon-color);
 }
 
+/* #issue .title-bar .reader.init-mobile {
+  display: none;
+} */
+
 /* zoom */
 #issue .title-bar .zoom-group {
   display: flex;

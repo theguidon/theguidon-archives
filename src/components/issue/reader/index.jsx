@@ -208,7 +208,7 @@ function IssueReader(props) {
                       pageNumber={props.page}
                       renderAnnotationLayer={false}
                       renderTextLayer={false}
-                      height={Math.floor(window.screen.height * 1.75)}
+                      height={Math.floor(window.screen.height * 3)}
                       className="page active"
                       loading={null}
                     />
@@ -220,7 +220,7 @@ function IssueReader(props) {
                           pageNumber={props.page + 1}
                           renderAnnotationLayer={false}
                           renderTextLayer={false}
-                          height={Math.floor(window.screen.height * 1.75)}
+                          height={Math.floor(window.screen.height * 3)}
                           className="page active"
                           loading={null}
                         />
@@ -269,7 +269,7 @@ function IssueReader(props) {
 
       {!props.loading &&
         showModal &&
-        ((platformIOS && loadedMB < loadedTotalMB) ||
+        ((platformIOS && loadedMB < loadedTotalMB && true) ||
           (!platformIOS && loadedPages < props.issue.num_pages)) && (
           <div className="bg-tint">
             <div className="loading-modal">

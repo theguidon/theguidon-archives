@@ -8,6 +8,10 @@
 
   display: flex;
   flex-flow: column nowrap;
+
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 #issue #reader .container {

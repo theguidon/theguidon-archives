@@ -30,8 +30,15 @@ function IssuePage() {
 
   const [scale, setScale] = useState(1.0);
 
+  const [initOnMobile, setInitOnMobile] = useState(false);
+
   useEffect(() => {
     dispatch(fetchIssue({ slug: slug }));
+
+    if (document.body.clientWidth <= 576) {
+      setInitOnMobile(true);
+      setIsDoubleReader(false);
+    }
   }, []);
 
   const minZoom = 0.5;
@@ -115,6 +122,7 @@ function IssuePage() {
         onRightClick={onRightClick}
         hasActiveModal={TOCActive || searchActive}
         isDoubleReader={isDoubleReader}
+        setIsDoubleReader={setIsDoubleReader}
         scale={scale}
         issue={issue}
         page={page}
@@ -136,6 +144,7 @@ function IssuePage() {
             maxZoom={maxZoom}
             setScale={setScale}
             zoom={((scale - minZoom) / (maxZoom - minZoom)) * 100}
+            initOnMobile={initOnMobile}
             isDoubleReader={isDoubleReader}
             setIsDoubleReader={setIsDoubleReader}
             isFullscreen={isFullscreen}
@@ -274,14 +283,17 @@ function IssuePage() {
                                   __html: article.title,
                                 }}
                               />
-                              <p
-                                className="bylines"
-                                dangerouslySetInnerHTML={{
-                                  __html: `By ${formatBylines(
-                                    article.bylines
-                                  )}`,
-                                }}
-                              />
+
+                              {article.bylines.length > 0 && (
+                                <p
+                                  className="bylines"
+                                  dangerouslySetInnerHTML={{
+                                    __html: `By ${formatBylines(
+                                      article.bylines
+                                    )}`,
+                                  }}
+                                />
+                              )}
                             </div>
                           ))}
                         </div>
