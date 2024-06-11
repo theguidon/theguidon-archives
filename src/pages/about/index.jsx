@@ -4,11 +4,11 @@ import { setDocumentTitle } from "../../utils";
 
 import { ArchivesData } from "../../data/archives";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAboutCovers } from "../../redux/modules/about-covers";
+import { fetchRandom } from "../../redux/modules/random";
 
 function AboutPage() {
   const dispatch = useDispatch();
-  const covers = useSelector((state) => state.aboutCovers);
+  const random = useSelector((state) => state.random);
 
   // const [loadedImages, setLoadedImages] = useState(
   //   [...Array(2 * 3 * 6)].map((_) => false)
@@ -17,28 +17,28 @@ function AboutPage() {
 
   useEffect(() => {
     setDocumentTitle("About");
-    dispatch(fetchAboutCovers());
+    dispatch(fetchRandom());
   }, []);
 
   const getCoverOrder = (isLeft) => {
-    if (covers.isReady) {
+    if (random.isReady) {
       if (isLeft)
         return [
-          covers.data["press-issue"][0],
-          covers.data["graduation-magazine"][0],
-          covers.data["freshmanual"][0],
-          covers.data["uaap-primer"][0],
-          covers.data["other"][0],
-          covers.data["legacy"][0],
+          random.data.covers["press-issue"][0],
+          random.data.covers["graduation-magazine"][0],
+          random.data.covers["freshmanual"][0],
+          random.data.covers["uaap-primer"][0],
+          random.data.covers["other"][0],
+          random.data.covers["legacy"][0],
         ];
 
       return [
-        covers.data["press-issue"][1],
-        covers.data["graduation-magazine"][1],
-        covers.data["freshmanual"][1],
-        covers.data["uaap-primer"][1],
-        covers.data["other"][1],
-        covers.data["legacy"][1],
+        random.data.covers["press-issue"][1],
+        random.data.covers["graduation-magazine"][1],
+        random.data.covers["freshmanual"][1],
+        random.data.covers["uaap-primer"][1],
+        random.data.covers["other"][1],
+        random.data.covers["legacy"][1],
       ];
     }
 
