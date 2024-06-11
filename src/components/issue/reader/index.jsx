@@ -269,7 +269,7 @@ function IssueReader(props) {
 
       {!props.loading &&
         showModal &&
-        ((platformIOS && loadedMB < loadedTotalMB) ||
+        ((platformIOS && loadedMB <= loadedTotalMB) ||
           (!platformIOS && loadedPages < props.issue.num_pages)) && (
           <div className="bg-tint">
             <div className="loading-modal">
