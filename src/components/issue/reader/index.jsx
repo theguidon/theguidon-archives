@@ -211,7 +211,7 @@ function IssueReader(props) {
                       pageNumber={props.page}
                       renderAnnotationLayer={false}
                       renderTextLayer={false}
-                      height={Math.floor(window.screen.height * 1.5)}
+                      height={Math.floor(window.screen.height * 1)}
                       className="page active"
                       loading={null}
                     />
@@ -223,7 +223,7 @@ function IssueReader(props) {
                           pageNumber={props.page + 1}
                           renderAnnotationLayer={false}
                           renderTextLayer={false}
-                          height={Math.floor(window.screen.height * 1.5)}
+                          height={Math.floor(window.screen.height * 1)}
                           className="page active"
                           loading={null}
                         />
@@ -312,18 +312,30 @@ function IssueReader(props) {
               </svg>
 
               {platformIOS ? (
-                <p className="loaded">{`${
-                  Math.floor(loadedMB / 100000) / 10
-                } of ${Math.floor(loadedTotalMB / 100000) / 10} MB loaded`}</p>
+                <>
+                  <p className="loaded">iOS device detected</p>
+                  <p className="loaded">{`${
+                    Math.floor(loadedMB / 100000) / 10
+                  } of ${
+                    Math.floor(loadedTotalMB / 100000) / 10
+                  } MB loaded`}</p>
+                </>
               ) : (
                 <p className="loaded">{`${loadedPages} out of ${
                   props.issue.num_pages
                 } page${props.issue.num_pages > 1 ? "s" : ""} loaded`}</p>
               )}
 
-              <p className="text">
-                If the pages do not load, please view on desktop
-              </p>
+              {platformIOS ? (
+                <p className="text">
+                  We are having compatibility issues with iOS devices. For a
+                  better viewing experience, please view on desktop.
+                </p>
+              ) : (
+                <p className="text">
+                  If the pages do not load, please view on desktop.
+                </p>
+              )}
             </div>
           </div>
         )}
