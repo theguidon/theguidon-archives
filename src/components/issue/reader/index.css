@@ -141,6 +141,11 @@
   display: block;
 
   cursor: pointer;
+  transition: 0.3s;
+}
+
+#issue #reader .loading-modal .close:hover {
+  color: var(--blue-alt-1);
 }
 
 #issue #reader .loading-modal .spinner {

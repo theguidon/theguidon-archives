@@ -164,3 +164,23 @@ export const validateRangeFilter = (str, mode) => {
 
   return val;
 };
+
+/**
+ * Detects if platform is iOS or not
+ * @param {object} navigator Navigator object
+ * @returns boolean
+ */
+export const isIOS = (navigator) => {
+  return (
+    [
+      "iPad Simulator",
+      "iPhone Simulator",
+      "iPod Simulator",
+      "iPad",
+      "iPhone",
+      "iPod",
+    ].includes(navigator.platform) ||
+    // iPad on iOS 13 detection
+    (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+  );
+};
