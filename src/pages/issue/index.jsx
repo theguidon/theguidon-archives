@@ -19,6 +19,7 @@ function IssuePage() {
   const { slug } = useParams();
   const issue = useSelector((state) => state.issue.data[slug]);
   const [articleContent, setArticleContent] = useState([]);
+  const [contributors, setContributors] = useState([]);
 
   const [TOCActive, setTOCActive] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
@@ -100,6 +101,7 @@ function IssuePage() {
         setDocumentTitle(issue.title);
 
         setArticleContent(JSON.parse(issue.article_content));
+        setContributors(JSON.parse(issue.contributors));
       }
     }
   }, [issue]);
@@ -238,49 +240,111 @@ function IssuePage() {
         )}
       </section>
 
-      {issue != null && articleContent.length > 0 && (
-        <section id="issue-content">
-          <div className="general-container">
-            <h4>In this issue</h4>
+      {issue != null &&
+        (articleContent.length > 0 ||
+          (contributors.length > 0 && !issue.is_legacy)) && (
+          <section id="issue-content">
+            <div className="general-container">
+              {articleContent.length > 0 && (
+                <>
+                  <h4>In this issue</h4>
 
-            {articleContent.map((section, idx) => (
-              <div className="section" key={`content-section-${idx}`}>
-                <p className="section-name">{section.name}</p>
-                <hr />
+                  <div className="content-container">
+                    {articleContent.map((section, idx) => (
+                      <div className="section" key={`content-section-${idx}`}>
+                        <p className="section-name">{section.name}</p>
+                        <hr />
 
-                <div
-                  className="articles-container"
-                  style={{
-                    gridTemplateRows: `repeat(${Math.ceil(
-                      section.articles.length / 2
-                    )}, auto)`,
-                  }}
-                >
-                  {section.articles.map((article, idx2) => (
-                    <div
-                      className="article"
-                      key={`content-section-${idx}-${idx2}`}
-                    >
-                      <p
-                        className="title"
-                        dangerouslySetInnerHTML={{
-                          __html: article.title,
-                        }}
-                      />
-                      <p
-                        className="bylines"
-                        dangerouslySetInnerHTML={{
-                          __html: `By ${formatBylines(article.bylines)}`,
-                        }}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+                        <div
+                          className="articles-container"
+                          style={{
+                            gridTemplateRows: `repeat(${Math.ceil(
+                              section.articles.length / 2
+                            )}, auto)`,
+                          }}
+                        >
+                          {section.articles.map((article, idx2) => (
+                            <div
+                              className="article"
+                              key={`content-section-${idx}-${idx2}`}
+                            >
+                              <p
+                                className="title"
+                                dangerouslySetInnerHTML={{
+                                  __html: article.title,
+                                }}
+                              />
+                              <p
+                                className="bylines"
+                                dangerouslySetInnerHTML={{
+                                  __html: `By ${formatBylines(
+                                    article.bylines
+                                  )}`,
+                                }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+
+              {contributors.length > 0 && (
+                <>
+                  <h4>Contributors</h4>
+
+                  <div className="contributors-container">
+                    {contributors.map((group, idx) => (
+                      <div className="group" key={`contribs-group-${idx}`}>
+                        <p className="group-name">{group.name}</p>
+                        <hr />
+
+                        <div
+                          className={`people-container ${
+                            group.people.filter((p) => p.title.length > 0)
+                              .length > 1
+                              ? ""
+                              : "no-title"
+                          }`}
+                          style={{
+                            gridTemplateRows: `repeat(${Math.ceil(
+                              group.people.length / 2
+                            )}, auto)`,
+                          }}
+                        >
+                          {group.people.map((person, idx2) => {
+                            if (person.title.length > 0) {
+                              return (
+                                <div
+                                  className="person"
+                                  key={`contributors-group-${idx}-${idx2}`}
+                                >
+                                  <p className="byline">{person.byline}</p>
+                                  <p className="title">{person.title}</p>
+                                </div>
+                              );
+                            } else {
+                              return (
+                                <p
+                                  className="byline"
+                                  key={`contributors-group-${idx}-${idx2}`}
+                                >
+                                  {person.byline}
+                                </p>
+                              );
+                            }
+                          })}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+          </section>
+        )}
     </div>
     // )
   );

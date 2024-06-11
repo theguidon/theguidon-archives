@@ -161,11 +161,18 @@
   color: var(--gdn-blue);
 }
 
-#issue #issue-content .section:not(:last-child) {
-  margin: 0 0 32px;
+#issue #issue-content .content-container {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 32px;
 }
 
-#issue #issue-content .section-name {
+#issue #issue-content .content-container:not(:last-child) {
+  margin: 0 0 48px;
+}
+
+#issue #issue-content .section-name,
+#issue #issue-content .group-name {
   font-size: var(--subheading-m-font-size);
   letter-spacing: var(--subheading-m-letter-spacing);
   font-weight: bold;
@@ -198,6 +205,28 @@
   /* font-size: var(--body-l-font-size); */
 }
 
+#issue #issue-content .contributors-container {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 32px;
+}
+
+#issue #issue-content .contributors-container .people-container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 80px;
+  row-gap: 16px;
+}
+
+#issue #issue-content .contributors-container .people-container.no-title {
+  row-gap: 0;
+}
+
+#issue #issue-content .contributors-container .title {
+  color: var(--gray-2);
+}
+
 /* loading */
 #issue #issue-metadata .vol-issue.loading {
   width: 100%;
@@ -227,7 +256,8 @@
     height: 272px;
   }
 
-  #issue #issue-content .articles-container {
+  #issue #issue-content .articles-container,
+  #issue #issue-content .contributors-container .people-container {
     column-gap: 64px;
   }
 }
@@ -243,7 +273,8 @@
     height: 248px;
   }
 
-  #issue #issue-content .articles-container {
+  #issue #issue-content .articles-container,
+  #issue #issue-content .contributors-container .people-container {
     column-gap: 48px;
   }
 }
@@ -259,7 +290,8 @@
     height: 224px;
   }
 
-  #issue #issue-content .articles-container {
+  #issue #issue-content .articles-container,
+  #issue #issue-content .contributors-container .people-container {
     column-gap: 32px;
   }
 }
@@ -288,11 +320,8 @@
     margin: 0 0 24px;
   }
 
-  /* #issue #issue-content .section:not(:last-child) {
-    margin: 0 0 16px;
-  } */
-
-  #issue #issue-content .articles-container {
+  #issue #issue-content .articles-container,
+  #issue #issue-content .contributors-container .people-container {
     grid-auto-flow: row;
     grid-template-columns: 1fr;
     grid-template-rows: unset !important;
