@@ -107,8 +107,10 @@ function IssuePage() {
       else {
         setDocumentTitle(issue.title);
 
-        setIssueContent(JSON.parse(issue.issue_content));
-        setContributors(JSON.parse(issue.contributors));
+        if (issue.issue_content != null)
+          setIssueContent(JSON.parse(issue.issue_content));
+        if (issue.contributors != null)
+          setContributors(JSON.parse(issue.contributors));
       }
     }
   }, [issue]);
