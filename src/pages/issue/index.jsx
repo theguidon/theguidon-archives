@@ -18,7 +18,7 @@ function IssuePage() {
   const dispatch = useDispatch();
   const { slug } = useParams();
   const issue = useSelector((state) => state.issue.data[slug]);
-  const [articleContent, setArticleContent] = useState([]);
+  const [issueContent, setIssueContent] = useState([]);
   const [contributors, setContributors] = useState([]);
 
   const [TOCActive, setTOCActive] = useState(false);
@@ -107,7 +107,7 @@ function IssuePage() {
       else {
         setDocumentTitle(issue.title);
 
-        setArticleContent(JSON.parse(issue.article_content));
+        setIssueContent(JSON.parse(issue.issue_content));
         setContributors(JSON.parse(issue.contributors));
       }
     }
@@ -132,7 +132,7 @@ function IssuePage() {
         titleBar={
           <TitleBar
             loading={issue == null}
-            articleContent={articleContent}
+            issueContent={issueContent}
             title={issue != null ? issue.title : null}
             TOCActive={TOCActive}
             setTOCActive={setTOCActive}
@@ -250,16 +250,16 @@ function IssuePage() {
       </section>
 
       {issue != null &&
-        (articleContent.length > 0 ||
+        (issueContent.length > 0 ||
           (contributors.length > 0 && !issue.is_legacy)) && (
           <section id="issue-content">
             <div className="general-container">
-              {articleContent.length > 0 && (
+              {issueContent.length > 0 && (
                 <>
                   <h4 id="in-this-issue">In this issue</h4>
 
                   <div className="content-container">
-                    {articleContent.map((section, idx) => (
+                    {issueContent.map((section, idx) => (
                       <div className="section" key={`content-section-${idx}`}>
                         <p className="section-name">{section.name}</p>
                         <hr />

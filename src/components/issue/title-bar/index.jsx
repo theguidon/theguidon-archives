@@ -22,7 +22,7 @@ function TitleBar(props) {
     let filtered = [];
     let lc = query.toLowerCase();
 
-    props.articleContent.forEach((section) => {
+    props.issueContent.forEach((section) => {
       let articles;
 
       if (section.name.toLowerCase().includes(lc)) {
@@ -105,7 +105,7 @@ function TitleBar(props) {
 
       {!props.isLegacy && (
         <div className="controls-group">
-          {props.articleContent.length > 0 && (
+          {props.issueContent.length > 0 && (
             <div className="list-container">
               <div
                 className={`list icon ${props.TOCActive ? "active" : ""}`}
@@ -130,7 +130,7 @@ function TitleBar(props) {
               <div className={`popup ${props.TOCActive ? "active" : ""}`}>
                 <p className="heading">Table of Contents</p>
 
-                {props.articleContent.map((section, idx) => (
+                {props.issueContent.map((section, idx) => (
                   <React.Fragment key={`section-${idx}`}>
                     <div
                       className={`section-row ${
