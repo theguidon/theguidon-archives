@@ -256,7 +256,7 @@ function IssuePage() {
             <div className="general-container">
               {articleContent.length > 0 && (
                 <>
-                  <h4>In this issue</h4>
+                  <h4 id="in-this-issue">In this issue</h4>
 
                   <div className="content-container">
                     {articleContent.map((section, idx) => (
@@ -305,7 +305,7 @@ function IssuePage() {
 
               {contributors.length > 0 && (
                 <>
-                  <h4>Contributors</h4>
+                  <h4 id="contributors">Contributors</h4>
 
                   <div className="contributors-container">
                     {contributors.map((group, idx) => (
