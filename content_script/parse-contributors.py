@@ -1,7 +1,16 @@
 import sys
 import json
 import re
+import argparse
 
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--t', action=argparse.BooleanOptionalAction)
+parser.add_argument('--i', action=argparse.BooleanOptionalAction)
+args = parser.parse_args()
+
+should_title = args.t
+should_indent = args.i
 groups = []
 
 while True:
@@ -22,8 +31,7 @@ while True:
         input() # extra space for formatting
       
       people.append({
-        'byline': byline.title(),
-        # 'byline': byline,
+        'byline': byline.title() if should_title else byline,
         'title': title,
       })
 
@@ -38,7 +46,7 @@ while True:
 
 json_str = json.dumps(
   groups,
-  indent=2,
+  indent=2 if should_indent else None,
   separators=(',', ':'),
   ensure_ascii=False
 )

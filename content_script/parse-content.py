@@ -1,7 +1,16 @@
 import sys
 import json
 import re
+import argparse
 
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--t', action=argparse.BooleanOptionalAction)
+parser.add_argument('--i', action=argparse.BooleanOptionalAction)
+args = parser.parse_args()
+
+should_title = args.t
+should_indent = args.i
 content = []
 
 while True:
@@ -33,16 +42,13 @@ while True:
         for byline in commasplit:
           trimmed = byline.strip()
           if len(trimmed) > 0:
-            formatted.append(trimmed.title())
-            # formatted.append(trimmed)
+            formatted.append(trimmed.title() if should_title else trimmed)
 
         # add second half
-        formatted.append(andsplit[1].strip().title())
-        # formatted.append(andsplit[1].strip())
+        formatted.append(andsplit[1].strip().title() if should_title else andsplit[1].strip())
       else:
         # solo byline
-        formatted.append(bylines.title())
-        # formatted.append(bylines)
+        formatted.append(bylines.title() if should_title else bylines)
       
       articles.append({
         'page': page_num,
@@ -58,7 +64,7 @@ while True:
 
 json_str = json.dumps(
   content,
-  indent=2,
+  indent=2 if should_indent else None,
   separators=(',', ':'),
   ensure_ascii=False
 )
