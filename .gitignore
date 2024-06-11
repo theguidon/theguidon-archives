@@ -26,6 +26,8 @@ node_modules
 **/*.pdf
 
 # scripts
-content_script/input.txt
-content_script/output.json
+content_script/content.txt
+content_script/content.json
+content_script/contributors.txt
+content_script/contributors.json
 content_script/parse.bat
