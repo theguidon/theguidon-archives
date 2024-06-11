@@ -34,12 +34,15 @@ while True:
           trimmed = byline.strip()
           if len(trimmed) > 0:
             formatted.append(trimmed.title())
+            # formatted.append(trimmed)
 
         # add second half
         formatted.append(andsplit[1].strip().title())
+        # formatted.append(andsplit[1].strip())
       else:
         # solo byline
         formatted.append(bylines.title())
+        # formatted.append(bylines)
       
       articles.append({
         'page': page_num,

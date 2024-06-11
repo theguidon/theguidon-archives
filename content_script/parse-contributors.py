@@ -23,6 +23,7 @@ while True:
       
       people.append({
         'byline': byline.title(),
+        # 'byline': byline,
         'title': title,
       })
 
