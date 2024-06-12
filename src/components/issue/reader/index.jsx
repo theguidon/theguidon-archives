@@ -7,6 +7,7 @@ import { Document, Page, pdfjs } from "react-pdf";
 import SliderSection from "../slider-section";
 import { useSelector } from "react-redux";
 import { isIOS } from "../../../utils";
+import CustomRenderer from "../../../utils/custom-renderer";
 
 function IssueReader(props) {
   const fullscreen = useSelector((state) => state.fullscreen);
@@ -203,6 +204,7 @@ function IssueReader(props) {
                   if (loadedTotalMB != total) setLoadedTotalMB(total);
                 }}
                 className="document"
+                // renderMode="custom"
               >
                 {platformIOS ? (
                   <>
@@ -211,9 +213,11 @@ function IssueReader(props) {
                       pageNumber={props.page}
                       renderAnnotationLayer={false}
                       renderTextLayer={false}
-                      height={Math.floor(window.screen.height * 1)}
+                      width={Math.floor(window.screen.width)}
+                      // height={Math.floor(window.screen.height * 1)}
                       className="page active"
                       loading={null}
+                      // customRenderer={CustomRenderer}
                     />
                     {props.isDoubleReader &&
                       props.page != 1 &&
@@ -223,9 +227,11 @@ function IssueReader(props) {
                           pageNumber={props.page + 1}
                           renderAnnotationLayer={false}
                           renderTextLayer={false}
-                          height={Math.floor(window.screen.height * 1)}
+                          width={Math.floor(window.screen.width)}
+                          // height={Math.floor(window.screen.height * 1)}
                           className="page active"
                           loading={null}
+                          // customRenderer={CustomRenderer}
                         />
                       )}
                   </>
@@ -244,6 +250,8 @@ function IssueReader(props) {
                       className={`page ${
                         determineShowPage(idx + 1) ? "active" : ""
                       }`}
+                      devicePixelRatio={1}
+                      // customRenderer={CustomRenderer}
                     />
                   ))
                 )}
