@@ -38,8 +38,13 @@ function GeneralLayout() {
   const isFullscreen = useSelector((state) => state.fullscreen.isFullscreen);
 
   useEffect(() => {
-    if (isFullscreen) document.body.requestFullscreen();
-    else if (document.fullscreenElement != null) document.exitFullscreen();
+    if (isFullscreen) {
+      if (document.body.requestFullscreen) document.body.requestFullscreen();
+      else if (document.body.mozRequestFullScreen)
+        document.body.mozRequestFullscreen();
+      else if (document.body.webkitRequestFullscreen)
+        document.body.webkitRequestFullscreen();
+    } else if (document.fullscreenElement != null) document.exitFullscreen();
   }, [isFullscreen]);
 
   // does not work because it doesn't detect F11
