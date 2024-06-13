@@ -216,7 +216,8 @@ function IssueReader(props) {
                   </div>
                 ) : (
                   <Document
-                    file={isLocalhost() ? sample : props.issue.full_issue}
+                    // file={isLocalhost() ? sample : props.issue.full_issue}
+                    file={props.issue.full_issue}
                     // file={`/issues/${issue.fixed_slug}.pdf`}
                     // file={sample}
                     loading={null}
