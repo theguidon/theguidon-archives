@@ -105,10 +105,15 @@
   display: block;
 }
 
-#issue #reader .document .page canvas,
-#issue #reader .document .page img.cover {
+#issue #reader .document .page canvas {
   height: 100% !important;
   width: auto !important;
+}
+
+#issue #reader .document .page img.cover {
+  height: 100% !important;
+  width: 100% !important;
+  object-fit: contain;
 }
 
 #issue #reader .document .page > div {
