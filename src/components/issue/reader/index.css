@@ -159,6 +159,15 @@
   color: var(--blue-alt-1);
 }
 
+#issue #reader .loading-modal .warning {
+  display: block;
+  margin: 0 auto 16px;
+
+  color: var(--gdn-blue);
+  width: 120px;
+  height: 120px;
+}
+
 #issue #reader .loading-modal .spinner {
   display: block;
   animation: spin 2s ease-in-out 0s infinite forwards;
