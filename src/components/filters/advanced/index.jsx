@@ -33,7 +33,10 @@ function AdvancedFiltersGroup(props) {
         .toString()
         .padStart(2, "0")}`;
 
-    props.replaceSearchParams([{ key: mode, value: val }]);
+    props.replaceSearchParams([
+      { key: mode, value: val },
+      { key: "page", value: 1 },
+    ]);
   };
 
   const closeIcon = (cmode) => (
@@ -233,10 +236,12 @@ function AdvancedFiltersGroup(props) {
                       if (year == props.yearFilter)
                         props.replaceSearchParams([
                           { key: "year", delete: true },
+                          { key: "page", value: 1 },
                         ]);
                       else
                         props.replaceSearchParams([
                           { key: "year", value: year },
+                          { key: "page", value: 1 },
                         ]);
                       props.setActiveFilterPopup(null);
                     }

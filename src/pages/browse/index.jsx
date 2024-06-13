@@ -175,10 +175,6 @@ function BrowsePage() {
     }
   }, [page]);
 
-  useEffect(() => {
-    replaceSearchParams([{ key: "page", value: 1 }]);
-  }, [yearFilter, rangeFilter.from, rangeFilter.until]);
-
   /**
    * If path is /releases, redirect to /releases/recent
    */
