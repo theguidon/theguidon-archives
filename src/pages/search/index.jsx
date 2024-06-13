@@ -136,13 +136,6 @@ function SearchPage() {
     }
   }, [page]);
 
-  /**
-   * When year or range filter changes, change page to default 1
-   */
-  useEffect(() => {
-    replaceSearchParams([{ key: "page", value: 1 }]);
-  }, [yearFilter, rangeFilter.from, rangeFilter.to]);
-
   return (
     <div id="search-results" className="general-container general-padding-top">
       <p className="subheader">

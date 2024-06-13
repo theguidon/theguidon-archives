@@ -51,9 +51,6 @@
   stroke: var(--gdn-blue);
 }
 
-.filters .range-filter-container .nav-cell:hover .close {
-}
-
 .filters .range-filter-container .popup {
   width: 100%;
   max-width: 256px;
@@ -103,4 +100,16 @@
 
 .filters .range-filter-container hr {
   margin: 0 0 16px;
+}
+
+.filters .range-filter-container .show {
+  display: block;
+}
+
+.filters .range-filter-container .show-grid {
+  display: grid;
+}
+
+.filters .range-filter-container .hide {
+  display: none;
 }

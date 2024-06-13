@@ -11,8 +11,9 @@ import AboutPage from "./pages/about";
 import Page404 from "./pages/404";
 
 import { ScrollToTop } from "./utils";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AlertBar from "./components/alert-bar";
+import { hideModals } from "./redux/modules/hide-modals";
 
 function App() {
   return (
@@ -35,7 +36,10 @@ function App() {
 
 function GeneralLayout() {
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
+
   const isFullscreen = useSelector((state) => state.fullscreen.isFullscreen);
+  const modals = useSelector((state) => state.hideModals);
 
   useEffect(() => {
     if (isFullscreen) {
@@ -46,6 +50,19 @@ function GeneralLayout() {
         document.body.webkitRequestFullscreen();
     } else if (document.fullscreenElement != null) document.exitFullscreen();
   }, [isFullscreen]);
+
+  useEffect(() => {
+    document.body.onclick = (event) => {
+      let found = event.target.closest(
+        ".popup, .filter-container, .controls-left"
+      );
+
+      // console.log(found);
+      if (found == null && !modals.hideModals) {
+        dispatch(hideModals());
+      }
+    };
+  }, []);
 
   // does not work because it doesn't detect F11
   // useEffect(() => {

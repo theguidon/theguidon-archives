@@ -5,8 +5,9 @@ import "./list-fullscreen.css";
 import "./search.css";
 import "./search-fullscreen.css";
 import { useNavigate } from "react-router-dom";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { isIOS } from "../../../utils";
+import { useSelector } from "react-redux";
 
 function TitleBar(props) {
   const navigate = useNavigate();
@@ -18,6 +19,8 @@ function TitleBar(props) {
   const [zoomCircleDragging, setZoomCircleDragging] = useState(false);
 
   const platformIOS = isIOS(window.navigator) || false;
+
+  const modals = useSelector((state) => state.hideModals);
 
   const getFilteredContent = () => {
     if (query === "") return [];
@@ -87,6 +90,13 @@ function TitleBar(props) {
       props.setScale(calculateZoom(event, event.target.parentNode));
     }
   };
+
+  useEffect(() => {
+    if (modals.hideModals) {
+      props.setTOCActive(false);
+      props.setSearchActive(false);
+    }
+  }, [modals.hideModals]);
 
   const getLeftControls = (loc) => (
     <div className="controls-left">

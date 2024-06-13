@@ -14,6 +14,7 @@ function FiltersGroup(props) {
 
   const dispatch = useDispatch();
   const minmaxDates = useSelector((state) => state.minmaxDates);
+  const modals = useSelector((state) => state.hideModals);
 
   const [yearFilter, setYearFilter] = useState(
     searchParams.get("year") != null &&
@@ -38,6 +39,12 @@ function FiltersGroup(props) {
   useEffect(() => {
     dispatch(fetchMinmaxDates());
   }, []);
+
+  useEffect(() => {
+    if (modals.hideModals) {
+      setActiveFilterPopup(null);
+    }
+  }, [modals.hideModals]);
 
   /**
    * Update document title
