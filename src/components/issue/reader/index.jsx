@@ -1,13 +1,11 @@
 import "./index.css";
 import "./fullscreen.css";
-import { useEffect, useRef, useState } from "react";
 
-import sample from "./../../../assets/sample-2.pdf";
+// import sample from "./../../../assets/sample-2.pdf";
 import { Document, Page, pdfjs } from "react-pdf";
 import SliderSection from "../slider-section";
 import { useSelector } from "react-redux";
 import { isIOS } from "../../../utils";
-import CustomRenderer from "../../../utils/custom-renderer";
 
 function IssueReader(props) {
   const fullscreen = useSelector((state) => state.fullscreen);
@@ -156,7 +154,7 @@ function IssueReader(props) {
         ) : (
           <iframe
             className="iframe container"
-            src={`https://dev.theguidon.com${props.issue.full_issue}#toolbar=0&navpanes=0`}
+            src={`https://archives.theguidon.com${props.issue.full_issue}#toolbar=0&navpanes=0`}
           ></iframe>
         )
       ) : (
@@ -232,7 +230,7 @@ function IssueReader(props) {
                     {platformIOS ? (
                       <>
                         {/* <iframe
-                          src={`https://dev.theguidon.com${props.issue.full_issue}#toolbar=0&navpanes=0`}
+                          src={`https://archives.theguidon.com${props.issue.full_issue}#toolbar=0&navpanes=0`}
                         ></iframe> */}
                         {/* <Page
                       canvasBackground="white"
