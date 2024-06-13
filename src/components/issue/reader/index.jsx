@@ -145,10 +145,20 @@ function IssueReader(props) {
     >
       {props.titleBar}
       {platformIOS && !props.loading && props.issue != null ? (
-        <iframe
-          className="iframe container"
-          src={`https://dev.theguidon.com${props.issue.full_issue}#toolbar=0&navpanes=0`}
-        ></iframe>
+        props.isLegacy ? (
+          <div className="container">
+            <div className="document">
+              <div className="page active">
+                <img className="cover" src={props.issue.cover} />
+              </div>
+            </div>
+          </div>
+        ) : (
+          <iframe
+            className="iframe container"
+            src={`https://dev.theguidon.com${props.issue.full_issue}#toolbar=0&navpanes=0`}
+          ></iframe>
+        )
       ) : (
         <>
           <div
@@ -161,7 +171,10 @@ function IssueReader(props) {
             }`}
           >
             {!props.loading && !props.isLegacy && (
-              <div className="edge left" onClick={props.onLeftClick}>
+              <div
+                className={`edge left ${docIsDragging ? "dragging" : ""}`}
+                onClick={props.onLeftClick}
+              >
                 <svg
                   className="chevron"
                   xmlns="http://www.w3.org/2000/svg"
@@ -183,13 +196,14 @@ function IssueReader(props) {
                   docIsDragging ? "dragging" : ""
                 }`}
                 style={{
-                  transform: `translate(${sx + tx}px, ${sy + ty}px) scale(${
-                    props.scale
-                  })`,
+                  transform: `scale(${props.scale}) translate(${
+                    (sx + tx) / props.scale
+                  }px, ${(sy + ty) / props.scale}px)`,
                 }}
                 onMouseDown={onStartDragging}
                 onMouseMove={onDrag}
                 onMouseUp={onEndDragging}
+                onMouseLeave={onEndDragging}
                 onTouchStart={onStartDragging}
                 onTouchMove={onDrag}
                 onTouchEnd={onEndDragging}
@@ -272,7 +286,10 @@ function IssueReader(props) {
             )}
 
             {!props.loading && !props.isLegacy && (
-              <div className="edge right" onClick={props.onRightClick}>
+              <div
+                className={`edge right ${docIsDragging ? "dragging" : ""}`}
+                onClick={props.onRightClick}
+              >
                 <svg
                   className="chevron"
                   xmlns="http://www.w3.org/2000/svg"

@@ -47,6 +47,10 @@
   transition: 0.3s;
 }
 
+/* #issue #reader .edge.dragging {
+  pointer-events: none;
+} */
+
 #issue #reader .edge.left {
   left: 0;
 }
