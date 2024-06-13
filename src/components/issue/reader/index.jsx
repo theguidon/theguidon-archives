@@ -1,5 +1,6 @@
 import "./index.css";
 import "./fullscreen.css";
+import { useRef, useState } from "react";
 
 // import sample from "./../../../assets/sample-2.pdf";
 import { Document, Page, pdfjs } from "react-pdf";
