@@ -14,6 +14,12 @@
   user-select: none;
 }
 
+#issue #reader .iframe {
+  border: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 #issue #reader .container {
   display: flex;
   flex-flow: row nowrap;
