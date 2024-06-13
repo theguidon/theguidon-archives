@@ -21,7 +21,7 @@
 
 #issue .title-bar .top .general-container {
   display: grid;
-  grid-template-columns: 1fr max-content 1fr;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   column-gap: 24px;
 
@@ -120,6 +120,19 @@
 }
 
 /* title */
+#issue .title-bar .issue-title {
+  width: 100%;
+  text-overflow: ellipsis;
+  text-align: center;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  text-overflow: ellipsis;
+  overflow: clip;
+}
+
 #issue .title-bar .top .general-container.search-active .issue-title {
   display: none;
 }
