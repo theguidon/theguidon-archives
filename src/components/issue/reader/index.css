@@ -185,6 +185,9 @@
 }
 
 @media screen and (max-width: 1200px) {
+  #issue #reader .loading-modal {
+    padding: 48px;
+  }
 }
 
 @media screen and (max-width: 992px) {
@@ -199,9 +202,16 @@
   #issue #reader {
     height: calc(100vh - var(--header-height));
   }
+
+  #issue #reader .loading-modal {
+    padding: 40px;
+  }
 }
 
 @media screen and (max-width: 768px) {
+  #issue #reader .loading-modal {
+    padding: 32px;
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -211,5 +221,9 @@
 
   #issue #reader .edge {
     width: 64px;
+  }
+
+  #issue #reader .loading-modal {
+    padding: 24px;
   }
 }

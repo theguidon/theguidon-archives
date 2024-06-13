@@ -34,7 +34,7 @@ function IssueReader(props) {
 
   const readerRef = useRef(null);
 
-  const platformIOS = isIOS(window.navigator) || false;
+  const platformIOS = isIOS(window.navigator) || true;
 
   // pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   //   "pdfjs-dist/build/pdf.worker.min.mjs",
