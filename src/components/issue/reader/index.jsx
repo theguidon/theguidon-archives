@@ -148,7 +148,7 @@ function IssueReader(props) {
           <div className="container">
             <div className="document">
               <div className="page active">
-                <img className="cover" src={props.issue.cover} />
+                <img className="cover" src={props.issue.cover_full} />
               </div>
             </div>
           </div>
@@ -210,7 +210,7 @@ function IssueReader(props) {
                 {props.isLegacy ? (
                   <div className="document">
                     <div className="page active">
-                      <img className="cover" src={props.issue.cover} />
+                      <img className="cover" src={props.issue.cover_full} />
                     </div>
                   </div>
                 ) : (
