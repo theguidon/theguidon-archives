@@ -45,7 +45,9 @@ function SearchPage() {
    * Fetch data on filter or query update
    */
   useEffect(() => {
-    let is_volume = query.match(/^(volume|vol|vol\.) [0-9]+/gi) != null;
+    let is_volume =
+      (query == null ? "" : query).match(/^(volume|vol|vol\.) [0-9]+/gi) !=
+      null;
 
     dispatch(
       fetchIssues({
@@ -172,7 +174,11 @@ function SearchPage() {
             {issues.data[getCategKey()] != null &&
             issues.data[getCategKey()][getKey()] != null
               ? issues.data[getCategKey()][getKey()].map((issue, idx) => (
-                  <IssueCard key={`issue-${issue.fixed_slug}`} issue={issue} />
+                  <IssueCard
+                    key={`issue-${issue.fixed_slug}`}
+                    issue={issue}
+                    query={query}
+                  />
                 ))
               : [...Array(20)].map((_, idx) => (
                   <IssueCard loading={true} key={`issue-loading-${idx}`} />

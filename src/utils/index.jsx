@@ -184,3 +184,112 @@ export const isIOS = (navigator) => {
     (navigator.userAgent.includes("Mac") && "ontouchend" in document)
   );
 };
+
+/**
+ *
+ * @param {string} query from search params
+ * @param {string} issueContent JSON
+ * @returns string
+ */
+export const findQuery = (
+  query,
+  issueContent_json,
+  contributors_json,
+  description
+) => {
+  let query_low = query.toLowerCase();
+
+  // find in issue content
+  let content = JSON.parse(issueContent_json);
+  let found_content = [];
+  for (let i = 0; i < content.length; i++) {
+    for (let j = 0; j < content[i].articles.length; j++) {
+      let bylines_low = content[i].articles[j].bylines.map((byline) =>
+        byline.toLowerCase()
+      );
+
+      if (
+        content[i].articles[j].title.toLowerCase().includes(query_low) ||
+        bylines_low.some((byline) => byline.includes(query_low))
+      ) {
+        found_content.push(
+          `${content[i].articles[j].title}${
+            content[i].articles[j].bylines.length > 0 ? " by " : ""
+          }${
+            content[i].articles[j].bylines.slice(0, -1).join(", ") +
+            (content[i].articles[j].bylines.length >= 3
+              ? ", and "
+              : content[i].articles[j].bylines.length > 1
+              ? " and "
+              : "") +
+            content[i].articles[j].bylines.slice(-1)
+          }`
+        );
+      }
+
+      if (found_content.length >= 3) {
+        found_content.push("more");
+        break;
+      }
+    }
+
+    if (found_content.length >= 3) break;
+  }
+
+  // find in contributors
+  let contributors = JSON.parse(contributors_json);
+  let found_contributors = [];
+  for (let i = 0; i < contributors.length; i++) {
+    for (let j = 0; j < contributors[i].people.length; j++) {
+      if (contributors[i].people[j].byline.toLowerCase().includes(query_low)) {
+        let has_title = contributors[i].people[j].title.length > 0;
+
+        found_contributors.push(
+          `${contributors[i].people[j].byline}${has_title ? ", " : ""}${
+            has_title ? contributors[i].people[j].title : ""
+          }`
+        );
+      }
+
+      if (found_contributors.length >= 3) {
+        found_contributors.push("more");
+        break;
+      }
+    }
+
+    if (found_contributors.length >= 3) break;
+  }
+
+  // add bold for readability
+
+  // return
+  let str = "";
+  if (found_content.length > 0) {
+    str += `<strong>Contains:</strong> ${found_content
+      .slice(0, -1)
+      .join("; ")}${
+      (found_content.length >= 3
+        ? "; and "
+        : found_content.length > 1
+        ? "; and "
+        : "") + found_content.slice(-1)
+    }`;
+  }
+
+  if (found_contributors.length > 0) {
+    if (str.length > 0) str += "<br />";
+
+    str += `<strong>Contains contributors:</strong> ${found_contributors
+      .slice(0, -1)
+      .join(", ")}${
+      (found_contributors.length >= 3
+        ? ", and "
+        : found_contributors.length > 1
+        ? " and "
+        : "") + found_contributors.slice(-1)
+    }`;
+  }
+
+  if (str.length > 0) return str;
+  else return description;
+};

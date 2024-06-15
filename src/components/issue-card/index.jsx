@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { DateFormatter } from "../../utils";
+import { DateFormatter, findQuery } from "../../utils";
 import "./index.css";
 
 function IssueCard(props) {
@@ -31,7 +31,20 @@ function IssueCard(props) {
       <div className="info">
         <h6 className="title">{props.issue.title}</h6>
         <p className="date">{DateFormatter(props.issue.date_published)}</p>
-        <p className="desc">{props.issue.description}</p>
+        <p
+          className="desc"
+          dangerouslySetInnerHTML={{
+            __html:
+              props.query == null
+                ? props.issue.description
+                : findQuery(
+                    props.query,
+                    props.issue.issue_content,
+                    props.issue.contributors,
+                    props.issue.description
+                  ),
+          }}
+        />
       </div>
     </Link>
   );

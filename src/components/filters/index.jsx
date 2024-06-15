@@ -5,7 +5,7 @@ import ViewsFilterGroup from "./views";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMinmaxDates } from "../../redux/modules/minmax-dates";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import { validateRangeFilter } from "../../utils";
 
 function FiltersGroup(props) {
@@ -15,6 +15,8 @@ function FiltersGroup(props) {
   const dispatch = useDispatch();
   const minmaxDates = useSelector((state) => state.minmaxDates);
   const modals = useSelector((state) => state.hideModals);
+
+  const { pathname } = useLocation();
 
   const [yearFilter, setYearFilter] = useState(
     searchParams.get("year") != null &&
@@ -32,7 +34,11 @@ function FiltersGroup(props) {
     searchParams.get("sort") == "oldest"
   );
   const [isGridView, setIsGridView] = useState(
-    searchParams.get("view") != "list"
+    pathname == "/search"
+      ? searchParams.get("view") == null
+        ? false
+        : searchParams.get("view") != "list"
+      : searchParams.get("view") != "list"
   );
   const [activeFilterPopup, setActiveFilterPopup] = useState(null);
 
@@ -95,9 +101,16 @@ function FiltersGroup(props) {
 
     // view
     let view = searchParams.get("view");
-    setIsGridView(view != "list");
-    if (view != "grid" && view != "list")
-      toReplace.push({ key: "view", value: "grid" });
+    if (pathname == "/search") {
+      if (view == null) setIsGridView(false);
+      else setIsGridView(view != "list");
+      if (view != "grid" && view != "list")
+        toReplace.push({ key: "view", value: "list" });
+    } else {
+      setIsGridView(view != "list");
+      if (view != "grid" && view != "list")
+        toReplace.push({ key: "view", value: "grid" });
+    }
 
     props.replaceSearchParams(toReplace);
     // }
