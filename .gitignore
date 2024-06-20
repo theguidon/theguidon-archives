@@ -23,8 +23,6 @@ node_modules
 *.sln
 *.sw?
 
-**/*.pdf
-
 # scripts
 content_script/content.txt
 content_script/content.json
